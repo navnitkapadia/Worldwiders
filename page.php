@@ -22,5 +22,5 @@
     <!-- /Start your project here-->
 <?php include 'footer.php' ?>
 </body>
-<?php include 'styles.php' ?>
+<?php include 'scripts.php' ?>
 </html>
