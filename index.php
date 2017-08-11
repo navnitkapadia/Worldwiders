@@ -1,3 +1,7 @@
+<?php  
+  session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +19,9 @@
     <!-- Start your project here-->
     <div style="height: 100vh">
         <div class="flex-center flex-column">
-            <h1 class="animated fadeIn mb-4">Demo Page template</h1>
+            <h1 class="animated fadeIn mb-4">Welcome to WorldWiders</h1>
+            <h1 class="animated fadeIn mb-4"><?php echo $_SESSION['name']; ?></h1>
+            <h1 class="animated fadeIn mb-4"><?php echo $_SESSION['email']; ?></h1>
         </div>
     </div>
     <!-- /Start your project here-->

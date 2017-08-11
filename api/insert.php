@@ -50,21 +50,31 @@ function new_event($mysqli){
   }
 }
 function login($mysqli){
+  session_start();
   $name = $_REQUEST['name'];
   $email = $_REQUEST['email'];
-  $profile_pic = $_REQUEST['prfile-image'];
+  $userid = $_REQUEST['userid'];
+  $location = $_REQUEST['location'];
+  $nationality = $_REQUEST['nationality'];
+  $birthdate = date("y-m-d", strtotime($_REQUEST['birthdate']));
   
-  $sql = "INSERT INTO users (firstname, email,file) VALUES ('$name','$email','$profile_pic')";
+  $sql = "SELECT * FROM users where user_id = '$userid'"; 
   $result = $mysqli->query($sql);
-
-  if ($result) {
-        header('Location:../login.php?msg=success');
-         $data = $result->fetch_assoc();
-        echo json_encode($data);
-        exit;
+  $row_cnt = $result->num_rows;
+  $row = $result->fetch_assoc();
+  if($row_cnt == 0){
+    $sql = "INSERT INTO users (name,email,user_id,nationality,location,birth_date,status,role_id) 
+    VALUES ('$name','$email','$userid','$nationality','$location','$birthdate',1,2)";
+    $result = $mysqli->query($sql);
   } else {
-      header('Location:../login.php?msg=failed');
-      exit;
+    $_SESSION['userid']=$row['user_id'];
+    $_SESSION['name']= $row['name'];
+    $_SESSION['email']=$row['email'];
+  }
+  if ($result) {
+    $_SESSION['userid'] = $userid;
+    $_SESSION['name']   = $name;
+    $_SESSION['email']   = $email;
   }
 }
 function file_upload(){

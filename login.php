@@ -1,5 +1,10 @@
-<!-- https://developers.facebook.com/docs/facebook-login/permissions/#reference-public_profile  -> Graph API --> 
-<!-- https://developers.facebook.com/docs/graph-api -->
+<?php  
+  session_start();
+if($_SESSION['userid']){
+    header('Location: index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,28 +56,23 @@
 
             function testAPI() {
                 console.log('Welcome! Fetching your information.... ');
-                FB.api('/me?fields=id,name,email,first_name,last_name,picture,link,age_range,locale,timezone,verified,cover,updated_time', function (response) {
+                FB.api('/me', 
+                    {fields: "id,about,picture,birthday,email,gender,hometown,location,name"}, function (response) {
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name + '!';
                     function insert(response) {
+                        var id = response.id;
                         var name = response.name;
                         var email = response.email;
-                        var first_name = response.first_name;
-                        var last_name = response.last_name;
-                        var age_range = response.age_range;
-                        var locale = response.locale;
-                        var timezone = response.timezone;
-                        var verified = response.verified;
-                        var cover = response.cover;
-                        var updated_time = response.updated_time;
+                        var location = response.location.name;
+                        var nationality = response.hometown.name;
+                        var birthdate = response.birthday;
+                        
                         $.ajax({
                             type: "POST",
-                            url: "insert.php",
-                            data: "name=" + name + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&age_range=" + age_range + "&locale=" + locale + "&timezone=" + timezone + "&verified=" + verified + "&cover=" + cover + "&updated_time=" + updated_time,
-                            success: function (data) {
-                                alert("sucess");
-                            }
+                            url: "api/insert.php?action=login",
+                            data: "name=" + name + "&email=" + email + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate
                         });
                     }
 					insert(response);
@@ -81,10 +81,10 @@
 			
             $(document).ready(function () {
                 FB.init({
-                    appId: '232279197294576',
+                    appId: '2100813633278010',
                     cookie: true,
                     xfbml: true,
-                    version: 'v2.8'
+                    version: 'v2.10'
                 });
                 checkLoginState();
             });
@@ -92,9 +92,7 @@
     </head>
 
     <body>
-        <?php include 'header.php';
-		 print_r($_POST);
-		?>
+        <?php include 'header.php';?>
         <div class="form-wrapper">
             <!-- Login form -->
             <form>
@@ -103,8 +101,9 @@
                     <div class="text-center">
                         <button class="btn btn-default">Login with facebook</button>
                     </div>
-                    <div> <fb:login-button
-                            scope="public_profile,email"
+                    <div> 
+                     <fb:login-button
+                            scope="public_profile,email,user_birthday,user_hometown,user_location,user_about_me"
                             onlogin="checkLoginState();">
                         </fb:login-button>
                     </div>
