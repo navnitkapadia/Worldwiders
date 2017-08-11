@@ -8,6 +8,9 @@ if (isset($_REQUEST['action'])) {
     case 'new-event':
       new_event($mysqli);
       break;
+    case 'login':
+      login($mysqli);
+      break;
   }
 }
 function make_group($mysqli){
@@ -46,6 +49,24 @@ function new_event($mysqli){
       exit;
   }
 }
+function login($mysqli){
+  $name = $_REQUEST['name'];
+  $email = $_REQUEST['email'];
+  $profile_pic = $_REQUEST['prfile-image'];
+  
+  $sql = "INSERT INTO users (firstname, email,file) VALUES ('$name','$email','$profile_pic')";
+  $result = $mysqli->query($sql);
+
+  if ($result) {
+        header('Location:../login.php?msg=success');
+         $data = $result->fetch_assoc();
+        echo json_encode($data);
+        exit;
+  } else {
+      header('Location:../login.php?msg=failed');
+      exit;
+  }
+}
 function file_upload(){
   if (isset($_FILES['image'])) {
         $errors    = array();
@@ -70,7 +91,8 @@ function file_upload(){
         }
         
         if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "../upload/" . $file_name);
+          move_uploaded_file($file_tmp, "../upload/$file_name") or die('error in uploading files');
+          exit;
             
         } else {
             print_r($errors);
