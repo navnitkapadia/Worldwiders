@@ -66,7 +66,7 @@
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="file">Event image</label>
-                        <input type="file" id="file" class="form-control"/>
+                        <input type="file" name="image" id="file" class="form-control"/>
                       </div>
                     </div>
                     <button class="btn btn-primary">Save Changes</button>
