@@ -6,26 +6,24 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
-		<title>About Me</title>
-
-
+    <title>About Me</title>
+    
 	</head>
   <body>
     <?php include 'header.php'?>
     <!--======================Page Container START===================================-->
       <div class="container">
-
       <!-- Timeline
       ================================================= -->
       <div class="timeline">
         <div class="timeline-cover">
-
           <!--Timeline Menu for Large Screens-->
           <div class="timeline-nav-bar hidden-sm hidden-xs">
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
+                  <?php $user = $_SESSION['userid']; ?>
+                  <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
                   <h3>Sarah Cruiz</h3>
                   <p class="text-muted">Creative Director</p>
                 </div>
@@ -46,7 +44,8 @@
           <!--Timeline Menu for Small Screens-->
           <div class="navbar-mobile hidden-lg hidden-md">
             <div class="profile-info">
-              <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
+              
+              <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
               <h4>Sarah Cruiz</h4>
               <p class="text-muted">Creative Director</p>
             </div>
@@ -76,7 +75,7 @@
                 </div>
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
-                  <div class="organization">
+                  <!-- <div class="organization">
                     <img src="images/envato.png" alt="" class="pull-left img-org" />
                     <div class="work-info">
                       <h5>Envato</h5>
@@ -96,7 +95,7 @@
                       <h5>Envato</h5>
                       <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
@@ -132,7 +131,9 @@
         </div>
       </div>
     </div>
+  
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
+
   </body>
 </php>

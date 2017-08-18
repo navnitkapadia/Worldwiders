@@ -1,4 +1,5 @@
  
+ <?php session_start(); ?>
     <!-- Stylesheets
     ================================================= -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
