@@ -16,8 +16,8 @@ if (isset($_REQUEST['action'])) {
 function make_group($mysqli){
   $title = $_REQUEST['title'];
   $description = $_REQUEST['description'];
-  $group_image = file_upload();
-  $sql = "INSERT INTO peoples_group (title, description,file) VALUES ('$title', '$description', '$group_image')";
+  $group_image = $_FILES["file"]["name"];
+  $sql = "INSERT INTO peoples_group (title,description,file) VALUES ('$title', '$description', '$group_image')";
   $result = $mysqli->query($sql);
   if ($result) {
         header('Location:../make-group.php?msg=success');
@@ -36,7 +36,7 @@ function new_event($mysqli){
   $website = $_REQUEST['website'];
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
-  $event_image = file_upload();
+  $event_image = $_FILES["file"]["name"];
 
   $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at) 
                     VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$created')";
