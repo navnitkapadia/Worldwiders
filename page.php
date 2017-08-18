@@ -1,26 +1,21 @@
+<!DOCTYPE php>
+<php lang="en">
+	<head>
+    <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Home logged</title>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Demo page template</title>
-    <?php include 'styles.php' ?>
-</head>
+	</head>
+  <body>
+    <?php include 'header.php'?>
+    <!--======================Page Container START===================================-->
 
-<body>
-<?php include 'header.php' ?>
-    <!-- copy this file code and paste it in new file -->
-    <!-- Start your project here-->
-    <div style="height: 100vh">
-        <div class="flex-center flex-column">
-            <h1 class="animated fadeIn mb-4">Demo Page template</h1>
-        </div>
-    </div>
-    <!-- /Start your project here-->
-<?php include 'footer.php' ?>
-</body>
-<?php include 'scripts.php' ?>
-</html>
+
+    <!--======================Page Container STOP====================================-->
+    <?php include 'footer.php' ?>
+  </body>
+</php>

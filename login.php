@@ -1,10 +1,10 @@
-<?php  
-  session_start();
-if($_SESSION['userid']){
-    header('Location: index.php');
-    exit;
-}
-?>
+ <?php  
+//   session_start();
+// if($_SESSION['userid']){
+//     header('Location: index.php');
+//     exit;
+// }
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +19,8 @@ if($_SESSION['userid']){
         <script>
 
             function statusChangeCallback(response) {
-                console.log('statusChangeCallback');
-                console.log(response);
                 if (response.status === 'connected') {
                     testAPI();
-
                 } else if (response.status === 'not_authorized') {
                     FB.login(function (response) {
                         statusChangeCallback2(response);
@@ -61,6 +58,9 @@ if($_SESSION['userid']){
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name + '!';
+
+                    insert(response);
+
                     function insert(response) {
                         var id = response.id;
                         var name = response.name;
@@ -72,22 +72,16 @@ if($_SESSION['userid']){
                         $.ajax({
                             type: "POST",
                             url: "api/insert.php?action=login",
-                            data: "name=" + name + "&email=" + email + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate
+                            data: "name=" + name + "&email=" + email + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
+                            success: function (data) {
+                                 console.log("called")
+                                 //window.location = "http://localhost/Worldwiders/index.php";
+                            }
                         });
                     }
-					insert(response);
+					
                 });
             }
-			
-            $(document).ready(function () {
-                FB.init({
-                    appId: '2100813633278010',
-                    cookie: true,
-                    xfbml: true,
-                    version: 'v2.10'
-                });
-                checkLoginState();
-            });
         </script>
     </head>
 

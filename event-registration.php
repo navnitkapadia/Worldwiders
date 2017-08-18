@@ -1,85 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
+	<head>
+    <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Make Event</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Demo page template</title>
-    <?php include 'styles.php' ?>
-</head>
 
-<body>
-    <?php include 'header.php' ?>
-    <div class="form-wrapper">
-        <!-- Register form -->
-        <form action="api/insert.php?action=new-event" method="POST" enctype="multipart/form-data">
-            <p class="h5 text-center mb-4">New Event</p>
-
-            <div class="md-form">
-                <input type="text" id="event" name="event-name" class="form-control">
-                <label for="event">Title</label>
-            </div>
-            <div class="md-form">
-                <input placeholder="Selected date" type="text" name="event-date" id="event-date" class="form-control datepicker">
-                <label for="event-date">Date</label>
-            </div>
-            <div class="md-form">
-                <input type="text" id="location-name" name="lname" class="form-control">
-                <label for="location-name">Location Name</label>
-            </div>
-            <div class="md-form">
-                <input type="text" id="location-address" name="ladd" class="form-control">
-                <label for="location-address">Location address</label>
-            </div>
-            <div class="md-form">
-                <input type="text" id="website" name="website" class="form-control">
-                <label for="website">Website</label>
-            </div>
-            <div class="md-form">
-                <input type="text" id="max-member" name="max-member" class="form-control">
-                <label for="max-member">No of guests Allowed</label>
-            </div>
-            <div class="md-form">
-                <textarea type="text" id="description" name="description" class="md-textarea"></textarea>
-                <label for="description">Description</label>
-            </div>
-            </br>
-            <div class="file-field">
-                <div class="btn btn-primary btn-sm">
-                    <span>Choose file</span>
-                    <input name="image" type="file">
+	</head>
+  <body>
+    <?php include 'header.php'?>
+    <!--======================Page Container START===================================-->
+    <div class="container">
+        <div id="page-contents">
+            <div class="form-wrapper">
+                <div class="block-title">
+                  <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i> Add Event</h4>
+                  <div class="line"></div>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" required type="text" placeholder="Cover image">
-                </div>  
-            </div>
-            </br>
-            </br>
-            <div class="text-center">
-                <button class="btn btn-deep-orange">Add new event</button>
-            </div>
-
-        </form>
-        <!-- Register form -->
+                <form name="basic-info" id="basic-info" class="form-inline" action="api/insert.php?action=new-event" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="title">Event Title</label>
+                        <input id="title" class="form-control input-group-lg" type="text" name="event-name" title="Event Name" placeholder="Event Name" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="date">Date</label>
+                        <input id="date" class="form-control input-group-lg" type="date"  title="Date" placeholder="Add Date" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="lname">Location Name</label>
+                        <input id="lname" name="lname"  class="form-control input-group-lg" type="text" title="Location Name" placeholder="Location Name" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="ladd">Location Address</label>
+                        <input id="ladd" name="ladd"  class="form-control input-group-lg" type="text" title="Location Address" placeholder="Location Address" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="Website">Website</label>
+                        <input id="Website" class="form-control input-group-lg" type="text" name="Website" title="Website" placeholder="Website" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="max-member">No of guests Allowed</label>
+                        <input class="form-control input-group-lg" type="text" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="file">Event image</label>
+                        <input type="file" id="file" class="form-control"/>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary">Save Changes</button>
+                </form>
+            </div> 
         </div>
-        <?php include 'footer.php' ?>
-        <?php include 'scripts.php' ?>
-</body>
-<script>
-    toastr.options = {
-        "timeOut": "1000"
-    }
-    var url = new URL(window.location.href.toString());
-    var msg = url.searchParams.get("msg");
-    if (msg === "success") {
-        self.toastr.success('New event created');
-    }
-    if (msg === "failed") {
-        self.toastr.error('New event creation Failed');
-    }
-    // Data Picker Initialization
-    $('.datepicker').pickadate();
-</script>
-
-</html>
+    </div>
+    <!--======================Page Container STOP====================================-->
+    <?php include 'footer.php' ?>
+  </body>
+</php>

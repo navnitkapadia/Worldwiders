@@ -66,16 +66,7 @@ function login($mysqli){
     $sql = "INSERT INTO users (name,email,user_id,nationality,location,birth_date,status,role_id) 
     VALUES ('$name','$email','$userid','$nationality','$location','$birthdate',1,2)";
     $result = $mysqli->query($sql);
-  } else {
-    $_SESSION['userid']=$row['user_id'];
-    $_SESSION['name']= $row['name'];
-    $_SESSION['email']=$row['email'];
-  }
-  if ($result) {
-    $_SESSION['userid'] = $userid;
-    $_SESSION['name']   = $name;
-    $_SESSION['email']   = $email;
-  }
+  } 
 }
 function file_upload(){
   if (isset($_FILES['image'])) {
