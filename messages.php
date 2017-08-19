@@ -12,6 +12,25 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#send').click(function(){
+				var message = $('#message').val();
+				alert(message);
+				$.ajax({
+                        url: 'insert_message.php?action=chat', // point to server-side PHP script 
+                        data: "message=" + message,
+                        type: 'post',
+                        success: function (response) {
+                            $('#msg').html(response); // display success response from the PHP script
+                        },
+                        error: function (response) {
+                            $('#msg').html(response); // display error response from the PHP script
+                        }
+                    });
+			});
+		});
+	</script>
     <!--======================Page Container START===================================-->
  <div id="page-contents">
     	<div class="container">
@@ -35,15 +54,24 @@
             <div id="chat-block">
               <div class="title">Chat online</div>
               <ul class="online-users list-inline">
-                <li><a href="newsfeed-messages.php" title="Linda Lohan"><img src="images/users/user-2.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.php" title="Sophia Lee"><img src="images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+				<?php
+					require 'api/db_config.php';
+					$query="select * from users";
+					$result = $mysqli->query($query);
+					while($row = $result->fetch_assoc())
+					{
+					 extract($row);	
+				?>
+                <li><a href="newsfeed-messages.php" title="Linda Lohan"><img src="<?php echo $cover; ?>" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+				<?php } ?>
+                <!--<li><a href="newsfeed-messages.php" title="Sophia Lee"><img src="images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="John Doe"><img src="images/users/user-4.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="Alexis Clark"><img src="images/users/user-5.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="James Carter"><img src="images/users/user-6.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="Robert Cook"><img src="images/users/user-7.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="Richard Bell"><img src="images/users/user-8.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
                 <li><a href="newsfeed-messages.php" title="Anna Young"><img src="images/users/user-9.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.php" title="Julia Cox"><img src="images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                <li><a href="newsfeed-messages.php" title="Julia Cox"><img src="images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>-->
               </ul>
             </div><!--chat block ends-->
           </div>
@@ -57,12 +85,20 @@
 
                   <!-- Contact List in Left-->
                   <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+				  <?php 
+					require 'api/db_config.php';
+					$query="select * from users";
+					$result = $mysqli->query($query);
+					while($row = $result->fetch_assoc())
+					{
+					 extract($row);	
+				  ?>
                     <li class="active">
                       <a href="newsfeed-messages.php#contact-1" data-toggle="tab">
                         <div class="contact">
-                        	<img src="images/users/user-2.jpg" alt="" class="profile-photo-sm pull-left"/>
+                        	<img src="<?php echo $cover; ?>" alt="" class="profile-photo-sm pull-left"/>
                         	<div class="msg-preview">
-                        		<h6>Linda Lohan</h6>
+                        		<h6><?php echo $name; ?></h6>
                         		<p class="text-muted">Hi there, how are you</p>
                             <small class="text-muted">a min ago</small>
                             <div class="chat-alert">1</div>
@@ -70,7 +106,8 @@
                         </div>
                       </a>
                     </li>
-                    <li>
+					<?php } ?>
+                    <!--<li>
                       <a href="newsfeed-messages.php#contact-2" data-toggle="tab">
                         <div class="contact">
                           <img src="images/users/user-10.jpg" alt="" class="profile-photo-sm pull-left"/>
@@ -134,7 +171,7 @@
                         	</div>
                         </div>
                       </a>
-                    </li>
+                    </li>-->
                   </ul><!--Contact List in Left End-->
 
                 </div>
@@ -145,6 +182,14 @@
                     <div class="tab-pane active" id="contact-1">
                       <div class="chat-body">
                       	<ul class="chat-message">
+						<?php 
+							require 'api/db_config.php';
+							$query="select * from chat";
+							$result = $mysqli->query($query);
+							while($row = $result->fetch_assoc())
+							{
+							extract($row);	
+						?>
                       		<li class="left">
                       			<img src="images/users/user-2.jpg" alt="" class="profile-photo-sm pull-left" />
                       			<div class="chat-item">
@@ -152,10 +197,11 @@
                               	<h5>Linda Lohan</h5>
                               	<small class="text-muted">3 days ago</small>
                               </div>
-                              <p>Hi honey, how are you doing???? Long time no see. Where have you been?</p>
+                              <p><?php echo $message; ?></p>
                             </div>
                       		</li>
-                          <li class="right">
+						<?php } ?>	
+                          <!--<li class="right">
                       			<img src="images/users/user-1.jpg" alt="" class="profile-photo-sm pull-right" />
                       			<div class="chat-item">
                               <div class="chat-item-header">
@@ -204,11 +250,11 @@
                               </div>
                               <p>Hi there, how are you</p>
                             </div>
-                      		</li>
+                      		</li>-->
                       	</ul>
                       </div>
                     </div>
-                    <div class="tab-pane" id="contact-2">
+                    <!--<div class="tab-pane" id="contact-2">
                       <div class="chat-body">
                       	<ul class="chat-message">
                       		<li class="left">
@@ -253,8 +299,8 @@
                       		</li>
                       	</ul>
                       </div>
-                    </div>
-                    <div class="tab-pane" id="contact-3">
+                    </div>-->
+                    <!--<div class="tab-pane" id="contact-3">
                       <div class="chat-body">
                       	<ul class="chat-message">
                       		<li class="right">
@@ -289,8 +335,8 @@
                       		</li>
                       	</ul>
                       </div>
-                    </div>
-                    <div class="tab-pane" id="contact-4">
+                    </div>-->
+                    <!--<div class="tab-pane" id="contact-4">
                       <div class="chat-body">
                       	<ul class="chat-message">
                       		<li class="left">
@@ -315,8 +361,8 @@
                       		</li>
                       	</ul>
                       </div>
-                    </div>
-                    <div class="tab-pane" id="contact-5">
+                    </div>-->
+                    <!--<div class="tab-pane" id="contact-5">
                       <div class="chat-body">
                       	<ul class="chat-message">
                       		<li class="left">
@@ -398,13 +444,13 @@
                       	</ul>
                       </div>
                     </div>
-                  </div><!--Chat Messages in Right End-->
+                  </div>--><!--Chat Messages in Right End-->
 
                   <div class="send-message">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Type your message">
+                      <input type="text" id="message" class="form-control" placeholder="Type your message">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Send</button>
+                        <button class="btn btn-default" id="send" type="button">Send</button>
                       </span>
                     </div>
                   </div>
