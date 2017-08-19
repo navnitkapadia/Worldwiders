@@ -14,10 +14,11 @@ function checkLoginState() {
 }
 function statusChangeCallback(response) {
         if (response.status === 'connected') {
+            console.log(response);
             $.ajax({
                 type: "POST",
                 url: "api/checklogin.php",
-                data: "userid=" + response.authResponse.userID,
+                data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken ,
                 success: function (data) {
                     if(window.location.pathname == "/Worldwiders/index.php"){
                         window.location = "home.php"
@@ -54,7 +55,7 @@ function statusChangeCallback(response) {
       function user_signup() {
         console.log('Welcome! Fetching your information.... ');
         FB.api('/me', 
-            {fields: "id,about,cover,picture,birthday,email,gender,hometown,location,name"}, function (response) {
+            {fields: "id,about,cover,picture,birthday,email,hometown,location,name"}, function (response) {
             insert(response);
             console.log(response);
             function insert(response) {
