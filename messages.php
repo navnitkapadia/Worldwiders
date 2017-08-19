@@ -16,16 +16,24 @@
 		$(document).ready(function () {
 			$('#send').click(function(){
 				var message = $('#message').val();
-				alert(message);
 				$.ajax({
                         url: 'insert_message.php?action=chat', // point to server-side PHP script 
                         data: "message=" + message,
                         type: 'post',
                         success: function (response) {
-                            $('#msg').html(response); // display success response from the PHP script
+                            $('#message').val(''); // Clear textbox value
+							$.ajax({
+								url: 'message_view.php?action=view', // point to server-side PHP script 
+								type: 'post',
+								success: function (data) {
+										$.each(data, function( index, value ) {
+										console.log(value);
+									});
+								}
+							});	
                         },
                         error: function (response) {
-                            $('#msg').html(response); // display error response from the PHP script
+                            $('#message').val(''); // display error response from the PHP script
                         }
                     });
 			});
