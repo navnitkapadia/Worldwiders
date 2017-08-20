@@ -54,6 +54,7 @@ function login($mysqli){
   $name = $_REQUEST['name'];
   $email = $_REQUEST['email'];
   $cover = $_REQUEST['cover'];
+  $oe = $_REQUEST['oe'];
   $userid = $_REQUEST['userid'];
   $location = $_REQUEST['location'];
   $nationality = $_REQUEST['nationality'];
@@ -64,10 +65,10 @@ function login($mysqli){
   $row_cnt = $result->num_rows;
   $row = $result->fetch_assoc();
   if($row_cnt == 0){
-    $sql = "INSERT INTO users (name,email,cover,user_id,nationality,location,birth_date,status,role_id) 
-    VALUES ('$name','$email','$cover','$userid','$nationality','$location','$birthdate',1,2)";
+    $sql = "INSERT INTO users (name,email,cover,oe,user_id,nationality,location,birth_date,status,role_id) 
+    VALUES ('$name','$email','$cover','$oe','$userid','$nationality','$location','$birthdate',1,2)";
     $result = $mysqli->query($sql);
-  } 
+  }
 }
 function file_upload(){
   if (isset($_FILES['image'])) {

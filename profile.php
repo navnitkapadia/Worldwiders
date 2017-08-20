@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
     <meta http-equiv="content-type" content="text/php; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,25 +7,25 @@
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
     <title>About Me</title>
-    
 	</head>
   <body>
     <?php include 'header.php'?>
     <!--======================Page Container START===================================-->
       <div class="container">
       <?php
-      $user = $_SESSION['userid']; 
+      $user = $_SESSION['userid'];
       require 'api/db_config.php';
       $sql = "SELECT * FROM users where user_id = $user";
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
       {
         extract($row);
+        $pa = $cover.'&oe='.$oe;
       ?>
       <!-- Timeline
       ================================================= -->
         <div class="timeline">
-          <div class="timeline-cover" <?php if($cover !=""){ echo "style='background: url($cover)';";} ?>>
+          <div class="timeline-cover" <?php if($cover !=""){ echo "style='background-image: url($pa)';";} ?>>
             
             <!--Timeline Menu for Large Screens-->
             <div class="timeline-nav-bar hidden-sm hidden-xs">
@@ -33,28 +33,28 @@
                 <div class="col-md-3">
                   <div class="profile-info">
                     <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
-                    <h3>Sarah Cruiz</h3>
-                    <p class="text-muted">Creative Director</p>
+                    <h3><?php echo $name; ?></h3>
+                    <!-- <p class="text-muted">Creative Director</p> -->
                   </div>
                 </div>
                 <div class="col-md-9">
                   <ul class="list-inline profile-menu">
-                    <li><a href="profile.html" class="active">About</a></li>
-                    <li><a href="friends.html">Friends</a></li>
+                    <li><a href="profile.php" class="active">About</a></li>
+                    <li><a href="friends.php">Friends</a></li>
                   </ul>
                   <ul class="follow-me list-inline">
-                    <li>1,299 people following her</li>
+                    <!-- <li>1,299 people following her</li> -->
                     <li><button class="btn-primary">Add Friend</button></li>
                   </ul>
                 </div>
               </div>
             </div><!--Timeline Menu for Large Screens End-->
 
-            <!--Timeline Menu for Small Screens-->
-            <div class="navbar-mobile hidden-lg hidden-md">
+            <!-- Timeline Menu for Small Screens-->
+            <!-- <div class="navbar-mobile hidden-lg hidden-md">
               <div class="profile-info">
                 
-                <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
+                <img src="" alt="" class="img-responsive profile-photo" />
                 <h4>Sarah Cruiz</h4>
                 <p class="text-muted">Creative Director</p>
               </div>
@@ -66,8 +66,8 @@
                   <li><a href="timeline-friends.html">Friends</a></li>
                 </ul>
                 <button class="btn-primary">Add Friend</button>
-              </div>
-            </div><!--Timeline Menu for Small Screens End-->
+              </div> -->
+            </div><!--Timeline Menu for Small Screens End -->
 
           </div>
           <div id="page-contents">

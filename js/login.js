@@ -14,11 +14,10 @@ function checkLoginState() {
 }
 function statusChangeCallback(response) {
         if (response.status === 'connected') {
-            console.log(response);
             $.ajax({
                 type: "POST",
                 url: "api/checklogin.php",
-                data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken ,
+                data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
                 success: function (data) {
                     if(window.location.pathname == "/Worldwiders/index.php"){
                         window.location = "home.php"
@@ -62,11 +61,22 @@ function statusChangeCallback(response) {
               var id = response.id;
               var name = response.name;
               var email = response.email;
-              var location = response.location.name;
-              var cover = response.cover.source;
-              var nationality = response.hometown.name;
+              if(response.location){
+                 var location = response.location.name;
+              } else{
+                var location = "";
+              }
+             if(response.cover){
+                 var cover = response.cover.source;
+              } else{
+                var cover = "";
+              }
+             if(response.hometown){
+                 var nationality = response.hometown.name;
+              } else{
+                var nationality = "";
+              }
               var birthdate = response.birthday;
-              
               $.ajax({
                   type: "POST",
                   url: "api/insert.php?action=login",
