@@ -17,12 +17,12 @@ function statusChangeCallback(response) {
             $.ajax({
                 type: "POST",
                 url: "api/checklogin.php",
-                data: "userid=" + response.authResponse.userID,
+                data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
                 success: function (data) {
                     if(window.location.pathname == "/Worldwiders/index.php"){
                         window.location = "home.php"
                     }
-                    if(data < 0 ){
+                    if(data == 0 ){
                         user_signup(); 
                     }
             }
@@ -45,7 +45,7 @@ function statusChangeCallback(response) {
             url: "api/checklogin.php",
             data: "userid=" + response.authResponse.userID,
             success: function (data) {
-                if(data < 0 ){
+                if(data == 0 ){
                     user_signup(); 
                 }
             }
@@ -54,20 +54,33 @@ function statusChangeCallback(response) {
       function user_signup() {
         console.log('Welcome! Fetching your information.... ');
         FB.api('/me', 
-            {fields: "id,about,picture,birthday,email,gender,hometown,location,name"}, function (response) {
+            {fields: "id,about,cover,picture,birthday,email,hometown,location,name"}, function (response) {
             insert(response);
+            console.log(response);
             function insert(response) {
               var id = response.id;
               var name = response.name;
               var email = response.email;
-              var location = response.location.name;
-              var nationality = response.hometown.name;
+              if(response.location){
+                 var location = response.location.name;
+              } else{
+                var location = "";
+              }
+             if(response.cover){
+                 var cover = response.cover.source;
+              } else{
+                var cover = "";
+              }
+             if(response.hometown){
+                 var nationality = response.hometown.name;
+              } else{
+                var nationality = "";
+              }
               var birthdate = response.birthday;
-              
               $.ajax({
                   type: "POST",
                   url: "api/insert.php?action=login",
-                  data: "name=" + name + "&email=" + email + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
+                  data: "name=" + name + "&email=" + email + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
                   success: function (data) {
                      if(window.location.pathname != "/Worldwiders/home.php"){
                         window.location = "home.php"

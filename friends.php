@@ -16,34 +16,43 @@
 
 
     <div class="container">
-
+        <?php
+      $user = $_SESSION['userid'];
+      require 'api/db_config.php';
+      $sql = "SELECT * FROM users where user_id = $user";
+      $result = $mysqli->query($sql);
+      while($row = $result->fetch_assoc())
+      {
+        extract($row);
+        $pa = $cover.'&oe='.$oe;
+      ?>
       <!-- Timeline
       ================================================= -->
       <div class="timeline">
-        <div class="timeline-cover">
-
-          <!--Timeline Menu for Large Screens-->
-          <div class="timeline-nav-bar hidden-sm hidden-xs">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="profile-info">
-                  <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
-                  <h3>Sarah Cruiz</h3>
-                  <p class="text-muted">Creative Director</p>
+      <div class="timeline-cover" <?php if($cover !=""){ echo "style='background-image: url($pa)';";} ?>>
+            
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="profile-info">
+                    <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
+                    <h3><?php echo $name; ?></h3>
+                    <!-- <p class="text-muted">Creative Director</p> -->
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <ul class="list-inline profile-menu">
+                    <li><a href="profile.php" >About</a></li>
+                    <li><a href="friends.php" class="active">Friends</a></li>
+                  </ul>
+                  <ul class="follow-me list-inline">
+                    <!-- <li>1,299 people following her</li> -->
+                    <li><button class="btn-primary">Add Friend</button></li>
+                  </ul>
                 </div>
               </div>
-              <div class="col-md-9">
-                <ul class="list-inline profile-menu">
-                  <li><a href="profile.php">About</a></li>
-                  <li><a href="friends.php" class="active">Friends</a></li>
-                </ul>
-                <ul class="follow-me list-inline">
-                  <li>1,299 people following her</li>
-                  <li><button class="btn-primary">Add Friend</button></li>
-                </ul>
-              </div>
-            </div>
-          </div><!--Timeline Menu for Large Screens End-->
+            </div><!--Timeline Menu for Large Screens End-->
 
           <!--Timeline Menu for Small Screens-->
           <div class="navbar-mobile hidden-lg hidden-md">
@@ -196,6 +205,7 @@
           </div>
         </div>
       </div>
+      <?php } ?>
     </div>
 
 
