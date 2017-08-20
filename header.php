@@ -34,7 +34,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register.php"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->

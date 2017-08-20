@@ -20,6 +20,7 @@ function statusChangeCallback(response) {
                 data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
                 success: function (data) {
                     if(window.location.pathname == "/Worldwiders/index.php"){
+                    //if(window.location.pathname == "/index.php"){
                         window.location = "home.php"
                     }
                     if(data == 0 ){
@@ -35,6 +36,7 @@ function statusChangeCallback(response) {
             }, {scope: 'public_profile,email'});
         } else {
             if(window.location.pathname != "/Worldwiders/index.php"){
+               // if(window.location.pathname != "/index.php"){
                 window.location = "index.php"
             }
         }
@@ -54,12 +56,14 @@ function statusChangeCallback(response) {
       function user_signup() {
         console.log('Welcome! Fetching your information.... ');
         FB.api('/me', 
-            {fields: "id,about,cover,picture,birthday,email,hometown,location,name"}, function (response) {
+            {fields: "id,about,cover,first_name,last_name,picture,birthday,email,hometown,location,name"}, function (response) {
             insert(response);
             console.log(response);
             function insert(response) {
               var id = response.id;
               var name = response.name;
+              var first_name = response.first_name;
+              var last_name = response.last_name;
               var email = response.email;
               if(response.location){
                  var location = response.location.name;
@@ -80,9 +84,10 @@ function statusChangeCallback(response) {
               $.ajax({
                   type: "POST",
                   url: "api/insert.php?action=login",
-                  data: "name=" + name + "&email=" + email + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
+                  data: "name=" + name + "&email=" + email+"&first_name=" + first_name+"&last_name=" + last_name + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
                   success: function (data) {
                      if(window.location.pathname != "/Worldwiders/home.php"){
+                     //if(window.location.pathname != "/home.php"){
                         window.location = "home.php"
                      }
                   }

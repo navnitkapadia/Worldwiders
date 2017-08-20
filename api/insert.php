@@ -52,6 +52,8 @@ function new_event($mysqli){
 function login($mysqli){
   session_start();
   $name = $_REQUEST['name'];
+  $fname = $_REQUEST['first_name'];
+  $lname = $_REQUEST['last_name'];
   $email = $_REQUEST['email'];
   $cover = $_REQUEST['cover'];
   $oe = $_REQUEST['oe'];
@@ -65,8 +67,8 @@ function login($mysqli){
   $row_cnt = $result->num_rows;
   $row = $result->fetch_assoc();
   if($row_cnt == 0){
-    $sql = "INSERT INTO users (name,email,cover,oe,user_id,nationality,location,birth_date,status,role_id) 
-    VALUES ('$name','$email','$cover','$oe','$userid','$nationality','$location','$birthdate',1,2)";
+    $sql = "INSERT INTO users (name,first_name,last_name,email,cover,oe,user_id,nationality,location,birth_date,status,role_id) 
+    VALUES ('$name','$fname','$lname','$email','$cover','$oe','$userid','$nationality','$location','$birthdate',1,2)";
     $result = $mysqli->query($sql);
   }
 }
