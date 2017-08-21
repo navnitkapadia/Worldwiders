@@ -21,20 +21,28 @@
 				<img src="http://www.jquery-az.com/wp-content/uploads/2016/04/16.0_1-JavaScript-date.png" style="width: 100%" />
 			</div>
             <div class="col-md-9">
-
+			<?php
+                require 'api/db_config.php';
+                $sql = "SELECT * FROM event";
+                $result = $mysqli->query($sql);
+                while($row = $result->fetch_assoc())
+                {
+                extract($row);
+			?>
             <!-- Media
             ================================================= -->
             <div class="media">
             	<div class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
+                <div class="grid-sizer col-md-4 col-sm-4"></div>
                 <div class="grid-item col-md-4 col-sm-4">
             		<div class="media-grid">
 						<div class="img-wrapper">
-						  <img src="images/post-images/6.jpg" alt="" class="img-responsive post-image" />
+						  <img src="upload/<?php echo $file; ?>" alt="" class="img-responsive post-image" />
 						</div>
 						<div class="media-info">
 						  <div class="reaction">
-							<h4><a href="events-detail.php">Singing at Chinagarden</a></h4>
-							<p>Monday, 22.08.2017 - Starting from: 17.00</p>
+							<h4><a href="events-detail.php"><?php echo $event; ?></a></h4>
+							<p><?php echo $created_at; ?></p>
 						  </div>
 						  <div class="user-info">
 							<img src="images/users/user-8.jpg" alt="" class="profile-photo-sm pull-left" />
@@ -46,7 +54,7 @@
 						</div>
                   	</div>
             	</div>
-                <div class="grid-item col-md-4 col-sm-4">
+                <!--<div class="grid-item col-md-4 col-sm-4">
             		<div class="media-grid">
 						<div class="img-wrapper">
 						  <img src="images/post-images/3.jpg" alt="" class="img-responsive post-image" />
@@ -145,9 +153,10 @@
 						  </div>
 						</div>
                   	</div>
-            	</div>
+            	</div>-->
             </div>
           </div>
+		  <?php } ?>
     		</div>
     		</div>
     	</div>

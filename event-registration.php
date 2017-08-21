@@ -12,6 +12,30 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+	<script type="text/javascript">
+            $(document).ready(function (e) {
+                $('#file').change(function () {
+                    var file_data = this.files[0];
+                    var form_data = new FormData();
+                    form_data.append('file', file_data);
+                    $.ajax({
+                        url: 'upload.php', // point to server-side PHP script 
+                        dataType: 'text', // what to expect back from the PHP script
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function (response) {
+                            $('#msg').html(response); // display success response from the PHP script
+                        },
+                        error: function (response) {
+                            $('#msg').html(response); // display error response from the PHP script
+                        }
+                    });
+                });
+            });
+        </script>
     <!--======================Page Container START===================================-->
     <div class="container">
         <div id="page-contents">
@@ -66,7 +90,7 @@
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="file">Event image</label>
-                        <input type="file" name="image" id="file" class="form-control"/>
+                        <input type="file" name="file" id="file" class="form-control"/>
                       </div>
                     </div>
                     <button class="btn btn-primary">Save Changes</button>

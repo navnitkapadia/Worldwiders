@@ -27,113 +27,28 @@
               ================================================= -->
               <div class="friend-list">
                 <div class="row">
+                   <?php
+                    require 'api/db_config.php';
+                    $sql = "SELECT * FROM peoples_group";
+                    $result = $mysqli->query($sql);
+                    while($row = $result->fetch_assoc())
+                    {
+                      extract($row);
+			              ?>
                   <div class="col-md-4 col-sm-4">
                     <div class="friend-card">
-                      <img src="images/covers/1.jpg" alt="profile-cover" class="img-responsive cover" />
+                      <img src="upload/<?php echo $file; ?>" alt="profile-cover" class="img-responsive cover" />
                       <div class="card-info">
                         <div class="friend-info">
                           <a href="groups-detail.html" class="pull-right text-green">Already joined</a>
-                          <h5><a href="groups-detail.html" class="profile-link">English speaking Jobs group</a></h5>
+                          <h5><a href="groups-detail.html" class="profile-link"><?php echo $title; ?></a></h5>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/3.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Beer & wine lovers group</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Vegetarians and Vegans in Zurich</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/1.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-green">Already joined</a>
-                          <h5><a href="groups-detail.html" class="profile-link">English speaking Jobs group</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/3.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Beer & wine lovers group</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Vegetarians and Vegans in Zurich</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/1.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-green">Already joined</a>
-                          <h5><a href="groups-detail.html" class="profile-link">English speaking Jobs group</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/3.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Beer & wine lovers group</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-4">
-                    <div class="friend-card">
-                      <img src="images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
-                      <div class="card-info">
-                        <div class="friend-info">
-                          <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                          <h5><a href="groups-detail.html" class="profile-link">Vegetarians and Vegans in Zurich</a></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+			  	<?php } ?>
       </div>
     </div>
-
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
   </body>
