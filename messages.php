@@ -12,6 +12,39 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+    	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#send').click(function(){
+				var message = $('#message').val();
+				$.ajax({
+                        url: 'insert_message.php?action=chat', // point to server-side PHP script 
+                        data: "message=" + message,
+                        type: 'post',
+                        success: function (response) {
+                            $('#message').val(''); // Clear textbox value
+							$.ajax({
+								url: 'message_view.php?action=view', // point to server-side PHP script 
+								type: 'post',
+								success: function (data) {
+										var r = JSON.parse(data);
+										var x;
+										$('.chat-message').html('');
+										for (x in r) {
+											$('.chat-message').append('<li class="left"><img src="images/users/user-2.jpg" alt="" class="profile-photo-sm pull-left" /><div class="chat-item"><div class="chat-item-header"><h5>Linda Lohan</h5><small class="text-muted">3 days ago</small></div><p>'+ r[x]['message'] +'</p></div></li>');
+										}
+								}
+							});	
+                        },
+                        error: function (response) {
+                            $('#message').val(''); // display error response from the PHP script
+                        }
+                    });
+			});
+		});
+		function setSelected(e){
+		   alert('oyyy');
+		}
+	</script>
     <!--======================Page Container START===================================-->
  <div id="page-contents">
     	<div class="container">
@@ -80,6 +113,14 @@
                     <div class="tab-pane active" id="contact-1">
                       <div class="chat-body">
                       	<ul class="chat-message">
+                      								<?php 
+							require 'api/db_config.php';
+							$query="select * from chat";
+							$result = $mysqli->query($query);
+							while($row = $result->fetch_assoc())
+							{
+							extract($row);	
+						?>
                       		<li class="left">
                       			<img src="images/users/user-2.jpg" alt="" class="profile-photo-sm pull-left" />
                       			<div class="chat-item">
@@ -87,19 +128,10 @@
                               	<h5>Linda Lohan</h5>
                               	<small class="text-muted">3 days ago</small>
                               </div>
-                              <p>Hi honey, how are you doing???? Long time no see. Where have you been?</p>
+                              <p><?php echo $message; ?></p>
                             </div>
                       		</li>
-                          <li class="right">
-                      			<img src="images/users/user-1.jpg" alt="" class="profile-photo-sm pull-right" />
-                      			<div class="chat-item">
-                              <div class="chat-item-header">
-                              	<h5>Sarah Cruiz</h5>
-                              	<small class="text-muted">3 days ago</small>
-                              </div>
-                              <p>I have been on vacation</p>
-                            </div>
-                      		</li>
+						<?php } ?>	
                       	</ul>
                       </div>
                     </div>
@@ -107,9 +139,9 @@
 
                   <div class="send-message">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Type your message">
+                      <input type="text" id="message" class="form-control" placeholder="Type your message">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Send</button>
+                        <button class="btn btn-default" id="send" type="button">Send</button>
                       </span>
                     </div>
                   </div>
