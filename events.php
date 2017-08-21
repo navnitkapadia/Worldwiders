@@ -26,7 +26,6 @@
             ================================================= -->
             <div class="media">
             	<div class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
-                <div class="grid-sizer col-md-4 col-sm-4"></div>
                 <div class="grid-item col-md-4 col-sm-4">
             		<div class="media-grid">
 						<div class="img-wrapper">

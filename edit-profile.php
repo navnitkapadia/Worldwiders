@@ -12,10 +12,11 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+
     <!--======================Page Container START===================================-->
 
     <div class="container">
-       <?php
+      <?php
       $user = $_SESSION['userid'];
       require 'api/db_config.php';
       $sql = "SELECT * FROM users where user_id = $user";
@@ -108,7 +109,7 @@
                       <p class="custom-label"><strong>Date of Birth</strong></p>
                       <div class="form-group col-sm-6 col-xs-12">
                         <label for="date" class="sr-only"></label>
-                        <input type="date"  value="<?php echo $birth_date; ?>">
+                        <input type="text" id="datepicker" value="<?php echo $birth_date; ?>">
                       </div>
                     </div>
                     <div class="form-group gender">
@@ -157,7 +158,6 @@
                   <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Language</h4>
                     <ul>
                       <li><a href="">Russian</a></li>
-                      <li><a href="">English</a></li>
                       <li><a href="">English</a></li>
                     </ul>
                 </div>
