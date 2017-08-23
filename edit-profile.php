@@ -37,7 +37,7 @@
                 <div class="col-md-3">
                   <div class="profile-info">
                     <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
-                    <h3><?php echo $name; ?></h3>
+                    <h3><?php echo $first_name . $last_name; ?></h3>
                     <!-- <p class="text-muted">Creative Director</p> -->
                   </div>
                 </div>
@@ -122,13 +122,14 @@
                       </label>
                     </div>
                     <div class="row">
+                      <?php $city = explode(",", $location) ?>
                       <div class="form-group col-xs-6">
                         <label for="city"> My city</label>
-                        <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="New York"/>
+                        <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="<?php  echo $city[0]; ?>"/>
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="country">My country</label>
-                        <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value="New York"/>
+                        <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value=""/>
                       </div>
                     </div>
                     <div class="row">
