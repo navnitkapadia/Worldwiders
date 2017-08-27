@@ -19,6 +19,7 @@ while ($row = $result->fetch_assoc()) {
         <li><i class="icon ion-android-bar"></i><div><a href="user-event.php">Events</a></div></li>
         <li><i class="icon ion-ios-people-outline"></i><div><a href="friends.php">Friends</a></div></li>
         <li><i class="icon ion-chatboxes"></i><div><a href="messages.php">Messages</a></div></li>
+        <li><i class="icon ion-chatboxes"></i><div><a href="logout.php">logout</a></div></li>
 
     </ul><!--news-feed links ends-->
 

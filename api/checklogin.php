@@ -1,18 +1,21 @@
 <?php 
 require 'db_config.php';
 session_start();
-$userid = $_REQUEST['userid'];
+$fbid = $_REQUEST['fbid'];
 $accesstoken = $_REQUEST['accesstoken'];
-$cover_img = $_REQUEST['accesstoken'];
+$_SESSION['accesstoken'] = $accesstoken;
 
-$sql = "SELECT user_id FROM users where user_id= $userid"; 
+$sql = "SELECT * FROM users where fb_id=$fbid"; 
 
 $result = $mysqli->query($sql);
 
-if($result){
-    $_SESSION['userid'] = $userid;
-    $_SESSION['accesstoken'] = $accesstoken;
+if(mysqli_num_rows($result)){
+    while($row = $result->fetch_assoc())
+    {
+      extract($row);
+      $_SESSION['fbid'] = $fb_id;
+      $_SESSION['userid'] = $user_id;
+    }
 }
-
 echo json_encode(mysqli_num_rows($result));
 ?>

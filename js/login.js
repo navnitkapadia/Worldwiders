@@ -17,9 +17,9 @@ function statusChangeCallback(response) {
             $.ajax({
                 type: "POST",
                 url: "api/checklogin.php",
-                data: "userid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
+                data: "fbid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
                 success: function (data) {
-                    if(window.location.pathname == "/Worldwiders/index.php"){
+                    if(window.location.pathname == "/Worldwiders/"){
                     //if(window.location.pathname == "/index.php"){
                         window.location = "home.php"
                     }
@@ -35,9 +35,9 @@ function statusChangeCallback(response) {
                 statusChangeCallback2(response);
             }, {scope: 'public_profile,email'});
         } else {
-            if(window.location.pathname != "/Worldwiders/index.php"){
+            if(window.location.pathname != "/Worldwiders/"){
                // if(window.location.pathname != "/index.php"){
-                window.location = "index.php"
+                window.location = "/Worldwiders/"
             }
         }
       }

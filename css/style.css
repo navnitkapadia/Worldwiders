@@ -782,6 +782,8 @@ textarea{
   position: relative;
   min-height: 560px;
   z-index: 10;
+  display: flex;
+  align-items: center;
 }
 
 .reg-form-container::before{
@@ -1460,6 +1462,7 @@ ul.online-users li span.online-dot{
   ==================================================*/
 
 .timeline-cover{
+  background-image: url("../images/covers/1.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

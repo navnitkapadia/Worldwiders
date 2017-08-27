@@ -1,5 +1,11 @@
+<?php 
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+echo $actual_link;
+$url=parse_url($actual_link);
+echo $url["fragment"];
+?>
 
-<html>
+<!-- <html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
   window.fbAsyncInit = function() {
@@ -64,7 +70,7 @@ education: <div id="education"></div>
 " data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 <p>2) Click load data</p>
 <button id='load'>Load data</button>
-</html>
+</html> -->
 <!-- <html>
 <head>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

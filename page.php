@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
     <meta http-equiv="content-type" content="text/php; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,4 +18,4 @@
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
   </body>
-</php>
+</html>

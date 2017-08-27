@@ -1,4 +1,9 @@
-        <!-- Footer
+             <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+
+  <!-- Footer
     ================================================= -->
     <footer id="footer">
       <div class="container">
@@ -49,3 +54,12 @@
         <p>© 2017 - 2018 Worldwide People. All rights reserved</p>
       </div>
 		</footer>
+            <!-- Scripts
+================================================= -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.sticky-kit.min.js"></script>
+  <script src="js/jquery.scrollbar.min.js"></script>
+  <script src="js/script.js"></script>
+   <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+   <script src="js/login.js"></script> 
