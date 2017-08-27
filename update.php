@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 require 'api/db_config.php';
-$userId = $_SESSION['fbid'];
+$userId = $_SESSION['userid'];
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $update = "update event set user_id=CONCAT(user_id, ',', '$userId') where id=" . $id . "";

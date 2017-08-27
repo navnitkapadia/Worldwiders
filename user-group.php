@@ -32,7 +32,8 @@
                             </div>
                             <div class="post-container">
                                 <?php
-                                $sql = "SELECT * FROM peoples_group where user_id='".$_SESSION['fbid']."'";
+                                require 'api/db_config.php';
+                                $sql = "SELECT * FROM peoples_group where user_id='".$_SESSION['userid']."'";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {
                                     extract($row);
@@ -51,7 +52,7 @@
                                 <h3>Join Group</h3>
                                 <div class="post-container">
                                 <?php
-                                $sql = "SELECT ps.* FROM peoples_group ps where ps.user_id !='".$_SESSION['fbid']."'";
+                                $sql = "SELECT ps.*,gm.id as gid,gm.user_id as userId,gm.group_id FROM peoples_group ps , group_member gm where gm.user_id !='".$_SESSION['userid']."' and gm.group_id=ps.id group by gm.group_id";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {
                                     extract($row);

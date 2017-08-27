@@ -24,10 +24,10 @@
                         <h4 style="margin-bottom: 30px;">Event organised by:</h4>
                         <div class="profile-card">
                             <?php
-                            $Login_Id = $_SESSION['fbid'];
+                            $Login_Id = $_SESSION['userid'];
                             $event_Id = $_GET['id'];
                             require 'api/db_config.php';
-                            $sql = "SELECT e.created_by,u.name FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.fb_id";
+                            $sql = "SELECT e.created_by,u.name FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -107,7 +107,7 @@
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
-                                if ($user == $_SESSION['fbid']) {
+                                if ($user == $_SESSION['userid']) {
                                     $flage = 2;
                                 }
                             }
@@ -118,7 +118,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 $add = explode(",", $user);
-                                if (in_array($_SESSION['fbid'], $add)) {
+                                if (in_array($_SESSION['userid'], $add)) {
                                     
                                 } elseif ($flage == 2) {
                                     

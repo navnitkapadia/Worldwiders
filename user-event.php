@@ -32,6 +32,7 @@
                             </div>
                             <div class="post-container">
                                 <?php
+                                require 'api/db_config.php';
                                 $sql = "SELECT * FROM event";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {

@@ -17,9 +17,9 @@
 
     <div class="container">
       <?php
-      $user = $_SESSION['fbid'];
+      $user = $_SESSION['userid'];
       require 'api/db_config.php';
-      $sql = "SELECT * FROM users where fb_id = $user";
+      $sql = "SELECT * FROM users where user_id = $user";
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
       {
@@ -155,7 +155,7 @@
                     $array = array($city, $country);
                     $location = implode(",",$array);
                     $about = $_POST["information"];
-                    $sql="update users set first_name='".$fname."',last_name='".$lname."',about='".$about."',birth_date='".$birth_date."',email='".$email."',location='".$location."' where user_id=".$_SESSION['fbid'];
+                    $sql="update users set first_name='".$fname."',last_name='".$lname."',about='".$about."',birth_date='".$birth_date."',email='".$email."',location='".$location."' where user_id=".$_SESSION['userid'];
                     $result = $mysqli->query($sql);
                 }
             ?>

@@ -39,7 +39,7 @@ function new_event($mysqli){
   $website = $_REQUEST['website'];
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
-  $createdBy = $_SESSION['fbid'];
+  $createdBy = $_SESSION['userid'];
   $event_image = file_upload();
 
   $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by) 
