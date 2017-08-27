@@ -1,4 +1,5 @@
 <?php
+include '../header.php';
 require 'db_config.php';
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
@@ -17,13 +18,15 @@ function make_group($mysqli){
   $title = $_REQUEST['title'];
   $description = $_REQUEST['description'];
   $group_image = file_upload();
-  $sql = "INSERT INTO peoples_group (title, description,file) VALUES ('$title', '$description', '$group_image')";
+  $userid = $_SESSION['userid'];
+  $topic = $_REQUEST['topic'];
+  $sql = "INSERT INTO peoples_group (title, description,file,user_id,topic) VALUES ('$title', '$description', '$group_image','$userid','$topic')";
   $result = $mysqli->query($sql);
   if ($result) {
-        header('Location:../make-group.php?msg=success');
+        header('Location:../home.php?msg=success');
         exit;
   } else {
-      header('Location:../make-group.php?msg=failed');
+      header('Location:../home.php?msg=failed');
       exit;
   }
 }
@@ -36,16 +39,17 @@ function new_event($mysqli){
   $website = $_REQUEST['website'];
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
+  $createdBy = $_SESSION['userid'];
   $event_image = file_upload();
 
-  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at) 
-                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$created')";
+  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by) 
+                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$created','$createdBy')";
   $result = $mysqli->query($sql);
   if ($result) {
-        header('Location:../event-registration.php?msg=success');
+        header('Location:../home.php?msg=success');
         exit;
   } else {
-      header('Location:../event-registration.php?msg=failed');
+      header('Location:../home.php?msg=failed');
       exit;
   }
 }
@@ -88,21 +92,19 @@ function file_upload(){
             "jpg",
             "jpeg",
             "png",
-			"txt"
+	    "txt"
         );
-        
+        $random = rand(10,8956);
         if (in_array($file_ext, $expensions) === false) {
             $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
         }
         
         if (empty($errors) == true) {
-          move_uploaded_file($file_tmp, "../upload/$file_name") or die('error in uploading files');
-          exit;
+          move_uploaded_file($file_tmp, "../upload/$random-$random-$random-$file_name") or die('error in uploading files');
             
         } else {
             print_r($errors);
         }
-        $random = rand(10,8956);
         return "$random-$random-$random-$file_name";
     }
 }

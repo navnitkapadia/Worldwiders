@@ -88,7 +88,7 @@
                   <div class="line"></div>
                 </div>
                 <div class="edit-block">
-                  <form name="basic-info" id="basic-info" class="form-inline">
+                    <form name="basic-info" method="post" id="basic-info" class="form-inline">
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="firstname">First name</label>
@@ -109,7 +109,7 @@
                       <p class="custom-label"><strong>Date of Birth</strong></p>
                       <div class="form-group col-sm-6 col-xs-12">
                         <label for="date" class="sr-only"></label>
-                        <input type="text" id="datepicker" value="<?php echo $birth_date; ?>">
+                        <input type="text" id="birth" name="birth" value="<?php echo $birth_date; ?>">
                       </div>
                     </div>
                     <div class="form-group gender">
@@ -129,20 +129,36 @@
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="country">My country</label>
-                        <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value=""/>
+                        <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value="<?php  echo $city[1]; ?>"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-info">About me</label>
-                        <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"></textarea>
+                        <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"><?php echo $about ?></textarea>
                       </div>
                     </div>
-                    <button class="btn btn-primary">Save Changes</button>
+                    <button class="btn btn-primary" name="edit_profile">Save Changes</button>
                   </form>
                 </div>
               </div>
             </div>
+            <?php
+                if(isset($_POST['edit_profile'])){
+                    $fname = $_POST["firstname"];
+                    $lname = $_POST["lastname"];
+                    $email = $_POST["Email"];
+                    $birth_date = $_POST["birth"];
+                    $gender = $_POST["optradio"];
+                    $city = $_POST["city"];
+                    $country = $_POST["country"];
+                    $array = array($city, $country);
+                    $location = implode(",",$array);
+                    $about = $_POST["information"];
+                    $sql="update users set first_name='".$fname."',last_name='".$lname."',about='".$about."',birth_date='".$birth_date."',email='".$email."',location='".$location."' where user_id=".$_SESSION['userid'];
+                    $result = $mysqli->query($sql);
+                }
+            ?>
             <div class="col-md-2 static about-profile">
               <div id="sticky-sidebar">
                 <div class="about-content-block">
