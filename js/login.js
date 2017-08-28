@@ -5,9 +5,7 @@ $(document).ready(function () {
         xfbml: true,
         version: 'v2.10'
     });
-    $(window).on('hashchange ready keypress blur change', function (e) {
-        console.log(e);
-    });
+
     checkLoginState();
 });
 function checkLoginState() {

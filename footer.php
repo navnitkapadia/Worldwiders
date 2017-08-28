@@ -1,4 +1,5 @@
-             <!--preloader-->
+
+  <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>
     </div>
@@ -63,3 +64,13 @@
   <script src="js/script.js"></script>
    <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
    <script src="js/login.js"></script> 
+
+   <script>
+    $(window).on('hashchange ready keypress blur change mousedown', function (e) {
+      console.log(e);
+        $.ajax({
+            type: "POST",
+            url: "api/activity.php",
+      });
+    });
+  </script>

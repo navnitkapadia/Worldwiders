@@ -57,7 +57,7 @@ $(document).ready(function(){
     var getdata = setInterval(function() {
         $(".open-"+conversation_id).load("api/get_messages.php?c_id="+conversation_id);
         resize();
-   }, 2000);
+   }, 3000);
    $(".open-"+conversation_id).scrollTop($(".open-"+conversation_id)[0].scrollHeight);
    resize();
 });
