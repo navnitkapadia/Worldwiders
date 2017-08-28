@@ -1,8 +1,15 @@
 function resize()
 {
+
     var heights = window.innerHeight - 150;
-    document.getElementById("conversation").style.height = heights + "px";
-    
+    var el = document.getElementsByClassName('chat-message');
+    for(var i = 0; i< el.length; i++){
+        el[i].style.height = heights + "px";
+        el[i].style.overflow = "scroll";
+        el[i].style.overflowX = "hidden";
+        el[i].scrollTop = el[i].scrollHeight;
+        }
+         
 }
 window.onresize = function() {
     resize();
@@ -10,7 +17,6 @@ window.onresize = function() {
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
    
-    resize();
     var target = $(e.target).attr("href") // activated tab
     var conid = $(e.target).attr("con-id") // activated tab'
    console.log(".open-"+conid);
@@ -20,10 +26,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       }, 50);
 
       var getdata = setInterval(function() {
+        resize();
         $(".open-"+conid).load("api/get_messages.php?c_id="+conid);
    }, 2000);
    $(".open-"+conid).scrollTop($(".open-"+conid)[0].scrollHeight);
-
+   
   });
 
 function getMessages(btnid,convid,sender,receiver){
@@ -34,6 +41,7 @@ function getMessages(btnid,convid,sender,receiver){
             url: "api/message-api.php?action=p",
             data: {message:message,conversation_id:convid,user_form:sender,user_to:receiver},
             success: function(data){
+                resize();
                 //clear the message box
                 $("#"+btnid).val("");
             }
@@ -44,9 +52,12 @@ function getMessages(btnid,convid,sender,receiver){
 }
 
 $(document).ready(function(){
+    
     conversation_id = $.trim($("#conversation_id").val());
     var getdata = setInterval(function() {
         $(".open-"+conversation_id).load("api/get_messages.php?c_id="+conversation_id);
+        resize();
    }, 2000);
    $(".open-"+conversation_id).scrollTop($(".open-"+conversation_id)[0].scrollHeight);
+   resize();
 });

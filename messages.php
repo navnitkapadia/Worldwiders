@@ -25,10 +25,6 @@
     .hide{
       display:none;
     }
-    .chat-message{
-      display:block;
-    overflow:auto
-    }
     </style>
 	</head>
   <body>
@@ -137,15 +133,18 @@ AND
                     extract($row1);
                     $count++;
                    ?>
-                    <div class="tab-pane <?php if($count==1){echo 'active'; }  ?>" id="<?php echo $first_name; ?>">
+                    <div class="tab-pane <?php if($count==1){echo 'active'; }  ?> " id="<?php echo $first_name; ?>">
                       <div class="chat-body">
-                      	<ul  id="conversation" class="chat-message <?php echo "open-$conversation_id"; ?>">
+                      	<ul  id="conversation"  class="chat-message <?php echo "open-$conversation_id"; ?>">
                         <input type="hidden" id="conversation_id" value="<?php echo $conversation_id; ?>">
+                          
                       	</ul>
-						
+
                       </div>
 					     <div class="send-message">
-                
+                      <script>
+                     
+                          </script>
                     <div class="input-group">
                       <input type="text" class="form-control" id ="<?php echo "open-btn-$conversation_id"; ?>" placeholder="Type your message">
                       <span class="input-group-btn">
