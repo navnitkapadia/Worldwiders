@@ -7,7 +7,7 @@
         <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
         <meta name="robots" content="index, follow" />
         <title>Events</title>
-
+        
 
     </head>
     <body>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 static">
-                        <img src="http://www.jquery-az.com/wp-content/uploads/2016/04/16.0_1-JavaScript-date.png" style="width: 100%" />
+                        <!--<img src="http://www.jquery-az.com/wp-content/uploads/2016/04/16.0_1-JavaScript-date.png" style="width: 100%" />-->
                     </div>
                     <div class="col-md-9">
 
@@ -29,7 +29,7 @@
                                 <div class="grid-sizer col-md-4 col-sm-4"></div>
                                 <?php
                                 require 'api/db_config.php';
-                                $sql = "SELECT * FROM event";
+                                $sql = "SELECT e.*,u.name FROM event e,users u where e.created_by=u.fb_id";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {
                                     extract($row);
@@ -41,13 +41,13 @@
                                             </div>
                                             <div class="media-info">
                                                 <div class="reaction">
-                                                    <h4><a href="events-detail.php"><?php echo $event; ?></a></h4>
+                                                    <h4><a href="events-details.php"><?php echo $event; ?></a></h4>
                                                     <p><?php echo $created_at; ?></p>
                                                 </div>
                                                 <div class="user-info">
-                                                    <img src="images/users/user-8.jpg" alt="" class="profile-photo-sm pull-left" />
+                                                    <img src="<?php echo "http://graph.facebook.com/$created_by/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                                     <div class="user">
-                                                        <h6><a href="#" class="profile-link">Richard Bell</a></h6>
+                                                        <h6><a href="#" class="profile-link"><?php echo $name; ?></a></h6>
                                                         <a class="text-green" href="#">Friend</a>
                                                     </div>
                                                 </div>
