@@ -15,7 +15,7 @@
         <!--======================Page Container START===================================-->
         <?php
         $group_Id = $_GET['id'];
-        $user = $_SESSION['userid'];
+        $user = $_SESSION['fbid'];
         require 'api/db_config.php';
         $sql = "SELECT * FROM peoples_group where id='" . $group_Id . "'";
         $result = $mysqli->query($sql);
@@ -49,7 +49,7 @@
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
-                                            if ($user_id == $_SESSION['userid']) {
+                                            if ($user_id == $_SESSION['fbid']) {
                                                 $join = 2;
                                                 echo '<li><button class="btn-primary">Already Join</button></li>';
                                             }
@@ -61,7 +61,7 @@
                                             extract($row);
                                             $add[] = $user_id;
                                         }
-                                        if(in_array($_SESSION['userid'], $add)){
+                                        if(in_array($_SESSION['fbid'], $add)){
                                             echo '<li><button class="btn-primary">Already Join</button></li>';
                                         } elseif($join == 2) {
                                             
@@ -105,7 +105,7 @@
                         <div class="suggestions" id="sticky-sidebar">
                             <h4>People in the group</h4>
                             <?php
-                            $sql = "SELECT gm.id,gm.user_id as group_user,u.user_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.user_id !='" . $_SESSION['userid'] . "'";
+                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.fb_id and gm.user_id !='" . $_SESSION['fbid'] . "' and gm.group_id='$group_Id'";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);

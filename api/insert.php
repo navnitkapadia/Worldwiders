@@ -18,7 +18,7 @@ function make_group($mysqli){
   $title = $_REQUEST['title'];
   $description = $_REQUEST['description'];
   $group_image = file_upload();
-  $userid = $_SESSION['userid'];
+  $userid = $_SESSION['fbid'];
   $topic = $_REQUEST['topic'];
   $sql = "INSERT INTO peoples_group (title, description,file,user_id,topic) VALUES ('$title', '$description', '$group_image','$userid','$topic')";
   $result = $mysqli->query($sql);
@@ -39,7 +39,7 @@ function new_event($mysqli){
   $website = $_REQUEST['website'];
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
-  $createdBy = $_SESSION['userid'];
+  $createdBy = $_SESSION['fbid'];
   $event_image = file_upload();
 
   $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by) 

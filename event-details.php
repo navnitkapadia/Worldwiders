@@ -24,10 +24,10 @@
                         <h4 style="margin-bottom: 30px;">Event organised by:</h4>
                         <div class="profile-card">
                             <?php
-                            $Login_Id = $_SESSION['userid'];
+                            $Login_Id = $_SESSION['fbid'];
                             $event_Id = $_GET['id'];
                             require 'api/db_config.php';
-                            $sql = "SELECT e.created_by,u.name FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
+                            $sql = "SELECT e.created_by,u.name FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.fb_id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -107,7 +107,7 @@
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
-                                if ($user == $_SESSION['userid']) {
+                                if ($user == $_SESSION['fbid']) {
                                     $flage = 2;
                                 }
                             }
@@ -118,7 +118,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 $add = explode(",", $user);
-                                if (in_array($_SESSION['userid'], $add)) {
+                                if (in_array($_SESSION['fbid'], $add)) {
                                     
                                 } elseif ($flage == 2) {
                                     
@@ -129,12 +129,12 @@
                                 <div class="follow-user">
                                     <?php
                                     for ($i = 0; $i < count($add); $i++) {
-                                        $sql = "SELECT u.name,u.user_id FROM users u where u.user_id='" . $add[$i] . "'";
+                                        $sql = "SELECT u.name,u.fb_id FROM users u where u.fb_id='" . $add[$i] . "'";
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
                                             ?>
-                                            <img src="<?php echo "http://graph.facebook.com/$user_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
+                                            <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
                                                 <h5><a href="profile.html"><?php echo $name; ?></a></h5>
                                                 <a href="newsfeed-people-nearby.html#" class="text-green">Add friend</a>
