@@ -13,9 +13,9 @@
     <!--======================Page Container START===================================-->
       <div class="container">
       <?php
-      $user = $_SESSION['fbid'];
-      require 'api/db_config.php';
-      $sql = "SELECT * FROM users where fb_id = $user";
+      $user = $_SESSION['userid'];
+      $fb_id = $_SESSION['fbid'];
+      $sql = "SELECT * FROM users where user_id = $user";
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
       {
@@ -32,19 +32,19 @@
               <div class="row">
                 <div class="col-md-3">
                   <div class="profile-info">
-                    <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
+                    <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
                     <h3><?php echo $name; ?></h3>
                     <!-- <p class="text-muted">Creative Director</p> -->
                   </div>
                 </div>
                 <div class="col-md-9">
                   <ul class="list-inline profile-menu">
-                    <!--<li><a href="edit-profile.php" class="active">About</a></li>-->
-                    <li><a href="#">Friends</a></li>
+                    <li><a href="profile.php" class="active">About</a></li>
+                    <li><a href="friends.php">Friends</a></li>
                   </ul>
                   <ul class="follow-me list-inline">
                     <!-- <li>1,299 people following her</li> -->
-                    <li><a href="edit-profile.php"><button class="btn-primary">Edit Profile</button></a></li>
+                    <li><button class="btn-primary">Add Friend</button></li>
                   </ul>
                 </div>
               </div>
@@ -80,34 +80,39 @@
                 <div class="about-profile">
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
-                    <p><?php echo $about; ?></p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</p>
                   </div>
-                    <div class="row">  
-                  <div class="about-content-block col-xs-6">
-                    <h4 class="grey"><i class="fa fa-user-circle-o icon-in-title"></i>Name</h4>
-                    <p><?php echo $first_name; ?>&nbsp;<?php echo $last_name; ?></p>
-                  </div>
-                  <div class="about-content-block col-xs-6">
-                    <h4 class="grey"><i class="fa fa-envelope-o icon-in-title"></i>My email</h4>
-                    <p><?php echo $email; ?></p>
-                  </div>
-                    </div>
-                    <div class="row">  
-                  <div class="about-content-block col-xs-6">
-                    <h4 class="grey"><i class="fa fa-birthday-cake icon-in-title"></i>Date of Birth</h4>
-                    <p><?php echo $birth_date; ?></p>
-                  </div>
-                  <div class="about-content-block col-xs-6">
-                    <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
-                    <p><?php echo $nationality; ?></p>
-                  </div>
-                    </div>
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
-                     <div class="organization">
-                        <span class="text-grey"><?php echo $work_experiences; ?></span>
+                    <!-- <div class="organization">
+                      <img src="images/envato.png" alt="" class="pull-left img-org" />
+                      <div class="work-info">
+                        <h5>Envato</h5>
+                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
+                      </div>
                     </div>
-                  </div>  
+                    <div class="organization">
+                      <img src="images/envato.png" alt="" class="pull-left img-org" />
+                      <div class="work-info">
+                        <h5>Envato</h5>
+                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
+                      </div>
+                    </div>
+                    <div class="organization">
+                      <img src="images/envato.png" alt="" class="pull-left img-org" />
+                      <div class="work-info">
+                        <h5>Envato</h5>
+                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="about-content-block">
+                    <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
+                    <p>228 Park Eve, New York</p>
+                    <div class="google-maps">
+                      <div id="map" class="map"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-md-2 static about-profile">

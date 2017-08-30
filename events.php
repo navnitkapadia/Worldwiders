@@ -28,7 +28,6 @@
                             <div class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
                                 <div class="grid-sizer col-md-4 col-sm-4"></div>
                                 <?php
-                                require 'api/db_config.php';
                                 $sql = "SELECT e.*,u.name FROM event e,users u where e.created_by=u.fb_id";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {

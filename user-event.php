@@ -18,7 +18,10 @@
 
                     <!-- Newsfeed Common Side Bar Left
                     ================================================= -->
-                    <?php include 'homemenu.php'; ?> 
+                    <div class="col-md-3 static">
+                        <?php include 'homemenu.php' ?>
+                    </div>
+                    
                     <div class="col-md-7">
 
 

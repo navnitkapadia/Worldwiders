@@ -1,5 +1,8 @@
  
- <?php session_start(); ?>
+ <?php 
+ session_start(); 
+ require 'api/db_config.php';
+ ?>
     <!-- Stylesheets
     ================================================= -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" />

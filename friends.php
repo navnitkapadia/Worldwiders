@@ -18,7 +18,6 @@
     <div class="container">
     <?php
       $user = $_SESSION['userid'];
-      require 'api/db_config.php';
       $sql = "SELECT * FROM users where user_id = $user";
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
