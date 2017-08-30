@@ -9,7 +9,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="col-md-3 static">
         <div class="profile-card">
             <img src=<?php echo "http://graph.facebook.com/$fb_id/picture"; ?> alt="user" class="profile-photo" />
-            <h5><a href="edit-profile.php" class="text-white"><?php echo $first_name . $last_name; ?></a></h5>
+            <h5><a href="profile.php" class="text-white"><?php echo $first_name . $last_name; ?></a></h5>
             <a href="" class="text-white"><i class="ion ion-android-person-add"></i>1,299 friends</a>
         </div><!--profile card ends-->
     <?php } ?>    
