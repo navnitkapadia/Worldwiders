@@ -18,7 +18,9 @@
 
                     <!-- Newsfeed Common Side Bar Left
                     ================================================= -->
-                    <?php include 'homemenu.php'; ?>
+                    <div class="col-md-3 static">
+                        <?php include 'homemenu.php' ?>
+                    </div>
                     <div class="col-md-7">
 
 
@@ -26,7 +28,7 @@
                         ================================================= -->
                         <div class="post-content">
                             <h3>English speaking Jobs group</h3>
-                            <div class="post-container">
+                             <div class="post-container">
                                 <img src="images/users/user-5.jpg" alt="user" class="profile-photo-md pull-left" />
                                 <div class="post-detail">
                                     <div class="user-info">

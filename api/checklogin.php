@@ -14,6 +14,8 @@ if(mysqli_num_rows($result)){
     {
       extract($row);
       $_SESSION['fbid'] = $fb_id;
+      $_SESSION['fname'] = $first_name;
+      $_SESSION['lname'] = $last_name;      
       $_SESSION['userid'] = $user_id;
     }
 }

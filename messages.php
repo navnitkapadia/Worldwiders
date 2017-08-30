@@ -36,18 +36,7 @@
     			<!-- Newsfeed Common Side Bar Left
           ================================================= -->
     			<div class="col-md-3 static">
-            <div class="profile-card">
-            	<img src="images/users/user-1.jpg" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
-            	<a href="newsfeed-messages.html#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
-            </div><!--profile card ends-->
-            <ul class="nav-news-feed">
-              <li><i class="icon ion-ios-paper"></i><div><a href="home-logged.html">My Newsfeed</a></div></li>
-              <li><i class="icon ion-ios-people"></i><div><a href="groups.html">Groups</a></div></li>
-              <li><i class="icon ion-android-bar"></i><div><a href="events.html">Events</a></div></li>
-              <li><i class="icon ion-ios-people-outline"></i><div><a href="friends.html">Friends</a></div></li>
-              <li><i class="icon ion-chatboxes"></i><div><a href="messages.html">Messages</a></div></li>
-            </ul><!--news-feed links ends-->
+            <?php include 'homemenu.php' ?>
             <div id="chat-block">
               <div class="title">Chat online</div>
               <ul id="online-users-is" class="online-users list-inline">
@@ -64,37 +53,61 @@
                 <div class="col-md-5">
                   <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
                   <?php
-      $user = $_SESSION['userid'];
-      require 'api/db_config.php';
-      $sql = "SELECT U.user_id,C.c_id as conversation_id,R.reply,C.time,U.fb_id,U.first_name,U.last_name
-FROM users U,conversation C, conversation_reply R
-WHERE 
-CASE
+               if(isset($_REQUEST['id'])){
+                $user =  $_SESSION['userid'];
+                 $encoded = trim(mysqli_real_escape_string($mysqli,$_REQUEST['id']));
+                 $want = base64_decode($encoded);
+                $time=time();
+                $ip=$_SERVER['REMOTE_ADDR'];
+                $sqlcon="SELECT * FROM `conversation` WHERE 
+                (user_one='$user' AND user_two='$want') OR (user_one='$want' AND user_two='$user')";
+                $resultcon = $mysqli->query($sqlcon);
+                if(mysqli_num_rows($resultcon) == 0 && $user != $want ){
+                  $addcon = "INSERT INTO conversation (user_one, user_two, ip, time) VALUES 
+                  ($user,$want,'$ip',$time)";
+         $result1 = $mysqli->query($addcon);
+           if($result1){
+             $sqlcon="select max(c_id) as co from conversation";
+             $resultcon = $mysqli->query($sqlcon);
+               $row = $resultcon->fetch_assoc();
+               extract($row);
+               $conrep = "INSERT INTO conversation_reply(reply,user_id_fk,ip,time,c_id_fk) 
+                           VALUES ('No messages clean11',$user,'$ip',$time,$co)";
+                $result2 = $mysqli->query($conrep);
+           }else {
+             echo "Problem in insertion";
+           }
+                }
+              }
+  $user = $_SESSION['userid'];
+  $sql = "SELECT U.user_id,C.c_id as conversation_id,R.reply,C.time,U.fb_id,U.first_name,U.last_name
+          FROM users U,conversation C, conversation_reply R
+          WHERE 
+          CASE
 
-WHEN C.user_one = '$user'
-THEN C.user_two = U.user_id
-WHEN C.user_two = '$user'
-THEN C.user_one= U.user_id
-END
+          WHEN C.user_one = '$user'
+          THEN C.user_two = U.user_id
+          WHEN C.user_two = '$user'
+          THEN C.user_one= U.user_id
+          END
 
-AND 
-C.time=R.time
-AND
-(C.user_one ='$user' OR C.user_two ='$user') ORDER BY C.c_id DESC";
+          AND 
+          C.time=R.time
+          AND
+          (C.user_one ='$user' OR C.user_two ='$user') ORDER BY C.time DESC";
 
+  $result = $mysqli->query($sql);
+  $count = 0;
+  if(mysqli_num_rows($result) == 0 ){
+   echo '<li>No Conversation</li>';
+  }else{
+    while($row = $result->fetch_assoc())
+    {
+      
+      extract($row);
 
-                 
-      $result = $mysqli->query($sql);
-      $count = 0;
-      if(mysqli_num_rows($result) == 0 ){
-       echo '<li>No Conversation</li>';
-      }else{
-        while($row = $result->fetch_assoc())
-        {
-          
-          extract($row);
+          $count++;
 
-              $count++;
           ?>
                   <!-- Contact List in Left-->
                     <li class="<?php if($count==1){echo 'active'; } ?>">
@@ -103,7 +116,7 @@ AND
                         	<img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="profile-photo-sm pull-left"/>
                         	<div class="msg-preview">
                         		<h6><?php  echo $first_name .' '. $last_name; ?></h6>
-                        		<p class="text-muted"><?php echo $reply; ?></p>
+                        		<p class="text-muted"><?php echo str_replace("clean11","",$reply); ?></p>
                             <small class="text-muted"><?php echo time_elapsed_string("@$time"); ?></small>
                             <!-- <div class="chat-alert">1</div> -->
                         	</div>
@@ -127,7 +140,7 @@ AND
                    ?>
                     <div class="tab-pane <?php if($count==1){echo 'active'; }  ?> " id="<?php echo $first_name; ?>">
                       <div class="chat-body">
-                      	<ul  id="conversation"  class="chat-message <?php echo "open-$conversation_id"; ?>">
+                      	<ul  id="conversation"  style="width:440px; overflow:scroll; overflow-x:hidden" class="chat-message <?php echo "open-$conversation_id"; ?>">
                         <input type="hidden" id="conversation_id" value="<?php echo $conversation_id; ?>">
                           
                       	</ul>
@@ -138,7 +151,9 @@ AND
                      
                           </script>
                     <div class="input-group">
-                      <input type="text" class="form-control" id ="<?php echo "open-btn-$conversation_id"; ?>" placeholder="Type your message">
+                      <input type="text"  class="form-control" data-cid="<?php echo $conversation_id; ?>" 
+                      data-sid="<?php echo $_SESSION['userid']; ?>" data-rid="<?php echo $user_id; ?>"
+                       id="<?php echo "open-btn-$conversation_id"; ?>" placeholder="Type your message">
                       <span class="input-group-btn">
                         <button class="btn btn-default" onClick="getMessages(this.id,<?php echo $conversation_id; ?>,<?php echo $_SESSION['userid']; ?>,<?php echo $user_id; ?>)" id ="<?php echo "open-btn-$conversation_id"; ?>" type="button">Send</button> <span id="error"></span>
                       </span>
@@ -158,12 +173,22 @@ AND
     </div>
 
   <?php include 'footer.php' ?>
-<script src="js/messages.js"></script> 
+  <script src="js/messages.js"></script> 
 <script>
+$(window).on('keypress', function (e) {
+  if(e.which == 13) {
+    var cid = e.target.getAttribute('data-cid');
+    var sid = e.target.getAttribute('data-sid');
+    var rid = e.target.getAttribute('data-rid')
+    if(e.target.id && cid && sid && rid) {
+      getMessages(e.target.id,cid,sid,rid);
+    }
+  }
+});
   $("#online-users-is").load("api/getonlineUsers.php");
   window.setInterval(function(){
     $("#online-users-is").load("api/getonlineUsers.php");
-   },60000);
+   },20000);
 </script>
   </body>
 </html>

@@ -959,7 +959,7 @@ textarea{
   border-radius: 4px;
   padding: 10px 20px;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
 }
 
 .profile-card img.profile-photo{
@@ -986,7 +986,7 @@ textarea{
 ul.nav-news-feed{
   padding-left: 20px;
   padding-right: 20px;
-  margin: 0 0 40px 0;
+  margin: 0 0 10px 0;
 }
 
 ul.nav-news-feed li{

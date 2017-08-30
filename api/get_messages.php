@@ -11,28 +11,32 @@ session_start();
                 extract($row);
                 $imgurl = "http://graph.facebook.com/$fb_id/picture?type=large";
                 $early = time_elapsed_string("@$time");
-                if($_SESSION['userid'] == $user_id){
-                    echo "<li class='left'>
-                    <img src=$imgurl  class='profile-photo-sm pull-left' />
-                    <div class='chat-item'>
-                        <div class='chat-item-header'>
-                            <h5>$first_name</h5>
-                            <small class='text-muted'>$early</small> 
+                if($reply != "No messages clean11"){ 
+                    if($_SESSION['userid'] == $user_id){
+                        echo "<li class='left'>
+                        <script>resize();</script>
+                        <img src=$imgurl  class='profile-photo-sm pull-left' />
+                        <div class='chat-item'>
+                            <div class='chat-item-header'>
+                                <h5>$first_name</h5>
+                                <small class='text-muted'>$early</small> 
+                            </div>
+                            <p>$reply</p>
                         </div>
-                        <p>$reply</p>
-                    </div>
-                </li>";
-                }else{
-                    echo "<li class='right'>
-                    <img src=$imgurl  class='profile-photo-sm pull-right' />
-                    <div class='chat-item'>
-                        <div class='chat-item-header'>
-                            <h5>$first_name</h5>
-                            <small class='text-muted'>$early</small>
+                    </li>";
+                    }else{
+                        echo "<li class='right'>
+                        <script>resize();</script>
+                        <img src=$imgurl  class='profile-photo-sm pull-right' />
+                        <div class='chat-item'>
+                            <div class='chat-item-header'>
+                                <h5>$first_name</h5>
+                                <small class='text-muted'>$early</small>
+                            </div>
+                            <p>$reply</p>
                         </div>
-                        <p>$reply</p>
-                    </div>
-                </li>"; 
+                    </li>"; 
+                    }
                 }
             }
         }else{

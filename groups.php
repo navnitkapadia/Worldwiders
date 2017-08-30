@@ -24,7 +24,6 @@
                             <div class="friend-list">
                                 <div class="row">
                                     <?php
-                                    require 'api/db_config.php';
                                     $join = true;
                                     $sql = "SELECT * FROM peoples_group";
                                     $result = $mysqli->query($sql);

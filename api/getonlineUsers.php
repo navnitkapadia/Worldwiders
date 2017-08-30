@@ -9,8 +9,10 @@ if(isset($_SESSION['userid'])){
         while($row = $result->fetch_assoc()){
             extract($row);
             $imgurl = "http://graph.facebook.com/$fb_id/picture?type=large";
-            echo "<li>
-                        <a href='newsfeed-messages.html' title='$first_name'>
+            $encoded = base64_encode($user_id);
+            echo "
+            <li>
+                        <a href='messages.php?id=$encoded' title='$first_name'>
                             <img src=$imgurl alt='user' class='img-responsive profile-photo' />
                             <span class='online-dot'></span>
                         </a>

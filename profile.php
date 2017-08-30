@@ -14,7 +14,7 @@
       <div class="container">
       <?php
       $user = $_SESSION['userid'];
-      require 'api/db_config.php';
+      $fb_id = $_SESSION['fbid'];
       $sql = "SELECT * FROM users where user_id = $user";
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
@@ -32,7 +32,7 @@
               <div class="row">
                 <div class="col-md-3">
                   <div class="profile-info">
-                    <img src=<?php echo  "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
+                    <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
                     <h3><?php echo $name; ?></h3>
                     <!-- <p class="text-muted">Creative Director</p> -->
                   </div>
