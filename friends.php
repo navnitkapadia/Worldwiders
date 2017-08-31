@@ -1,7 +1,7 @@
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-    <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="" />
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
@@ -83,11 +83,10 @@
               <div class="friend-list">
                 <div class="row">
                   <?php
-                      if(sizeof($list) > 1){
-                        for($i=0; $i<sizeof($list); $i++){
-                          $flist = "SELECT * FROM users where user_id = $list[$i]";
+                          $flist = "SELECT * FROM friend_list where user_id = $user";
                           $resultlist = $mysqli->query($flist);
-                          while($row = $resultlist->fetch_assoc()){
+                          if(mysqli_num_rows($resultlist) > 0 ){
+                            while($row = $resultlist->fetch_assoc()){
                             extract($row);
                           ?>
                             <div class="col-md-4 col-sm-4">
@@ -103,11 +102,36 @@
                                 </div>
                               </div>
                             </div>
-                          <?php }
+                            
+                          <?php } 
+                         
+                         } else ?>
+                         <h3>People may you know</h3>
+                         <?php  {
+
+                          $userlis = "SELECT * FROM users where user_id != $user";
+                          $resultlist1 = $mysqli->query($userlis);
+                          if(mysqli_num_rows($resultlist1) > 1 ){
+                            while($row = $resultlist1->fetch_assoc()){
+                            extract($row);
+                            ?>
+                            <div class="col-md-4 col-sm-4">
+                              <div class="friend-card">
+                                <img style="height: 101px; width: 242px;" src=<?php if($cover){ echo $cover.'&oe='.$oe; } else { echo "images/covers/1.jpg"; } ?> alt="profile-cover" class="img-responsive cover" />
+                                <div class="card-info">
+                                  <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo-lg" />
+                                  <div class="friend-info">
+                                    <a href="messages.php?friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
+                                    <h5><a href="timeline.php" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
+                                    <p>Student at Harvard</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <?php
                         }
-                      }else {
-                        echo "Nothing Found";
                       }
+                    }
                   ?>
                 </div>
               </div>
@@ -122,4 +146,4 @@
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
   </body>
-</php>
+</html>
