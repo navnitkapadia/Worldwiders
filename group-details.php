@@ -16,7 +16,6 @@
         <?php
         $group_Id = $_GET['id'];
         $user = $_SESSION['fbid'];
-        require 'api/db_config.php';
         $sql = "SELECT * FROM peoples_group where id='" . $group_Id . "'";
         $result = $mysqli->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -164,7 +163,7 @@
                             ?>
                             <div class="post-container">
                                 <?php
-                                $select = "SELECT td.*,u.name From topic_desc td,users u where td.group_id=$group_Id and u.user_id=td.user_id order by td.id asc";
+                                $select = "SELECT td.*,u.name From topic_desc td,users u where td.group_id=$group_Id and u.fb_id=td.user_id order by td.id asc";
                                 $result2 = $mysqli->query($select);
                                 $flag = true;
                                 while($row2 = $result2->fetch_assoc()){

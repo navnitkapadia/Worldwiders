@@ -7,7 +7,7 @@
           ?>
         <div class="profile-card">
             <img src=<?php echo "http://graph.facebook.com/$fb_id/picture"; ?> alt="user" class="profile-photo" />
-            <h5><a href="edit-profile.php" class="text-white"><?php echo $fname.$lname; ?></a></h5>
+            <h5><a href="profile.php" class="text-white"><?php echo $fname; ?>&nbsp;<?php echo $lname; ?></a></h5>
             <a href="" class="text-white"><i class="ion ion-android-person-add"></i>1,299 friends</a>
         </div><!--profile card ends-->
     <ul class="nav-news-feed">

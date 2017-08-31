@@ -26,14 +26,13 @@
                             <?php
                             $Login_Id = $_SESSION['fbid'];
                             $event_Id = $_GET['id'];
-                            require 'api/db_config.php';
                             $sql = "SELECT e.created_by,u.name FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.fb_id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 ?>
                                 <img src="<?php echo "http://graph.facebook.com/$created_by/picture"; ?>" alt="user" class="profile-photo" />
-                                <h5><a href="edit-profile.php" class="text-white"><?php echo $name; ?></a></h5>
+                                <h5><a href="#" class="text-white"><?php echo $name; ?></a></h5>
                                 <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
                             <?php } ?>
                         </div><!--profile card ends-->
