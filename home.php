@@ -22,18 +22,34 @@
                         <?php include 'homemenu.php' ?>
                     </div>
                     <div class="col-md-7">
-
-
                         <!-- Post Content
                         ================================================= -->
+                        <?php
+                        $uid = $_SESSION['fbid'];
+                        $sql = "SELECT topic,id as gID from peoples_group";
+                         $result = $mysqli->query($sql);
+                         while ($row = $result->fetch_assoc()) {
+                            extract($row);
+                        ?>
                         <div class="post-content">
-                            <h3>English speaking Jobs group</h3>
-                             <div class="post-container">
-                                <img src="images/users/user-5.jpg" alt="user" class="profile-photo-md pull-left" />
+                            <h3><?php echo $topic; ?></h3>
+                            <?php
+                            $select = "SELECT td.*,u.name from topic_desc td,peoples_group pg,users u where td.group_id=".$row['gID']." and pg.id=td.group_id and u.fb_id=td.user_id order by td.id asc";
+                            $result1 = $mysqli->query($select);
+                            $flag = true;
+                            $post = 1;
+                            while ($row1 = $result1->fetch_assoc()) {
+                                extract($row1);
+                                if ($flag) {
+                                    $flag = false;
+                                    $post = 2;
+                            ?>
+                            <div class="post-container">
+                                <img src="<?php echo "http://graph.facebook.com/$user_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
                                 <div class="post-detail">
                                     <div class="user-info">
-                                        <h5><a href="timeline.php" class="profile-link">Alexis Clark</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 3 mins ago</p>
+                                        <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
+                                        <p class="text-muted"><?php echo $created_at; ?></p>
                                     </div>
                                     <div class="reaction">
                                         <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
@@ -41,28 +57,33 @@
                                     </div>
                                     <div class="line-divider"></div>
                                     <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                                        <p><?php echo $comment; ?></p>
                                     </div>
+                                <?php } else { ?>
                                     <div class="line-divider"></div>
                                     <div class="post-comment">
-                                        <img src="images/users/user-11.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.php" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                        <img src="<?php echo "http://graph.facebook.com/$user_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                        <p><a href="timeline.php" class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
                                     </div>
-                                    <div class="post-comment">
+                                <?php } }?>
+                                    <!--<div class="post-comment">
                                         <img src="images/users/user-4.jpg" alt="" class="profile-photo-sm" />
                                         <p><a href="timeline.php" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
+                                    </div>-->
+                                    <?php if($post == 2){ ?>
                                     <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
+                                        <img src="<?php echo "http://graph.facebook.com/$uid/picture"; ?>" alt="" class="profile-photo-sm" />
                                         <input type="text" class="form-control" placeholder="Post a comment">
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
-
+                        <?php } ?>
+                     </div>
                         <!-- Post Content
                         ================================================= -->
-                        <div class="post-content">
+<!--                        <div class="post-content">
                             <h3>Beer & wine lovers group</h3>
                             <div class="post-container">
                                 <img src="images/users/user-3.jpg" alt="user" class="profile-photo-md pull-left" />
@@ -98,12 +119,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
 
                         <!-- Post Content
                         ================================================= -->
-                        <div class="post-content">
+<!--                        <div class="post-content">
                             <h3>Vegetarians and Vegans in Zurich</h3>
                             <div class="post-container">
                                 <img src="images/users/user-4.jpg" alt="user" class="profile-photo-md pull-left" />
@@ -135,11 +156,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Post Content
                         ================================================= -->
-                        <div class="post-content">
+<!--                        <div class="post-content">
                             <div class="post-container">
                                 <img src="images/users/user-9.jpg" alt="user" class="profile-photo-md pull-left" />
                                 <div class="post-detail">
@@ -166,8 +187,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>-->
 
                     <!-- Newsfeed Common Side Bar Right
                     ================================================= -->
