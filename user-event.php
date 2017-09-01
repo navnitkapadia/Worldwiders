@@ -80,6 +80,12 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-xs-12">
+                                                    <label for="date" class="pull-left">Event Time</label>
+                                                    <input id="event-time" class="form-control input-group-lg" type="time"  title="Time" placeholder="Add Time" name="event-time" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-xs-12">
                                                     <label for="lname" class="pull-left">Location Name</label>
                                                     <input id="lname" name="lname"  class="form-control input-group-lg" type="text" title="Location Name" placeholder="Location Name" value="" />
                                                 </div>

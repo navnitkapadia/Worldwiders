@@ -1,7 +1,6 @@
 <?php
 
 include 'header.php';
-require 'api/db_config.php';
 
 if (isset($_POST['post'])) {
     $event_Id = $_GET['id'];

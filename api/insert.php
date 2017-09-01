@@ -1,6 +1,5 @@
 <?php
 include '../header.php';
-require 'db_config.php';
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
     case 'make-group':
@@ -33,7 +32,10 @@ function make_group($mysqli){
 function new_event($mysqli){
   $evname = $_REQUEST['event-name'];
   $formdate = $_REQUEST['event-date'];
-  $created = date("y-m-d", strtotime($_REQUEST['event-date']));
+  $date = new DateTime();
+  $create_at = $date->format('Y-m-d H:i:s');
+  $event_start = date("Y-m-d", strtotime($_REQUEST['event-date']));
+  $time = $_REQUEST['event-time'];
   $locname = $_REQUEST['lname'];
   $locadd = $_REQUEST['ladd'];
   $website = $_REQUEST['website'];
@@ -42,8 +44,8 @@ function new_event($mysqli){
   $createdBy = $_SESSION['fbid'];
   $event_image = file_upload();
 
-  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by) 
-                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$created','$createdBy')";
+  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time) 
+                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time')";
   $result = $mysqli->query($sql);
   if ($result) {
         header('Location:../home.php?msg=success');
