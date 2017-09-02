@@ -14,18 +14,25 @@ if (isset($_REQUEST['action'])) {
   }
 }
 function make_group($mysqli){
+  $id = $_REQUEST['id'];
   $title = $_REQUEST['title'];
   $description = $_REQUEST['description'];
   $group_image = file_upload();
-  $userid = $_SESSION['fbid'];
-  $topic = $_REQUEST['topic'];
-  $sql = "INSERT INTO peoples_group (title, description,file,user_id,topic) VALUES ('$title', '$description', '$group_image','$userid','$topic')";
+  $userid = $_SESSION['userid'];
+  $mo_name = $_REQUEST['moname'];
+  $moderator = $_REQUEST['moderator'];
+  if(!$id){
+    $sql="UPDATE peoples_group SET title=''$title',`description`='$description',`file`= '$group_image',`admin_id`=$userid ,`moderator_id`=$moderator,`mo_name`='$mo_name' WHERE id=$id";
+  }else{
+    $sql = "INSERT INTO peoples_group (title,description,file,admin_id,moderator_id,mo_name) VALUES ('$title','$description','$group_image',$userid,$moderator,'$mo_name')";
+  }
+  
   $result = $mysqli->query($sql);
   if ($result) {
-        header('Location:../home.php?msg=success');
+    header('Location:../admin/creategroup.php?msg=success');
         exit;
   } else {
-      header('Location:../home.php?msg=failed');
+    header("Location:../admin/creategroup.php?msg=failed");
       exit;
   }
 }
