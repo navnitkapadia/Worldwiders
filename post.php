@@ -34,7 +34,22 @@ function topic_desc($mysqli){
     if ($result) {
         //header("Location:group-details.php?id=$group_Id");
     } else {
-        exit('123');
+        exit('Something Wrong');
+    }
+}
+
+if(isset($_POST['add_topic'])){
+    $group_Id = $_GET['id'];
+    $user = $_SESSION['userid'];
+    $date = new DateTime();
+    $created_at = $date->format('Y-m-d H:i:s');
+    $topic = $_REQUEST['topic-name'];
+    $sql = "INSERT INTO group_topic (topic,group_id,user_id,created_at) VALUES ('$topic','$group_Id','$user','$created_at')";
+    $result = $mysqli->query($sql);
+    if ($result) {
+        header("Location:group-details.php?id=$group_Id");
+    } else {
+        exit('Something Wrong');
     }
 }
 ?>
