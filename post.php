@@ -1,6 +1,13 @@
 <?php
 
 include 'header.php';
+if (isset($_REQUEST['action'])) {
+  switch ($_REQUEST['action']) {
+    case 'topic_desc':
+      topic_desc($mysqli);
+      break;
+  }
+}
 
 if (isset($_POST['post'])) {
     $event_Id = $_GET['id'];
@@ -15,16 +22,17 @@ if (isset($_POST['post'])) {
     }
 }
 
-if(isset($_POST['comment'])){
-    $group_Id = $_GET['gid'];
-    $desc = $_POST['desc'];
+function topic_desc($mysqli){
+    $group_Id = $_REQUEST['group'];
+    $topic_id = $_REQUEST['topic'];
+    $desc = $_REQUEST['comment'];
     $user = $_SESSION['userid'];
     $date = new DateTime();
     $created_at = $date->format('Y-m-d H:i:s');
-    $sql = "INSERT INTO topic_desc (group_id, comment,user_id,created_at) VALUES ('$group_Id','$desc','$user','$created_at')";
+    $sql = "INSERT INTO topic_desc (group_id,topic_id,comment,user_id,created_at) VALUES ('$group_Id','$topic_id','$desc','$user','$created_at')";
     $result = $mysqli->query($sql);
     if ($result) {
-        header("Location:group-details.php?id=$group_Id");
+        //header("Location:group-details.php?id=$group_Id");
     } else {
         exit('123');
     }

@@ -28,7 +28,7 @@
                             <div class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
 
                                 <?php
-                                $sql = "SELECT e.*,u.name FROM event e,users u where e.created_by=u.fb_id";
+                                $sql = "SELECT e.*,u.name,u.fb_id FROM event e,users u where e.created_by=u.user_id";
                                 $result = $mysqli->query($sql);
                                 while ($row = $result->fetch_assoc()) {
                                     extract($row);
@@ -48,7 +48,7 @@
                                                     <p><?php echo date('d.m.Y , l', strtotime($start_date)); ?>&nbsp; - Starting from: <?php echo $start_time; ?></p>
                                                 </div>
                                                 <div class="user-info">
-                                                    <img src=<?php echo "http://graph.facebook.com/$created_by/picture"; ?> alt="" class="profile-photo-sm pull-left" />
+                                                    <img src=<?php echo "http://graph.facebook.com/$fb_id/picture"; ?> alt="" class="profile-photo-sm pull-left" />
                                                     <div class="user">
                                                         <h6><a href="profile.php?id=" class="profile-link"><?php echo $name; ?></a></h6>
                                                         <a class="text-green" href="#">Friend</a>

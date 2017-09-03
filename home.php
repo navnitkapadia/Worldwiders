@@ -25,27 +25,17 @@
                         <!-- Post Content
                         ================================================= -->
                         <?php
-                        $uid = $_SESSION['fbid'];
-                        $sql = "SELECT topic,id as gID from peoples_group";
+                        $uid = $_SESSION['userid'];
+                        $login_id = $_SESSION['fbid'];
+                        $sql = "SELECT gt.topic, gt.id, gt.created_at, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
                          $result = $mysqli->query($sql);
                          while ($row = $result->fetch_assoc()) {
                             extract($row);
                         ?>
                         <div class="post-content">
                             <h3><?php echo $topic; ?></h3>
-                            <?php
-                            $select = "SELECT td.*,u.name from topic_desc td,peoples_group pg,users u where td.group_id=".$row['gID']." and pg.id=td.group_id and u.fb_id=td.user_id order by td.id asc";
-                            $result1 = $mysqli->query($select);
-                            $flag = true;
-                            $post = 1;
-                            while ($row1 = $result1->fetch_assoc()) {
-                                extract($row1);
-                                if ($flag) {
-                                    $flag = false;
-                                    $post = 2;
-                            ?>
                             <div class="post-container">
-                                <img src="<?php echo "http://graph.facebook.com/$user_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
+                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
                                 <div class="post-detail">
                                     <div class="user-info">
                                         <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
@@ -57,22 +47,24 @@
                                     </div>
                                     <div class="line-divider"></div>
                                     <div class="post-text">
-                                        <p><?php echo $comment; ?></p>
+                                        <p><?php echo $description; ?></p>
                                     </div>
-                                <?php } else { ?>
+                                    <?php
+                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=".$row['gID']." and td.topic_id = gt.id and td.topic_id = ".$row['id']." and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
+                                        $result1 = $mysqli->query($select);
+                                        $post = 1;
+                                        while ($row1 = $result1->fetch_assoc()) {
+                                        extract($row1);
+                                    ?>
                                     <div class="line-divider"></div>
                                     <div class="post-comment">
-                                        <img src="<?php echo "http://graph.facebook.com/$user_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                        <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm" />
                                         <p><a href="timeline.php" class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
                                     </div>
-                                <?php } }?>
-                                    <!--<div class="post-comment">
-                                        <img src="images/users/user-4.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.php" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>-->
-                                    <?php if($post == 2){ ?>
+                                    <?php } ?>
+                                    <?php if($post == 1){ ?>
                                     <div class="post-comment">
-                                        <img src="<?php echo "http://graph.facebook.com/$uid/picture"; ?>" alt="" class="profile-photo-sm" />
+                                        <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
                                         <input type="text" class="form-control" placeholder="Post a comment">
                                     </div>
                                     <?php } ?>

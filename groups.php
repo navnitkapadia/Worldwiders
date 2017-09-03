@@ -44,17 +44,6 @@
                                                 <div class="card-info">
                                                     <div class="friend-info">
                                                         <?php
-                                                        $select = "SELECT user_id as uid from peoples_group where id=$id";
-                                                        $result1 = $mysqli->query($select);
-                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                            extract($row1);
-                                                            if ($uid == $_SESSION['fbid']) {
-                                                                $join = false;
-                                                                echo '<a href="#" class="pull-right text-green">Already joined</a>';
-                                                            } else {
-                                                                $join = true;
-                                                            }
-                                                        }
                                                         $add = array();
                                                         $sql2 = "SELECT user_id as uID FROM group_member where group_id =$id";
                                                         $result2 = $mysqli->query($sql2);
@@ -63,7 +52,7 @@
                                                             $add[] = $uID;
                                                         }
                                                         if ($join) {
-                                                            if (in_array($_SESSION['fbid'], $add)) {
+                                                            if (in_array($_SESSION['userid'], $add)) {
                                                                 echo '<a href="#" class="pull-right text-green">Already joined</a>';
                                                             } else {
                                                                 echo '<a href="update.php?gid=' . $id . '" class="pull-right text-red">Join</a>';
