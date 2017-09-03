@@ -11,9 +11,7 @@
 
     <title>Group List</title>
 
-
-
-</head>
+  </head>
 
 <body>
 
@@ -21,6 +19,7 @@
  
       <?php include 'header.php' ?>
 	  <?php $query="select ps.id,u.first_name as fname,u.last_name as lname,ps.title as title,ps.file as file,ps.description as description,ps.admin_id as admin, ps.moderator_id as moderator from users u,peoples_group ps where ps.moderator_id = u.user_id";
+	  //echo $query;
 			$result=$mysqli->query($query); 
 			?>
 	          <!-- Page Content -->
@@ -56,26 +55,27 @@
 									{
 										extract($row);
 										$image = "../upload/$file";
-										if($_SESSION['userid'] == $admin){
-											$admin  =  "You";
-										}
+										//if($_SESSION['userid'] == $admin){
+										//	$admin  =  "You";
+										//}
 										echo "<tr>";
 									  echo "<td>$title</td>";
 									  echo "<td>$description</td>";
 									  echo "<td><img style='width:100px; height:50px;' src='$image'></td>";
 									  echo "<td>$admin</td>";
 									  echo "<td>$fname $lname</td>";
-									  echo "<td><a style='text-decoration:none;' href='creategroup.php?id=$id'><i class='glyphicon glyphicon-pencil'></i> Edit</a></td>";
+									  echo "<td><a class='btn btn-primary' style='text-decoration:none;' href='creategroup.php?id=$id'><i class='glyphicon glyphicon-pencil'> </i> Edit</a>
+									   <a href='groupdelete.php?id=$id' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i> Delete</a>
+										</td>";
 									  echo "<tr>";
 									}  
 									?>
-                                       
-										
-									
-									  
                                     </tbody>
                                 </table>
+                  
                             </div>
+                            <!--<a class="btn btn-danger glyphicon-remove"></a>-->
+                             <!--<a href="groupdelete.php' class='btn btn-danger'><i class='glyphicon glyphicon-pencil'></i> </a>--> 
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->

@@ -5,6 +5,15 @@
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
+                            <a href="userlist.php"><i class="fa fa-user fa-fw"></i> User</a>
+                        </li>
+                        <li>
+                            <a href="eventlist.php"><i class="fa fa-dashboard fa-fw"></i> Event</a>
+                        </li>
+                        <li>
+                            <a href="interestlist.php"><i class="fa fa-dashboard fa-fw"></i> Interests</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> groups<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
