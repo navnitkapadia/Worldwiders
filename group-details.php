@@ -21,7 +21,7 @@
                     success: function(data){
                     //clear the message box
                     $('#desc-'+i).val("");
-//                    resize();
+                    location.reload();
                     }
                 });
             };
@@ -116,18 +116,32 @@
                     <!-- Newsfeed Common Side Bar Left
                     ================================================= -->
                     <div class="col-md-3 static">
-                        <h4>Groups</h4>
-                        <img src="http://www.jquery-az.com/wp-content/uploads/2016/04/16.0_1-JavaScript-date.png" style="width: 100%" />
+                        <?php
+                        $button = array();
+                        $show = "SELECT user_id FROM group_member where group_id = $group_Id";
+                        $result4 = $mysqli->query($show);
+                            while ($row4 = $result4->fetch_assoc()) {
+                                extract($row4);
+                                $button[] = $user_id;
+                            }
+                            if(in_array($_SESSION['userid'], $button)){
+                                echo '<h4><a href="" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mytopic">Add Topic</a></h4>';
+                            } else {
+                                echo '<h4></h4>';
+                            }
+                        ?>
+                        <br>
+                        <br>
                         <div class="suggestions" id="sticky-sidebar">
                             <h4>People in the group</h4>
                             <?php
-                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.fb_id and gm.user_id !='" . $_SESSION['fbid'] . "' and gm.group_id='$group_Id'";
+                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.user_id !='" . $_SESSION['userid'] . "' and gm.group_id='$group_Id'";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 ?>
                                 <div class="follow-user">
-                                    <img src="<?php echo "http://graph.facebook.com/$group_user/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
+                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                     <div>
                                         <h5><a href="timeline.html"><?php echo $name; ?></a></h5>
                                         <a href="home-logged.html" class="text-green">Add friend</a>
@@ -195,7 +209,33 @@
                 </div>
             </div>
         </div>
-
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="mytopic" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="block-title">
+                                <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i> Add Topic</h4>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form name="basic-info" id="basic-info" class="form-inline" action="post.php?id=<?php echo $group_Id; ?>" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="title" class="pull-left">Topic Name</label>
+                                        <input id="topic-name" class="form-control input-group-lg" type="text" name="topic-name" title="Topic Name" placeholder="Topic Name" required="required" />
+                                    </div>
+                                </div><br>
+                                <button class="btn btn-primary text-center" name="add_topic">Save</button><button type="button" class="btn btn-primary text-center" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--======================Page Container STOP====================================-->
         <?php include 'footer.php' ?>
     </body>

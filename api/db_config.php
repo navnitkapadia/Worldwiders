@@ -3,7 +3,7 @@
 $username = "root"; //mysql username
 $password = ""; //mysql password
 $hostname = "localhost"; //hostname
-$databasename = 'worldwiders'; //databasename
+$databasename = 'worldwiders3'; //databasename
 
 //server
 // $username = "luiisnet_world"; //mysql username
