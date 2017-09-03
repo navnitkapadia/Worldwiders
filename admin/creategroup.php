@@ -37,7 +37,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Add/Edit Grop</h1>
+                        <h1 class="page-header">Add/Edit group</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="form-group">
                                           <label for="file" class="pull-left">Group image</label>
-                                            <input type="file" name="image" id="image" class="form-control"/>
+                                            <input type="file" name="image" id="image" class="form-control form-check-input"/>
                                         </div>
 										<div class="form-group">
                                             <label for="title" class="pull-left">Modarator</label>

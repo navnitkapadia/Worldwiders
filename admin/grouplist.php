@@ -11,9 +11,7 @@
 
     <title>Group List</title>
 
-
-
-</head>
+  </head>
 
 <body>
 
@@ -65,17 +63,18 @@
 									  echo "<td><img style='width:100px; height:50px;' src='$image'></td>";
 									  echo "<td>$admin</td>";
 									  echo "<td>$fname $lname</td>";
-									  echo "<td><a style='text-decoration:none;' href='creategroup.php?id=$id'><i class='glyphicon glyphicon-pencil'></i> Edit</a></td>";
+									  echo "<td><a class='btn btn-primary' style='text-decoration:none;' href='creategroup.php?id=$id'><i class='glyphicon glyphicon-pencil'> </i> Edit</a>
+									   <a href='groupdelete.php?id=$id' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i> Delete</a>
+										</td>";
 									  echo "<tr>";
 									}  
 									?>
-                                       
-										
-									
-									  
                                     </tbody>
                                 </table>
+                  
                             </div>
+                            <!--<a class="btn btn-danger glyphicon-remove"></a>-->
+                             <!--<a href="groupdelete.php' class='btn btn-danger'><i class='glyphicon glyphicon-pencil'></i> </a>--> 
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
