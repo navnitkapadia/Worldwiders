@@ -75,7 +75,22 @@ $(function() {
 $("#datepicker").datepicker({
   onSelect: function(dateText) {
     /* hear you can fire ajax for take data */
-    console.log(dateText);
+    $.ajax({
+            type: 'post',
+            url: "api/insert.php?action=eventslist",
+            data: "date-select=" + dateText,
+            dataType: 'json',
+            success: function(data){
+                alert('hi..');
+                //clear the message box
+                var r = JSON.parse(data);
+                var x;
+                for (x in r) {
+                    //alert(r[x]['id']);
+                }
+                console.log(data);
+            }
+    });
   }
 });
 </script>
