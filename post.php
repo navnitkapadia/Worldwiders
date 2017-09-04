@@ -44,7 +44,8 @@ if(isset($_POST['add_topic'])){
     $date = new DateTime();
     $created_at = $date->format('Y-m-d H:i:s');
     $topic = $_REQUEST['topic-name'];
-    $sql = "INSERT INTO group_topic (topic,group_id,user_id,created_at) VALUES ('$topic','$group_Id','$user','$created_at')";
+    $desc = $_REQUEST['description'];
+    $sql = "INSERT INTO group_topic (topic,description,group_id,user_id,created_at) VALUES ('$topic','$desc','$group_Id','$user','$created_at')";
     $result = $mysqli->query($sql);
     if ($result) {
         header("Location:group-details.php?id=$group_Id");

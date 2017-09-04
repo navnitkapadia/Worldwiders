@@ -136,7 +136,20 @@
                                             <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
                                                 <h5><a href="profile.html"><?php echo $name; ?></a></h5>
-                                                <a href="newsfeed-people-nearby.html#" class="text-green">Add friend</a>
+                                                <?php
+                                                    $event1 = array();
+                                                    $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
+                                                    $result = $mysqli->query($select);
+                                                    while($row = $result->fetch_assoc()){
+                                                        extract($row);
+                                                        $event1[] = $friend_id;
+                                                    }
+                                                    if(in_array($add[$i], $event1)){
+                                                ?>
+                                                <a href="#" class="text-green">Message</a>
+                                                <?php } else { ?>
+                                                <a href="#" class="text-green">Add friend</a>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         <?php

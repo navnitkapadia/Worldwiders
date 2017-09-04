@@ -83,21 +83,20 @@
               <div class="friend-list">
                 <div class="row">
                   <?php
-                          $flist = "SELECT * FROM friend_list where user_id = $user";
+                          $flist = "SELECT f.*, u.fb_id,u.name,u.cover as ucover,u.oe as uoe FROM friend_list f, users u where f.friend_id=u.user_id and f.user_id = $user";
                           $resultlist = $mysqli->query($flist);
-                          if(mysqli_num_rows($resultlist) > 0 ){
+                          if(mysqli_num_rows($resultlist) > 0 ){  
                             while($row = $resultlist->fetch_assoc()){
                             extract($row);
                           ?>
                             <div class="col-md-4 col-sm-4">
                               <div class="friend-card">
-                                <img style="height: 101px; width: 242px;" src=<?php if($cover){ echo $cover.'&oe='.$oe; } else { echo "images/covers/1.jpg"; } ?> alt="profile-cover" class="img-responsive cover" />
+                                <img style="height: 101px; width: 242px;" src=<?php if($ucover){ echo $ucover.'&oe='.$uoe; } else { echo "images/covers/1.jpg"; } ?> alt="profile-cover" class="img-responsive cover" />
                                 <div class="card-info">
                                   <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo-lg" />
                                   <div class="friend-info">
-                                    <a href="messages.php?friendid=<?php echo $user_id;?>" class="pull-right text-green">Message</a>
-                                    <h5><a href="timeline.php" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
-                                    <p>Student at Harvard</p>
+                                    <a href="messages.php?friendid=<?php echo $friend_id;?>" class="pull-right text-green">Message</a>
+                                    <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a></h5>
                                   </div>
                                 </div>
                               </div>
@@ -106,14 +105,22 @@
                           <?php } 
                          
                          } else ?>
+                         <br>
                          <h3>People may you know</h3>
                          <?php  {
-
+                          $inlist = array();   
+                          $list = "SELECT friend_id as fb FROM friend_list where user_id = $user";
+                          $resultlist2 = $mysqli->query($list);
+                          while($row2 = $resultlist2->fetch_assoc()){
+                                extract($row2);
+                                $inlist[] = $fb;
+                          }
                           $userlis = "SELECT * FROM users where user_id != $user";
                           $resultlist1 = $mysqli->query($userlis);
                           if(mysqli_num_rows($resultlist1) > 1 ){
                             while($row = $resultlist1->fetch_assoc()){
                             extract($row);
+                            if(!in_array($user_id, $inlist)){
                             ?>
                             <div class="col-md-4 col-sm-4">
                               <div class="friend-card">
@@ -123,12 +130,12 @@
                                   <div class="friend-info">
                                     <a href="messages.php?friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
                                     <h5><a href="timeline.php" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
-                                    <p>Student at Harvard</p>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <?php
+                          }
                         }
                       }
                     }

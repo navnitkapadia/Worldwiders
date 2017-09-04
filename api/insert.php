@@ -11,6 +11,10 @@ if (isset($_REQUEST['action'])) {
     case 'login':
       login($mysqli);
       break;
+    case 'addfriend':
+      addfriend($mysqli);
+      break;
+  
   }
 }
 function make_group($mysqli){
@@ -61,6 +65,19 @@ function new_event($mysqli){
       header('Location:../home.php?msg=failed');
       exit;
   }
+}
+function addfriend($mysqli){
+    $user_id = $_SESSION['userid'];
+    $friend_id = $_REQUEST['friendid'];
+    $time=time();
+    $sql = "INSERT INTO friend_list (user_id, friend_id, time) VALUES ($user_id,$friend_id,$time)";
+    $result = $mysqli->query($sql);
+    if ($result) {
+        header('Location:../friends.php?msg=success');
+    } else {
+      header('Location:../friends.php?msg=failed');
+      exit;
+    }
 }
 function login($mysqli){
   session_start();

@@ -25,12 +25,6 @@
                     }
                 });
             };
-//            function resize(){
-//                group_id = $.trim($("#group_id").val());
-//                var getdata = setInterval(function() {
-//                    $(".open-"+group_id).load("group-details.php?id="+group_id);
-//                }, 3000);
-//            }
         </script>    
 
     </head>
@@ -144,7 +138,20 @@
                                     <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                     <div>
                                         <h5><a href="timeline.html"><?php echo $name; ?></a></h5>
-                                        <a href="home-logged.html" class="text-green">Add friend</a>
+                                        <?php
+                                            $group = array();
+                                            $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
+                                            $result = $mysqli->query($select);
+                                            while($row = $result->fetch_assoc()){
+                                                extract($row);
+                                                $group[] = $friend_id;
+                                            }
+                                            if(in_array($group_user, $group)){
+                                        ?>
+                                        <a href="messages.php?friendid=<?php echo $group_user;?>" class="pull-left text-green">Message</a>
+                                        <?php } else { ?>
+                                        <a href="api/insert.php?action=addfriend&friendid=<?php echo $group_user;?>" class="pull-left text-green">Add friend</a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -158,7 +165,7 @@
                         <div class="post-content <?php echo "open-$group_Id"; ?>">
                             <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
                             <?php
-                            $sql = "SELECT gt.topic, gt.id, gt.group_id as gID, u.fb_id,u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
+                            $sql = "SELECT gt.topic, gt.id, gt.group_id as gID, u.fb_id,u.name, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -228,7 +235,14 @@
                                         <label for="title" class="pull-left">Topic Name</label>
                                         <input id="topic-name" class="form-control input-group-lg" type="text" name="topic-name" title="Topic Name" placeholder="Topic Name" required="required" />
                                     </div>
-                                </div><br>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="description" class="pull-left">Description</label>
+                                        <textarea id="description" name="description" class="form-control" placeholder="Description" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <br>
                                 <button class="btn btn-primary text-center" name="add_topic">Save</button><button type="button" class="btn btn-primary text-center" data-dismiss="modal">Close</button>
                             </form>
                         </div>
