@@ -128,7 +128,7 @@
                                 <div class="card-info">
                                   <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo-lg" />
                                   <div class="friend-info">
-                                    <a href="messages.php?friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
+                                      <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
                                     <h5><a href="timeline.php" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
                                   </div>
                                 </div>
