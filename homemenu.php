@@ -12,8 +12,8 @@
         </div><!--profile card ends-->
     <ul class="nav-news-feed">
         <li><i class="icon ion-ios-paper"></i><div><a href="home.php">My Newsfeed</a></div></li>
-        <li><i class="icon ion-ios-people"></i><div><a href="user-group.php">Groups</a></div></li>
-        <li><i class="icon ion-android-bar"></i><div><a href="user-event.php">Events</a></div></li>
+        <li><i class="icon ion-ios-people"></i><div><a href="events.php">Groups</a></div></li>
+        <li><i class="icon ion-android-bar"></i><div><a href="groups.php">Events</a></div></li>
         <li><i class="icon ion-ios-people-outline"></i><div><a href="friends.php">Friends</a></div></li>
         <li><i class="icon ion-chatboxes"></i><div><a href="messages.php">Messages</a></div></li>
         <li><i class="icon ion-log-out"></i><div><a href="logout.php">logout</a></div></li>

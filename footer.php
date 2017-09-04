@@ -57,6 +57,9 @@
 		</footer>
             <!-- Scripts
 ================================================= -->
+
+
+
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.sticky-kit.min.js"></script>
@@ -67,7 +70,6 @@
 
    <script>
     $(window).on('hashchange ready keypress blur change mousedown', function (e) {
-      console.log(e.which);
         $.ajax({
             type: "POST",
             url: "api/activity.php",

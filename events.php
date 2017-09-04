@@ -9,7 +9,7 @@
         <title>Events</title>
 
 
-    </head>
+    </head> 
     <body>
         <?php include 'header.php' ?>
         <!--======================Page Container START===================================-->
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 static">
-                        <img src="http://www.jquery-az.com/wp-content/uploads/2016/04/16.0_1-JavaScript-date.png" style="width: 100%" />
+                    <div id="datepicker" class="calendar"></div>
                     </div>
                     <div class="col-md-9">
 
@@ -66,5 +66,18 @@
         </div>
         <!--======================Page Container STOP====================================-->
 <?php include 'footer.php' ?>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script>
+$(function() {
+  $("#datepicker").datepicker('show');
+});
+
+$("#datepicker").datepicker({
+  onSelect: function(dateText) {
+    /* hear you can fire ajax for take data */
+    console.log(dateText);
+  }
+});
+</script>
     </body>
 </html>
