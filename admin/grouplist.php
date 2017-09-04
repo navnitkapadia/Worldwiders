@@ -19,6 +19,7 @@
  
       <?php include 'header.php' ?>
 	  <?php $query="select ps.id,u.first_name as fname,u.last_name as lname,ps.title as title,ps.file as file,ps.description as description,ps.admin_id as admin, ps.moderator_id as moderator from users u,peoples_group ps where ps.moderator_id = u.user_id";
+	  //echo $query;
 			$result=$mysqli->query($query); 
 			?>
 	          <!-- Page Content -->
@@ -54,9 +55,9 @@
 									{
 										extract($row);
 										$image = "../upload/$file";
-										if($_SESSION['userid'] == $admin){
-											$admin  =  "You";
-										}
+										//if($_SESSION['userid'] == $admin){
+										//	$admin  =  "You";
+										//}
 										echo "<tr>";
 									  echo "<td>$title</td>";
 									  echo "<td>$description</td>";
