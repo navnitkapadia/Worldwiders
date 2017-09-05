@@ -14,10 +14,6 @@ if (isset($_REQUEST['action'])) {
     case 'addfriend':
       addfriend($mysqli);
       break;
-    case 'eventslist':
-      eventslist($mysqli);
-      break;
-  
   }
 }
 function make_group($mysqli){
@@ -82,26 +78,9 @@ function addfriend($mysqli){
       exit;
     }
 }
-function eventslist($mysqli){
-    $select = date('Y-m-d', strtotime($_REQUEST['date-select']));
-    $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date = $select";
-    $result = $mysqli->query($date);
-    $array = array();
-    $i = 0;
-    while($row = $result->fetch_assoc()){
-      $array[$i]['id']= $row['id'];
-      $array[$i]['file']=$row['file'];
-      $array[$i]['fb_id']= $row['fb_id'];
-      $array[$i]['name']=$row['name'];
-      $array[$i]['event']= $row['event'];
-      $array[$i]['start_date']= $row['start_date'];
-      $array[$i]['start_time']= $row['start_time'];
-      $array[$i]['event']= $row['event'];
-      $array[$i]['created_by']= $row['created_by'];
-      $i++;
-    }
-    echo json_encode($array);
-}
+
+
+
 function login($mysqli){
   session_start();
   $name = $_REQUEST['name'];

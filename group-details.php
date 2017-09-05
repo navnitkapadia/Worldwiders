@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,9 +15,6 @@
         <title>Group Detail</title>
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                
-            });
             function post(gid,tid,i){
                 var comment = $('#desc-'+i).val();
                 $.ajax({
@@ -119,7 +122,7 @@
                                 $button[] = $user_id;
                             }
                             if(in_array($_SESSION['userid'], $button)){
-                                echo '<h4><a href="" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mytopic">Add Topic</a></h4>';
+                                echo '<h4><a href="" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mytopic">Add Post</a></h4>';
                             } else {
                                 echo '<h4></h4>';
                             }
@@ -135,7 +138,7 @@
                                 extract($row);
                                 ?>
                                 <div class="follow-user">
-                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
+                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
                                     <div>
                                         <h5><a href="timeline.html"><?php echo $name; ?></a></h5>
                                         <?php
@@ -172,7 +175,7 @@
                                 echo "<h4>$topic</h4>";
                                 ?>
                                 <div class="post-container">
-                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
+                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo-md pull-left" />
                                     <div class="post-detail">
                                         <div class="user-info">
                                             <h5><a href="#" class="profile-link"><?php echo $name; ?></a> <span class="following">following</span></h5>
@@ -195,14 +198,14 @@
                                             ?>
                                             <div class="line-divider"></div>
                                             <div class="post-comment">
-                                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
                                                 <p><a href="#" class="profile-link"><?php echo $name; ?></a> <?php echo $comment; ?> </p>
                                             </div>
                                         <?php } ?>
                                         <?php if ($post == 1) { ?>
                                             <!--<form name="group" id="group" method="post">-->
                                                 <div class="post-comment">
-                                                    <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                    <img src="<?php echo "http://graph.facebook.com/$login_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
                                                     <input type="text" name="desc" id="desc-<?php echo $i; ?>" class="form-control" placeholder="Post a comment">
                                                     <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $topic_id ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
                                                 </div>

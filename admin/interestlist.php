@@ -22,7 +22,6 @@
       <?php include 'header.php' ?>
       <?php
 	  $query="select * from interests";
-//echo $query;
 $result=$mysqli->query($query);
 	  ?>
 	          <!-- Page Content -->

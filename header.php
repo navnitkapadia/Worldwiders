@@ -1,8 +1,11 @@
- 
- <?php 
- session_start(); 
- require 'api/db_config.php';
- ?>
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+    }
+    require 'api/db_config.php';
+?>
+
     <!-- Stylesheets
     ================================================= -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -48,7 +51,7 @@
             <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
                 <i class="icon ion-android-search"></i>
-                <input type="text" class="form-control" placeholder="Search friends, events, groups">
+                <input type="text" id="searchany" class="form-control" placeholder="Search friends, events, groups">
               </div>
             </form>
           </div><!-- /.navbar-collapse -->

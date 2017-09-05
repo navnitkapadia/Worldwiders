@@ -57,7 +57,7 @@
 		</footer>
             <!-- Scripts
 ================================================= -->
-
+ 
 
 
   <script src="js/jquery-3.1.1.min.js"></script>
@@ -69,6 +69,14 @@
    <script src="js/login.js"></script> 
 
    <script>
+    $("#searchany").keyup(function() {
+      var inputval = $( "#searchany" ).val();
+      $.ajax({
+            type: "POST",
+            url: "api/searching.php?q="+inputval
+      });
+    });
+
     $(window).on('hashchange ready keypress blur change mousedown', function (e) {
         $.ajax({
             type: "POST",

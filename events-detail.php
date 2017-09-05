@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
 <!DOCTYPE php>
 <php lang="en">
 	<head>
@@ -6,7 +12,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
-		<title>Home logged</title>
+		<title>Edit Details</title>
 
 
 	</head>
@@ -29,7 +35,7 @@
             </div><!--profile card ends-->
 
           </div>
-    	  <div class="col-md-7">
+    	  <div class="col-md-7"> 
 
             <div class="details">
             	<div class="img-wrapper">

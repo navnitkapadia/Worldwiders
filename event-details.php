@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +37,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 ?>
-                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo" />
+                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo" />
                                 <h5><a href="#" class="text-white"><?php echo $name; ?></a></h5>
                                 <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
                             <?php } ?>
@@ -78,7 +84,7 @@
                                 <form method="post" action="post.php?id=<?php echo $event_Id ?>">
                                 <div class="col-md-10 col-sm-10">
                                     <div class="form-group">
-                                        <img src="<?php echo "http://graph.facebook.com/$Login_Id/picture"; ?>" alt="" class="profile-photo-md" />
+                                        <img src="<?php echo "http://graph.facebook.com/$Login_Id/picture?type=large"; ?>" alt="" class="profile-photo-md" />
                                         <textarea name="texts" id="texts" cols="50" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                                     </div>
                                 </div>
@@ -133,7 +139,7 @@
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
                                             ?>
-                                            <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
+                                            <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
                                                 <h5><a href="profile.html"><?php echo $name; ?></a></h5>
                                                 <?php

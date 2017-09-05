@@ -1,4 +1,10 @@
-	<!-- Newsfeed Common Side Bar Left
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
+    <!-- Newsfeed Common Side Bar Left
           ================================================= -->
           <?php 
           $fb_id=$_SESSION['fbid'];
@@ -6,7 +12,7 @@
           $lname=$_SESSION['lname'];
           ?>
         <div class="profile-card">
-            <img src=<?php echo "http://graph.facebook.com/$fb_id/picture"; ?> alt="user" class="profile-photo" />
+            <img src=<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo" />
             <h5><a href="profile.php" class="text-white"><?php echo $fname; ?>&nbsp;<?php echo $lname; ?></a></h5>
             <a href="" class="text-white"><i class="ion ion-android-person-add"></i>1,299 friends</a>
         </div><!--profile card ends-->

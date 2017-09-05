@@ -55,13 +55,14 @@
                                     </thead>
                                     <tbody>
 									<?php
-				    while($row=$result->fetch_assoc())
+                    while($row=$result->fetch_assoc())
+                    extract($row);
 {
   echo "<tr>";
-  echo "<td>".$row['user_id']."</td>";
-  echo "<td>".$row['first_name']."</td>";
-  echo "<td>".$row['email']."</td>";
-  echo "<td> <img src='http://graph.facebook.com/".$row['fb_id']."/picture' alt='' class='img-responsive profile-photo' /></td>";
+  echo "<td>$user_id</td>";
+  echo "<td>$first_name</td>";
+  echo "<td>$email</td>";
+  echo "<td> <img src='http://graph.facebook.com/".$row['fb_id']."/picture?type=large' alt='' class='img-responsive profile-photo' /></td>";
   echo "<td>".$row['birth_date']."</td>";
  // echo "<td>".$row['nationality']."</td>";
   echo "<td>";
