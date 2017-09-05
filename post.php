@@ -1,5 +1,10 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
 <?php
-
 include 'header.php';
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {

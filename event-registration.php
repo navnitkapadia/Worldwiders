@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
 <!DOCTYPE php>
 <php lang="en">
 	<head>

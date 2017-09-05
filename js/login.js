@@ -20,13 +20,14 @@ function statusChangeCallback(response) {
                 url: "api/checklogin.php",
                 data: "fbid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken +"&cover=",
                 success: function (data) {
-                    if(window.location.pathname == "/Worldwiders/"){
-                    //if(window.location.pathname == "/index.php"){
-                        window.location = "home.php"
-                    }
                     if(data == 0 ){
                         user_signup(); 
+                        return;
                     }
+                    if(window.location.pathname == "/Worldwiders/"){
+                        window.location = "home.php"
+                    }
+                    
             }
           });
           return;
@@ -37,7 +38,6 @@ function statusChangeCallback(response) {
             }, {scope: 'public_profile,email'});
         } else {
             if(window.location.pathname != "/Worldwiders/"){
-               // if(window.location.pathname != "/index.php"){
                 window.location = "/Worldwiders/"
             }
         }
@@ -87,10 +87,20 @@ function statusChangeCallback(response) {
                   url: "api/insert.php?action=login",
                   data: "name=" + name + "&email=" + email+"&first_name=" + first_name+"&last_name=" + last_name + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
                   success: function (data) {
-                     if(window.location.pathname != "/Worldwiders/home.php"){
-                     //if(window.location.pathname != "/home.php"){
-                        window.location = "home.php"
-                     }
+                    $.ajax({
+                        type: "POST",
+                        url: "api/checklogin.php",
+                        data: "fbid=" + response.authResponse.userID + "&accesstoken=" + response.authResponse.accessToken,
+                        success: function (data) {
+                            if(data == 0 ){
+                                user_signup(); 
+                                return;
+                            }
+                            if(window.location.pathname == "/"){
+                                window.location = "home.php"
+                            }
+                        }
+                    });
                   }
               });
             }
