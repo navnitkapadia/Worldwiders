@@ -52,6 +52,8 @@
               <div class="form-group">
                 <i class="icon ion-android-search"></i>
                 <input type="text" id="searchany" class="form-control" placeholder="Search friends, events, groups">
+                <div id="searchlist">
+                </div>
               </div>
             </form>
           </div><!-- /.navbar-collapse -->

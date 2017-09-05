@@ -1,25 +1,43 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
+<?php
+session_start();
+if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
+    header('Location: /');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-    <meta http-equiv="content-type" content="text/php; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
-		<meta name="robots" content="index, follow" />
-		<title>Home logged</title>
+    <head>
+        <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="" />
+        <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+        <meta name="robots" content="index, follow" />
+        <title>Home logged</title>
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-
-	</head>
-  <body> 
-    <?php include 'header.php'?>
-    <!--======================Page Container START===================================-->
-    <div id="page-contents">
+            });
+            function post(gid, tid, i) {
+                var comment = $('#desc-' + i).val();
+                $.ajax({
+                    type: 'post',
+                    url: "post.php?action=topic_desc",
+                    data: {group: gid, topic: tid, comment: comment},
+                    success: function (data) {
+                        //clear the message box
+                        $('#desc-' + i).val("");
+                        location.reload();
+                    }
+                });
+            }
+            ;
+        </script>
+    </head>
+    <body> 
+        <?php include 'header.php' ?>
+        <!--======================Page Container START===================================-->
+        <div id="page-contents">
             <div class="container">
                 <div class="row">
 
@@ -33,94 +51,89 @@
                         ================================================= -->
                         <?php
                         $uid = $_SESSION['userid'];
+                        $i = 1;
                         $login_id = $_SESSION['fbid'];
-                        $sql = "SELECT gt.topic, gt.id, gt.created_at, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
-                         $result = $mysqli->query($sql);
-                         while ($row = $result->fetch_assoc()) {
+                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id, gt.created_at, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
+                        $result = $mysqli->query($sql);
+                        while ($row = $result->fetch_assoc()) {
                             extract($row);
-                        ?>
-                        <div class="post-content">
-                            <h3><?php echo $topic; ?></h3>
-                            <div class="post-container">
-                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
-                                        <p class="text-muted"><?php echo $created_at; ?></p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p><?php echo $description; ?></p>
-                                    </div>
-                                    <?php
-                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=".$row['gID']." and td.topic_id = gt.id and td.topic_id = ".$row['id']." and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
+                            ?>
+                            <div class="post-content">
+                                <h3><?php echo $topic; ?></h3>
+                                <div class="post-container">
+                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
+                                    <div class="post-detail">
+                                        <div class="user-info">
+                                            <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
+                                            <p class="text-muted"><?php echo date("Y-m-d", strtotime($created_at)); ?></p>
+                                        </div>
+                                        <div class="reaction">
+                                            <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
+                                            <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                                        </div>
+                                        <div class="line-divider"></div>
+                                        <div class="post-text">
+                                            <p><?php echo $tdesc; ?></p>
+                                        </div>
+                                        <?php
+                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=" . $row['gID'] . " and td.topic_id = gt.id and td.topic_id = " . $row['id'] . " and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
                                         $result1 = $mysqli->query($select);
                                         $post = 1;
                                         while ($row1 = $result1->fetch_assoc()) {
-                                        extract($row1);
-                                    ?>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.php" class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
+                                            extract($row1);
+                                            ?>
+                                            <div class="line-divider"></div>
+                                            <div class="post-comment">
+                                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                <p><a href="timeline.php" class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if ($post == 1) { ?>
+                                            <div class="post-comment">
+                                                <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                <input type="text" class="form-control" id="desc-<?php echo $i; ?>" placeholder="Post a comment">
+                                                <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $topic_id ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
+                                            </div>
+                                            <?php $i++; ?>
+                                        <?php } ?>
                                     </div>
-                                    <?php } ?>
-                                    <?php if($post == 1){ ?>
-                                    <div class="post-comment">
-                                        <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                    <?php } ?>
                                 </div>
                             </div>
-                        </div>
                         <?php } ?>
-                     </div>
+                    </div>
 
                     <!-- Newsfeed Common Side Bar Right
                     ================================================= -->
                     <div class="col-md-2 static">
                         <div class="suggestions" id="sticky-sidebar">
                             <h4 class="grey">People you may know...</h4>
-                            <div class="follow-user">
-                                <img src="images/users/user-11.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.php">Diana Amber</a></h5>
-                                    <a href="home.php" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-12.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.php">Cris Haris</a></h5>
-                                    <a href="home.php" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-13.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.php">Brian Walton</a></h5>
-                                    <a href="home.php" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-14.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.php">Olivia Steward</a></h5>
-                                    <a href="home.php" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-15.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.php">Sophia Page</a></h5>
-                                    <a href="home.php" class="text-green">Add friend</a>
-                                </div>
-                            </div>
+                            <?php
+                            $inlist = array();
+                            $list = "SELECT friend_id as fb FROM friend_list where user_id = '" . $_SESSION['userid'] . "'";
+                            $resultlist2 = $mysqli->query($list);
+                            while ($row2 = $resultlist2->fetch_assoc()) {
+                                extract($row2);
+                                $inlist[] = $fb;
+                            }
+                            $userlis = "SELECT * FROM users where user_id != '" . $_SESSION['userid'] . "'";
+                            $resultlist1 = $mysqli->query($userlis);
+                            if (mysqli_num_rows($resultlist1) > 1) {
+                                while ($row = $resultlist1->fetch_assoc()) {
+                                    extract($row);
+                                    if (!in_array($user_id, $inlist)) {
+                                        ?>
+                                        <div class="follow-user">
+                                            <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
+                                            <div>
+                                                <h5><a href="timeline.php"><?php echo $name; ?></a></h5>
+                                                <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -142,7 +155,7 @@
 
                             <form name="basic-info" id="basic-info" class="form-inline" action="api/insert.php?action=new-event" method="POST" enctype="multipart/form-data">
                                 <div class="row">
-                                     <div class="form-group col-xs-12">
+                                    <div class="form-group col-xs-12">
                                         <label for="title" class="pull-left">Event Title</label>
                                         <input id="event-name" class="form-control input-group-lg" type="text" name="event-name" title="Event Name" placeholder="Event Name" value="" />
                                     </div>
@@ -236,7 +249,7 @@
                 </div>
             </div>
         </div>
-    <!--======================Page Container STOP====================================-->
-    <?php include 'footer.php' ?>
-  </body>
+        <!--======================Page Container STOP====================================-->
+<?php include 'footer.php' ?>
+    </body>
 </html>

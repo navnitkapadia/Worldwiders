@@ -73,7 +73,11 @@
       var inputval = $( "#searchany" ).val();
       $.ajax({
             type: "POST",
-            url: "api/searching.php?q="+inputval
+            url: "api/searching.php?q="+inputval,
+            success: function(data){
+                
+                $( "#searchlist" ).load(data);
+            }
       });
     });
 

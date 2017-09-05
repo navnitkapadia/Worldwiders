@@ -25,7 +25,7 @@ if(isset($_REQUEST['date-select'])){
     $src = '#';
     $starting = date('d.m.Y , l', strtotime($start_date));
    if ($file) {
-       $src = 'upload/$file';
+       $src = "upload/$file";
    } else {
        $src = 'images/post-images/6.jpg';
    }

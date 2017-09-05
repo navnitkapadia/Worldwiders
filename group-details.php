@@ -113,22 +113,6 @@
                     <!-- Newsfeed Common Side Bar Left
                     ================================================= -->
                     <div class="col-md-3 static">
-                        <?php
-                        $button = array();
-                        $show = "SELECT user_id FROM group_member where group_id = $group_Id";
-                        $result4 = $mysqli->query($show);
-                            while ($row4 = $result4->fetch_assoc()) {
-                                extract($row4);
-                                $button[] = $user_id;
-                            }
-                            if(in_array($_SESSION['userid'], $button)){
-                                echo '<h4><a href="" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mytopic">Add Post</a></h4>';
-                            } else {
-                                echo '<h4></h4>';
-                            }
-                        ?>
-                        <br>
-                        <br>
                         <div class="suggestions" id="sticky-sidebar">
                             <h4>People in the group</h4>
                             <?php
@@ -165,10 +149,28 @@
 
                         <!-- Post Content
                         ================================================= -->
+                        <div class="row">
+                        <?php
+                        $button = array();
+                        $show = "SELECT user_id FROM group_member where group_id = $group_Id";
+                        $result4 = $mysqli->query($show);
+                            while ($row4 = $result4->fetch_assoc()) {
+                                extract($row4);
+                                $button[] = $user_id;
+                            }
+                            if(in_array($_SESSION['userid'], $button)){
+                                echo '<h4><a href="" class="btn btn-primary pull-left col-md-3" data-toggle="modal" data-target="#mytopic">Add Topic</a></h4>';
+                            } else {
+                                echo '<h4></h4>';
+                            }
+                        ?>
+                        <h4><a href="" class="btn btn-primary pull-right col-md-3" data-toggle="modal" data-target="#myEvent">Add Event</a></h4>    
+                        </div>
+                        <br>
                         <div class="post-content <?php echo "open-$group_Id"; ?>">
                             <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
                             <?php
-                            $sql = "SELECT gt.topic, gt.id, gt.group_id as gID, u.fb_id,u.name, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
+                            $sql = "SELECT gt.topic, gt.created_at, gt.id, gt.group_id as gID, u.fb_id,u.name, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -179,7 +181,7 @@
                                     <div class="post-detail">
                                         <div class="user-info">
                                             <h5><a href="#" class="profile-link"><?php echo $name; ?></a> <span class="following">following</span></h5>
-                                            <p class="text-muted">Published a photo about 3 mins ago</p>
+                                            <p class="text-muted"><?php echo date('Y-m-d', strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
                                             <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
@@ -247,6 +249,76 @@
                                 </div>
                                 <br>
                                 <button class="btn btn-primary text-center" name="add_topic">Save</button><button type="button" class="btn btn-primary text-center" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="myEvent" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="block-title">
+                                <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i> Add Event</h4>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <form name="basic-info" id="basic-info" class="form-inline" action="api/insert.php?action=new-event" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="title" class="pull-left">Event Title</label>
+                                        <input id="event-name" class="form-control input-group-lg" type="text" name="event-name" title="Event Name" placeholder="Event Name" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="date" class="pull-left">Date</label>
+                                        <input id="event-date" class="form-control input-group-lg" type="date"  title="Date" placeholder="Add Date" name="event-date" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="lname" class="pull-left">Location Name</label>
+                                        <input id="lname" name="lname"  class="form-control input-group-lg" type="text" title="Location Name" placeholder="Location Name" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="ladd" class="pull-left">Location Address</label>
+                                        <input id="ladd" name="ladd"  class="form-control input-group-lg" type="text" title="Location Address" placeholder="Location Address" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="Website" class="pull-left">Website</label>
+                                        <input id="website" class="form-control input-group-lg" type="text" name="website" title="Website" placeholder="Website" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="max-member" class="pull-left">No of guests Allowed</label>
+                                        <input class="form-control input-group-lg" type="text" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="description" class="pull-left">Description</label>
+                                        <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="file" class="pull-left">Event image</label>
+                                        <input type="file" name="image" id="image" class="form-control"/>
+                                    </div>
+                                </div><br>
+                                <button class="btn btn-primary text-center" name="add_event">Save</button><button type="button" class="btn btn-default text-center" data-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </div>

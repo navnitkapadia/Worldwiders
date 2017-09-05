@@ -53,8 +53,15 @@
                     <li><a href="friends.php" class="active">Friends</a></li>
                   </ul>
                   <ul class="follow-me list-inline">
-                    <!-- <li>1,299 people following her</li> -->
-                    <li><button class="btn-primary">Add Friend</button></li>
+                     <?php 
+                        $sql = "SELECT count(*) as dost FROM friend_list where user_id = '".$_SESSION['userid']."'";
+                        $result = $mysqli->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            extract($row);
+                     ?> 
+                      <li><?php echo $dost; ?>&nbsp; people following</li>
+                     <?php } ?>
+<!--                    <li><button class="btn-primary">Add Friend</button></li>-->
                   </ul>
                 </div>
               </div>
