@@ -1,15 +1,21 @@
 <?php 
-	session_start();
+	//session_start();
 	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
 		 header('Location: /');
 	}
 ?>
 <?php
-include 'header.php';
+include 'api/db_config.php';
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
     case 'topic_desc':
       topic_desc($mysqli);
+      break;
+    case 'like':
+      like($mysqli);
+      break;
+    case 'dislike':
+      dislike($mysqli);
       break;
   }
 }
@@ -56,6 +62,30 @@ if(isset($_POST['add_topic'])){
         header("Location:group-details.php?id=$group_Id");
     } else {
         exit('Something Wrong');
+    }
+}
+function like($mysqli){
+    $id = $_REQUEST['id'];
+    $like = $_REQUEST['like'];
+    $counter = $like + 1 ;
+    $sql = "UPDATE group_topic SET topic_like = $counter where id = $id";
+    $result = $mysqli->query($sql);
+    if($result){
+        echo json_encode('success');
+    } else {
+        echo json_encode('faild');
+    }
+}
+function dislike($mysqli){
+    $id = $_REQUEST['id'];
+    $dislike = $_REQUEST['dislike'];
+    $counter = $dislike + 1 ;
+    $sql = "UPDATE group_topic SET dislike = $counter where id = $id";
+    $result = $mysqli->query($sql);
+    if($result){
+        echo json_encode('success');
+    } else {
+        echo json_encode('faild');
     }
 }
 ?>

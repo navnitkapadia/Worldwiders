@@ -30,8 +30,27 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                         location.reload();
                     }
                 });
-            }
-            ;
+            };
+            function like(id,like){
+                $.ajax({
+                type: 'post',
+                url: "post.php?action=like",
+                data: "id=" + id + "&like=" + like,
+                    success: function(data){
+                       location.reload();
+                    }
+                });
+            };
+            function dislike(id,dislike){
+                $.ajax({
+                type: 'post',
+                url: "post.php?action=dislike",
+                data: "id=" + id + "&dislike=" + dislike,
+                    success: function(data){
+                        location.reload();
+                    }
+                });
+            };
         </script>
     </head>
     <body> 
@@ -53,7 +72,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                         $uid = $_SESSION['userid'];
                         $i = 1;
                         $login_id = $_SESSION['fbid'];
-                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id, gt.created_at, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
+                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id, gt.created_at, gt.topic_like, gt.dislike, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
@@ -65,11 +84,12 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                     <div class="post-detail">
                                         <div class="user-info">
                                             <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
-                                            <p class="text-muted"><?php echo date("Y-m-d", strtotime($created_at)); ?></p>
+                                            <p class="text-muted"><?php $msg = time_elapsed_string($created_at);
+                                            echo "Published a photo about $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
-                                            <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                            <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                                            <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
+                                            <a class="btn text-red" onclick="dislike(<?php echo $id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">

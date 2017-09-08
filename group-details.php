@@ -28,6 +28,26 @@
                     }
                 });
             };
+            function like(id,like){
+                $.ajax({
+                type: 'post',
+                url: "post.php?action=like",
+                data: "id=" + id + "&like=" + like,
+                    success: function(data){
+                       location.reload();
+                    }
+                });
+            };
+            function dislike(id,dislike){
+                $.ajax({
+                type: 'post',
+                url: "post.php?action=dislike",
+                data: "id=" + id + "&dislike=" + dislike,
+                    success: function(data){
+                        location.reload();
+                    }
+                });
+            };
         </script>    
 
     </head>
@@ -116,7 +136,7 @@
                         <div class="suggestions" id="sticky-sidebar">
                             <h4>People in the group</h4>
                             <?php
-                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.user_id !='" . $_SESSION['userid'] . "' and gm.group_id='$group_Id'";
+                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.group_id='$group_Id'";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -128,14 +148,16 @@
                                         <?php
                                             $group = array();
                                             $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
-                                            $result = $mysqli->query($select);
-                                            while($row = $result->fetch_assoc()){
-                                                extract($row);
+                                            $result5 = $mysqli->query($select);
+                                            while($row5 = $result5->fetch_assoc()){
+                                                extract($row5);
                                                 $group[] = $friend_id;
                                             }
                                             if(in_array($group_user, $group)){
                                         ?>
                                         <a href="messages.php?friendid=<?php echo $group_user;?>" class="pull-left text-green">Message</a>
+                                        <?php } elseif($_SESSION['userid'] == $group_user) { ?>
+                                        
                                         <?php } else { ?>
                                         <a href="api/insert.php?action=addfriend&friendid=<?php echo $group_user;?>" class="pull-left text-green">Add friend</a>
                                         <?php } ?>
@@ -159,7 +181,7 @@
                                 $button[] = $user_id;
                             }
                             if(in_array($_SESSION['userid'], $button)){
-                                echo '<h4><a href="" class="btn btn-primary pull-left col-md-3" data-toggle="modal" data-target="#mytopic">Add Topic</a></h4>';
+                                echo '<h4><a href="" class="btn btn-primary pull-left col-md-3" data-toggle="modal" data-target="#mytopic">Add Post</a></h4>';
                             } else {
                                 echo '<h4></h4>';
                             }
@@ -170,7 +192,7 @@
                         <div class="post-content <?php echo "open-$group_Id"; ?>">
                             <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
                             <?php
-                            $sql = "SELECT gt.topic, gt.created_at, gt.id, gt.group_id as gID, u.fb_id,u.name, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
+                            $sql = "SELECT gt.topic, gt.created_at, gt.id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id,u.name, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -180,12 +202,26 @@
                                     <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo-md pull-left" />
                                     <div class="post-detail">
                                         <div class="user-info">
-                                            <h5><a href="#" class="profile-link"><?php echo $name; ?></a> <span class="following">following</span></h5>
-                                            <p class="text-muted"><?php echo date('Y-m-d', strtotime($created_at)); ?></p>
-                                        </div>
-                                        <div class="reaction">
-                                            <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                            <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                                            <h5><a href="#" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
+                                            <p class="text-muted"><?php
+                                            $date = date('y-m-d H:i:s'); 
+                                            $d1 = date_create(date('Y-m-d H:i:s', strtotime($created_at)));
+                                            $d2 = date_create($date); $diff = date_diff($d1, $d2);
+                                            
+                                            $day = $diff->format('%a');
+                                            
+                                            // echo $diff->format('%a')." ".date('Y-m-d', strtotime($created_at));
+                                            //$date, date('Y-m-d', strtotime($created_at))
+                                            $msg = time_elapsed_string($created_at);
+                                            echo "Published a photo about $msg ";
+                                            ?>
+                                            
+                                            
+                                            </p>
+                                        </div>2
+                                        <div class="reaction likethis">
+                                            <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
+                                            <a class="btn text-red" onclick="dislike(<?php echo $id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">
@@ -280,6 +316,12 @@
                                     <div class="form-group col-xs-12">
                                         <label for="date" class="pull-left">Date</label>
                                         <input id="event-date" class="form-control input-group-lg" type="date"  title="Date" placeholder="Add Date" name="event-date" value="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="date" class="pull-left">Event Time</label>
+                                        <input id="event-time" class="form-control input-group-lg" type="time"  title="Time" placeholder="Add Time" name="event-time" value="" />
                                     </div>
                                 </div>
                                 <div class="row">
