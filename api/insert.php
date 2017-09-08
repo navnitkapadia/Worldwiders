@@ -1,5 +1,6 @@
 <?php
-include '../header.php';
+include 'db_config.php';
+session_start();
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
     case 'make-group':
@@ -51,7 +52,7 @@ function new_event($mysqli){
   $website = $_REQUEST['website'];
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
-  $createdBy = $_SESSION['userid'];
+  $createdBy = $_SESSION['fbid'];
   $event_image = file_upload();
 
   $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time) 
@@ -71,10 +72,11 @@ function addfriend($mysqli){
     $time=time();
     $sql = "INSERT INTO friend_list (user_id, friend_id, time) VALUES ($user_id,$friend_id,$time)";
     $result = $mysqli->query($sql);
+    echo $sql;
     if ($result) {
         header('Location:../friends.php?msg=success');
     } else {
-      header('Location:../friends.php?msg=failed');
+        header('Location:../friends.php?msg=failed');
       exit;
     }
 }
@@ -99,8 +101,8 @@ function login($mysqli){
   $row_cnt = $result->num_rows;
   $row = $result->fetch_assoc();
   if($row_cnt == 0){
-    $sql = "INSERT INTO users (name,first_name,last_name,email,cover,oe,fb_id,nationality,location,birth_date,status,role_id) 
-    VALUES ('$name','$fname','$lname','$email','$cover','$oe','$userid','$nationality','$location','$birthdate',1,2)";
+    $sql = "INSERT INTO users (name,first_name,last_name,email,cover,oe,fb_id,location,birth_date,status,role_id) 
+    VALUES ('$name','$fname','$lname','$email','$cover','$oe','$userid','$location','$birthdate',1,2)";
     $result = $mysqli->query($sql);
   }
 }

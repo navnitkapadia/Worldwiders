@@ -1,9 +1,3 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,8 +12,9 @@
     </head>
     <body>
         <?php include 'header.php';
-        require 'api/db_config.php';
-        
+        if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+            header('Location: /');
+       }
         if (isset($_POST['edit_profile'])) {
             $fname = $_POST["firstname"];
             $lname = $_POST["lastname"];
@@ -28,11 +23,12 @@
             $gender = $_POST["optradio"];
             $city = $_POST["city"];
             $country = $_POST["country"];
+            $nationality = $_POST["country"];
             $array = array($city, $country);
             $location = implode(",", $array);
             $about = $_POST["information"];
-            $experiences = $_POST['experiences'];
-            $sql = "update users set first_name='" . $fname . "',last_name='" . $lname . "',about='" . $about . "',birth_date='" . $birth_date . "',email='" . $email . "',location='" . $location . "',work_experiences='".$experiences."' where fb_id=" . $_SESSION['fbid'];
+            $position = $_POST['position'];
+            $sql = "update users set first_name='" . $fname . "',last_name='" . $lname . "',about='" . $about . "',birth_date='" . $birth_date . "',email='" . $email . "',nationality='" . $nationality . "',location='" . $location . "',position='".$position."' where user_id=" . $_SESSION['userid'];
             $result = $mysqli->query($sql);
             header('Location:profile.php');
         }
@@ -133,10 +129,10 @@
                                                 <p class="custom-label"><strong>Date of Birth</strong></p>
                                                 <div class="form-group col-sm-6 col-xs-12">
                                                     <label for="date" class="sr-only"></label>
-                                                    <input type="text" id="birth" name="birth" value="<?php echo $birth_date; ?>">
+                                                    <input type="date" class="form-control input-group-lg" id="birth" name="birth" value="<?php echo $birth_date; ?>">
                                                 </div>
                                             </div>
-                                            <div class="form-group gender">
+                                            <!-- <div class="form-group gender">
                                                 <span class="custom-label"><strong>I am a: </strong></span>
                                                 <label class="radio-inline">
                                                     <input type="radio" name="optradio" checked>Male
@@ -144,7 +140,7 @@
                                                 <label class="radio-inline">
                                                     <input type="radio" name="optradio">Female
                                                 </label>
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                 <?php $city = explode(",", $location) ?>
                                                 <div class="form-group col-xs-6">
@@ -153,19 +149,19 @@
                                                 </div>
                                                 <div class="form-group col-xs-6">
                                                     <label for="country">My country</label>
-                                                    <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value="<?php echo $city[1]; ?>"/>
+                                                    <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value="<?php echo $nationality; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-xs-12">
                                                     <label for="my-info">About me</label>
-                                                    <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"><?php echo $about ?></textarea>
+                                                    <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"><?php echo $about; ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-xs-12">
-                                                    <label for="my-info">Work Experiences</label>
-                                                    <textarea id="experiences" name="experiences" class="form-control" placeholder="Enter Work Experiences" rows="4" cols="400"><?php echo $work_experiences ?></textarea>
+                                                    <label for="my-info">Profession</label>
+                                                    <input id="position" class="form-control input-group-lg" type="text" name="position" title="Enter Profession" placeholder="Your Profession" value="<?php echo $position ?>"/>
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary" name="edit_profile">Save Changes</button>
@@ -177,26 +173,22 @@
                                 <div id="sticky-sidebar">
                                     <div class="about-content-block">
                                         <h4 class="grey"><i class="ion-ios-heart-outline icon-in-title"></i>Interests</h4>
-                                        <ul class="interests list-inline">
-                                            <li><span class="int-icons" title="Bycycle riding"><i class="icon ion-android-bicycle"></i></span></li>
-                                            <li><span class="int-icons" title="Photography"><i class="icon ion-ios-camera"></i></span></li>
-                                            <li><span class="int-icons" title="Shopping"><i class="icon ion-android-cart"></i></span></li>
-                                            <li><span class="int-icons" title="Traveling"><i class="icon ion-android-plane"></i></span></li>
-                                            <li><span class="int-icons" title="Eating"><i class="icon ion-android-restaurant"></i></span></li>
+                                        <ul id="interests" class="interests list-inline">
+                                            
                                         </ul>
-                                        <ul>
-                                        <li>Add</li>
-                                        </ul>
+                                        <div class="form-group col-xs-12">
+                                            <input id="newadd" type="hidden" class="form-control input-group-lg"  placeholder="Enter Language">
+                                            <input id="addint" class="formsu form-control input-group-lg"  placeholder="Enter Interests">
+                                        </div>
                                     </div>
                                     <div class="about-content-block">
                                         <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Language</h4>
-                                        <ul>
-                                            <li><a href="">Russian</a></li>
-                                            <li><a href="">English</a></li>
+                                        <ul id="lang">
+                                            
                                         </ul>
-                                        <ul>
-                                        <li>Add</li>
-                                        </ul>
+                                        <div class="form-group col-xs-12">
+                                            <input id="addlang" class="form-control input-group-lg"  placeholder="Enter Language">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -207,5 +199,57 @@
         </div>
         <!--======================Page Container STOP====================================-->
 <?php include 'footer.php' ?>
+<script>
+$('.formsu').on('keypress', function (e) {
+  if(e.which == 13) {
+      var int = $('#newadd').val();
+      var oldint = $('#oldinte').val();
+      $.ajax({
+            type: 'post',
+            url: "api/update.php?action=add-int",
+            data: {int:int,oldint:oldint},
+            success: function(data){
+                $("#interests").load("api/getdata.php?action=intrest");
+                $("#addint").val("");
+            }
+        })
+  }
+});
+
+$("#lang").load("api/getdata.php?action=lang");
+$("#interests").load("api/getdata.php?action=intrest");
+$('#addint').typeahead({
+    source: function (query, result) {
+        $.ajax({
+            url: "api/getdata.php?action=selectint",
+            data: 'q=' + query,            
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                result($.map(data, function (item) {
+                    $('#newadd').val(item.interest_id);
+                    return item.interest_name;
+                }));
+            }
+        });
+    }
+});
+
+$('#addlang').on('keypress', function (e) {
+  if(e.which == 13) {
+      var lang = $('#addlang').val();
+      var oldlang = $('#oldlang').val();
+      $.ajax({
+            type: 'post',
+            url: "api/update.php?action=add-lang",
+            data: {lang:lang,oldlang:oldlang},
+            success: function(data){
+                $("#lang").load("api/getdata.php?action=lang");
+                $("#addlang").val("");
+            }
+        })
+  }
+});
+</script>
     </body>
 </html>

@@ -1,9 +1,4 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -18,19 +13,28 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+    <?php 
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
     <!--======================Page Container START===================================-->
 
 
     <div class="container">
     <?php
-      $user = $_SESSION['userid'];
-      $sql = "SELECT * FROM users where user_id = $user";
+      $user = $_SESSION['userid']; 
+      if(isset($_REQUEST['id'])){
+        $see = $_REQUEST['id'];
+        $sql = "SELECT * FROM users where user_id = $see";
+      }else {
+        $sql = "SELECT * FROM users where user_id = $user";
+      }
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
       {
         extract($row);
         $pa = $cover.'&oe='.$oe;
-        $list = explode(",", $friends_ids);
     ?>
       <!-- Timeline
       ================================================= -->
@@ -49,19 +53,45 @@
                 </div>
                 <div class="col-md-9">
                   <ul class="list-inline profile-menu">
-                    <li><a href="profile.php" >About</a></li>
-                    <li><a href="friends.php" class="active">Friends</a></li>
+                  <?php 
+                  if(isset($_REQUEST['id'])){
+                    echo "<li><a href='profile.php?id=$see'>About</a></li>";
+                    echo "<li><a href='friends.php?id=$see'>Friends</a></li>";
+                  } else {
+                    echo "<li><a href='profile.php'>About</a></li>";
+                    echo "<li><a href='friends.php'>Friends</a></li>";
+                  }
+                  ?>
                   </ul>
                   <ul class="follow-me list-inline">
                      <?php 
-                        $sql = "SELECT count(*) as dost FROM friend_list where user_id = '".$_SESSION['userid']."'";
+                     if(isset($see)){
+                       $sql = "SELECT count(*) as dost FROM friend_list where user_id = $see";
+                     } else {
+                      $sql = "SELECT count(*) as dost FROM friend_list where user_id = $user";
+                     }
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
                      ?> 
                       <li><?php echo $dost; ?>&nbsp; people following</li>
                      <?php } ?>
-<!--                    <li><button class="btn-primary">Add Friend</button></li>-->
+                     <?php
+                     if(isset($see)){ 
+                      $sql1 = "SELECT COUNT(*) as cn FROM friend_list WHERE user_id= $user and friend_id=$see";
+                      $result1 = $mysqli->query($sql1);
+                      while ($row = $result1->fetch_assoc()) {
+                          extract($row);
+                          if($cn==1){
+                            echo "<li><a href='messages.php?id=<?php echo base64_encode($see);?>'><button class='btn-primary'>Message</button></a></li>";
+                          } else {
+                            echo "<li><a href='api/insert.php?action=addfriend&friendid=$user_id'><button class='btn-primary'>Add friend</button></a></li>";
+                          }
+                      }
+                     } else {
+                       echo "<li><a href='edit-profile.php'><button class='btn-primary'>Edit friend</button></a></li>";
+                     }      
+                    ?>
                   </ul>
                 </div>
               </div>
@@ -96,7 +126,7 @@
               <div class="friend-list">
                 <div class="row">
                   <?php
-                          $flist = "SELECT f.*, u.fb_id,u.name,u.cover as ucover,u.oe as uoe FROM friend_list f, users u where f.friend_id=u.user_id and f.user_id = $user";
+                          $flist = "SELECT f.*, u.fb_id,u.name,u.cover as ucover,u.oe as uoe FROM friend_list f, users u where f.friend_id=u.user_id and f.user_id = $user_id";
                           $resultlist = $mysqli->query($flist);
                           if(mysqli_num_rows($resultlist) > 0 ){  
                             while($row = $resultlist->fetch_assoc()){
@@ -108,8 +138,8 @@
                                 <div class="card-info">
                                   <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo-lg" />
                                   <div class="friend-info">
-                                    <a href="messages.php?friendid=<?php echo $friend_id;?>" class="pull-right text-green">Message</a>
-                                    <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a></h5>
+                                    <a href="messages.php?id=<?php echo base64_encode($friend_id);?>" class="pull-right text-green">Message</a>
+                                    <h5><a href="profile.php?id=<?php echo $friend_id;?>" class="profile-link"><?php echo $name; ?></a></h5>
                                   </div>
                                 </div>
                               </div>
@@ -118,17 +148,18 @@
                           <?php } 
                          
                          } else ?>
-                         <br>
+                         </div>
+                         <div class="row">
                          <h3>People may you know</h3>
                          <?php  {
                           $inlist = array();   
-                          $list = "SELECT friend_id as fb FROM friend_list where user_id = $user";
+                          $list = "SELECT friend_id as fb FROM friend_list where user_id = $user_id";
                           $resultlist2 = $mysqli->query($list);
                           while($row2 = $resultlist2->fetch_assoc()){
                                 extract($row2);
                                 $inlist[] = $fb;
                           }
-                          $userlis = "SELECT * FROM users where user_id != $user";
+                          $userlis = "SELECT * FROM users where user_id != $user_id";
                           $resultlist1 = $mysqli->query($userlis);
                           if(mysqli_num_rows($resultlist1) > 1 ){
                             while($row = $resultlist1->fetch_assoc()){
@@ -141,8 +172,12 @@
                                 <div class="card-info">
                                   <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo-lg" />
                                   <div class="friend-info">
-                                      <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
-                                    <h5><a href="timeline.php" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
+                                      <?php 
+                                        if($user_id != $user){ ?>
+                                          <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id;?>" class="pull-right text-green">Add friend</a>
+                                        <?php }
+                                       ?>
+                                    <h5><a href="profile.php?id=<?php echo $user_id;?>" class="profile-link"><?php echo $first_name . $last_name; ?></a></h5>
                                   </div>
                                 </div>
                               </div>

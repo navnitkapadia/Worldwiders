@@ -1,9 +1,4 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,12 +11,21 @@
 	</head>
   <body>
     <?php include 'header.php'?>
+    <?php 
+	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+		 header('Location: /');
+	}
+?>
     <!--======================Page Container START===================================-->
       <div class="container">
       <?php
       $user = $_SESSION['userid'];
-      $fb_id = $_SESSION['fbid'];
-      $sql = "SELECT * FROM users where user_id = $user";
+      if(isset($_REQUEST['id'])){
+        $see = $_REQUEST['id'];
+        $sql = "SELECT * FROM users where user_id = $see";
+      }else {
+        $sql = "SELECT * FROM users where user_id = $user";
+      }
       $result = $mysqli->query($sql);
       while($row = $result->fetch_assoc())
       {
@@ -40,29 +44,63 @@
                   <div class="profile-info">
                     <img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
                     <h3><?php echo $name; ?></h3>
-                    <!-- <p class="text-muted">Creative Director</p> -->
+                    <p class="text-muted"><?php echo $position; ?></p> 
                   </div>
                 </div>
                 <div class="col-md-9">
                   <ul class="list-inline profile-menu">
-                    <li><a href="profile.php" class="active">About</a></li>
-                    <li><a href="friends.php">Friends</a></li>
+                  <?php 
+                  if(isset($_REQUEST['id'])){
+                    echo "<li><a href='profile.php?id=$see'>About</a></li>";
+                    echo "<li><a href='friends.php?id=$see'>Friends</a></li>";
+                  } else {
+                    echo "<li><a href='profile.php'>About</a></li>";
+                    echo "<li><a href='friends.php'>Friends</a></li>";
+                  }
+                  ?>
                   </ul>
                   <ul class="follow-me list-inline">
-                    <!-- <li>1,299 people following her</li> -->
-                    <li><button class="btn-primary">Add Friend</button></li>
+                  <?php 
+                if(isset($see)){
+                  $sql = "SELECT count(*) as dost FROM friend_list where user_id = $see";
+                } else {
+                 $sql = "SELECT count(*) as dost FROM friend_list where user_id = $user";
+                }
+                $result = $mysqli->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                    extract($row);
+            ?>
+                    <li><?php echo $dost; ?> people following </li>
+            <?php } ?>
+            <?php
+                     if(isset($see)){
+                      $sql1 = "SELECT COUNT(*) as cn FROM friend_list WHERE user_id= $user and friend_id=$see";
+                      $result1 = $mysqli->query($sql1);
+                      while ($row = $result1->fetch_assoc()) {
+                          extract($row);
+                          if($cn==1){
+                            echo "<li><a href='messages.php?id=<?php echo base64_encode($see);?>'><button class='btn-primary'>Message</button></a></li>";
+                          } else {
+                            echo "<li><a href='api/insert.php?action=addfriend&friendid=$user_id'><button class='btn-primary'>Add friend</button></a></li>";
+                          }
+                      }
+                     } else {
+                       echo "<li><a href='edit-profile.php'><button class='btn-primary'>Edit friend</button></a></li>";
+                     } 
+                                         
+                    ?>
                   </ul>
                 </div>
               </div>
             </div><!--Timeline Menu for Large Screens End-->
 
             <!-- Timeline Menu for Small Screens-->
-            <!-- <div class="navbar-mobile hidden-lg hidden-md">
+            <div class="navbar-mobile hidden-lg hidden-md">
               <div class="profile-info">
                 
                 <img src="" alt="" class="img-responsive profile-photo" />
-                <h4>Sarah Cruiz</h4>
-                <p class="text-muted">Creative Director</p>
+                <h4><?php echo $name; ?></h4>
+                <p class="text-muted"><?php echo $position; ?></p>
               </div>
               <div class="mobile-menu">
                 <ul class="list-inline">
@@ -72,7 +110,7 @@
                   <li><a href="timeline-friends.html">Friends</a></li>
                 </ul>
                 <button class="btn-primary">Add Friend</button>
-              </div> -->
+              </div> 
             </div><!--Timeline Menu for Small Screens End -->
 
           </div>
@@ -80,41 +118,17 @@
             <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-7">
-
+ 
                 <!-- About
                 ================================================= -->
                 <div class="about-profile">
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</p>
-                  </div>
-                  <div class="about-content-block">
-                    <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
-                    <!-- <div class="organization">
-                      <img src="images/envato.png" alt="" class="pull-left img-org" />
-                      <div class="work-info">
-                        <h5>Envato</h5>
-                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
-                      </div>
-                    </div>
-                    <div class="organization">
-                      <img src="images/envato.png" alt="" class="pull-left img-org" />
-                      <div class="work-info">
-                        <h5>Envato</h5>
-                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
-                      </div>
-                    </div>
-                    <div class="organization">
-                      <img src="images/envato.png" alt="" class="pull-left img-org" />
-                      <div class="work-info">
-                        <h5>Envato</h5>
-                        <p>Seller - <span class="text-grey">1 February 2013 to present</span></p>
-                      </div>
-                    </div> -->
+                    <p><?php echo $about; ?></p>
                   </div>
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
-                    <p>228 Park Eve, New York</p>
+                    <p><?php echo $location; ?></p>
                     <div class="google-maps">
                       <div id="map" class="map"></div>
                     </div>
@@ -125,19 +139,12 @@
                 <div id="sticky-sidebar">
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-heart-outline icon-in-title"></i>Interests</h4>
-                    <ul class="interests list-inline">
-                      <li><span class="int-icons" title="Bycycle riding"><i class="icon ion-android-bicycle"></i></span></li>
-                      <li><span class="int-icons" title="Photography"><i class="icon ion-ios-camera"></i></span></li>
-                      <li><span class="int-icons" title="Shopping"><i class="icon ion-android-cart"></i></span></li>
-                      <li><span class="int-icons" title="Traveling"><i class="icon ion-android-plane"></i></span></li>
-                      <li><span class="int-icons" title="Eating"><i class="icon ion-android-restaurant"></i></span></li>
+                    <ul id="interests" class="interests list-inline">
                     </ul>
                   </div>
                   <div class="about-content-block">
                     <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Language</h4>
-                      <ul>
-                        <li><a href="">Russian</a></li>
-                        <li><a href="">English</a></li>
+                      <ul id="lang">
                       </ul>
                   </div>
                 </div>
@@ -150,6 +157,17 @@
   
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
-
+    
+<script> 
+    <?php if(isset($_REQUEST['id'])){
+        $see = $_REQUEST['id'];
+        echo "$('#lang').load('api/getdata.php?action=lang&userid=$see');";
+        echo "$('#interests').load('api/getdata.php?action=intrest&userid=$see');";
+      }else {
+        echo "$('#lang').load('api/getdata.php?action=lang');";
+        echo "$('#interests').load('api/getdata.php?action=intrest');";
+      } 
+    ?>
+</script>
   </body>
 </php>

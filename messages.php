@@ -68,6 +68,7 @@
                 $sqlcon="SELECT * FROM `conversation` WHERE 
                 (user_one='$user' AND user_two='$want') OR (user_one='$want' AND user_two='$user')";
                 $resultcon = $mysqli->query($sqlcon);
+                $row = $resultcon->fetch_assoc();
                 if(mysqli_num_rows($resultcon) == 0 && $user != $want ){
                   $addcon = "INSERT INTO conversation (user_one, user_two, ip, time) VALUES 
                   ($user,$want,'$ip',$time)";
@@ -83,6 +84,13 @@
            }else {
              echo "Problem in insertion";
            }
+                } else {
+                  $necid = $row['c_id'];
+                  $time=time();
+                  $sql11 = "UPDATE conversation SET time=$time WHERE c_id =$necid";
+                  $result11 = $mysqli->query($sql11);
+                  $sql11 = "UPDATE conversation_reply SET time=$time WHERE reply='No messages clean11' and c_id_fk=$necid";
+                  $result11 = $mysqli->query($sql11);
                 }
               }
   $user = $_SESSION['userid'];
@@ -101,7 +109,6 @@
           C.time=R.time
           AND
           (C.user_one ='$user' OR C.user_two ='$user') ORDER BY C.time DESC";
-
   $result = $mysqli->query($sql);
   $count = 0;
   if(mysqli_num_rows($result) == 0 ){
@@ -122,7 +129,10 @@
                         	<img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="profile-photo-sm pull-left"/>
                         	<div class="msg-preview">
                         		<h6><?php  echo $first_name .' '. $last_name; ?></h6>
-                        		<p class="text-muted"><?php echo str_replace("clean11","",$reply); ?></p>
+                            <p class="text-muted"><?php 
+                            if($reply === 'No messages clean11'){
+                                echo 'No new Message';
+                            } ?></p>
                             <small class="text-muted"><?php echo time_elapsed_string("@$time"); ?></small>
                             <!-- <div class="chat-alert">1</div> -->
                         	</div>
@@ -186,7 +196,7 @@ $(window).on('keypress', function (e) {
     var cid = e.target.getAttribute('data-cid');
     var sid = e.target.getAttribute('data-sid');
     var rid = e.target.getAttribute('data-rid')
-    if(e.target.id && cid && sid && rid) {
+    if(e.target.id && cid && sid && rid) { 
       getMessages(e.target.id,cid,sid,rid);
     }
   }

@@ -67,7 +67,7 @@
   <script src="js/script.js"></script>
    <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
    <script src="js/login.js"></script> 
-
+   <script type="text/javascript" src="js/typeahead.js"></script>
    <script>
     $("#searchany").keyup(function() {
       var inputval = $( "#searchany" ).val();
