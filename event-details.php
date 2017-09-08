@@ -31,6 +31,7 @@
                         <div class="profile-card">
                             <?php
                             $Login_Id = $_SESSION['userid'];
+                            $login = $_SESSION['fbid'];
                             $event_Id = $_GET['id'];
                             $sql = "SELECT e.created_by,u.name,u.fb_id FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
                             $result = $mysqli->query($sql);
@@ -38,8 +39,15 @@
                                 extract($row);
                                 ?>
                                 <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo" />
-                                <h5><a href="#" class="text-white"><?php echo $name; ?></a></h5>
-                                <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+                                <h5><a href="friends.php" class="text-white"><?php echo $name; ?></a></h5>
+                                <?php 
+                                    $sql = "SELECT count(*) as dost FROM friend_list where user_id = $created_by";
+                                    $result = $mysqli->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
+                                    extract($row);
+                                ?>
+                                <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> <?php echo $dost; ?>&nbsp; followers</a>
+                                <?php } ?>
                             <?php } ?>
                         </div><!--profile card ends-->
 
@@ -84,7 +92,7 @@
                                 <form method="post" action="post.php?id=<?php echo $event_Id ?>">
                                 <div class="col-md-10 col-sm-10">
                                     <div class="form-group">
-                                        <img src="<?php echo "http://graph.facebook.com/$Login_Id/picture?type=large"; ?>" alt="" class="profile-photo-md" />
+                                        <img src="<?php echo "http://graph.facebook.com/$login/picture?type=large"; ?>" alt="" class="profile-photo-md" />
                                         <textarea name="texts" id="texts" cols="50" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                                     </div>
                                 </div>
