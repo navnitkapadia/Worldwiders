@@ -33,7 +33,7 @@ if(isset($_REQUEST['date-select'])){
   echo  "<div class='grid-item col-md-4 col-sm-4'>
   <div class='media-grid'>
       <div class='img-wrapper'>
-          <img style='width:242px;' src=$src alt='Group image' class='img-responsive post-image' />
+          <img style='height:135px; width:242px;' src=$src alt='Group image' class='img-responsive post-image' />
       </div>
       <div class='media-info'>
           <div class='reaction'>
