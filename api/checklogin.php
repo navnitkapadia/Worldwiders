@@ -17,6 +17,7 @@ if(mysqli_num_rows($result)){
       $_SESSION['fname'] = $first_name;
       $_SESSION['lname'] = $last_name;      
       $_SESSION['userid'] = $user_id;
+      $_SESSION['role_id'] = $role_id;
     }
 }
 echo json_encode(mysqli_num_rows($result));
