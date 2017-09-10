@@ -3,7 +3,7 @@ require 'db_config.php';
 session_start();
 if(isset($_SESSION['userid'])){
     $userid = $_SESSION['userid'];
-    $sql = "select * from users where lastactivity > date_sub(now(), interval 1 minute) and user_id != $userid"; 
+    $sql = "SELECT u.* FROM friend_list f, users u where u.lastactivity > date_sub(now(), interval 1 minute) and f.friend_id=u.user_id and f.user_id = $userid"; 
     $result = $mysqli->query($sql);
     if(mysqli_num_rows($result) > 0 ){
         while($row = $result->fetch_assoc()){

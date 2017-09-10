@@ -132,7 +132,10 @@
                             <p class="text-muted"><?php 
                             if($reply === 'No messages clean11'){
                                 echo 'No new Message';
-                            } ?></p>
+                            } else {
+                                echo $reply;
+                            }
+                             ?></p>
                             <small class="text-muted"><?php echo time_elapsed_string("@$time"); ?></small>
                             <!-- <div class="chat-alert">1</div> -->
                         	</div>
