@@ -145,7 +145,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                         <div class="follow-user">
                                             <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
-                                                <h5><a href="timeline.php"><?php echo $name; ?></a></h5>
+                                                <h5><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></h5>
                                                 <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
                                             </div>
                                         </div>

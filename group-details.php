@@ -144,7 +144,7 @@
 					  <div class="follow-user">
 						<img src=<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="profile-photo-sm pull-left" />
 						<div>
-						  <h5><a href="profile.php?id=<?php echo "$user_id"; ?>""><?php echo $name; ?></a></h5>
+						  <h5><a href="profile.php?id=<?php echo $group_user; ?>"><?php echo $name; ?></a></h5>
 						   <?php
 							$group = array();
 							$select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";

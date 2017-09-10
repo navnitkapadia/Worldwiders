@@ -142,14 +142,14 @@
                                 <div class="follow-user">
                                     <?php
                                     for ($i = 0; $i < count($add); $i++) {
-                                        $sql = "SELECT u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
+                                        $sql = "SELECT u.user_id,u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
                                             ?>
                                             <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
-                                                <h5><a href="profile.html"><?php echo $name; ?></a></h5>
+                                                <h5><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></h5>
                                                 <?php
                                                     $event1 = array();
                                                     $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
@@ -160,9 +160,9 @@
                                                     }
                                                     if(in_array($add[$i], $event1)){
                                                 ?>
-                                                <a href="#" class="text-green">Message</a>
+                                                <a href="messages.php?friendid=<?php echo $user_id; ?>" class="text-green">Message</a>
                                                 <?php } else { ?>
-                                                <a href="#" class="text-green">Add friend</a>
+                                                <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
                                                 <?php } ?>
                                             </div>
                                         </div>
