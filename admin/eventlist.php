@@ -46,9 +46,10 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
+                                                    <th>Website</th>
+                                                    <th>Location</th>
                                                     <th>Photo</th>
-                                                    <th>Birth Date</th>
+                                                    <th>Date</th>
                                                     <!-- <th>Nationality</th> -->
                                                     <!-- <th>Action</th> -->
                                                 </tr>
@@ -59,11 +60,11 @@
                                                     echo "<tr>";
                                                     echo "<td>" . $row['id'] . "</td>";
                                                     echo "<td>" . $row['event'] . "</td>";
+                                                    echo "<td>" . $row['website'] . "</td>";
                                                     echo "<td>" . $row['location_name'] . "</td>";
                                                     //echo "<td>".$row['location_address']."</td>";
-                                                    echo "<td>" . $row['website'] . "</td>";
+                                                    echo "<td><img src='../upload/".$row['file']."'  alt='' height='50' width='50' /></td>";
                                                     echo "<td>" . $row['created_at'] . "</td>";
-                                                    //echo "<td><img src='../upload/".$row['file']."'  alt='' height='50' width='50' /></td>";
                                                     echo "</tr>";
                                                 }
                                                 ?>	

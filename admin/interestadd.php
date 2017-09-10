@@ -19,7 +19,9 @@
 
     <div id="wrapper">
  
-      <?php include 'header.php' ?>
+      <?php include 'header.php';
+	        $msg = "";
+	   ?>
      
 	          <!-- Page Content -->
         <div id="page-wrapper">
@@ -44,7 +46,7 @@ if(isset($_POST['btnSubmit'])){
 	//echo $quey;
 	$result = $mysqli->query($quey);
 	if ($result){
-	  echo "SuccesFully Submit";
+	  $msg = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Successfully Add Interest. <a href="interestlist.php" class="alert-link">Show List</a>.</div>';
 	  //echo $_FILES['icon']['tmp_name'];
 	  $src = $_FILES['icon']['tmp_name'];
 	  $upload_dir = "../upload/interest_icon";
@@ -52,13 +54,15 @@ if(isset($_POST['btnSubmit'])){
 	  $expensions= array("jpeg","jpg","png");
  
       if(in_array($file_ext,$expensions)=== false){
-         echo "extension not allowed, please choose a JPEG or PNG file.";
+         //echo "extension not allowed, please choose a JPEG or PNG file.";
+		 echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Extension not allowed, please choose a JPEG or PNG file. <a href="interestlist.php" class="alert-link">Show List</a>.</div>';
+		 
       }else{
 	     move_uploaded_file($src,"$upload_dir/$icon");
 	  }
 	  
 	}else{
-	  echo "Fail";	
+	  $msg = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Fail!, Please try agin. <a href="interestlist.php" class="alert-link">Show List</a>.</div>';	
 	}
 }
 
@@ -68,8 +72,7 @@ if(isset($_POST['btnSubmit'])){
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-6">
-                                    
-  
+                                    <?php echo $msg; ?>
 
                                     
 										<form method="post" enctype="multipart/form-data">
