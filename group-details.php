@@ -195,13 +195,13 @@
 				<div class="post-content <?php echo "open-$group_Id"; ?>">
                             <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
                             <?php
-                            $sql = "SELECT gt.topic, gt.created_at, gt.id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id, u.name, u.role_id, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
+                            $sql = "SELECT gt.topic, gt.created_at, gt.id as gt_id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id, u.name, u.role_id, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
                                 echo "<h4>$topic</h4>";
                                 if($role_id == 1 || $role_id == 0){
-                                    echo "<h4><a href='topic-delete.php?id=$id&group_id=$gID' class='btn btn-danger pull-right'>Dalete</a></h4>";
+                                    echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Dalete</a></h4>";
                                 }
                                 ?>
                                 <div class="post-container">
@@ -219,20 +219,20 @@
                                             // echo $diff->format('%a')." ".date('Y-m-d', strtotime($created_at));
                                             //$date, date('Y-m-d', strtotime($created_at))
                                             $msg = time_elapsed_string($created_at);
-                                            echo "Published a $msg ";
+                                            echo "Published a post $msg ";
                                             ?>
                                             </p>
                                         </div>
                                         <div class="reaction likethis">
-                                            <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
-                                            <a class="btn text-red" onclick="dislike(<?php echo $id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
+                                            <a class="btn text-green" onclick="like(<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
+                                            <a class="btn text-red" onclick="dislike(<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">
                                             <p> <?php echo $description; ?> </p>
                                         </div>
                                         <?php
-                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u where td.group_id=" . $row['gID'] . " and td.topic_id =" . $row['id'] . "  and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
+                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u where td.group_id=" . $row['gID'] . " and td.topic_id =" . $row['gt_id'] . "  and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
                                         $result2 = $mysqli->query($select);
                                         $post = 1;
                                         while ($row2 = $result2->fetch_assoc()) {
@@ -249,7 +249,7 @@
                                                 <div class="post-comment">
                                                     <img src="<?php echo "http://graph.facebook.com/$login_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
                                                     <input type="text" name="desc" id="desc-<?php echo $i; ?>" class="form-control" placeholder="Post a comment">
-                                                    <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $topic_id ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
+                                                    <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $gID; ?>,<?php echo $gt_id ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
                                                 </div>
                                             <?php $i++; ?>
                                         <?php } ?>
