@@ -19,24 +19,26 @@
     <body>
         <?php include 'header.php' ?>    
         <!--======================Page Container START===================================-->
-
+        
         <div id="page-contents">
             <div class="container">
                 <div class="row">
-
+                    
                     <!-- Newsfeed Common Side Bar Left
-      ================================================= -->
+                    ================================================= -->
                     <div class="col-md-3 static">
                         <h4 style="margin-bottom: 30px;">Event organised by:</h4>
                         <div class="profile-card">
                             <?php
+                            $addofmap  = "";
                             $Login_Id = $_SESSION['userid'];
                             $login = $_SESSION['fbid'];
                             $event_Id = $_GET['id'];
-                            $sql = "SELECT e.created_by,u.name,u.fb_id FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
+                            $sql = "SELECT e.location_address,e.created_by,u.name,u.fb_id FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
+                                $addofmap = $location_address;
                                 ?>
                                 <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo" />
                                 <h5><a href="friends.php" class="text-white"><?php echo $name; ?></a></h5>
@@ -66,6 +68,23 @@
                                 <h3><?php echo $event; ?></h3>
                                 <p><strong><?php echo $description; ?></strong></p>
                             <?php } ?>    
+                            
+                        </div>
+
+                        <!-- Nearby People List
+                        ================================================= -->
+                        <div class="people-nearby">
+                            <div class="google-maps">
+                                <div id="map" class="map"></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Post Create Box
+                        ================================================= -->
+                        <div class="create-post">
+                            
+                            <div class="row">
                             <?php
                             $com = "SELECT comment from event_comment where event_id='$event_Id'";
                             $result1 = $mysqli->query($com);
@@ -74,21 +93,6 @@
                                 ?>
                                 <p id="comment"><?php echo $comment; ?></p>
                             <?php } ?>
-                        </div>
-
-                        <!-- Nearby People List
-                        ================================================= -->
-                        <!--<div class="people-nearby">
-                            <div class="google-maps">
-                                <div id="map" class="map"></div>
-                            </div>
-                        </div>-->
-
-
-                        <!-- Post Create Box
-                        ================================================= -->
-                        <div class="create-post">
-                            <div class="row">
                                 <form method="post" action="post.php?id=<?php echo $event_Id ?>">
                                 <div class="col-md-10 col-sm-10">
                                     <div class="form-group">
@@ -134,7 +138,7 @@
                                 if (in_array($_SESSION['userid'], $add)) {
                                     
                                 } elseif ($flage == 2) {
-                                    
+                                     
                                 } else {
                                     echo '<a href="update.php?id=' . $event_Id . '"<button type="button" class="btn btn-info">Join</button></a>';
                                 }
@@ -142,14 +146,14 @@
                                 <div class="follow-user">
                                     <?php
                                     for ($i = 0; $i < count($add); $i++) {
-                                        $sql = "SELECT u.user_id,u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
+                                        $sql = "SELECT u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
                                             ?>
                                             <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
-                                                <h5><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></h5>
+                                                <h5><a href="profile.html"><?php echo $name; ?></a></h5>
                                                 <?php
                                                     $event1 = array();
                                                     $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
@@ -160,9 +164,9 @@
                                                     }
                                                     if(in_array($add[$i], $event1)){
                                                 ?>
-                                                <a href="messages.php?friendid=<?php echo $user_id; ?>" class="text-green">Message</a>
+                                                <a href="#" class="text-green">Message</a>
                                                 <?php } else { ?>
-                                                <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
+                                                <a href="#" class="text-green">Add friend</a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -180,5 +184,33 @@
 
         <!--======================Page Container STOP====================================-->
         <?php include 'footer.php' ?>
+        <script>
+    function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+  });
+  var geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map);
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  var address = "<?php echo $addofmap; ?>";
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === 'OK') {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+
+    <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&callback=initMap">
+  </script>
     </body>
 </html>
