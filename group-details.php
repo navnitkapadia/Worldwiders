@@ -1,18 +1,12 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="content-type" content="text/php; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="" />
-        <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
-        <meta name="robots" content="index, follow" />
-        <title>Group Detail</title>
+	<head>
+    <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="robots" content="index, follow" />
+		<title>Group</title>
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script type="text/javascript">
             function post(gid,tid,i){
@@ -48,45 +42,43 @@
                     }
                 });
             };
-        </script>    
+        </script>
 
-    </head>
-    <body>
-        <?php include 'header.php' ?>
-        <!--======================Page Container START===================================-->
-        <?php
-        $i = 1;
-        $group_Id = $_GET['id'];
-        $user = $_SESSION['userid'];
-        $login_id = $_SESSION['fbid'];
-        $sql = "SELECT * FROM peoples_group where id='" . $group_Id . "'";
-        $result = $mysqli->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            extract($row);
-            ?>
-            <div id="page-contents">
-                <div class="container">
-                    <style> .timeline-cover{background-image: url("upload/<?php echo $file; ?>");}</style>   
-                    <div class="timeline-cover">
-
-                        <!--Timeline Menu for Large Screens-->
-                        <div class="timeline-nav-bar hidden-sm hidden-xs">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <ul class="list-inline profile-menu">
-                                        <li class="group-title"><?php echo $title; ?></li>
-                                    </ul>
-                                    <ul class="follow-me list-inline">
-                                        <?php
-                                        $join = 0;
-                                        $sql = "SELECT count(*) as members FROM group_member where group_id='" . $group_Id . "'";
-                                        $result = $mysqli->query($sql);
-                                        while ($row = $result->fetch_assoc()) {
-                                            extract($row);
-                                            ?>  
-                                            <li><?php echo $members ?>&nbsp;&nbsp;people in the group</li>
-                                        <?php } ?>
-                                        <?php
+	</head>
+  <body> 
+    <?php include 'header.php'?>
+    <!--======================Page Container START===================================-->
+	<div id="page-contents">
+    	<div class="container">
+    	<div class="timeline-cover">
+			<?php
+			$i = 1;
+			$group_Id = $_GET['id'];
+			$user = $_SESSION['userid'];
+			$login_id = $_SESSION['fbid'];
+			$sql = "SELECT * FROM peoples_group where id='" . $group_Id . "'";
+			$result = $mysqli->query($sql);
+			while ($row = $result->fetch_assoc()) {
+				extract($row);
+			?>
+			 <style> .timeline-cover{background-image: url("upload/<?php echo $file; ?>");}</style> 
+          <!--Timeline Menu for Large Screens-->
+          <div class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="list-inline profile-menu">
+                  <li class="group-title"><?php echo $title; ?></li>
+                </ul>
+                <ul class="follow-me list-inline">
+				<?php
+					$join = 0;
+					$sql = "SELECT count(*) as members FROM group_member where group_id='" . $group_Id . "'";
+					$result = $mysqli->query($sql);
+					while ($row = $result->fetch_assoc()) {
+						extract($row);
+                ?> 
+                   <li><?php echo $members ?>&nbsp;&nbsp;people in the group</li>
+                                        <?php } 
                                         $add = array();
                                         $sql = "SELECT user_id FROM group_member where group_id ='" . $group_Id . "'";
                                         $result = $mysqli->query($sql);
@@ -95,83 +87,89 @@
                                             $add[] = $user_id;
                                         }
                                         if (in_array($_SESSION['userid'], $add)) {
-                                            echo '<li><button class="btn-primary">Already Join</button></li>';
+                                            echo '<li><button class="btn-primary" data-toggle="modal" data-target="#mytopic">Add Posts</button></li>';
+											echo '<li><button class="btn-primary" data-toggle="modal" data-target="#myEvent">New Event</button></li>';
                                         } elseif ($join == 2) {
                                             
                                         } else {
                                             echo '<li><a href="update.php?gid=' . $group_Id . '"><button class="btn-primary">Join</button></a></li>';
                                         }
                                         ?>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    <!--Timeline Menu for Large Screens End-->
+                </ul>
+              </div>
+            </div>
+          </div>
+		  <?php } ?>
+		  <!--Timeline Menu for Large Screens End-->
 
-                    <!--Timeline Menu for Small Screens-->
-                    <div class="navbar-mobile hidden-lg hidden-md">
-                        <div class="profile-info">
-                            <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
-                            <h4>Sarah Cruiz</h4>
-                            <p class="text-muted">Creative Director</p>
-                        </div>
-                        <div class="mobile-menu">
-                            <ul class="list-inline">
-                                <li><a href="timline.html">Timeline</a></li>
-                                <li><a href="timeline-about.html">About</a></li>
-                                <li><a href="timeline-album.html">Album</a></li>
-                                <li><a href="timeline-friends.html" class="active">Friends</a></li>
-                            </ul>
-                            <button class="btn-primary">Add Friend</button>
-                        </div>
-                    </div><!--Timeline Menu for Small Screens End-->
+          <!--Timeline Menu for Small Screens-->
+          <div class="navbar-mobile hidden-lg hidden-md">
+            <div class="profile-info">
+              <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
+              <h4>Sarah Cruiz</h4>
+              <p class="text-muted">Creative Director</p>
+            </div>
+            <div class="mobile-menu">
+              <ul class="list-inline">
+                <li><a href="timline.html">Timeline</a></li>
+                <li><a href="timeline-about.html">About</a></li>
+                <li><a href="timeline-album.html">Album</a></li>
+                <li><a href="timeline-friends.html" class="active">Friends</a></li>
+              </ul>
+              <button class="btn-primary">Add Friend</button>
+            </div>
+          </div><!--Timeline Menu for Small Screens End-->
 
-                </div>
-                <div class="row">
-
-                    <!-- Newsfeed Common Side Bar Left
-                    ================================================= -->
-                    <div class="col-md-3 static">
-                        <div class="suggestions" id="sticky-sidebar">
-                            <h4>People in the group</h4>
-                            <?php
-                            $sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.group_id='$group_Id'";
-                            $result = $mysqli->query($sql);
-                            while ($row = $result->fetch_assoc()) {
-                                extract($row);
-                                ?>
-                                <div class="follow-user">
-                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
-                                    <div>
-                                        <h5><a href="timeline.html"><?php echo $name; ?></a></h5>
-                                        <?php
-                                            $group = array();
-                                            $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
-                                            $result5 = $mysqli->query($select);
-                                            while($row5 = $result5->fetch_assoc()){
-                                                extract($row5);
-                                                $group[] = $friend_id;
-                                            }
-                                            if(in_array($group_user, $group)){
-                                        ?>
-                                        <a href="messages.php?friendid=<?php echo $group_user;?>" class="pull-left text-green">Message</a>
-                                        <?php } elseif($_SESSION['userid'] == $group_user) { ?>
-                                        
-                                        <?php } else { ?>
-                                        <a href="api/insert.php?action=addfriend&friendid=<?php echo $group_user;?>" class="pull-left text-green">Add friend</a>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-
-
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="row">
+			</div>
+    		<div class="row">
+			
+          <!-- Newsfeed Common Side Bar Left
+          ================================================= -->
+    			<div class="col-md-3 static">
+            		<h4>Events</h4>
+            		<div id="datepicker" class="calendar"></div>
+            		<div class="suggestions" id="sticky-sidebar">
+					  <h4>People in the group</h4>
+					  
+					  <?php
+						$sql = "SELECT gm.id,gm.user_id as group_user,u.fb_id,u.name FROM group_member gm,users u where gm.user_id=u.user_id and gm.group_id='$group_Id'";
+						$result = $mysqli->query($sql);
+						while ($row = $result->fetch_assoc()) {
+							extract($row);
+                      ?>
+					  
+					  <div class="follow-user">
+						<img src=<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="profile-photo-sm pull-left" />
+						<div>
+						  <h5><a href="profile.php?id=<?php echo "$user_id"; ?>""><?php echo $name; ?></a></h5>
+						   <?php
+							$group = array();
+							$select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
+							$result5 = $mysqli->query($select);
+							while($row5 = $result5->fetch_assoc()){
+								extract($row5);
+								$group[] = $friend_id;
+							}
+							if(in_array($group_user, $group)){
+                           ?>
+						    <a href="messages.php?friendid=<?php echo $group_user;?>" class="pull-left text-green">Message</a>
+								<?php } elseif($_SESSION['userid'] == $group_user) { ?>
+								
+								<?php } else { ?>
+								<a href="api/insert.php?action=addfriend&friendid=<?php echo $group_user;?>" class="pull-left text-green">Add friend</a>
+								<?php } ?>
+								<a  style="visibility:hidden;" href="#" class="text-green">ME</a>
+						</div>
+					  </div>
+					  <?php } ?>
+					  
+					  
+					  
+					  
+					</div>
+         	 	</div>
+    			<div class="col-md-9">
+<!--- <div class="row">
                         <?php
                         $button = array();
                         $show = "SELECT user_id FROM group_member where group_id = $group_Id";
@@ -187,9 +185,11 @@
                             }
                         ?>
                         <h4><a href="" class="btn btn-primary pull-right col-md-3" data-toggle="modal" data-target="#myEvent">Add Event</a></h4>    
-                        </div>
-                        <br>
-                        <div class="post-content <?php echo "open-$group_Id"; ?>">
+                        </div> -->
+
+            <!-- Post Content
+            ================================================= -->
+				<div class="post-content <?php echo "open-$group_Id"; ?>">
                             <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
                             <?php
                             $sql = "SELECT gt.topic, gt.created_at, gt.id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id, u.name, u.role_id, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
@@ -256,10 +256,12 @@
                                 </div>
                             <?php } ?>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div>
+
+    		</div>
+    	</div>
+    </div>
+		
         <div class="container">
             <!-- Modal -->
             <div class="modal fade" id="mytopic" role="dialog">
@@ -370,7 +372,22 @@
                 </div>
             </div>
         </div>
-        <!--======================Page Container STOP====================================-->
-        <?php include 'footer.php' ?>
-    </body>
+        
+		
+    <!--======================Page Container STOP====================================-->
+    <?php include 'footer.php' ?>
+	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script>
+$(function() {
+  $("#datepicker").datepicker('show');
+});
+
+$("#getevents").load("api/getEvents.php");
+$("#datepicker").datepicker({
+  onSelect: function(dateText) {
+    $("#getevents").load("api/getEvents.php?date-select=" + dateText);
+  }
+});
+</script>
+  </body>
 </html>
