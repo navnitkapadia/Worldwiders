@@ -21,6 +21,7 @@
 
             <?php
             include_once 'header.php';
+            $msg = "";
             $flag = 0;
             if (isset($_GET['id'])) {
                 $id = $_REQUEST['id'];
@@ -64,7 +65,8 @@
                                     //echo $quey;
                                     $result = $mysqli->query($quey);
                                     if ($result) {
-                                        echo "SuccesFully Update";
+                                        //echo "SuccesFully Update";
+                                        $msg = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Succesfully Update Group. <a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                         //echo $_FILES['icon']['tmp_name'];
                                         if ($_FILES['image']['name'] != "") {
                                             $src = $_FILES['image']['tmp_name'];
@@ -73,7 +75,8 @@
                                             $expensions = array("jpeg", "jpg", "png");
 
                                             if (in_array($file_ext, $expensions) === false) {
-                                                echo "extension not allowed, please choose a JPEG or PNG file.";
+                                                //echo "Extension not allowed, please choose a JPEG or PNG file.";
+                                        $msg = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Extension not allowed, please choose a JPEG or PNG file. <a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                             } else {
                                                 move_uploaded_file($src, "$upload_dir/$image");
                                                 if (file_exists("$upload_dir/$file")) {
@@ -82,7 +85,8 @@
                                             }
                                         }
                                     } else {
-                                        echo "Fail Update, Please try agin.";
+                                        //echo "Fail Update, Please try agin.";
+                                        $msg = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Fail Update, Please try agin. <a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                     }
                                 } else {
                                     //echo "btn click";
@@ -98,7 +102,8 @@
                                     //echo $quey;
                                     $result = $mysqli->query($quey);
                                     if ($result) {
-                                        echo "Update SuccesFully.";
+                                       // echo "Update SuccesFully.";
+                                        $msg = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Succesfully Create Group. <a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                         //echo $_FILES['icon']['tmp_name'];
                                         $src = $_FILES['image']['tmp_name'];
                                         $upload_dir = "../upload";
@@ -106,12 +111,14 @@
                                         $expensions = array("jpeg", "jpg", "png");
 
                                         if (in_array($file_ext, $expensions) === false) {
-                                            echo "extension not allowed, please choose a JPEG or PNG file.";
+                                           // echo "Extension not allowed, please choose a JPEG or PNG file.";
+                                        $msg = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Extension not allowed, please choose a JPEG or PNG file.<a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                         } else {
                                             move_uploaded_file($src, "$upload_dir/$image");
                                         }
                                     } else {
-                                        echo "Fail Submit, Please try agin.";
+                                        //echo "Fail Submit, Please try agin.";
+                                        $msg = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Fail!, Please try agin. <a href="grouplist.php" class="alert-link">Show List</a>.</div>';
                                     }
                                 }
                             }
@@ -120,6 +127,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
+                                            <?php echo $msg; ?>
                                             <form method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label for="title" class="pull-left">Group Title</label>
