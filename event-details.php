@@ -13,13 +13,32 @@
         <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
         <meta name="robots" content="index, follow" />
         <title>Event Details</title>
-
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>    
+    <script type="text/javascript">
+        $(function() {
+            $("#comment").load("post.php?action=comment&id=<?php echo $_GET['id']; ?>");
+            $('.post').click(function(){
+               var ids = this.id;
+               var comment = $('.texts').val();
+               $.ajax({
+                type: 'post',
+                url: "post.php?action=event-post",
+                data: "id=" + ids + "&texts=" + comment,
+                    success: function(data){
+                    //clear the message box
+                      $('.texts').val("");
+                      $('#comment').load("post.php?action=comment&id="+ids);
+                    }
+                });
+            });
+        });
+    </script>
 
     </head>
     <body>
         <?php include 'header.php' ?>    
         <!--======================Page Container START===================================-->
-        
+ 
         <div id="page-contents">
             <div class="container">
                 <div class="row">
@@ -86,19 +105,11 @@
                         <div class="create-post">
                             
                             <div class="row">
-                            <?php
-                            $com = "SELECT comment from event_comment where event_id='$event_Id'";
-                            $result1 = $mysqli->query($com);
-                            while ($row1 = $result1->fetch_assoc()) {
-                                extract($row1);
-                                ?>
-                                <p id="comment"><?php echo $comment; ?></p>
-                            <?php } ?>
-                                <form method="post" action="post.php?id=<?php echo $event_Id ?>">
+                                <p id="comment"></p> 
                                 <div class="col-md-10 col-sm-10">
                                     <div class="form-group">
                                         <img src="<?php echo "http://graph.facebook.com/$login/picture?type=large"; ?>" alt="" class="profile-photo-md" />
-                                        <textarea name="texts" id="texts" cols="50" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                                        <textarea name="texts" id="texts" cols="50" rows="1" class="form-control texts" placeholder="Write what you wish"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-2">
@@ -106,7 +117,6 @@
                                         <button name="post" id="<?php echo $event_Id; ?>" class="btn btn-primary pull-right post">Publish</button>
                                     </div>
                                 </div>
-                                </form>
                             </div>
                         </div><!-- Post Create Box End -->
 
@@ -147,14 +157,14 @@
                                 <div class="follow-user">
                                     <?php
                                     for ($i = 0; $i < count($add); $i++) {
-                                        $sql = "SELECT u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
+                                        $sql = "SELECT u.user_id,u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
                                             ?>
                                             <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div>
-                                                <h5><a href="profile.html"><?php echo $name; ?></a></h5>
+                                                <h5><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></h5>
                                                 <?php
                                                     $event1 = array();
                                                     $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
@@ -165,9 +175,11 @@
                                                     }
                                                     if(in_array($add[$i], $event1)){
                                                 ?>
-                                                <a href="#" class="text-green">Message</a>
+                                                <a href="messages.php?friendid=<?php echo $user_id; ?>" class="text-green">Message</a>
+                                                <?php } elseif($_SESSION['userid'] == $add[$i]){ ?>
+                                                <a href="#" class="text-green"></a>
                                                 <?php } else { ?>
-                                                <a href="#" class="text-green">Add friend</a>
+                                                <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
                                                 <?php } ?>
                                             </div>
                                         </div>

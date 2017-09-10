@@ -191,14 +191,13 @@
                         </div> -->
 
             <!-- Post Content
-            ================================================= -->
-				<div class="post-content <?php echo "open-$group_Id"; ?>">
-                            <input type="hidden" id="group_id" value="<?php echo $group_Id; ?>">
+            ================================================= -->		
                             <?php
                             $sql = "SELECT gt.topic, gt.created_at, gt.id as gt_id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id, u.name, u.role_id, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
+                                echo '<div class="post-content">';
                                 echo "<h4>$topic</h4>";
                                 if($role_id == 1 || $role_id == 0){
                                     echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Delete</a></h4>";
@@ -255,8 +254,9 @@
                                         <?php } ?>
                                     </div>
                                 </div>
+                             </div>
                             <?php } ?>
-                        </div>
+                        
           </div>
 
     		</div>
