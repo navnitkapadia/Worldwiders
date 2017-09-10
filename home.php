@@ -85,7 +85,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                         <div class="user-info">
                                             <h5><a class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
                                             <p class="text-muted"><?php $msg = time_elapsed_string($created_at);
-                                            echo "Published a $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
+                                            echo "Published a post $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
                                             <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
