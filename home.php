@@ -20,6 +20,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
             });
             function post(gid, tid, i) {
                 var comment = $('#desc-' + i).val();
+                if(comment != '' || comment != NULL){
                 $.ajax({
                     type: 'post',
                     url: "post.php?action=topic_desc",
@@ -30,24 +31,25 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                         location.reload();
                     }
                 });
+               }
             };
-            function like(id,like){
+            function like(el,id,like){
                 $.ajax({
                 type: 'post',
                 url: "post.php?action=like",
                 data: "id=" + id + "&like=" + like,
                     success: function(data){
-                       location.reload();
+                       el.innerHTML = data;         
                     }
                 });
             };
-            function dislike(id,dislike){
+            function dislike(el,id,dislike){
                 $.ajax({
                 type: 'post',
                 url: "post.php?action=dislike",
                 data: "id=" + id + "&dislike=" + dislike,
                     success: function(data){
-                        location.reload();
+                        el.innerHTML = data; 
                     }
                 });
             };
@@ -72,7 +74,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                         $uid = $_SESSION['userid'];
                         $i = 1;
                         $login_id = $_SESSION['fbid'];
-                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id, gt.created_at, gt.topic_like, gt.dislike, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
+                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id as gt_id, gt.created_at, gt.topic_like, gt.dislike, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
@@ -88,15 +90,15 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                             echo "Published a post $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
-                                            <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
-                                            <a class="btn text-red" onclick="dislike(<?php echo $id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
+                                            <a class="btn text-green"  onclick="like(likecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><div style="display: inline;" id="likecounter<?php echo $gt_id; ?>"><?php echo $topic_like; ?></div></a>
+                                            <a class="btn text-red"  onclick="dislike(dislikecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><div style="display: inline;" id="dislikecounter<?php echo $gt_id; ?>"><?php echo $dislike; ?> </div></a>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">
                                             <p><?php echo $tdesc; ?></p>
                                         </div>
                                         <?php
-                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=" . $row['gID'] . " and td.topic_id = gt.id and td.topic_id = " . $row['id'] . " and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
+                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=" . $row['gID'] . " and td.topic_id = gt.id and td.topic_id = " . $row['gt_id'] . " and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
                                         $result1 = $mysqli->query($select);
                                         $post = 1;
                                         while ($row1 = $result1->fetch_assoc()) {
@@ -112,7 +114,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                             <div class="post-comment">
                                                 <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
                                                 <input type="text" class="form-control" id="desc-<?php echo $i; ?>" placeholder="Post a comment">
-                                                <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $topic_id ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
+                                                <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $gt_id; ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
                                             </div>
                                             <?php $i++; ?>
                                         <?php } ?>

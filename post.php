@@ -17,7 +17,38 @@ if (isset($_REQUEST['action'])) {
     case 'dislike':
       dislike($mysqli);
       break;
+    case 'event-post':
+      eventpost($mysqli);
+      break;
+    case 'comment':
+      comment($mysqli);
+      break;
   }
+}
+
+function eventpost($mysqli){
+    $event_Id = $_REQUEST['id'];
+    $comment = $_REQUEST['texts'];
+    $user_id = $_SESSION['userid'];
+    $sql = "INSERT INTO event_comment (comment, event_id,user_id) VALUES ('$comment','$event_Id','$user_id')";
+    $result = $mysqli->query($sql);
+    if ($result) {
+        echo json_encode('success');
+    } else {
+        echo json_encode('faild');
+    } 
+}
+
+function comment($mysqli){
+    $event = $_REQUEST['id'];
+    $com = "SELECT comment from event_comment where event_id=$event";
+    $result1 = $mysqli->query($com);
+    $array = array();
+    $i = 0;
+    while ($row1 = $result1->fetch_assoc()) {
+        extract($row1);
+        echo "<p id='comment'>$comment</p>";
+    }
 }
 
 if (isset($_POST['post'])) {
