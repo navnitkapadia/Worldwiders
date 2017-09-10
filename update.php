@@ -1,5 +1,6 @@
 <?php
-include 'header.php';
+session_start();
+include 'api/db_config.php';
 $userId = $_SESSION['userid'];
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

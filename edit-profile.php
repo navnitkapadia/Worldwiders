@@ -11,10 +11,12 @@
 
     </head>
     <body>
-        <?php include 'header.php';
+        <?php 
+        session_start();
         if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
             header('Location: /');
-       }
+        }
+        include 'header.php';
         if (isset($_POST['edit_profile'])) {
             $fname = $_POST["firstname"];
             $lname = $_POST["lastname"];

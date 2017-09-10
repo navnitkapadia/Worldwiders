@@ -83,9 +83,9 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                     <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
                                     <div class="post-detail">
                                         <div class="user-info">
-                                            <h5><a href="timeline.php" class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
+                                            <h5><a class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
                                             <p class="text-muted"><?php $msg = time_elapsed_string($created_at);
-                                            echo "Published a photo about $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
+                                            echo "Published a $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
                                             <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                                             <div class="line-divider"></div>
                                             <div class="post-comment">
                                                 <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm" />
-                                                <p><a href="timeline.php" class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
+                                                <p><a class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
                                             </div>
                                         <?php } ?>
                                         <?php if ($post == 1) { ?>

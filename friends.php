@@ -12,12 +12,13 @@
 
 	</head>
   <body>
-    <?php include 'header.php'?>
-    <?php 
+    <?php
+        session_start();
 	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
 		 header('Location: /');
-	}
-?>
+        }
+    include 'header.php';
+    ?>
     <!--======================Page Container START===================================-->
 
 

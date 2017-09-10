@@ -1,4 +1,5 @@
 <?php
+ session_start();
  require 'db_config.php';
  if(isset($_REQUEST['q'])){
      $que = $_REQUEST['q'];

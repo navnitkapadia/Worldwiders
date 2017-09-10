@@ -10,12 +10,13 @@
     <title>About Me</title>
 	</head>
   <body>
-    <?php include 'header.php'?>
     <?php 
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
+    session_start();
+    if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
+            header('Location: /');
+    }
+    include 'header.php';
+    ?>
     <!--======================Page Container START===================================-->
       <div class="container">
       <?php

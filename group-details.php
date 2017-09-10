@@ -46,7 +46,10 @@
 
 	</head>
   <body> 
-    <?php include 'header.php'?>
+    <?php 
+    session_start();
+    include 'header.php';
+    ?>
     <!--======================Page Container START===================================-->
 	<div id="page-contents">
     	<div class="container">
@@ -216,12 +219,10 @@
                                             // echo $diff->format('%a')." ".date('Y-m-d', strtotime($created_at));
                                             //$date, date('Y-m-d', strtotime($created_at))
                                             $msg = time_elapsed_string($created_at);
-                                            echo "Published a photo about $msg ";
+                                            echo "Published a $msg ";
                                             ?>
-                                            
-                                            
                                             </p>
-                                        </div>2
+                                        </div>
                                         <div class="reaction likethis">
                                             <a class="btn text-green" onclick="like(<?php echo $id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
                                             <a class="btn text-red" onclick="dislike(<?php echo $id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
