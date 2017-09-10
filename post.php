@@ -71,7 +71,7 @@ function like($mysqli){
     $sql = "UPDATE group_topic SET topic_like = $counter where id = $id";
     $result = $mysqli->query($sql);
     if($result){
-        echo json_encode('success');
+        echo $counter;
     } else {
         echo json_encode('faild');
     }
@@ -83,7 +83,7 @@ function dislike($mysqli){
     $sql = "UPDATE group_topic SET dislike = $counter where id = $id";
     $result = $mysqli->query($sql);
     if($result){
-        echo json_encode('success');
+        echo $counter;
     } else {
         echo json_encode('faild');
     }

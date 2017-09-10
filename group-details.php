@@ -22,23 +22,23 @@
                     }
                 });
             };
-            function like(id,like){
+            function like(el,id,like){
                 $.ajax({
                 type: 'post',
                 url: "post.php?action=like",
                 data: "id=" + id + "&like=" + like,
                     success: function(data){
-                       location.reload();
+                       el.innerHTML = data;         
                     }
                 });
             };
-            function dislike(id,dislike){
+            function dislike(el,id,dislike){
                 $.ajax({
                 type: 'post',
                 url: "post.php?action=dislike",
                 data: "id=" + id + "&dislike=" + dislike,
                     success: function(data){
-                        location.reload();
+                        el.innerHTML = data; 
                     }
                 });
             };
@@ -201,7 +201,7 @@
                                 extract($row);
                                 echo "<h4>$topic</h4>";
                                 if($role_id == 1 || $role_id == 0){
-                                    echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Dalete</a></h4>";
+                                    echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Delete</a></h4>";
                                 }
                                 ?>
                                 <div class="post-container">
@@ -224,8 +224,8 @@
                                             </p>
                                         </div>
                                         <div class="reaction likethis">
-                                            <a class="btn text-green" onclick="like(<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><?php echo $topic_like; ?></a>
-                                            <a class="btn text-red" onclick="dislike(<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><?php echo $dislike; ?></a>
+                                            <a class="btn text-green"  onclick="like(likecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><div style="display: inline;" id="likecounter<?php echo $gt_id; ?>"><?php echo $topic_like; ?></div></a>
+                                            <a class="btn text-red"  onclick="dislike(dislikecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><div style="display: inline;" id="dislikecounter<?php echo $gt_id; ?>"><?php echo $dislike; ?> </div></a>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">
@@ -240,7 +240,7 @@
                                             ?>
                                             <div class="line-divider"></div>
                                             <div class="post-comment">
-                                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
+                                                 <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm" />
                                                 <p><a href="#" class="profile-link"><?php echo $name; ?></a> <?php echo $comment; ?> </p>
                                             </div>
                                         <?php } ?>

@@ -220,6 +220,7 @@ $('.formsu').on('keypress', function (e) {
 
 $("#lang").load("api/getdata.php?action=lang");
 $("#interests").load("api/getdata.php?action=intrest");
+
 $('#addint').typeahead({
     source: function (query, result) {
         $.ajax({

@@ -43,7 +43,7 @@ function getintrest($mysqli){
   } else {
     $sql = "SELECT interest_ids FROM users WHERE user_id = $userid"; 
   }
-  $result = $mysqli->query($sql);
+  $result = $mysqli->query($sql); 
   $row = $result->fetch_assoc();
    extract($row);
    if(isset($interest_ids)){
