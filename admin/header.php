@@ -5,7 +5,7 @@ if (!isset($_SESSION['role_id'])) {
     header('Location: ../');
 } else {
     if ($_SESSION['role_id'] != 0) {
-        header('Location: ../');
+        header('Location: ../home.php');
     }
 }
 ?>
