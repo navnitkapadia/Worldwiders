@@ -131,20 +131,20 @@
                                             <form method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label for="title" class="pull-left">Group Title</label>
-                                                    <input id="title" class="form-control input-group-lg" type="text" name="title" title="Enter Title" placeholder="Event Name" value="<?php if ($flag == 1) {
+                                                    <input id="title" class="form-control input-group-lg" type="text" name="title" required title="Enter Title" placeholder="Event Name" value="<?php if ($flag == 1) {
                                 echo $title;
                             } ?>" />
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description" class="pull-left">Description</label>
-                                                    <textarea id="description" name="description" class="form-control" placeholder="Description"><?php if ($flag == 1) {
+                                                    <textarea id="description" name="description" required class="form-control" placeholder="Description"><?php if ($flag == 1) {
                                 echo $description;
                             } ?></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="file" class="pull-left">Group image</label>
-                                                    <input type="file" name="image" id="image" class="form-control form-check-input"/>
+                                                    <input type="file" name="image" id="image" required class="form-control form-check-input"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="title" class="pull-left">Modarator</label>
@@ -152,7 +152,7 @@
 
                                                     <input name="id" value="<?php echo $id; ?>"  id="moderator" type="hidden" />
 
-                                                    <input id="name-box" name="moname" value="<?php if ($flag == 1) {
+                                                    <input id="name-box" name="moname" required value="<?php if ($flag == 1) {
                                 echo $mo_name;
                             } ?>"  class="form-control typeahead input-group-lg" type="text"  title="Enter Title" placeholder="Add Modarator" />
                                                     <div id="suggesstion-box"></div>
