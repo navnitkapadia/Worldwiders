@@ -315,19 +315,19 @@
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="title" class="pull-left">Event Title</label>
-                                        <input id="event-name" class="form-control input-group-lg" type="text" name="event-name" title="Event Name" placeholder="Event Name" value="" />
+                                        <input id="event-name" class="form-control input-group-lg" type="text" name="event-name" title="Event Name" placeholder="Event Name" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="date" class="pull-left">Date</label>
-                                        <input id="event-date" class="form-control input-group-lg" type="date"  title="Date" placeholder="Add Date" name="event-date" value="" />
+                                        <input id="event-date" class="form-control input-group-lg" type="date"  title="Date" placeholder="Add Date" name="event-date" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="date" class="pull-left">Event Time</label>
-                                        <input id="event-time" class="form-control input-group-lg" type="time"  title="Time" placeholder="Add Time" name="event-time" value="" />
+                                        <input id="event-time" class="form-control input-group-lg" type="time"  title="Time" placeholder="Add Time" name="event-time" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -339,34 +339,34 @@
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="ladd" class="pull-left">Location Address</label>
-                                        <input id="ladd" name="ladd"  class="form-control input-group-lg" type="text" title="Location Address" placeholder="Location Address" value="" />
+                                        <input id="ladd" name="ladd"  class="form-control input-group-lg" type="text" title="Location Address" placeholder="Location Address" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="Website" class="pull-left">Website</label>
-                                        <input id="website" class="form-control input-group-lg" type="text" name="website" title="Website" placeholder="Website" value="" />
+                                        <input id="website" class="form-control input-group-lg" type="text" name="website" title="Website" placeholder="Website" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="max-member" class="pull-left">No of guests Allowed</label>
-                                        <input class="form-control input-group-lg" type="text" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" />
+                                        <input class="form-control input-group-lg" type="text" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="description" class="pull-left">Description</label>
-                                        <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                                        <textarea id="description" name="description" class="form-control" placeholder="Description" required="required"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="file" class="pull-left">Event image</label>
-                                        <input type="file" name="image" id="image" class="form-control"/>
+                                        <input type="file" name="image" id="image" class="form-control" required="required"/>
                                     </div>
                                 </div><br>
-                                <button class="btn btn-primary text-center" name="add_event">Save</button><button type="button" class="btn btn-default text-center" data-dismiss="modal">Close</button>
+                                <button class="btn btn-primary text-center" name="add_event">Save</button><button type="button" class="btn btn-primary text-center" data-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </div>
