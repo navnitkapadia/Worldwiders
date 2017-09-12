@@ -11,6 +11,7 @@
         <script type="text/javascript">
             function post(gid,tid,i){
                 var comment = $('#desc-'+i).val();
+                if(comment != '' || comment != NULL){
                 $.ajax({
                 type: 'post',
                 url: "post.php?action=topic_desc",
@@ -21,6 +22,7 @@
                     location.reload();
                     }
                 });
+              }
             };
             function like(el,id,like){
                 $.ajax({

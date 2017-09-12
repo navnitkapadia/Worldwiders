@@ -20,6 +20,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
             });
             function post(gid, tid, i) {
                 var comment = $('#desc-' + i).val();
+                if(comment != '' || comment != NULL){
                 $.ajax({
                     type: 'post',
                     url: "post.php?action=topic_desc",
@@ -30,6 +31,7 @@ if (!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])) {
                         location.reload();
                     }
                 });
+               }
             };
             function like(el,id,like){
                 $.ajax({
