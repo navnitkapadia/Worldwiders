@@ -1,15 +1,10 @@
 <?php
-//local
-$username = "root"; //mysql username
-$password = ""; //mysql password
-$hostname = "localhost"; //hostname
-$databasename = 'worldwiders'; //databasename
 
 //server
-// $username = "luiisnet_world"; //mysql username
-// $password = "LNZ4lS8rt"; //mysql password
-// $hostname = "localhost"; //hostname
-// $databasename = 'luiisnet_world'; //databasename
+ $username = "luiisnet_world"; //mysql username
+ $password = "LNZ4lS8rt"; //mysql password
+ $hostname = "localhost"; //hostname
+ $databasename = 'luiisnet_world'; //databasename
 
 //connect to database
 $mysqli = new mysqli($hostname, $username, $password, $databasename);
