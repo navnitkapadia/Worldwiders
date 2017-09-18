@@ -1,6 +1,6 @@
 $(document).ready(function () {
     FB.init({
-        appId: '1740052789628613',
+        appId: '2100813633278010',
         cookie: true,
         xfbml: true,
         version: 'v2.10'
@@ -24,7 +24,7 @@ function statusChangeCallback(response) {
                         user_signup(); 
                         return;
                     }
-                    if(window.location.pathname == "/"){
+                    if(window.location.pathname == "/Worldwiders/"){
                         window.location = "home.php"
                     }
                     
@@ -37,8 +37,8 @@ function statusChangeCallback(response) {
                 statusChangeCallback2(response);
             }, {scope: 'public_profile,email'});
         } else {
-            if(window.location.pathname != "/"){
-                window.location = "/"
+            if(window.location.pathname != "/Worldwiders/"){
+                window.location = "/Worldwiders/"
             }
         }
       }
