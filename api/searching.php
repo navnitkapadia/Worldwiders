@@ -7,7 +7,7 @@ if (isset($_REQUEST['q'])) {
     if ($que == "") {
         return;
     }
-    $sql = "SELECT u.user_id as id,u.name as name  FROM users u WHERE u.name like '$que%'";
+    $sql = "SELECT u.user_id as id,u.name as name, u.fb_id as fb_id  FROM users u WHERE u.name like '$que%'";
     $sql_group = "select g.id as id,g.title as name FROM peoples_group g WHERE g.title like '$que%'";
     $sql_event = "select e.id as id,e.event as name FROM event e WHERE e.event like '$que%'";
     $result = $mysqli->query($sql);
@@ -34,9 +34,9 @@ if (isset($_REQUEST['q'])) {
             $id = $gp['id'];
             $name = $gp['name'];
             echo "
-          <ul>   
-            <a href='./group-details.php?id=$id'>$name</a>
-          </ul>
+          <li>   
+            <a href='../group-details.php?id=$id'>$name</a>
+          </li>
          ";
         }
     }
@@ -44,10 +44,9 @@ if (isset($_REQUEST['q'])) {
         foreach ($moderetor["event"] as $gp) {
             $id = $gp['id'];
             $name = $gp['name'];
-            echo "
-          <ul>   
-            <a href='./event-details.php?id=$id'>$name</a>
-          </ul>
+            echo "  
+            <li><a href='../event-details.php?id=$id'>$name</a> </li>
+         
          ";
         }
     }
@@ -55,10 +54,13 @@ if (isset($_REQUEST['q'])) {
         foreach ($moderetor["users"] as $gp) {
             $id = $gp['id'];
             $name = $gp['name'];
+            $fb_id = $gp['fb_id'];
             echo "
-          <ul>   
-            <a href='./profile.php?id=$id'>$name</a>
-          </ul>
+            <li>
+          <a href='profile.php?id=$id'><img style='height: 50px;
+          width: 50px;
+          border-radius: 50px;
+          margin: 0px 10px 0px 0px;' src='http://graph.facebook.com/$fb_id/picture?type=large' />$name</a></li>
          ";
         }
     }

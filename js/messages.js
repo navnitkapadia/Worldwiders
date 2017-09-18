@@ -3,13 +3,13 @@ function resize()
     var heights = window.innerHeight - 150;
     var el = document.getElementsByClassName('chat-message');
     for(var i = 0; i< el.length; i++){
-        el[i].style.height = heights + "px";
+        el[i].style.maxHeight = heights + "px";
         el[i].scrollTop = el[i].scrollHeight;
         }        
 }
 window.onresize = function() {
     resize();
-};
+}; 
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var target = $(e.target).attr("href") // activated tab

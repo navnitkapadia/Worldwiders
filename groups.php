@@ -71,15 +71,6 @@
                                             </div>
                                         </div>
 <?php } ?>
-                                    <div class="friend-card">
-                                        <img src="images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
-                                        <div class="card-info">
-                                            <div class="friend-info">
-                                                <a href="groups-detail.html" class="pull-right text-red">Join</a>
-                                                <h5><a href="groups-detail.html" class="profile-link">Vegetarians and Vegans in Zurich</a></h5>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
