@@ -159,7 +159,7 @@
                    ?>
                     <div class="tab-pane <?php if($count==1){echo 'active'; }  ?> " id="<?php echo $first_name; ?>">
                       <div class="chat-body">
-                      	<ul  id="conversation"  style="width:440px; overflow:scroll; overflow-x:hidden" class="chat-message <?php echo "open-$conversation_id"; ?>">
+                      	<ul  id="conversation"  style="width:440px;overflow-x: hidden;" class="chat-message <?php echo "open-$conversation_id"; ?>">
                         <input type="hidden" id="conversation_id" value="<?php echo $conversation_id; ?>">
                           
                       	</ul>
