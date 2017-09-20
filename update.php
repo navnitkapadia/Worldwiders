@@ -13,6 +13,6 @@ if(isset($_GET['gid'])){
     $group_Id = $_GET['gid'];
     $update = "insert into group_member (user_id,group_id) VALUES('$userId','$group_Id')";
     $result = $mysqli->query($update);
-    header('Location:groups.php');
+    header("Location:group-details.php?id=$group_Id");
 }
 ?>
