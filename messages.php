@@ -144,8 +144,9 @@
                     </li>
      <?php }
       }?>
+                  <li><input type="input" id="startconversation" class="new-convr form-control input-group-lg" title="Enter Name" placeholder="Enter Name"></li>
                   </ul><!--Contact List in Left End-->
-
+                  <ul  class="search-box" id="list"></ul>
                 </div>
                 <div class="col-md-7">
                   <!--Chat Messages in Right-->
@@ -174,7 +175,7 @@
                       data-sid="<?php echo $_SESSION['userid']; ?>" data-rid="<?php echo $user_id; ?>"
                        id="<?php echo "open-btn-$conversation_id"; ?>" placeholder="Type your message">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" onClick="getMessages(this.id,<?php echo $conversation_id; ?>,<?php echo $_SESSION['userid']; ?>,<?php echo $user_id; ?>)" id ="<?php echo "open-btn-$conversation_id"; ?>" type="button">Send</button> <span id="error"></span>
+                        <button class="<?php echo "open-btn-$conversation_id"; ?> btn btn-default" onClick="getMessages(this.id,<?php echo $conversation_id; ?>,<?php echo $_SESSION['userid']; ?>,<?php echo $user_id; ?>)" id ="<?php echo "open-btn-$conversation_id"; ?>" type="button">Send</button> <span id="error"></span>
                       </span>
                     </div>
                   </div>           
@@ -204,6 +205,19 @@ $(window).on('keypress', function (e) {
     }
   }
 });
+
+$("#startconversation").keyup(function() {
+      var inputval = $( "#startconversation" ).val();
+      $.ajax({
+            type: "POST",
+            url: "api/startConversation.php?q="+inputval,
+            success: function(data){
+                 $("#list").html(data);
+            }
+      });
+    });
+
+
   $("#online-users-is").load("api/getonlineUsers.php");
   window.setInterval(function(){
     $("#online-users-is").load("api/getonlineUsers.php");

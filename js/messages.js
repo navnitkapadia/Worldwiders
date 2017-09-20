@@ -25,6 +25,9 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
 function getMessages(btnid,convid,sender,receiver){
      var message = $.trim($("#"+btnid).val());
+     $('#'+btnid)[0].classList.add('disabled');
+     $('.'+btnid)[0].classList.add('disabled');
+     //btnid.classList.add("disabled");
      if(message && convid && sender && receiver != null){
         $.ajax({
             type: 'post',
@@ -32,8 +35,11 @@ function getMessages(btnid,convid,sender,receiver){
             data: {message:message,conversation_id:convid,user_form:sender,user_to:receiver},
             success: function(data){
                 resize();
+                $(".open-"+convid).load("api/get_messages.php?c_id="+convid);
                 //clear the message box
                 $("#"+btnid).val("");
+                $('#'+btnid)[0].classList.remove('disabled');
+                $('.'+btnid)[0].classList.remove('disabled');
             }
         })
      } else {
