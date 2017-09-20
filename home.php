@@ -12,6 +12,21 @@
             $(document).ready(function () {
 
             });
+            function eventpost(event,j){
+                var post = $('#eventdesc-' + j).val();
+                if(post != '' || post != NULL){
+                    $.ajax({
+                    type: 'post',
+                    url: "post.php?action=event-post",
+                    data: "id=" + event + "&texts=" + post,
+                    success: function (data) {
+                        //clear the message box
+                        $('#eventdesc-' + j).val("");
+                        location.reload();
+                    }
+                });
+                }
+            }
             function post(gid, tid, i) {
                 var comment = $('#desc-' + i).val();
                 if(comment != '' || comment != NULL){
@@ -92,7 +107,7 @@
                                             <p><?php echo $tdesc; ?></p>
                                         </div>
                                         <?php
-                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=" . $row['gID'] . " and td.topic_id = gt.id and td.topic_id = " . $row['gt_id'] . " and pg.id=td.group_id and u.user_id=td.user_id order by td.id asc";
+                                        $select = "SELECT td.*,u.name,u.fb_id from topic_desc td,peoples_group pg,users u,group_topic gt where td.group_id=" . $row['gID'] . " and td.topic_id = gt.id and td.topic_id = " . $row['gt_id'] . " and pg.id=td.group_id and u.user_id=td.user_id order by td.id desc";
                                         $result1 = $mysqli->query($select);
                                         $post = 1;
                                         while ($row1 = $result1->fetch_assoc()) {
@@ -111,6 +126,52 @@
                                                 <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $gt_id; ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
                                             </div>
                                             <?php $i++; ?>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php
+                        $j = 1;
+                        $sql12 = "SELECT e.id,e.event,e.created_at,e.description,u.fb_id from event e,users u where e.created_by= u.user_id and e.created_by = $uid or $uid in (e.user_id) and u.user_id in (e.user_id)";
+                        $result12 = $mysqli->query($sql12);
+                        while ($row12 = $result12->fetch_assoc()) {
+                            extract($row12);
+                            ?>
+                            <div class="post-content">
+                                <h3><?php echo $event; ?></h3>
+                                <div class="post-container">
+                                    <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="user" class="profile-photo-md pull-left" />
+                                    <div class="post-detail">
+                                        <div class="user-info">
+                                            <h5><a class="profile-link"><?php echo $name; ?></a> <span class="following"></span></h5>
+                                            <p class="text-muted"><?php $msg = time_elapsed_string($created_at);
+                                            echo "Published a post $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
+                                        </div>
+                                        <div class="line-divider"></div>
+                                        <div class="post-text">
+                                            <p><?php echo $description; ?></p>
+                                        </div>
+                                        <?php
+                                        $select12 = "SELECT event_comment.comment,users.fb_id from event_comment,users where event_comment.event_id=$id and event_comment.user_id = users.user_id order by event_comment.id desc";
+                                        $result112 = $mysqli->query($select12);
+                                        $post12 = 1;
+                                        while ($row112 = $result112->fetch_assoc()) {
+                                            extract($row112);
+                                            ?>
+                                            <div class="line-divider"></div>
+                                            <div class="post-comment">
+                                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                <p><a class="profile-link"><?php echo $name; ?></a>&nbsp;<?php echo $comment; ?></p>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if ($post12 == 1) { ?>
+                                            <div class="post-comment">
+                                                <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
+                                                <input type="text" class="form-control" id="eventdesc-<?php echo $j; ?>" placeholder="Post a comment">
+                                                <input type="button" name="comment" id="eventcomment-<?php echo $j; ?>" onclick="eventpost(<?php echo $id; ?>,<?php echo $j; ?>);" class="btn btn-primary pull-right" value="Publish">
+                                            </div>
+                                            <?php $j++; ?>
                                         <?php } ?>
                                     </div>
                                 </div>

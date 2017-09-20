@@ -53,10 +53,11 @@ function new_event($mysqli){
   $maxg = $_REQUEST['max-member'];
   $description = $_REQUEST['description'];
   $createdBy = $_SESSION['userid'];
+  $group_id = $_REQUEST['gid'];
   $event_image = file_upload();
 
-  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time) 
-                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time')";
+  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,'gruop_id') 
+                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";
   $result = $mysqli->query($sql);
   if ($result) {
         header('Location:../home.php?msg=success');
