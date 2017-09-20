@@ -1,8 +1,3 @@
-<?php 
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
     <!-- Newsfeed Common Side Bar Left
           ================================================= -->
           <?php 

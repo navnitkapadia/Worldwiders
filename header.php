@@ -1,8 +1,6 @@
 <?php 
-    if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-        header('Location: /');
-    }
     require 'api/db_config.php';
+    session_start();
 ?>
 
     <!-- Stylesheets

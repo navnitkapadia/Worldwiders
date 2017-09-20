@@ -11,11 +11,6 @@
 		</head>
 	  <body>
 		<?php include 'header.php'?>
-		<?php 
-		if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-			 header('Location: /');
-		}
-	?>
 		<!--======================Page Container START===================================-->
 		  <div class="container">
 		  <?php
@@ -23,6 +18,7 @@
 		  $user = $_SESSION['userid'];
 		  if(isset($_REQUEST['id'])){
 			$see = $_REQUEST['id'];
+			
 			$sql = "SELECT * FROM users where user_id = $see";
 		  }else {
 			$sql = "SELECT * FROM users where user_id = $user";
@@ -33,6 +29,9 @@
 			extract($row);
 			$pa = $cover.'&oe='.$oe;
 		  ?>
+				<script>
+				window.document.title = "<?php echo $name; ?>"
+				</script>
 		  <!-- Timeline
 		  ================================================= -->
 			<div class="timeline">

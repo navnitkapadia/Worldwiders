@@ -1,10 +1,5 @@
-<?php 
-	session_start();
-	if(!isset($_SESSION['fbid']) && !isset($_SESSION['userid'])){
-		 header('Location: /');
-	}
-?>
 <?php
+session_start();
 include 'api/db_config.php';
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
