@@ -20,6 +20,7 @@
             $('.post').click(function(){
                var ids = this.id;
                var comment = $('.texts').val();
+               $('.post').hide();
                $.ajax({
                 type: 'post',
                 url: "post.php?action=event-post",
@@ -28,6 +29,7 @@
                     //clear the message box
                       $('.texts').val("");
                       $('#comment').load("post.php?action=comment&id="+ids);
+                      $('.post').show();
                     }
                 });
             });
@@ -82,7 +84,7 @@
                             ?>
                             <div class="details">
                                 <div class="img-wrapper">
-                                    <img src="upload/<?php echo $file; ?>" alt="" class="img-responsive post-image" />
+                                    <img src="upload/<?php echo $file; ?>" style="max-height: 300px" alt="" class="img-responsive post-image" />
                                 </div>
                                 <h3><?php echo $event; ?></h3>
                                 <p><strong><?php echo date('d.m.Y , l', strtotime($start_date)); ?> Starting from:  <?php echo $start_time; ?></strong></p>
@@ -103,7 +105,7 @@
                         <!-- Post Create Box
                         ================================================= -->
                         <div class="create-post">
-                            
+                            <br>
                             <div class="row">
                                 <p id="comment"></p> 
                                 <div class="col-md-10 col-sm-10">

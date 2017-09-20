@@ -313,7 +313,7 @@
                         </div>
                         <div class="modal-footer">
 
-                            <form name="basic-info" id="basic-info" class="form-inline" action="api/insert.php?action=new-event" method="POST" enctype="multipart/form-data">
+                            <form name="basic-info" id="basic-info" class="form-inline" action="api/insert.php?action=new-event&gid=<?php echo $group_Id; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="title" class="pull-left">Event Title</label>
