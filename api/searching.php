@@ -35,7 +35,7 @@ if (isset($_REQUEST['q'])) {
             $name = $gp['name'];
             echo "
           <li>   
-            <a href='../group-details.php?id=$id'>$name</a>
+            <a href='group-details.php?id=$id'>$name</a>
           </li>
          ";
         }
@@ -45,7 +45,7 @@ if (isset($_REQUEST['q'])) {
             $id = $gp['id'];
             $name = $gp['name'];
             echo "  
-            <li><a href='../event-details.php?id=$id'>$name</a> </li>
+            <li><a href='event-details.php?id=$id'>$name</a> </li>
          
          ";
         }
@@ -55,12 +55,13 @@ if (isset($_REQUEST['q'])) {
             $id = $gp['id'];
             $name = $gp['name'];
             $fb_id = $gp['fb_id'];
+            $msgid = base64_encode($id);
             echo "
             <li>
           <a href='profile.php?id=$id'><img style='height: 50px;
           width: 50px;
           border-radius: 50px;
-          margin: 0px 10px 0px 0px;' src='http://graph.facebook.com/$fb_id/picture?type=large' />$name</a></li>
+          margin: 0px 10px 0px 0px;' src='http://graph.facebook.com/$fb_id/picture?type=large' />$name <a href='messages.php?id=$msgid'>Message</a></a></li>
          ";
         }
     }

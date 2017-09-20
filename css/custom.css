@@ -2,9 +2,6 @@
     width:504px;
     margin: 0 auto;
 }
-.search-box{
-   
-}
 .search-box li{
     list-style: none;
     background: #f8f8f8;
@@ -25,4 +22,11 @@
 
 .search-box a{
     margin-left: 12px;
+    position: relative;
+}
+.new-convr{
+    margin-top: 18px;    
+}
+.disabled {
+    pointer-events: none;
 }

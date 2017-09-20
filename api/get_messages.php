@@ -11,7 +11,7 @@ session_start();
                 extract($row);
                 $imgurl = "http://graph.facebook.com/$fb_id/picture?type=large";
                 $early = time_elapsed_string("@$time");
-                if($reply != "No messages clean11" || $reply != "No new messages clean11"){ 
+                if($reply != "No messages clean11" && $reply != "No new messages clean11"){ 
                     if($_SESSION['userid'] == $user_id){
                         echo "<li class='left'>
                         <script>resize();</script>
