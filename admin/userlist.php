@@ -65,11 +65,13 @@
                                                     echo "<td>" . $birth_date . "</td>";
                                                     // echo "<td>".$row['nationality']."</td>";
                                                     echo "<td>";
+                                                     
                                                     if ($status == 0) {
                                                         echo "<a class='btn btn-success' href='updatestatus.php?user_id=" . $user_id . "&status=1'>Active</a>";
                                                     } else {
                                                         echo "<a class='btn btn-danger' href='updatestatus.php?user_id=" . $user_id . "&status=0'>Deactive</a>";
                                                     }
+                                                     echo "&nbsp;&nbsp;<a class='btn btn-primary' href='userdetail.php?uid=".$user_id ."'><i class='fa fa-eye'></i> View</a>";
                                                     echo "</td>";
                                                     // echo "<td>".$row['user_id']."<td>";
                                                     echo "</tr>";
