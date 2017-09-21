@@ -134,6 +134,8 @@
             		<h4>Events</h4>
             		<div id="datepicker" class="calendar"></div>
             		<div class="suggestions" id="sticky-sidebar">
+					  <div class="follow-user eventlist">
+					  </div>
 					  <h4>People in the group</h4>
 					  
 					  <?php
@@ -385,10 +387,9 @@ $(function() {
   $("#datepicker").datepicker('show');
 });
 
-$("#getevents").load("api/getEvents.php");
 $("#datepicker").datepicker({
-  onSelect: function(dateText) {
-    $("#getevents").load("api/getEvents.php?date-select=" + dateText);
+  onSelect: function(dateText) {  
+    $(".eventlist").load("api/filterEvent.php?date-select= '" + dateText + "'&id=<?php echo $group_Id; ?>");
   }
 });
 </script>
