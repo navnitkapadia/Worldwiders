@@ -388,8 +388,8 @@ $(function() {
 });
 
 $("#datepicker").datepicker({
-  onSelect: function(dateText) {  
-    $(".eventlist").load("api/filterEvent.php?date-select= '" + dateText + "'&id=<?php echo $group_Id; ?>");
+  onSelect: function(dateText) {
+    $(".eventlist").load("api/filterEvent.php?date-select=" + dateText);
   }
 });
 </script>
