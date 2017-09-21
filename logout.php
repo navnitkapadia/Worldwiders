@@ -9,7 +9,7 @@
 <script>
 $(document).ready(function () {
     FB.init({
-        appId: '2100813633278010',
+        appId: '1740052789628613',
         cookie: true,
         xfbml: true,
         version: 'v2.10'
@@ -20,8 +20,8 @@ $(document).ready(function () {
     function callLogout(response){
         FB.logout(function(logout) {
             if (logout.status === 'unknown') {
-            if(window.location.pathname != "/Worldwiders/"){
-                window.location = "/Worldwiders/"
+            if(window.location.pathname != "/"){
+                window.location = "/"
             }
             console.log(logout);
             }
