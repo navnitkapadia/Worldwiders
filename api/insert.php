@@ -56,7 +56,7 @@ function new_event($mysqli){
   $group_id = $_REQUEST['gid'];
   $event_image = file_upload();
 
-  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,'gruop_id') 
+  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,gruop_id) 
                     VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";
   $result = $mysqli->query($sql);
   if ($result) {
