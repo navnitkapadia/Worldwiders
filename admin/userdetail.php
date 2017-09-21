@@ -11,8 +11,6 @@
         <!-- tile chnage karvu -->
         <title>Dashboard</title>
 
-
-
     </head>
 
     <body>
@@ -50,9 +48,14 @@
                                     <div class="panel-heading">
                                         Profile Detail
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="position: relative;">
                                         <img src="<?php echo $cover . '&oe=' . $oe; ?>" height="400" class="col-lg-12" />
-
+                                        <img  style="position: absolute;
+                                                    left: 30px;
+                                                    bottom: 0;
+                                                    top: 217px;
+                                                    right: 0;"
+                                        src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="profile-photo-sm"/>
 
                                         <div class="col-lg-12">
                                             <div class="panel panel-default">

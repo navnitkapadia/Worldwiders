@@ -1,6 +1,7 @@
 <?php 
     require 'api/db_config.php';
     session_start();
+    
 ?>
 
     <!-- Stylesheets

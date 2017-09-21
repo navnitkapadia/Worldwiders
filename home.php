@@ -9,9 +9,6 @@
         <title>Home logged</title>
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
-
-            });
             function eventpost(event,j){
                 var post = $('#eventdesc-' + j).val();
                 if(post != '' || post != NULL){
