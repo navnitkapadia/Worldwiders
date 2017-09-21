@@ -51,7 +51,7 @@
             <div class="chat-room">
               <div  class="row">
                 <div class="col-md-5">
-                  <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+                  <ul  class="nav nav-tabs contact-list chat-message" style="overflow-x: hidden;">
                   <?php
                if(isset($_REQUEST['id'])){
                 $user =  $_SESSION['userid'];
