@@ -1,6 +1,11 @@
 <?php 
 require 'db_config.php';
-$sql = "SELECT start_date FROM event"; 
+if(isset($_REQUEST['gid'])){
+     $gid = $_REQUEST['gid'];
+    $sql = "SELECT start_date FROM event where gruop_id  = $gid"; 
+} else {
+    $sql = "SELECT start_date FROM event";
+}
 $result = $mysqli->query($sql);
 echo "<script>\n var eventDates = {};\n";
 while($row = $result->fetch_assoc()){

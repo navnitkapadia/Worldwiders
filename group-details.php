@@ -55,7 +55,6 @@
 	</head>
   <body> 
     <?php 
-    session_start();
     include 'header.php';
     ?>
     <!--======================Page Container START===================================-->
@@ -390,7 +389,7 @@
     <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
     <div id="datepi"></div>
 <script>
-  $("#datepi").load("api/GetEventsDates.php");
+  $("#datepi").load("api/GetEventsDates.php?gid=<?php echo $group_Id; ?>");
 </script>
 </body>
 </html>

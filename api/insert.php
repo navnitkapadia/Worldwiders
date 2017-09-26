@@ -60,7 +60,7 @@ function new_event($mysqli){
                     VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";
   $result = $mysqli->query($sql);
   if ($result) {
-        header('Location:../home.php?msg=success');
+        header('Location:../group-details.php?id=1');
         exit;
   } else {
       header('Location:../home.php?msg=failed');
