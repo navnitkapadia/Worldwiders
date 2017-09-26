@@ -7,6 +7,12 @@
 		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
 		<meta name="robots" content="index, follow" />
 		<title>Group</title>
+        <style>
+.event a {
+    background-color: #5FBA7D !important;
+    color: #ffffff !important;
+}
+</style>  
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script type="text/javascript">
             function post(gid,tid,i){
@@ -381,17 +387,10 @@
 		
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
-	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <div id="datepi"></div>
 <script>
-$(function() {
-  $("#datepicker").datepicker('show');
-});
-
-$("#datepicker").datepicker({
-  onSelect: function(dateText) {
-    $(".eventlist").load("api/filterEvent.php?date-select=" + dateText);
-  }
-});
+  $("#datepi").load("api/GetEventsDates.php");
 </script>
-  </body>
+</body>
 </html>
