@@ -166,7 +166,7 @@
 							}
 							if(in_array($group_user, $group)){
                            ?>
-						    <a href="messages.php?friendid=<?php echo $group_user;?>" class="pull-left text-green">Message</a>
+						    <a href="messages.php?id=<?php echo base64_encode($group_user);?>" class="pull-left text-green">Message</a>
 								<?php } elseif($_SESSION['userid'] == $group_user) { ?>
 								
 								<?php } else { ?>
