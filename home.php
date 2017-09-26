@@ -45,7 +45,8 @@
                 url: "post.php?action=like",
                 data: "id=" + id + "&like=" + like,
                     success: function(data){
-                       el.innerHTML = data;         
+                       el.innerHTML = data;
+                       $('#liketag').attr("disabled","disabled");
                     }
                 });
             };
@@ -55,7 +56,8 @@
                 url: "post.php?action=dislike",
                 data: "id=" + id + "&dislike=" + dislike,
                     success: function(data){
-                        el.innerHTML = data; 
+                        el.innerHTML = data;
+                        $('#disliketag').attr("disabled","disabled");
                     }
                 });
             };
@@ -96,8 +98,30 @@
                                             echo "Published a post $msg ";// echo date("Y-m-d", strtotime($created_at)); ?></p>
                                         </div>
                                         <div class="reaction">
-                                            <a class="btn text-green"  onclick="like(likecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><div style="display: inline;" id="likecounter<?php echo $gt_id; ?>"><?php echo $topic_like; ?></div></a>
-                                            <a class="btn text-red"  onclick="dislike(dislikecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><div style="display: inline;" id="dislikecounter<?php echo $gt_id; ?>"><?php echo $dislike; ?> </div></a>
+                                            <?php 
+                                            $liketopic= array();
+                                            $likeuser= array();
+                                            $likesuccess = array();
+                                            $likeSql = "SELECT * FROM group_like";
+                                            $likeresult = $mysqli->query($likeSql);
+                                            while ($likerow = $likeresult->fetch_assoc()) {
+                                                extract($likerow);
+                                                $liketopic[] = $topic_id;
+                                                $likeuser[] = $user_id;
+                                                $likesuccess[] = $like_dislike;
+                                            }
+                                            if(in_array($_SESSION['userid'], $likeuser) && in_array($gt_id, $liketopic) && in_array(0, $likesuccess)){
+                                            ?>
+                                            <a class="btn text-green"><i class="icon ion-thumbsup"></i><div style="display: inline;" id="likecounter<?php echo $gt_id; ?>"><?php echo $topic_like; ?></div></a>
+                                            <?php } else { ?>
+                                            <a class="btn text-green" id="liketag"  onclick="like(likecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $topic_like; ?>)"><i class="icon ion-thumbsup"></i><div style="display: inline;" id="likecounter<?php echo $gt_id; ?>"><?php echo $topic_like; ?></div></a>
+                                            <?php } ?>
+                                            <?php 
+                                            if(in_array($_SESSION['userid'], $likeuser) && in_array($gt_id, $liketopic) && in_array(1, $likesuccess)){ ?>
+                                            <a class="btn text-red"><i class="fa fa-thumbs-down"></i><div style="display: inline;" id="dislikecounter<?php echo $gt_id; ?>"><?php echo $dislike; ?> </div></a>
+                                            <?php } else { ?>
+                                            <a class="btn text-red" id ="disliketag"  onclick="dislike(dislikecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down"></i><div style="display: inline;" id="dislikecounter<?php echo $gt_id; ?>"><?php echo $dislike; ?> </div></a>
+                                            <?php } ?>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">

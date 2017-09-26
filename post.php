@@ -92,11 +92,15 @@ if(isset($_POST['add_topic'])){
 }
 function like($mysqli){
     $id = $_REQUEST['id'];
+    $user_id = $_SESSION['userid'];
     $like = $_REQUEST['like'];
     $counter = $like + 1 ;
-    $sql = "UPDATE group_topic SET topic_like = $counter where id = $id";
+    $like_dislike = 0;
+    $sql1 = "UPDATE group_topic SET topic_like = $counter where id = $id";
+    $sql = "INSERT INTO group_like (topic_id, user_id,like_dislike) VALUES ('$id','$user_id','$like_dislike')";
+    $result1 = $mysqli->query($sql1);
     $result = $mysqli->query($sql);
-    if($result){
+    if($result && $result1){
         echo $counter;
     } else {
         echo json_encode('faild');
@@ -104,11 +108,15 @@ function like($mysqli){
 }
 function dislike($mysqli){
     $id = $_REQUEST['id'];
+    $user_id = $_SESSION['userid'];
     $dislike = $_REQUEST['dislike'];
     $counter = $dislike + 1 ;
-    $sql = "UPDATE group_topic SET dislike = $counter where id = $id";
-    $result = $mysqli->query($sql);
-    if($result){
+    $like_dislike = 1;
+    $sql12 = "UPDATE group_topic SET dislike = $counter where id = $id";
+    $sql123 = "INSERT INTO group_like (topic_id, user_id,like_dislike) VALUES ('$id','$user_id','$like_dislike')";
+    $result123 = $mysqli->query($sql12);
+    $result12 = $mysqli->query($sql123);
+    if($result12 && $result123){
         echo $counter;
     } else {
         echo json_encode('faild');
