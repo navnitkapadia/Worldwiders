@@ -154,7 +154,7 @@
                         <?php } ?>
                         <?php
                         $j = 1;
-                        $sql12 = "SELECT e.id,e.event,e.created_at,e.description,u.fb_id from event e,users u where e.created_by= u.user_id and e.created_by = $uid or $uid in (e.user_id) and u.user_id in (e.user_id)";
+                        $sql12 = "SELECT e.id,e.event,e.created_at,e.description,u.fb_id from event e,users u where e.created_by= u.user_id and e.user_id LIKE '%$uid%' or e.created_by = $uid and u.user_id in (e.user_id) and e.user_id = u.user_id";
                         $result12 = $mysqli->query($sql12);
                         while ($row12 = $result12->fetch_assoc()) {
                             extract($row12);
