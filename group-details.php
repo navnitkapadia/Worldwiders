@@ -378,7 +378,7 @@
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="Website" class="pull-left">Website</label>
-                                        <input id="website" class="form-control input-group-lg" type="text" name="website" title="Website" placeholder="Website" value="" required="required"/>
+                                        <input id="website" class="form-control input-group-lg" type="text" name="website" title="Website" placeholder="Website" value=""/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -411,7 +411,7 @@
     <!--======================Page Container STOP====================================-->
     <?php include 'footer.php' ?>
     <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-    <div id="datepi"></div>
+    <div id="datepi"></div> 
 <script>
   $("#datepi").load("api/GetEventsDates.php?gid=<?php echo $group_Id; ?>");
 </script>

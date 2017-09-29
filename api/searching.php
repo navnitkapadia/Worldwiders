@@ -2,7 +2,7 @@
 
 require 'db_config.php';
 $moderetor = array();
-if (isset($_REQUEST['q'])) {
+if (isset($_REQUEST['q']) && $_REQUEST['q'] != "") {
     $que = $_REQUEST['q'];
     if ($que == "") {
         return;

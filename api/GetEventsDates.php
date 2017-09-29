@@ -17,6 +17,7 @@ echo "
 $('#datepicker').datepicker({
     onSelect: function(dateText) {
         $('.eventlist').load('api/filterEvent.php?date-select=' + dateText);
+        $('#getevents').load('api/getEvents.php?date-select=' + dateText);
     },
     beforeShowDay: function(date) {
         var highlight = eventDates[date];

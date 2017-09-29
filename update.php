@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $update = "update event set user_id=CONCAT(user_id, '$userId', ',') where id=" . $id . "";
     $result = $mysqli->query($update);
-    header('Location:events.php');
+    header("Location:event-details.php?id=$id");
 }
 
 if(isset($_GET['gid'])){

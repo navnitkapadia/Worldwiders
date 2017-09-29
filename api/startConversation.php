@@ -2,7 +2,7 @@
 session_start();
 $user = $_SESSION['userid'];
 require 'db_config.php';
-if (isset($_REQUEST['q'])) {
+if (isset($_REQUEST['q']) && $_REQUEST['q'] != "") {
     $que = $_REQUEST['q'];
     $sql = "SELECT f.*, u.fb_id,u.name,u.cover as ucover,u.oe as uoe FROM friend_list f, users u where f.friend_id=u.user_id and f.user_id = $user and u.name like '$que%'";
     $result = $mysqli->query($sql);

@@ -7,7 +7,12 @@
         <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
         <meta name="robots" content="index, follow" />
         <title>Events</title>
-
+        <style>
+.event a {
+    background-color: #5FBA7D !important;
+    color: #ffffff !important;
+}
+</style> 
 
     </head> 
     <body>
@@ -36,17 +41,11 @@
         <!--======================Page Container STOP====================================-->
 <?php include 'footer.php' ?>
 <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-<script>
-$(function() {
-  $("#datepicker").datepicker('show');
-});
+<div id="datepi"></div> 
 
+<script>
 $("#getevents").load("api/getEvents.php");
-$("#datepicker").datepicker({
-  onSelect: function(dateText) {
-    $("#getevents").load("api/getEvents.php?date-select=" + dateText);
-  }
-});
+$("#datepi").load("api/GetEventsDates.php");
 </script>
     </body>
 </html>
