@@ -141,7 +141,7 @@
             		<h4>Events</h4>
             		<div id="datepicker" class="calendar"></div>
             		<div class="suggestions" id="sticky-sidebar">
-					  <div class="follow-user eventlist">
+					  <div class="follow-user">
 					  </div>
 					  <h4>People in the group</h4>
 					  
@@ -202,7 +202,11 @@
                         </div> -->
 
             <!-- Post Content
-            ================================================= -->		
+            ================================================= -->
+                    <div class="post-content">
+                        <div class="follow-user eventlist">
+                        </div>
+                    </div>
                             <?php
                             $sql = "SELECT gt.topic, gt.created_at, gt.id as gt_id, gt.group_id as gID, gt.topic_like, gt.dislike, u.fb_id, u.name, u.role_id, gt.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and gm.user_id = $user and u.user_id = gt.user_id and pg.id = $group_Id";
                             $result = $mysqli->query($sql);

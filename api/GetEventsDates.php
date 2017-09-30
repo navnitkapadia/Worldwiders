@@ -13,6 +13,7 @@ while($row = $result->fetch_assoc()){
     $formated =  date("m-d-y", strtotime($start_date));
     echo "eventDates[ new Date( '$formated' )] = new Date( '$formated' ) \n";
 }
+if($sql == "SELECT start_date FROM event"){
 echo "
 $('#datepicker').datepicker({
     onSelect: function(dateText) {
@@ -29,5 +30,24 @@ $('#datepicker').datepicker({
         }
     }
 }); \n";
-echo "</script>"
+echo "</script>";
+} else {
+    echo "
+$('#datepicker').datepicker({
+    onSelect: function(dateText) {
+        $('.eventlist').load('api/groupfilterEvent.php?date-select=' + dateText);
+        $('#getevents').load('api/getEvents.php?date-select=' + dateText);
+    },
+    beforeShowDay: function(date) {
+        var highlight = eventDates[date];
+        
+        if( highlight ) {
+             return [true, 'event', 'Tooltip text'];
+        } else {
+             return [true, '', ''];
+        }
+    }
+}); \n";
+echo "</script>";
+}
 ?>

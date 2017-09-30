@@ -6,9 +6,9 @@ if(isset($_REQUEST['date-select'])){
     $now = $current->format('Y-m-d');
     $select = date('Y-m-d', strtotime($_REQUEST['date-select']));
     if($now < $select){
-        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by";
-    } else {
         $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date <= '$select' and u.user_id = e.created_by";
+    } else {
+        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by";
     }   
 } else {
     $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where u.user_id = e.created_by";

@@ -137,7 +137,7 @@
                             }
                             ?>
                             <?php
-                            $sql = "SELECT e.user_id as user FROM event e where e.id='" . $event_Id . "'";
+                            $sql = "SELECT e.start_date as edate,e.user_id as user FROM event e where e.id='" . $event_Id . "'";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 extract($row);
@@ -147,7 +147,13 @@
                                 } elseif ($flage == 2) {
                                      
                                 } else {
-                                    echo '<a href="update.php?id=' . $event_Id . '"<button type="button" class="btn btn-info">Join</button></a>';
+                                    $current = new DateTime();
+                                    $now = $current->format('Y-m-d');
+                                    if($now < $edate) {
+                                        echo '<a href="update.php?id=' . $event_Id . '"><button type="button" class="btn btn-info">Join</button></a>';
+                                    } else {
+                                        
+                                    }
                                 }
                                 ?>
                                 <div class="follow-user">
