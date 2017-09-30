@@ -36,13 +36,13 @@ function eventpost($mysqli){
 
 function comment($mysqli){
     $event = $_REQUEST['id'];
-    $com = "SELECT event_comment.comment,users.fb_id from event_comment,users where event_comment.event_id=$event and event_comment.user_id = users.user_id";
+    $com = "SELECT event_comment.comment,users.fb_id,users.name from event_comment,users where event_comment.event_id=$event and event_comment.user_id = users.user_id";
     $result1 = $mysqli->query($com);
     $array = array();
     $i = 0;
     while ($row1 = $result1->fetch_assoc()) {
         extract($row1);
-        echo "<p id='comment'><img src='http://graph.facebook.com/$fb_id/picture?type=large' alt='' class='profile-photo-sm' />&nbsp;&nbsp;$comment</p>";
+        echo "<p id='comment'><img src='http://graph.facebook.com/$fb_id/picture?type=large' alt='' class='profile-photo-sm' />&nbsp;<a class='profile-link'>$name</a>&nbsp;&nbsp;$comment</p>";
     }
 }
 
