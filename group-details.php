@@ -305,15 +305,15 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div class="block-title">
-                                <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i> Add Topic</h4>
+                                <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i> Add Post</h4>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <form name="basic-info" id="basic-info" class="form-inline" action="post.php?id=<?php echo $group_Id; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="form-group col-xs-12">
-                                        <label for="title" class="pull-left">Topic Name</label>
-                                        <input id="topic-name" class="form-control input-group-lg" type="text" name="topic-name" title="Topic Name" placeholder="Topic Name" required="required" />
+                                        <label for="title" class="pull-left">Post Name</label>
+                                        <input id="topic-name" class="form-control input-group-lg" type="text" name="topic-name" title="Post Name" placeholder="Post Name" required="required" />
                                     </div>
                                 </div>
                                 <div class="row">
