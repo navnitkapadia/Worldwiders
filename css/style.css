@@ -1089,7 +1089,7 @@ ul.online-users li span.online-dot{
 }
 
 .follow-user{
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .follow-user div{
@@ -1167,6 +1167,7 @@ ul.online-users li span.online-dot{
   margin-bottom: 20px;
   overflow: hidden;
   position: relative;
+  padding: 10px;
 }
 
 .post-content img.post-image, video.post-video, .google-maps{

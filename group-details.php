@@ -388,7 +388,7 @@
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="max-member" class="pull-left">No of guests Allowed</label>
-                                        <input class="form-control input-group-lg" type="text" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" required="required"/>
+                                        <input class="form-control input-group-lg" type="number" id="max-member" name="max-member" title="No of guests Allowed" placeholder="No of guests Allowed" value="" required="required"/>
                                     </div>
                                 </div>
                                 <div class="row">

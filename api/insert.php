@@ -26,9 +26,11 @@ function make_group($mysqli){
   $mo_name = $_REQUEST['moname'];
   $moderator = $_REQUEST['moderator'];
   if(!$id){
-    $sql="UPDATE peoples_group SET title=''$title',`description`='$description',`file`= '$group_image',`admin_id`=$userid ,`moderator_id`=$moderator,`mo_name`='$mo_name' WHERE id=$id";
+    $sql="UPDATE peoples_group SET title=''".addslashes($title)."',`description`='".addslashes($description)."',`file`= '$group_image',`admin_id`=$userid ,`moderator_id`=$moderator,`mo_name`='$mo_name' WHERE id=$id";
   }else{
-    $sql = "INSERT INTO peoples_group (title,description,file,admin_id,moderator_id,mo_name) VALUES ('$title','$description','$group_image',$userid,$moderator,'$mo_name')";
+    $sql = "INSERT INTO peoples_group (title,description,file,admin_id,moderator_id,mo_name) 
+    
+    VALUES ('".addslashes($title)."','".addslashes($description)."','$group_image',$userid,$moderator,'$mo_name')";
   }
   
   $result = $mysqli->query($sql);
@@ -57,13 +59,13 @@ function new_event($mysqli){
   $event_image = file_upload();
 
   $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,gruop_id) 
-                    VALUES ('$evname','$locname','$locadd','$website','$event_image','$description',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";
+                    VALUES ('".addslashes($evname)."','".addslashes($locname)."','".addslashes($locadd)."','$website','$event_image','".addslashes($description)."',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";                
   $result = $mysqli->query($sql);
   if ($result) {
-        header('Location:../group-details.php?id=1');
+        header("Location:../group-details.php?id=$group_id");
         exit;
   } else {
-      header('Location:../home.php?msg=failed');
+      header("Location:../home.php?msg=$sql");
       exit;
   }
 }
