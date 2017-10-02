@@ -82,7 +82,7 @@
                         $uid = $_SESSION['userid'];
                         $i = 1;
                         $login_id = $_SESSION['fbid'];
-                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id as gt_id, gt.created_at, gt.topic_like, gt.dislike, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid";
+                        $sql = "SELECT gt.topic,gt.description as tdesc, gt.id as gt_id, gt.created_at, gt.topic_like, gt.dislike, gt.group_id as gID, u.fb_id, u.name, pg.description from group_topic gt, peoples_group pg, group_member gm, users u where gt.group_id = pg.id and gm.group_id = gt.group_id and u.user_id = gt.user_id and gm.user_id = $uid order by gt.id desc";
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
@@ -144,7 +144,7 @@
                                             <div class="post-comment">
                                                 <img src="<?php echo "http://graph.facebook.com/$login_id/picture"; ?>" alt="" class="profile-photo-sm" />
                                                 <input type="text" class="form-control" id="desc-<?php echo $i; ?>" placeholder="Post a comment">
-                                                <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $group_id; ?>,<?php echo $gt_id; ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
+                                                <input type="button" name="comment" id="comment-<?php echo $i; ?>" onclick="post(<?php echo $gID; ?>,<?php echo $gt_id; ?>,<?php echo $i; ?>);" class="btn btn-primary pull-right" value="Publish">
                                             </div>
                                             <?php $i++; ?>
                                         <?php } ?>
