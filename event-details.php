@@ -78,7 +78,7 @@
                             ?>
                             <div class="details">
                                 <div class="img-wrapper">
-                                    <img src="upload/<?php echo $file; ?>" style="max-height: 300px" alt="" class="img-responsive post-image" />
+                                    <img src="upload/<?php echo $file; ?>"  alt="" class="img-responsive post-image" />
                                 </div>
                                 <h3><?php echo $event; ?></h3>
                                 <p><strong><?php echo date('d.m.Y , l', strtotime($start_date)); ?> Starting from:  <?php echo $start_time; ?></strong></p>

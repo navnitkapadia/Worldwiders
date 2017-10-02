@@ -29,10 +29,8 @@
 
                         <!-- Media
                         ================================================= -->
-                        <div class="media">
-                            <div id="getevents" class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
-
-                            </div>
+                        <div id="getevents" class="media">
+                            
                         </div>
                     </div>
                 </div>

@@ -6,15 +6,20 @@ if(isset($_REQUEST['date-select'])){
     $now = $current->format('Y-m-d');
     $select = date('Y-m-d', strtotime($_REQUEST['date-select']));
     if($now < $select){
-        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date <= '$select' and u.user_id = e.created_by";
-    } else {
         $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by";
+        echo "<h1>Upcoming Events</h1>";
+    } else {
+        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date <= '$select' and u.user_id = e.created_by";
+        echo "<h1>Past Events</h1>";
     }   
 } else {
     $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where u.user_id = e.created_by";
+    echo "<h1>Upcoming Events</h1>";
 }
- $result = $mysqli->query($date);
 
+ $result = $mysqli->query($date);
+ echo  "<div class='row js-masonry' data-masonry='{ 'itemSelector': '.grid-item', 'columnWidth': '.grid-sizer', 'percentPosition': true }'>";
+ echo "<div class='grid-sizer'></div>";
  while($row = $result->fetch_assoc()){
     extract($row);
 
@@ -43,10 +48,11 @@ if(isset($_REQUEST['date-select'])){
    } else {
        $src = 'images/post-images/6.jpg';
    }
-  echo  "<div class='grid-item col-md-4 col-sm-4'>
+  
+    echo  "<div class='grid-item col-md-4 col-sm-4'>
   <div class='media-grid'>
       <div class='img-wrapper'>
-          <img style='width:242px;' src=$src alt='Group image' class='img-responsive post-image' />
+          <img style='width:242px;height:242px;' src=$src alt='Group image' class='img-responsive post-image' />
       </div>
       <div class='media-info'>
           <div class='reaction'>
@@ -64,5 +70,5 @@ if(isset($_REQUEST['date-select'])){
   </div>
 </div>";
  }
-
+echo "</div>"
 ?> 
