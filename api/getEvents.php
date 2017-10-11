@@ -1,19 +1,19 @@
 <?php 
 require 'db_config.php';
 session_start();
+$current = new DateTime();
+$now = $current->format('Y-m-d');
 if(isset($_REQUEST['date-select'])){
-    $current = new DateTime();
-    $now = $current->format('Y-m-d');
     $select = date('Y-m-d', strtotime($_REQUEST['date-select']));
     if($now < $select){
-        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by";
+        $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by order by start_date";
         echo "<h1>Upcoming Events</h1>";
     } else {
         $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date <= '$select' and u.user_id = e.created_by";
         echo "<h1>Past Events</h1>";
     }   
 } else {
-    $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where u.user_id = e.created_by";
+    $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where u.user_id = e.created_by and start_date >= '$now'";
     echo "<h1>Upcoming Events</h1>";
 }
 

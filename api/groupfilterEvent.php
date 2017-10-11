@@ -3,9 +3,10 @@
 require 'db_config.php';
 session_start();
 $user = $_SESSION['userid'];
+$id = $_REQUEST['id'];
 if(isset($_REQUEST['date-select'])){
 $select = date('Y-m-d', strtotime($_REQUEST['date-select']));    
-$eventsql = "SELECT * FROM event where start_date = '$select'";
+$eventsql = "SELECT * FROM event where start_date = '$select' and gruop_id = $id";
 $eventresult = $mysqli->query($eventsql);
 echo "<h4>Event</h4>";
 $number_of_rows = mysqli_num_rows($eventresult);

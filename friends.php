@@ -90,7 +90,7 @@
                           }
                       }
                      } else {
-                       echo "<li><a href='edit-profile.php'><button class='btn-primary'>Edit friend</button></a></li>";
+                       echo "<li><a href='edit-profile.php'><button class='btn-primary'>Edit Profile</button></a></li>";
                      }      
                     ?>
                   </ul>

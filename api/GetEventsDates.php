@@ -1,5 +1,6 @@
 <?php 
 require 'db_config.php';
+$id = $_REQUEST['gid'];
 if(isset($_REQUEST['gid'])){
      $gid = $_REQUEST['gid'];
     $sql = "SELECT start_date FROM event where gruop_id  = $gid"; 
@@ -35,7 +36,7 @@ echo "</script>";
     echo "
 $('#datepicker').datepicker({
     onSelect: function(dateText) {
-        $('.eventlist').load('api/groupfilterEvent.php?date-select=' + dateText);
+        $('.eventlist').load('api/groupfilterEvent.php?date-select=' + dateText+'&id='+$id);
         $('#getevents').load('api/getEvents.php?date-select=' + dateText);
     },
     beforeShowDay: function(date) {
