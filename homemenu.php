@@ -1,29 +1,22 @@
     <!-- Newsfeed Common Side Bar Left
           ================================================= -->
           <?php 
-          $fb_id=$_SESSION['fbid'];
+
           $fname=$_SESSION['fname'];
           $lname=$_SESSION['lname'];
+		 
           ?>
-        <div class="profile-card">
-            <img src=<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="user" class="profile-photo" />
-            <h5><a href="profile.php" class="text-white"><?php echo $fname; ?>&nbsp;<?php echo $lname; ?></a></h5>
-            <?php 
-                $sql = "SELECT count(*) as dost FROM friend_list where user_id = '".$_SESSION['userid']."'";
-                $result = $mysqli->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                    extract($row);
-            ?>
-            <a href="friends.php" class="text-white"><i class="ion ion-android-person-add"></i><?php echo $dost; ?> friends</a>
-            <?php } ?>
-        </div><!--profile card ends-->
-    <ul class="nav-news-feed">
-        <li><i class="icon ion-ios-paper"></i><div><a href="home.php">My Newsfeed</a></div></li>
-        <li><i class="icon ion-ios-people"></i><div><a href="groups.php">Groups</a></div></li>
-        <li><i class="icon ion-android-bar"></i><div><a href="events.php">Events</a></div></li>
-        <li><i class="icon ion-ios-people-outline"></i><div><a href="friends.php">Friends</a></div></li>
-        <li><i class="icon ion-chatboxes"></i><div><a href="messages.php">Messages</a></div></li>
-        <li><i class="icon ion-log-out"></i><div><a href="logout.php">logout</a></div></li>
 
-    </ul><!--news-feed links ends-->
     
+    <div class="page-header" id="banner">
+					<h1>Welcome</h1>
+					<p class="lead"><?php echo $fname; ?>&nbsp;<?php echo $lname; ?></p>
+					<div class="list-group table-of-contents">
+					  <a class="list-group-item" href="home.php"><i class="fa fa-bullhorn icon" aria-hidden="true"></i>News feed</a>
+					  <a class="list-group-item" href="groups.php"><i class="fa fa-group icon" aria-hidden="true"></i>Groups</a>
+					  <a class="list-group-item" href="events.php"><i class="fa fa-calendar icon" aria-hidden="true"></i>Events</a>
+					  <a class="list-group-item" href="friends.php"><i class="fa fa-user icon" aria-hidden="true"></i>Friends</a>
+					  <a class="list-group-item" href="messages.php"><i class="fa fa-comments-o icon" aria-hidden="true"></i>Messenger</a>
+					  <a class="list-group-item" href="profile.php"><i class="fa fa-wrench icon" aria-hidden="true"></i>My profile</a>
+					</div>
+				</div>

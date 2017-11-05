@@ -34,98 +34,32 @@
     <body>
         <?php include 'header.php' ?>    
         <!--======================Page Container START===================================-->
- 
-        <div id="page-contents">
-            <div class="container">
-                <div class="row">
-                    
-                    <!-- Newsfeed Common Side Bar Left
-                    ================================================= -->
-                    <div class="col-md-3 static">
-                        <h4 style="margin-bottom: 30px;">Event organised by:</h4>
-                        <div class="profile-card">
-                            <?php
-                            $addofmap  = "";
-                            $Login_Id = $_SESSION['userid'];
+			    <div class="container">
+		<div class="row">
+        	<div class="col-lg-3 col-md-3 col-sm-4">
+			 <?php include 'homemenu.php' ?>
+     		</div>
+			 
+                          <?php
+						  $Login_Id = $_SESSION['userid'];
                             $login = $_SESSION['fbid'];
                             $event_Id = $_GET['id'];
-                            $sql = "SELECT e.location_address,e.created_by,u.name,u.fb_id FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
-                            $result = $mysqli->query($sql);
-                            while ($row = $result->fetch_assoc()) {
-                                extract($row);
-                                $addofmap = $location_address;
-                                ?>
-                                <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="user" class="profile-photo" />
-                                <h5><a href="friends.php" class="text-white"><?php echo $name; ?></a></h5>
-                                <?php 
-                                    $sql = "SELECT count(*) as dost FROM friend_list where user_id = $created_by";
-                                    $result = $mysqli->query($sql);
-                                    while ($row = $result->fetch_assoc()) {
-                                    extract($row);
-                                ?>
-                                <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> <?php echo $dost; ?>&nbsp; followers</a>
-                                <?php } ?>
-                            <?php } ?>
-                        </div><!--profile card ends-->
-
-                    </div>
-                    <div class="col-md-7">
-                        <?php
                         $sql = "SELECT e.* FROM event e where e.id='" . $event_Id . "'";
+						
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
                             ?>
-                            <div class="details">
-                                <div class="img-wrapper">
-                                    <img src="upload/<?php echo $file; ?>"  alt="" class="img-responsive post-image" />
-                                </div>
-                                <h3><?php echo $event; ?></h3>
-                                <p><strong><?php echo date('d.m.Y , l', strtotime($start_date)); ?> Starting from:  <?php echo $start_time; ?></strong></p>
-                                <p><strong><?php echo $description; ?></strong></p>
-                            <?php } ?>    
-                            
-                        </div>
-
-                        <!-- Nearby People List
-                        ================================================= -->
-                        <div class="people-nearby">
-                            <div class="google-maps">
-                                <div id="map" class="map"></div>
-                            </div>
-                        </div>
-
-
-                        <!-- Post Create Box
-                        ================================================= -->
-                        <div class="create-post">
-                            <br>
-                            <div class="row">
-                                <p id="comment"></p> 
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="form-group">
-                                        <img src="<?php echo "http://graph.facebook.com/$login/picture?type=large"; ?>" alt="" class="profile-photo-md" />
-                                        <textarea name="texts" id="texts" cols="50" rows="1" class="form-control texts" placeholder="Write what you wish"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2">
-                                    <div class="tools">
-                                        <button name="post" id="<?php echo $event_Id; ?>" class="btn btn-primary pull-right post">Publish</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- Post Create Box End -->
-
-                    </div>
-
-
-
-                    <!-- Newsfeed Common Side Bar Right
-                    ================================================= -->
-                    <div class="col-md-2 static">
-                        <div class="suggestions" id="sticky-sidebar">
-                            <h4 class="grey">Who will go</h4>
-                            <?php
+                      
+							
+     		<div class="col-lg-7 col-md-7 col-sm-5" id="page-content">
+				  <div class="bs-docs-section clearfix no-margin">
+					<div class="row">
+					  <div class="col-lg-12 event-detail">
+					  	<div class="row signup">
+					  		<div class="col-lg-8 decision">
+							I will: 
+							<?php
                             $flage = 0;
                             $sql = "SELECT e.created_by as user FROM event e where e.id='" . $event_Id . "'";
                             $result = $mysqli->query($sql);
@@ -136,7 +70,7 @@
                                 }
                             }
                             ?>
-                            <?php
+							<?php
                             $sql = "SELECT e.start_date as edate,e.user_id as user FROM event e where e.id='" . $event_Id . "'";
                             $result = $mysqli->query($sql);
                             while ($row = $result->fetch_assoc()) {
@@ -150,53 +84,173 @@
                                     $current = new DateTime();
                                     $now = $current->format('Y-m-d');
                                     if($now < $edate) {
-                                        echo '<a href="update.php?id=' . $event_Id . '"><button type="button" class="btn btn-info">Join</button></a>';
+                                        echo '<a href="update.php?id=' . $event_Id . '"><button type="button" class="btn btn-success">GO</button></a>';
                                     } else {
                                         
                                     }
                                 }
+							}
                                 ?>
-                                <div class="follow-user">
-                                    <?php
+							
+							<!-- <a href="#" class="btn btn-success">Go</a> <a href="#" class="btn btn-danger">Can't go</a> -->
+							</div>
+							<!--
+							<div class="col-lg-4">
+								<a href="#" class="btn btn-info">I'm interested</a>
+							</div>
+							-->
+					  	</div>
+						<h1><?php echo $event; ?></h1>
+						<div class="col-sm-12">
+					  	  <div class="cover-image" style="background-image: url('upload/<?php echo $file; ?>')"></div>
+						  <div class="row details">
+						  		<div class="col-sm-6">
+						  			<div class="col-sm-3"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></div>
+									<div class="col-sm-9 txt"><?php echo date('d.m.Y , l', strtotime($start_date)); ?>-<?php echo $start_time; ?></div>
+						  		</div>
+						  		<div class="col-sm-6">
+						  			<div class="col-sm-3"><i class="fa fa-map-o fa-2x" aria-hidden="true"></i></div>
+									<div class="col-sm-9 txt"><a href="#"><?php echo $location_address; ?></a></div>
+						  		</div>
+						  		<div class="col-sm-6 margin-10">
+						  			<div class="col-sm-3"><i class="fa fa-ticket fa-2x" aria-hidden="true"></i></div>
+									<div class="col-sm-9 txt">25.00 CHF Entrance fee</div>
+						  		</div>
+						  		<div class="col-sm-6 margin-10">
+						  			<div class="col-sm-3"><i class="fa fa-group fa-2x" aria-hidden="true"></i></div>
+									<div class="col-sm-9 txt">Guests: <?php $add = explode(",", $user_id);
+										echo count($add); ?> / <?php echo $max_limit; ?></div>
+						  		</div>
+						  </div>
+						  <p><?php echo $description; ?></p>
+						  
+						  <div class="row guests">
+						  	<h3>Attendees</h3>
+						  	<ul>
+							<?php 
+							
+							$add = explode(",", $user_id);
+							
                                     for ($i = 0; $i < count($add); $i++) {
                                         $sql = "SELECT u.user_id,u.name,u.fb_id FROM users u where u.user_id='" . $add[$i] . "'";
                                         $result = $mysqli->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                             extract($row);
-                                            ?>
-                                            <img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=large"; ?>" alt="" class="profile-photo-sm pull-left" />
-                                            <div>
-                                                <h5><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></h5>
-                                                <?php
-                                                    $event1 = array();
-                                                    $select = "SELECT friend_id from friend_list where user_id = '".$_SESSION['userid']."'";
-                                                    $result = $mysqli->query($select);
-                                                    while($row = $result->fetch_assoc()){
-                                                        extract($row);
-                                                        $event1[] = $friend_id;
+                                                       echo "<li class='user-round' title='$name' >
+									<a href='profile.php?id=$user_id'>
+										<img src='http://graph.facebook.com/$fb_id/picture?type=small'/>
+									</a>
+								</li>";
                                                     }
-                                                    if(in_array($add[$i], $event1)){
-                                                ?>
-                                                <a href="messages.php?friendid=<?php echo $user_id; ?>" class="text-green">Message</a>
-                                                <?php } elseif($_SESSION['userid'] == $add[$i]){ ?>
-                                                <a href="#" class="text-green"></a>
-                                                <?php } else { ?>
-                                                <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="text-green">Add friend</a>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                }
+                                                   
+										}
+									
+							    ?>
+						  		
+						  	
+							
+							
+							</ul>
+						  </div>
+						  
+						</div>
+					  </div>
+					</div>
+				  </div>
+
+				  <footer>
+					<div class="row">
+					  <div class="col-lg-12">
+						<ul class="list-unstyled">
+						  <li class="pull-right"><a href="#top">Back to top</a></li>
+						  <li><a href="#">About</a></li>
+						  <li><a href="#">Advertise</a></li>
+						  <li><a href="#">Privacy Policy / Terms</a></li>
+						  <li><a href="#">Support / Contact</a></li>
+						</ul>
+						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+					  </div>
+					</div>
+
+				</footer>
+    		</div>
+			
+			<?php } ?>  
+			
+			
+    		<div class="col-lg-2 col-md-2 col-sm-3">
+    			<div id="right-content" class="right-content">
+					<div class="row">
+						<div class="col-sm-12 organised">
+							<h3>Organised by</h3>
+							<?php
+                            $addofmap  = "";
+                            $Login_Id = $_SESSION['userid'];
+                            $login = $_SESSION['fbid'];
+                            $event_Id = $_GET['id'];
+                            $sql = "SELECT u.user_id, e.location_address,e.created_by,u.name,u.fb_id FROM event e,users u where e.id='" . $event_Id . "' and e.created_by=u.user_id";
+                            $result = $mysqli->query($sql);
+                            while ($row = $result->fetch_assoc()) {
+                                extract($row);
+                                $addofmap = $location_address;
+                                ?>
+							<div class="people-item">
+								<div class="col-sm-3 image"><img src="<?php echo "http://graph.facebook.com/$fb_id/picture?type=small"; ?>" class="img-responsive img-circle" /></div>
+								<div class="col-sm-9">
+									<p class="user"><a href="#"><?php echo $name; ?></a></p>
+									<?php
+                            $inlist = array();
+							$sessinUser = $_SESSION['userid'];
+                            $list = "SELECT friend_id as fb FROM friend_list where user_id = $user_id";
+                            $resultlist2 = $mysqli->query($list);
+                            while ($row2 = $resultlist2->fetch_assoc()) {
+                                extract($row2);
+                                $inlist[] = $fb;
                             }
+								if($sessinUser !== $user_id){
+								if (!in_array($sessinUser, $inlist)) {
+                                        ?>
+									<p><a href="profile.php?id=<?php echo $user_id;?>" class='btn btn-info'>Add friend</a></p>
+									
+									
+									<?php
+                                    }else { ?> 
+									<p><a href="messages.php?id=<?php echo base64_encode($user_id);?>" class='btn btn-info'>Message</a></p>
+									
+								  <?php }
+								  
+								} else { ?>
+								<a class='btn btn-info'>It's me</a>
+								<?php }
+								
+								
+							
+                                    
+                           
                             ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+								</div>
+							</div>
+							
+                            <?php } ?>
+							<div class="mini-calendar">
+								<!-- <h3>Events calendar</h3>
+								<div class="calendar">
+									<div id="datepicker"></div>
+								</div> -->
+					  		</div>
+							
+						</div>
+					</div>
+   					<div class="row">
+   						<div class="col-sm-12">
+   							<div class="banner-example">A banner here</div>
+   						</div>
+   					</div>
+    			</div>
+			</div>
+		</div>
+	</div>
         <!--======================Page Container STOP====================================-->
         <?php include 'footer.php' ?>
         <script>

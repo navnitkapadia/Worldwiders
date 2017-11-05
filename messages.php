@@ -29,28 +29,21 @@
 	</head>
   <body>
     <?php include 'header.php' ?>
-    <div id="page-contents">
-    	<div class="container">
-    		<div class="row">
-
-    			<!-- Newsfeed Common Side Bar Left
-          ================================================= -->
-    			<div class="col-md-3 static">
-            <?php include 'homemenu.php' ?>
-            <div id="chat-block">
-              <div class="title">Chat online</div>
-              <ul id="online-users-is" class="online-users list-inline">
-                
-              </ul>
-            </div><!--chat block ends-->
-          </div>
-    			<div class="col-md-9">
-
-            <!-- Chat Room
-            ================================================= -->
-            <div class="chat-room">
-              <div  class="row">
-                <div class="col-md-5">
+ 
+    <div class="container">    
+		<div class="row">
+        	<div class="col-lg-3 col-md-3 col-sm-4">
+			 <?php include 'homemenu.php' ?>
+     		</div>
+     		<div class="col-lg-9 col-md-9 col-sm-7" id="page-content">
+				  <div class="bs-docs-section clearfix">
+				  	<div class="row chat-room">
+				  		<div class="col-md-12">
+				  			<h1>Messenger</h1>
+						</div>
+				  		
+			  		
+			  		<div class="col-md-5">
                   <ul  class="nav nav-tabs contact-list chat-message" style="overflow-x: hidden;">
                   <?php
                if(isset($_REQUEST['id'])){
@@ -92,13 +85,11 @@
           FROM users U,conversation C, conversation_reply R
           WHERE 
           CASE
-
           WHEN C.user_one = '$user'
           THEN C.user_two = U.user_id
           WHEN C.user_two = '$user'
           THEN C.user_one= U.user_id
           END
-
           AND 
           C.time=R.time
           AND
@@ -112,9 +103,7 @@
     {
       
       extract($row);
-
           $count++;
-
           ?>
                   <!-- Contact List in Left-->
                     <li class="<?php if($count==1){echo 'active'; } ?>">
@@ -178,13 +167,33 @@
                   </div><!--Chat Messages in Right End-->
 					  
                 </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
+				  		
+				  		
+				  		
+				  		
+				  	</div>
+				</div>
+
+				  <footer>
+					<div class="row">
+					  <div class="col-lg-12">
+
+						<ul class="list-unstyled">
+						  <li class="pull-right"><a href="#top">Back to top</a></li>
+						  <li><a href="#">About</a></li>
+						  <li><a href="#">Advertise</a></li>
+						  <li><a href="#">Privacy Policy / Terms</a></li>
+						  <li><a href="#">Support / Contact</a></li>
+						</ul>
+						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+					  </div>
+					</div>
+
+				</footer>
     		</div>
-    	</div>
-    </div>
+		</div>
+	</div>
 
   <?php include 'footer.php' ?>
   <script src="js/messages.js"></script> 

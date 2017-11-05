@@ -28,173 +28,176 @@
             $position = $_POST['position'];
             $sql = "update users set first_name='" . $fname . "',last_name='" . $lname . "',about='" . $about . "',birth_date='" . $birth_date . "',email='" . $email . "',nationality='" . $nationality . "',location='" . $location . "',position='".$position."' where user_id=" . $_SESSION['userid'];
             $result = $mysqli->query($sql);
-            header('Location:profile.php');
+            header('Location:edit-profile.php');
         }
         ?>  
         <!--======================Page Container START===================================-->
 
-        <div class="container">
-            <?php
-            $user = $_SESSION['fbid'];
-            $sql = "SELECT * FROM users where fb_id = $user";
-            $result = $mysqli->query($sql);
-            while ($row = $result->fetch_assoc()) {
-                extract($row);
-                $pa = $cover . '&oe=' . $oe;
-                ?>
-                <!-- Timeline
-                ================================================= -->
-                <div class="timeline">
-                    <div class="timeline-cover" <?php if ($cover != "") {
-                echo "style='background-image: url($pa)';";
-            } ?>>
+ <div class="container profile">
+		<?php
+		  $add = "";
+		  $user = $_SESSION['userid'];
+		  if(isset($_REQUEST['id'])){
+			$see = $_REQUEST['id'];
+			
+			$sql = "SELECT * FROM users where user_id = $see";
+		  }else {
+			$sql = "SELECT * FROM users where user_id = $user";
+		  }
+		  $result = $mysqli->query($sql);
+		  while($row = $result->fetch_assoc())
+		  {
+			extract($row);
+			$pa = $cover.'&oe='.$oe;
+		  ?>
+			    
+    	<div class="cover"  <?php if($cover !=""){ echo "style='background-image: url($pa)';";} ?>></div>
+    
+		<div class="row">
+        	<div class="col-lg-3 col-md-3 col-sm-4">
+			  <?php include 'homemenu.php' ?>
+     		</div>
+			 
+     		<div class="col-lg-7 col-md-7 col-sm-5" id="page-content">
+			 <form name="basic-info" method="post" id="basic-info" class="form-inline">
+				  <div class="bs-docs-section clearfix">
+				  	<div class="row your-header">
+				  		<div class="col-sm-3">
+				  			<img src=<?php echo  "http://graph.facebook.com/$fb_id/picture?type=large"; ?> alt="" class="img-fluid profile-photo">
+						</div>
+						<div class="col-sm-6">
+							<h1><?php echo $name; ?></h1>
+							<input type="text" id="position" name="position" placeholder="Enter your position"  value="<?php echo $position; ?>" />
+							
+							
+						</div>
+						<div class="col-sm-3">
+						<?php 
+						if(isset($see)){ 
+                      $sql1 = "SELECT COUNT(*) as cn FROM friend_list WHERE user_id= $user and friend_id=$see";
+                      $result1 = $mysqli->query($sql1);
+                      while ($row = $result1->fetch_assoc()) {
+                          extract($row);
+                          if($cn==1){
+                            echo "<a href='messages.php?id=<?php echo base64_encode($see);?>'><button class='btn btn-success'>Message</button></a>";
+                          } else {
+                            echo "<a href='api/insert.php?action=addfriend&friendid=$user_id'><button class='btn btn-success'>Add friend</button></a>";
+                          }
+                      }
+                     }
+						?>
+						
+							
+							
+						</div>
+					</div>
+					<div class="row infos">
+					  <div class="col-lg-9">
+						<h2><i class="fa fa-user-circle-o icon" aria-hidden="true"></i> Personal Information</h2>
+						<p>
+						
+						 <textarea id="my-info" name="information" style="width: 500px;" class="form-control" placeholder="Some texts about me" rows="4" cols="150"><?php echo $about; ?></textarea></p>
+					<button class="btn btn-success" name="edit_profile">Save Changes</button>
+					  </div>
+					  <div class="col-lg-3">
+					  	<h2><i class="fa fa-heart-o icon" aria-hidden="true"></i> Interest</h2>
+						<ul id="interests" class="interests list-inline">
+						</ul>
+						 <input id="newadd" type="hidden" class="form-control input-group-lg"  placeholder="Enter Language">
+                       <input id="addint" class="formsu form-control input-group-lg"  placeholder="Enter Interests">
+						<h2><i class="fa fa-flag icon" aria-hidden="true"></i> Languages</h2>
+						 <ul id="lang">
+						  </ul>
+						   <input id="addlang" class="form-control input-group-lg"  placeholder="Enter Language">
+					  </div>  
+					</div>
+				</div>
+		  </form>
+				  <footer>
+					<div class="row">
+					  <div class="col-lg-12">
 
-                        <!--Timeline Menu for Large Screens-->
-                        <div class="timeline-nav-bar hidden-sm hidden-xs">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="profile-info">
-                                        <img src=<?php echo "http://graph.facebook.com/$user/picture?type=large"; ?> alt="" class="img-responsive profile-photo" />
-                                        <h3><?php echo $first_name . $last_name; ?></h3>
-                                        <!-- <p class="text-muted">Creative Director</p> -->
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <ul class="list-inline profile-menu">
-                                        <li><a href="profile.php" class="active">About</a></li>
-                                        <li><a href="friends.php">Friends</a></li>
-                                    </ul>
-                                    <ul class="follow-me list-inline">
-                                        <!-- <li>1,299 people following her</li> -->
-                                        <!--<li><a href="profile.php"><button class="btn-primary">View Profile</button></a></li>-->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--Timeline Menu for Large Screens End-->
+						<ul class="list-unstyled">
+						  <li class="pull-right"><a href="#top">Back to top</a></li>
+						  <li><a href="#">About</a></li>
+						  <li><a href="#">Advertise</a></li>
+						  <li><a href="#">Privacy Policy / Terms</a></li>
+						  <li><a href="#">Support / Contact</a></li>
+						</ul>
+						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
 
-                        <!--Timeline Menu for Small Screens-->
-                        <div class="navbar-mobile hidden-lg hidden-md">
-                            <div class="profile-info">
-                                <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
-                                <h4>Sarah Cruiz</h4>
-                                <p class="text-muted">Creative Director</p>
-                            </div>
-                            <div class="mobile-menu">
-                                <ul class="list-inline">
-                                    <li><a href="timline.html">Timeline</a></li>
-                                    <li><a href="timeline-about.html" class="active">About</a></li>
-                                    <li><a href="timeline-album.html">Album</a></li>
-                                    <li><a href="timeline-friends.html">Friends</a></li>
-                                </ul>
-                                <button class="btn-primary">Add Friend</button>
-                            </div>
-                        </div><!--Timeline Menu for Small Screens End-->
+					  </div>
+					</div>
 
-                    </div>
-                    <div id="page-contents">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-7">
+				</footer>
+    		</div>
+    		<div class="col-lg-2 col-md-2 col-sm-3">
+    			<div id="right-content" class="right-content">
+					<div class="row">
+						<div class="col-sm-12">
+							<h2>Connection</h2>
+							<?php 
+                     if(isset($see)){
+                       $sql = "SELECT count(*) as dost FROM friend_list where user_id = $see";
+                     } else {
+                      $sql = "SELECT count(*) as dost FROM friend_list where user_id = $user";
+                     }
+                        $result = $mysqli->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            extract($row);
+                     ?> 
+                      
+					  <p><?php echo $dost; ?> people are connected </p>
+                     <?php } ?>
+						
+							
+							<?php
+                            $inlist = array();
+                            $list = "SELECT friend_id as fb FROM friend_list where user_id = '" . $_SESSION['userid'] . "'";
+                            $resultlist2 = $mysqli->query($list);
+                            while ($row2 = $resultlist2->fetch_assoc()) {
+                                extract($row2);
+                                $inlist[] = $fb;
+                            }
+                            $userlis = "SELECT * FROM users where user_id != '" . $_SESSION['userid'] . "'";
+                            $resultlist1 = $mysqli->query($userlis);
+                            if (mysqli_num_rows($resultlist1) > 1) {
+                                while ($row = $resultlist1->fetch_assoc()) {
+                                    extract($row);
+                                    if (!in_array($user_id, $inlist)) {
+                                        ?>
+                            
+							<div class="people-item">
+								<div class="col-sm-3 image"><img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" class="img-responsive img-circle" /></div>
+								<div class="col-sm-9">
+									<p class="user"><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></p>
+                                    <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="btn btn-info">Add friend</a>
+								</div>
+							</div>
 
-                                <!-- Basic Information
-                                ================================================= -->
-                                <div class="edit-profile-container">
-                                    <div class="block-title">
-                                        <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Edit basic information</h4>
-                                        <!--<div class="line"></div>-->
-                                        <!--<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p>-->
-                                        <div class="line"></div>
-                                    </div>
-                                    <div class="edit-block">
-                                        <form name="basic-info" method="post" id="basic-info" class="form-inline">
-                                            <div class="row">
-                                                <div class="form-group col-xs-6">
-                                                    <label for="firstname">First name</label>
-                                                    <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="First name" value="<?php echo $first_name; ?>" />
-                                                </div>
-                                                <div class="form-group col-xs-6">
-                                                    <label for="lastname" class="">Last name</label>
-                                                    <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name" value="<?php echo $last_name; ?>" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12">
-                                                    <label for="email">My email</label>
-                                                    <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="My Email" value="<?php echo $email; ?>" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <p class="custom-label"><strong>Date of Birth</strong></p>
-                                                <div class="form-group col-sm-6 col-xs-12">
-                                                    <label for="date" class="sr-only"></label>
-                                                    <input type="date" class="form-control input-group-lg" id="birth" name="birth" value="<?php echo $birth_date; ?>">
-                                                </div>
-                                            </div>
-                                            <!-- <div class="form-group gender">
-                                                <span class="custom-label"><strong>I am a: </strong></span>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optradio" checked>Male
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optradio">Female
-                                                </label>
-                                            </div> -->
-                                            <div class="row">
-                                                <?php $city = explode(",", $location) ?>
-                                                <div class="form-group col-xs-6">
-                                                    <label for="city"> My city</label>
-                                                    <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="<?php echo $city[0]; ?>"/>
-                                                </div>
-                                                <div class="form-group col-xs-6">
-                                                    <label for="country">My country</label>
-                                                    <input id="country" class="form-control input-group-lg" type="text" name="country" title="Enter country" placeholder="Your country" value="<?php echo $nationality; ?>"/>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12">
-                                                    <label for="my-info">About me</label>
-                                                    <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"><?php echo $about; ?></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12">
-                                                    <label for="my-info">Profession</label>
-                                                    <input id="position" class="form-control input-group-lg" type="text" name="position" title="Enter Profession" placeholder="Your Profession" value="<?php echo $position ?>"/>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary" name="edit_profile">Save Changes</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 static about-profile">
-                                <div id="sticky-sidebar">
-                                    <div class="about-content-block">
-                                        <h4 class="grey"><i class="ion-ios-heart-outline icon-in-title"></i>Interests</h4>
-                                        <ul id="interests" class="interests list-inline">
-                                            
-                                        </ul>
-                                        <div class="form-group col-xs-12">
-                                            <input id="newadd" type="hidden" class="form-control input-group-lg"  placeholder="Enter Language">
-                                            <input id="addint" class="formsu form-control input-group-lg"  placeholder="Enter Interests">
-                                        </div>
-                                    </div>
-                                    <div class="about-content-block">
-                                        <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Language</h4>
-                                        <ul id="lang">
-                                            
-                                        </ul>
-                                        <div class="form-group col-xs-12">
-                                            <input id="addlang" class="form-control input-group-lg"  placeholder="Enter Language">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<?php } ?>
-        </div>
+
+                            <?php
+                                    }
+                                }
+                            }
+                            ?>
+							<div class="col-sm-12 text-center see-more">
+								<a href="friend.php" class="btn btn-info">See more</a>
+							</div>
+							
+							
+						</div>
+					</div>
+   					<div class="row">
+   						<div class="col-sm-12">
+   							<div class="banner-example">A banner here</div>
+   						</div>
+   					</div>
+    			</div>
+			</div>
+		</div>
+		<?php } ?>
+	</div>
         <!--======================Page Container STOP====================================-->
 <?php include 'footer.php' ?>
 <script>

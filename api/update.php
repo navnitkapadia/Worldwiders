@@ -15,6 +15,8 @@ function add_lang($mysqli){
     $userid = $_SESSION['userid'];
     $lang = $_REQUEST['lang'];
     $old_lang = $_REQUEST['oldlang'];
+
+    if($lang !== ""){
     if($old_lang == ""){
         $new = $lang;
     } else {
@@ -23,17 +25,22 @@ function add_lang($mysqli){
     $sql = "UPDATE users SET languages='$new' WHERE user_id = $userid"; 
     $result = $mysqli->query($sql);
 }
+}
 
 function add_intt($mysqli){
     $userid = $_SESSION['userid'];
     $int = $_REQUEST['int'];
     $oldint = $_REQUEST['oldint'];
-    if($oldint == ""){
-        $new = $int;
-    } else {
-        $new = $oldint.','.$int;
+    if($int !== ""){
+
+        if($oldint == ""){
+            $new = $int;
+        } else {
+            $new = $oldint.','.$int;
+        }
+        $sql = "UPDATE users SET interest_ids='$new' WHERE user_id = $userid"; 
+        $result = $mysqli->query($sql);
     }
-    $sql = "UPDATE users SET interest_ids='$new' WHERE user_id = $userid"; 
-    $result = $mysqli->query($sql);
+    
 }
 ?>

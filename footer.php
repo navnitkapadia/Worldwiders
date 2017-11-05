@@ -6,7 +6,7 @@
 
   <!-- Footer
     ================================================= -->
-    <footer id="footer">
+ <!--    <footer id="footer">
       <div class="container">
       	<div class="row">
           <div class="footer-wrapper">
@@ -54,17 +54,18 @@
       <div class="copyright">
         <p>© 2017 - 2018 Worldwide People. All rights reserved</p>
       </div>
-		</footer>
+		</footer> -->
             <!-- Scripts
 ================================================= -->
- 
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
 
 
   <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.sticky-kit.min.js"></script>
   <script src="js/jquery.scrollbar.min.js"></script>
-<script src="js/script.js"></script>
+ <script src="js/script.js"></script>
+  <script src="js/login.js"></script>
    <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
    <script src="js/login.js"></script> 
    <script src="js/typeahead.js"></script> 

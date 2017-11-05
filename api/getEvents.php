@@ -7,14 +7,14 @@ if(isset($_REQUEST['date-select'])){
     $select = date('Y-m-d', strtotime($_REQUEST['date-select']));
     if($now < $select){
         $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date >= '$select' and u.user_id = e.created_by order by start_date";
-        echo "<h1>Upcoming Events</h1>";
+        echo "<h3>Upcoming Events</h3>";
     } else {
         $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where start_date <= '$select' and u.user_id = e.created_by";
-        echo "<h1>Past Events</h1>";
+        echo "<h3>Past Events</h3>";
     }   
 } else {
     $date = "SELECT e.*,u.name,u.fb_id FROM event e, users u where u.user_id = e.created_by and start_date >= '$now'";
-    echo "<h1>Upcoming Events</h1>";
+    echo "<h3>Upcoming Events</h3>";
 }
 
  $result = $mysqli->query($date);
@@ -39,7 +39,8 @@ if(isset($_REQUEST['date-select'])){
             $url = "";
     } else {
         $isfriend = "Add Friend";
-        $url=  "api/insert.php?action=addfriend&friendid=$created_by";
+        $url =  "api/insert.php?action=addfriend&friendid=$created_by";
+
     }  
     $src = '#';
     $starting = date('d.m.Y , l', strtotime($start_date));
@@ -49,26 +50,32 @@ if(isset($_REQUEST['date-select'])){
        $src = 'images/post-images/6.jpg';
    }
   
-    echo  "<div class='grid-item col-md-4 col-sm-4'>
-  <div class='media-grid'>
-      <div class='img-wrapper'>
-          <img style='width:242px;height:242px;' src=$src alt='Group image' class='img-responsive post-image' />
-      </div>
-      <div class='media-info'>
-          <div class='reaction'>
-              <h4><a href='event-details.php?id=$id'>$event</a></h4>
-              <p>$starting &nbsp; - Starting from:  $start_time </p>
-          </div>
-          <div class='user-info'>
-              <img src= 'http://graph.facebook.com/$fb_id/picture?type=large'  alt='' class='profile-photo-sm pull-left' />
-              <div class='user'>
-                  <h6><a href=$url class='profile-link'>$name</a></h6>
-                  <a class='text-green' href=$url>$isfriend</a> 
-              </div>
-          </div>
-      </div>
+    echo  "
+    
+    
+    
+    <div class='col-sm-12'>
+    <div class='event-box'>
+        <div class='col-sm-3 img-wrapper' style='background-image: url($src)'>
+        </div>
+        <div class='col-sm-7 media-info'>
+            <div class='reaction'>
+                <h4><a href='event-details.php?id=$id'>$event</a></h4>
+                <p>$starting &nbsp; - Starting from:  $start_time  </p>
+            </div>
+        </div>
+        <div class='col-sm-2 user-info'>
+            <img src='http://graph.facebook.com/$fb_id/picture?type=large' alt='' class='profile-photo-sm'>
+            <div class='user'>
+                <h6><a href='profile.php?id=$created_by' class='profile-link'>$name</a></h6>
+            </div>
+        </div>
+    </div>
   </div>
-</div>";
+    
+    
+    
+    ";
  }
 echo "</div>"
 ?> 

@@ -17,6 +17,6 @@ while ($eventrow = $eventresult->fetch_assoc()) {
           <a class='text-green'>$starting</a><br>
           <a class='text-green'>Starting from: $start_time<a>
 	  </div>";
-}
+} 
 }
 ?>
