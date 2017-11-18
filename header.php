@@ -23,7 +23,9 @@
     
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
-
+  <script src="js/jquery-3.1.1.min.js"></script>
+   <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+   <script src="js/login.js"></script> 
     <!-- Header
     ================================================= -->
     <header id="header">
@@ -31,7 +33,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand"><img src="assets/images/logo.png" alt="logo"/></a>
+          <a href="../home.php" class="navbar-brand"><img src="assets/images/logo.png" alt="logo"/></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>

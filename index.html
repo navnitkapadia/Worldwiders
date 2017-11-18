@@ -1,116 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Worldwiders" />
-		<meta name="keywords" content="Worldwiders" />
-		<meta name="robots" content="index, follow" />
-		<title>Worldwiders</title>
-
-    <!-- Stylesheets
-    ================================================= -->
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/ionicons.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    
-    <!--Google Font-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
-    
-    <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
-	</head>
-	<body>
-
-    <!-- Header
-    ================================================= -->
-		<header id="header-inverse">
-      <nav class="navbar navbar-default navbar-fixed-top menu">
-        <div class="container">
-
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right main-menu">
-				<li class="dropdown"><a href="index.html">Home</a></li>
-              <li class="dropdown"><a href="contact.html">Contact</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-      </nav>
-    </header>
-    <!--Header End-->
-    
-    <!-- Landing Page Contents
-    ================================================= -->
-    <div id="lp-register">
-    	<div class="container wrapper">
-        <div class="row">
-        	<div class="col-sm-5">
-            <div class="intro-texts">
-            	<h1 class="text-white">Welcome to the biggest and most active group in Zurich!!!</h1>
-            	<p>This group is created for friendly international and Swiss people living in the area of Zurich. Here you can make friends, exchange information, post events and have a good time together.</p>
-            </div>
-          </div>
-        	<div class="col-sm-6 col-sm-offset-1">
-            <div class="reg-form-container"> 
-            
-              <!-- Register/Login Tabs-->
-              <div class="reg-options">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a href="index-register.html#login" data-toggle="tab">Continue with facebook</a></li>
-                </ul><!--Tabs End-->
-              </div>
-              
-              <!--Registration Form Contents-->
-              <div class="tab-content">
-                <!--Login-->
-                <div class="tab-pane active" id="login">
-                <img src="images/Webp.net-resizeimage.png" />
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Worldwide People in Zurich - Biggest Expat Group in Zurich area</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body id="intropage">
+	<div class="image-bg-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<img src="assets/images/logo.png" alt="Worldwiders People in Zurich" />
+					<h1>Worldwide People in Zurich</h1>
+					<h2>Welcome to the biggest and most active expat group in Zurich!</h2>
+					<p>This group is created for friendly international and Swiss people living in the area of Zürich.</p>
+					<p>Here you can make friends, exchange information, post events and have a good time together. We always have something organized for you! Remember that you can always organize events in the group and have our assistance if needed, but you can't advertise events from other groups or as a promoter of different locations.</p>
 				  <fb:login-button
 						data-width="405" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"
 					  scope="public_profile,email,user_birthday,user_hometown,user_location,user_about_me"
 					  onlogin="checkLoginState();">
-				  </fb:login-button> 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-6">
-          
-            <!--Social Icons-->
-            <ul class="list-inline social-icons">
-              <li><a href="index-register.html#"><i class="icon ion-social-facebook"></i></a></li>
-              <li><a href="index-register.html#"><i class="icon ion-social-twitter"></i></a></li>
-              <li><a href="index-register.html#"><i class="icon ion-social-googleplus"></i></a></li>
-              <li><a href="index-register.html#"><i class="icon ion-social-pinterest"></i></a></li>
-              <li><a href="index-register.html#"><i class="icon ion-social-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Scripts
-    ================================================= -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.appear.min.js"></script>
-    <script src="js/script.js"></script>
-    <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+				  </fb:login-button>
+				</div>
+			</div>
+			
+		</div> 
+	</div>
+	<div class="why-join">
+		<div class="container">
+			<div class="row"> 
+				<div class="col-lg-6">
+					<img src="https://www.holidayholiday.com.au/wp-content/uploads/gold-coast-getaway-for-couples-friends-and-solo-travellers-2-900x540.jpg" style="width: 100%;" />
+				</div>
+				<div class="col-lg-6 text-center">
+					<h3>Why join us?</h3>
+					<ul>
+						<li class="item-01"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> #1 best events & party in Zurich</li>
+						<li class="item-02"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> #2 make new friends</li>
+						<li class="item-03"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> #3 meet your next business partner</li>
+					</ul>
+					<p class="counter">We're already 17'340 members!</p>
+				</div>
+			</div>
+		</div>
+	  </div>
+	  <div class="container">	
+	  	<footer>
+				<div class="row">
+				  <div class="col-lg-12">
+
+					<ul class="list-unstyled">
+					  <li class="pull-right"><a href="#top">Back to top</a></li>
+					  <!--
+						<li><a href="about.php">About</a></li>
+						  <li><a href="privacy.php">Privacy Policy / Terms</a></li>
+						  <li><a href="about.php">Support / Contact</a></li>
+-->
+					</ul>
+					<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+				  </div>
+				</div>
+
+			</footer>
+	  
+	</div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+	<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
-	</body>
+  </body>
 </html>

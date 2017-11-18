@@ -56,11 +56,14 @@ function new_event($mysqli){
   $description = $_REQUEST['description'];
   $createdBy = $_SESSION['userid'];
   $group_id = $_REQUEST['gid'];
+  $entrace_fee = $_REQUEST['entrace-fee'];
   $event_image = file_upload();
 
-  $sql = "INSERT INTO event(event, location_name, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,gruop_id) 
-                    VALUES ('".addslashes($evname)."','".addslashes($locname)."','".addslashes($locadd)."','$website','$event_image','".addslashes($description)."',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')";                
+  $sql = "INSERT INTO event(event, location_name, entrace_fee, location_address, website, file, description, max_limit, created_at, created_by,start_date,start_time,gruop_id) 
+                    VALUES ('".addslashes($evname)."','".addslashes($locname)."',$entrace_fee,'".addslashes($locadd)."','$website','$event_image','".addslashes($description)."',$maxg,'$create_at','$createdBy','$event_start','$time','$group_id')"; 
+					
   $result = $mysqli->query($sql);
+  
   if ($result) {
         header("Location:../group-details.php?id=$group_id");
         exit;
@@ -88,6 +91,7 @@ function addfriend($mysqli){
 
 function login($mysqli){
   session_start();
+  $id = $_REQUEST['id'];
   $name = $_REQUEST['name'];
   $fname = $_REQUEST['first_name'];
   $lname = $_REQUEST['last_name'];
@@ -99,15 +103,39 @@ function login($mysqli){
   $nationality = $_REQUEST['nationality'];
   $birthdate = date("y-m-d", strtotime($_REQUEST['birthdate']));
   
-  $sql = "SELECT * FROM users where user_id = '$userid'"; 
-  $result = $mysqli->query($sql);
-  $row_cnt = $result->num_rows;
-  $row = $result->fetch_assoc();
-  if($row_cnt == 0){
-    $sql = "INSERT INTO users (name,first_name,last_name,email,cover,oe,fb_id,location,birth_date,status,role_id) 
-    VALUES ('$name','$fname','$lname','$email','$cover','$oe','$userid','$location','$birthdate',1,2)";
+  if(isset($id)){
+	$sql = "UPDATE `users` SET 
+		`name`='$name',
+		`first_name`= '$fname',
+		`last_name`= '$lname',
+		`cover`='$cover',
+		`oe`='$oe',
+		`birth_date`='$birthdate',
+		`location`='$location'
+		WHERE fb_id = $id";
     $result = $mysqli->query($sql);
+	if($result){
+		echo "Information are updated";
+	}else{
+		echo "problem in updating information";
+	}
+  } else {
+	$sql = "SELECT * FROM users where user_id = '$userid'"; 
+	$result = $mysqli->query($sql);
+	$row_cnt = $result->num_rows;
+	$row = $result->fetch_assoc();
+	if($row_cnt == 0){
+	$sql = "INSERT INTO users (name,first_name,last_name,email,cover,oe,fb_id,location,birth_date,status,role_id) 
+	VALUES ('$name','$fname','$lname','$email','$cover','$oe','$userid','$location','$birthdate',1,2)";
+	$result = $mysqli->query($sql);
+	if($result){
+		echo "New User Added";
+	}else{
+		echo 'problem in adding new user';
+	}
+	}
   }
+  
 }
 function file_upload(){
   if (isset($_FILES['image'])) {

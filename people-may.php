@@ -10,7 +10,7 @@
                                 extract($row2);
                                 $inlist[] = $fb;
                             }
-                            $userlis = "SELECT * FROM users where user_id != '" . $_SESSION['userid'] . "'";
+                            $userlis = "SELECT * FROM users where user_id != '" . $_SESSION['userid'] . "' ORDER BY RAND() LIMIT 5";
                             $resultlist1 = $mysqli->query($userlis);
                             if (mysqli_num_rows($resultlist1) > 1) {
                                 while ($row = $resultlist1->fetch_assoc()) {
@@ -36,7 +36,7 @@
 					</div>
    					<div class="row">
    						<div class="col-sm-12">
-   							<div class="banner-example">A banner here</div>
+   							<!-- <div class="banner-example">A banner here</div> -->
    						</div>
    					</div>
     			</div>

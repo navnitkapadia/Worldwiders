@@ -1,6 +1,6 @@
 $(document).ready(function () {
     FB.init({
-        appId: '2100813633278010',
+        appId: '2015438072018521',
         cookie: true,
         xfbml: true,
         version: 'v2.10'
@@ -24,7 +24,8 @@ function statusChangeCallback(response) {
                         user_signup(); 
                         return;
                     }
-                    if(window.location.pathname == "/Worldwiders/"){
+					user_signup(response.authResponse.userID, response.authResponse.accessToken);
+                    if(window.location.pathname == "/"){
                         window.location = "home.php"
                     }
                     
@@ -37,8 +38,8 @@ function statusChangeCallback(response) {
                 statusChangeCallback2(response);
             }, {scope: 'public_profile,email'});
         } else {
-            if(window.location.pathname != "/Worldwiders/"){
-                window.location = "/Worldwiders/"
+            if(window.location.pathname != "/"){
+                window.location = "/"
             }
         }
       }
@@ -51,10 +52,11 @@ function statusChangeCallback(response) {
                 if(data == 0 ){
                     user_signup(); 
                 }
+				user_signup(response.authResponse.userID, response.authResponse.accessToken);
             }
           });
       }
-      function user_signup() {
+      function user_signup(userId, accessToken) {
         console.log('Welcome! Fetching your information.... ');
         FB.api('/me', 
             {fields: "id,about,cover,first_name,last_name,picture,birthday,email,hometown,location,name"}, function (response) {
@@ -85,7 +87,7 @@ function statusChangeCallback(response) {
               $.ajax({
                   type: "POST",
                   url: "api/insert.php?action=login",
-                  data: "name=" + name + "&email=" + email+"&first_name=" + first_name+"&last_name=" + last_name + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
+                  data: "id="+ userId +"&name=" + name + "&email=" + email+"&first_name=" + first_name+"&last_name=" + last_name + "&cover=" + cover + "&userid="+ id +"&location="+ location +"&nationality="+ nationality +"&birthdate="+ birthdate,
                   success: function (data) {
                     $.ajax({
                         type: "POST",

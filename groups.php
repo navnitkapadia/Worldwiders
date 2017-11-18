@@ -61,12 +61,12 @@
 
 					</div>
 					<div class="col-lg-12">
-					<!--	<h3>Recommended Groups</h3>
+					<h3>Others interesting groups</h3>
 					
 					<?php
 							$join = true;
 							$user = $_SESSION['userid'];
-							$sql = "SELECT pg.* from peoples_group pg,group_member gm where pg.id=gm.group_id and gm.user_id=$user";
+							$sql = "select g.* from peoples_group g where g.id NOT IN(select m.group_id from group_member m where m.user_id = $user)";
 							$result = $mysqli->query($sql);
 							while ($row = $result->fetch_assoc()) {
 									extract($row);
@@ -92,7 +92,7 @@
 										?> group members</p>
 							  	</div>
 								</div>                      
-							<?php } ?> -->
+							<?php } ?> 
 
 				
 						
@@ -102,23 +102,7 @@
 				  </div>
 				</div>
 
-				  <footer>
-					<div class="row">
-					  <div class="col-lg-12">
-
-						<ul class="list-unstyled">
-						  <li class="pull-right"><a href="#top">Back to top</a></li>
-						  <li><a href="#">About</a></li>
-						  <li><a href="#">Advertise</a></li>
-						  <li><a href="#">Privacy Policy / Terms</a></li>
-						  <li><a href="#">Support / Contact</a></li>
-						</ul>
-						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
-
-					  </div>
-					</div>
-
-				</footer>
+				  <?php include 'content-footer.php' ?>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-3">
     			<?php include 'people-may.php' ?>

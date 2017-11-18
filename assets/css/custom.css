@@ -8,6 +8,10 @@ a {
 	color: #c5519e;
 }
 
+.banner-example {
+	display: none !important;
+}
+
 body>.navbar {
     -webkit-transition: background-color .3s ease-in;
     transition: background-color .3s ease-in
@@ -16,6 +20,10 @@ body>.navbar {
 .no-margin {
 	margin: 0 !important;
 }
+.img-circle {
+	max-width: 50px;
+	width: 50px;
+}
 .margin-10 {
 	margin-top: 10px;
 }
@@ -23,6 +31,14 @@ img.profile-photo-sm {
     height: 40px;
     width: 40px;
     border-radius: 50%;
+}
+
+/* MOBILE */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	background: #4e5d6c;
+}
+.search-box ul {
+	z-index: 999;
 }
 
 /* HEADER */
@@ -89,6 +105,23 @@ img.profile-photo-sm {
 	color: #2b3e50;
 }
 
+/* WELCOME BOX */
+.welcome-box {
+	padding: 6px;
+	float: left;
+	margin-bottom: 20px;
+	width: 100%;
+}
+.welcome-box .col-sm-3 {
+	padding-top: 2%;
+}
+.welcome-box .bubble {
+	background: #deffdc;
+	border: 1px solid #cef6cc;
+	border-radius: 5px;
+	padding: 12px;
+}
+
 /* NEWS BOX */
 .news-box {
 	background: #f8f8f8;
@@ -96,9 +129,19 @@ img.profile-photo-sm {
 	padding: 6px;
 	float: left;
 	margin-bottom: 20px;
+	width: 100%;
 }
 .news-box .header {
 	height: 60px;
+}
+.news-box .header .col-md-2 {
+	width: 10%;
+}
+.news-box .header .col-md-7 {
+	width: 70%;
+}
+.news-box .header .col-md-3 {
+	width: 20%;
 }
 .news-box .header h3 {
 	margin-top: 14px;
@@ -135,6 +178,7 @@ img.profile-photo-sm {
 	font-size: 0.7em;
 	font-style: italic;
 	color: #c3c2c2;
+	margin-left: 10px;
 }
 .news-box .content .comments {
 	border-top: 1px solid #ddd;
@@ -142,6 +186,14 @@ img.profile-photo-sm {
 	padding: 2%;
 	width: 100%;
 	float: left;
+}
+
+.news-box .content .comments .col-sm-1 { 
+	width: 8.33333333%;
+	padding-left: 0;
+}
+.news-box .content .comments .col-sm-11 { 
+	width: 91.66666667%;
 }
 .news-box .content .all-comments {
 	background: #4e5d6c;
@@ -263,6 +315,8 @@ footer p {
 	border-bottom: 1px dotted #5a6d7d;
 	width: 100%;
 	float: left;
+	padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 .people-item .image {
 	margin-top: 12px;
@@ -353,7 +407,7 @@ footer p {
   width: 100%;
 }
 .ui-datepicker-calendar thead{
-  background: #E95A5A;
+  background: #79a1cb;
   color: #FFFFFF;
 }
 
@@ -484,17 +538,22 @@ footer p {
 	height: 60px;
 	display: block;
 }
+.event a {
+    background-color: #ee63a4 !important;
+    color: #ffffff !important;
+}
+
 
 /* GROUP LIST */
 .group-box {
     overflow: hidden;
     margin-bottom: 20px;
+	height: 190px;
 }
 .group-box .img-wrapper {
     background-repeat: no-repeat;
 	background-size: cover;
 	min-height: 90px;
-	height: 100%;
 	background-position: center;
 }
 .group-box .group-info {
@@ -508,6 +567,30 @@ footer p {
 }
 .group-box .group-info p {
 	font-size: 12px;
+}
+
+/* GROUP DISCUSSION */
+.new-discussion {
+	background: #fdeef3;
+	margin-bottom: 20px;
+	padding-bottom: 12px;
+}
+.new-discussion h5 {
+	padding: 6px 0 6px 3px;
+	font-weight: bold;
+}
+.new-discussion .title {
+	width: 100%;
+	font-size: 12px;
+}
+.new-discussion .desc {
+	width: 100%;
+	min-height: 150px;
+	font-size: 12px;
+	margin-top: 6px;
+}
+.new-discussion .btn-primary { 
+	background: #cb4784;
 }
 
 /* PROFILE */
@@ -586,6 +669,11 @@ footer p {
 	padding-top: 20px;
 	border-top: 3px solid #f1f2f2;
 }
+.my-friend {
+	margin: 0 auto;
+	max-width: 90px;
+    width: 90px;
+}
 .profile .friends h2 {
 	font-size: 22px;
 	font-weight: lighter;
@@ -601,6 +689,33 @@ footer p {
 	border-bottom: 1px dotted #f1f2f2;
 }
 
+/* GROUP DETAIL */
+.activity .btn, .discussion .btn {
+	margin-top: 10px;
+}
+
+/* CREATE EVENT */
+.add-event {
+	
+}
+.add-event .form-group {
+	margin-bottom: 6px;
+	width: 100%;
+}
+.add-event label {
+	width: 25%;
+	padding-top: 10px;
+	display: inline;
+}
+.add-event .input-group-lg {
+	width: 75%;
+	border: 1px solid #ccc;
+}
+.add-event textarea {
+	width: 75% !important;
+	border: 1px solid #ccc;
+	min-height: 400px;
+}
 
 /* MESSAGES */
 /*Chat Contact List*/
@@ -786,46 +901,89 @@ footer p {
 }
 
 
+#intropage {
+	padding-top: 0;
+}
 
-
-
-.splash {
-    padding: 9em 0 2em;
-    background-color: #141d27;
-    background-image: url(../img/bg.jpg);
+.image-bg-top {
+	min-height: 400px;
+    background-image: url(../images/zurich.jpg);
     background-size: cover;
     background-attachment: fixed;
-    color: #fff;
-    text-align: center
+	background-position: center center;
+    text-align: center;
+	color: #FFF;
+	padding: 60px 0;
 }
 .splash .logo {
     width: 160px
 }
 
-.splash h1 {
-    font-size: 3em
+.image-bg-top h1 {
+    font-size: 3em;
+	font-family: 'Raleway', sans-serif;
+	font-weight: bold;
 }
-
-.splash #social {
-    margin: 2em 0
+.image-bg-top h2 {
+    font-size: 2em;
+	font-family: 'Raleway', sans-serif;
 }
-
-.splash .alert {
-    margin: 2em 0
+.why-join h3 {
+    font-size: 2.2em;
+	color: #c5519e;
+	font-family: 'Raleway', sans-serif;
+}
+.why-join {
+	padding: 60px;
+	background: #FFF;
+	font-size: 1.7em;
+}
+.why-join ul {
+	margin: 0;
+	padding: 20px 0;
+}
+.why-join ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 12px 0;
+	font-weight: lighter;
+}
+.why-join li span {
+	margin-right: 10px;
+}
+.why-join .item-01 {
+	color: #77c9b2;
+}
+.why-join .item-02 {
+	color: #4f6ab2;
+}
+.why-join .item-03 {
+	color: #c8509d;
+}
+.counter {
+	font-size: 1.4em;
+	font-weight: 100;
+	color: #ccc;
+	text-transform: uppercase;
+	line-height: 0.8em;
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
 }
 
 @media (max-width:767px) {
-    .splash {
-        padding-top: 4em
-    }
-    .splash .logo {
-        width: 100px
-    }
-    .splash h1 {
-        font-size: 2em
-    }
     #banner {
         margin-bottom: 2em;
         text-align: center
     }
+	.profile .profile-photo {
+		border-radius: 0;
+		max-width: 150px;
+	}
+	.your-header h1 {
+		width: 100%;
+		text-align: center;
+	}
+	.your-header, .friends {
+		text-align: center;
+	}
 }

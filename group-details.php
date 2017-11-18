@@ -96,12 +96,12 @@
                                         }
                                         if (in_array($_SESSION['userid'], $add)) {
                                            
-											echo '<button class="btn btn-success" data-toggle="modal" data-target="#myEvent">CREATE AN EVENT</button></li>';
+											echo "<a href='create-event.php?id=$group_Id'><button class='btn btn-success'>CREATE AN EVENT</button></a>";
 											echo '<a href="#" class="btn btn-danger">LEAVE THE GROUP</a>';
                                         } elseif ($join == 2) {
                                             
                                         } else {
-                                            echo '<li><a href="update.php?gid=' . $group_Id . '"><button class="btn btn-success">Join</button></a></li>';
+                                            echo '<a href="update.php?gid=' . $group_Id . '"><button class="btn btn-success">Join</button></a>';
                                         }
                                         ?>
 						
@@ -131,7 +131,7 @@
 							  <div class="col-sm-4 text-right">
 							  <?php 
 							   if (in_array($_SESSION['userid'], $add)) {
-                                            echo '<button class="btn btn-success" data-toggle="modal" data-target="#myEvent">CREATE AN EVENT</button></li>';
+                                            echo "<a href='create-event.php?id=$group_Id'><button class='btn btn-success'>CREATE AN EVENT</button></a>";
 										
                                         }
 							  
@@ -150,13 +150,22 @@
 							  </div>
 							  <div class="col-sm-4 text-right">
 							  <?php 
-							   if (in_array($_SESSION['userid'], $add)) {
+							   /*if (in_array($_SESSION['userid'], $add)) {
                                             echo '<button class="btn btn-success" data-toggle="modal" data-target="#mytopic">START A DISCUSSION</button></li>';
 										
                                         }
+										*/
 							  
 							  ?>
 							  
+							  </div>
+							  <div class="col-sm-12 new-discussion">
+						      <h5>Start a discussion</h5>
+							  <form name="basic-info" id="basic-info" class="form-inline" action="post.php?id=<?php echo $group_Id; ?>" method="POST" enctype="multipart/form-data">
+                              	<input id="topic-name" class="form-control input-group-lg title" type="text" name="topic-name" title="Post Name" placeholder="Title of the discussion" required="required" />
+                              	<textarea id="description" name="description" class="form-control desc" placeholder="Type the message" required="required"></textarea>
+                              	<button class="btn btn-primary text-center" name="add_topic">Post</button>
+                              </form>
 							  </div>
 							  <div class="col-sm-12">	
 							  
@@ -167,9 +176,6 @@
                                 extract($row);
                                 //echo '<div class="post-content">';
                                 //echo "<h4>$topic</h4>";
-                                //if($role_id == 1 || $role_id == 0){
-                                   // echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Delete</a></h4>";
-                                //}
                                 ?>
                                 <div class="news-box">
 									<div class="header">
@@ -219,9 +225,12 @@
 											<?php } else { ?>
 											<div class="col-sm-6"  id ="disliketag"  onclick="dislike(dislikecounter<?php echo $gt_id; ?>,<?php echo $gt_id; ?>,<?php echo $dislike; ?>)"><i class="fa fa-thumbs-down icon negative" aria-hidden="true"></i> <?php echo $dislike; ?></div>
 											
-                                            <?php } ?>
+                                            <?php } 
                                         
-										
+										if($role_id == 1 || $role_id == 0){
+                                          echo "<h4><a href='topic-delete.php?id=$gt_id&group_id=$gID' class='btn btn-danger pull-right'>Delete</a></h4>";
+                                        }
+								      ?>
 										  </div>
 									</div>
 									<div class="content">
@@ -295,23 +304,7 @@
 					</div>
 				  </div>
 
-				  <footer>
-					<div class="row">
-					  <div class="col-lg-12">
-
-						<ul class="list-unstyled">
-						  <li class="pull-right"><a href="#top">Back to top</a></li>
-						  <li><a href="#">About</a></li>
-						  <li><a href="#">Advertise</a></li>
-						  <li><a href="#">Privacy Policy / Terms</a></li>
-						  <li><a href="#">Support / Contact</a></li>
-						</ul>
-						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
-
-					  </div>
-					</div>
-
-				</footer>
+				  <?php include 'content-footer.php' ?>
     		</div>
 			
     		<div class="col-lg-2 col-md-2 col-sm-3">

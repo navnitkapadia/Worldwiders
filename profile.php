@@ -48,7 +48,7 @@
 							<h2><?php echo $position; ?></h2>
 							<?php
 								if(!isset($see)){
-									echo "<p><a href='#'><i class='fa fa-wrench icon' aria-hidden='true'></i> Edit informations</a></p>";
+									echo "<p><a href='edit-profile.php'><i class='fa fa-wrench icon' aria-hidden='true'></i> Edit informations</a></p>";
 								}
 							?>
 							
@@ -61,7 +61,7 @@
                       while ($row = $result1->fetch_assoc()) {
                           extract($row);
                           if($cn==1){
-                            echo "<a href='messages.php?id=<?php echo base64_encode($see);?>'><button class='btn btn-success'>Message</button></a>";
+                            echo "<a href='messages.php?id=".base64_encode($see)."'><button class='btn btn-success'>Message</button></a>";
                           } else {
                             echo "<a href='api/insert.php?action=addfriend&friendid=$user_id'><button class='btn btn-success'>Add friend</button></a>";
                           }
@@ -127,23 +127,7 @@
 					</div>
 				</div>
 		  
-				  <footer>
-					<div class="row">
-					  <div class="col-lg-12">
-
-						<ul class="list-unstyled">
-						  <li class="pull-right"><a href="#top">Back to top</a></li>
-						  <li><a href="#">About</a></li>
-						  <li><a href="#">Advertise</a></li>
-						  <li><a href="#">Privacy Policy / Terms</a></li>
-						  <li><a href="#">Support / Contact</a></li>
-						</ul>
-						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
-
-					  </div>
-					</div>
-
-				</footer>
+				  <?php include 'content-footer.php' ?>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-3">
     			<div id="right-content" class="right-content">
@@ -167,7 +151,7 @@
 							
 							<?php
                             $inlist = array();
-                            $list = "SELECT friend_id as fb FROM friend_list where user_id = '" . $_SESSION['userid'] . "'";
+                            $list = "SELECT friend_id as fb FROM friend_list where user_id = '" . $_SESSION['userid'] . "'  LIMIT 5";
                             $resultlist2 = $mysqli->query($list);
                             while ($row2 = $resultlist2->fetch_assoc()) {
                                 extract($row2);
@@ -182,8 +166,8 @@
                                         ?>
                             
 							<div class="people-item">
-								<div class="col-sm-3 image"><img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" class="img-responsive img-circle" /></div>
-								<div class="col-sm-9">
+								<div class="col-sm-12 text-center"><img src="<?php echo "http://graph.facebook.com/$fb_id/picture"; ?>" class="img-responsive img-circle my-friend" /></div>
+								<div class="col-sm-12 text-center">
 									<p class="user"><a href="profile.php?id=<?php echo $user_id; ?>"><?php echo $name; ?></a></p>
                                     <a href="api/insert.php?action=addfriend&friendid=<?php echo $user_id; ?>" class="btn btn-info">Add friend</a>
 								</div>
@@ -196,7 +180,7 @@
                             }
                             ?>
 							<div class="col-sm-12 text-center see-more">
-								<a href="friend.php" class="btn btn-info">See more</a>
+								<a href="friends.php" class="btn btn-info">See more</a>
 							</div>
 							
 							

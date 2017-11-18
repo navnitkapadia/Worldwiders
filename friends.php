@@ -38,7 +38,7 @@
         	<div class="col-lg-3 col-md-3 col-sm-4">
 			  <?php include 'homemenu.php' ?>
      		</div>
-     		<div class="col-lg-7 col-md-7 col-sm-5" id="page-content">
+     		<div class="col-lg-8 col-md-8 col-sm-5" id="page-content">
 				  <div class="bs-docs-section clearfix">
 				  	<div class="row your-header">
 				  		<div class="col-sm-3">
@@ -101,25 +101,10 @@
 					</div>
 	  			</div>
 	  <?php } ?>
-				  <footer>
-					<div class="row">
-					  <div class="col-lg-12">
-
-						<ul class="list-unstyled">
-						  <li class="pull-right"><a href="#top">Back to top</a></li>
-						  <li><a href="#">About</a></li>
-						  <li><a href="#">Advertise</a></li>
-						  <li><a href="#">Privacy Policy / Terms</a></li>
-						  <li><a href="#">Support / Contact</a></li>
-						</ul>
-						<p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
-
-					  </div>
-					</div>
-
-				</footer>
+				  <?php include 'content-footer.php' ?>
     		</div>
-    		<div class="col-lg-2 col-md-2 col-sm-3">
+    		<!-- 
+			<div class="col-lg-2 col-md-2 col-sm-3">
     			<div id="right-content" class="right-content">
    					<div class="row">
    						<div class="col-sm-12">
@@ -128,6 +113,7 @@
    					</div>
     			</div>
 			</div>
+ 			-->
 		</div>
 	</div>
 

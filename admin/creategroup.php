@@ -98,7 +98,7 @@
                                     $moderator_name = $_POST['moname'];
 
                                     //echo $name,$desc,$image,$moderator;
-                                    $quey = "insert into peoples_group values(null,'$name','$desc','$image','$userId','$moderator','$moderator_name')";
+                                    $quey = "insert into peoples_group values(null,'".addslashes($name)."','".addslashes($desc)."','$image','$userId','$moderator','$moderator_name')";
                                     //echo $quey;
                                     $result = $mysqli->query($quey);
                                     if ($result) {

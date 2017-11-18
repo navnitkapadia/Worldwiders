@@ -25,8 +25,8 @@ while ($eventrow = $eventresult->fetch_assoc()) {
     
     <div class='col-sm-12'>
     <div class='event-box'>
-        <div class='col-sm-3 img-wrapper' style='background-image: url('upload/$file')'>
-        </div>
+        <a href='event-details.php?id=$id'><div class='col-sm-3 img-wrapper' style='background-image: url(upload/$file)'>
+        </div></a>
         <div class='col-sm-7 media-info'>
             <div class='reaction'>
                 <h4><a href='event-details.php?id=$id'>$event</a></h4>

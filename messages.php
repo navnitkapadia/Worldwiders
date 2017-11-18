@@ -4,9 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="keywords" content="" />
 		<meta name="robots" content="index, follow" />
-		<title>Home logged - messages</title>
+		<title>Messages</title>
 
     <!-- Stylesheets
     ================================================= -->
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
     
     <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    
     <style>
     .hide{
       display:none;
