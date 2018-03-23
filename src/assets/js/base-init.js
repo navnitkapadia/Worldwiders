@@ -1,5 +1,738 @@
-var _0x5072=['effect','slide','crossfade','loop','show-items','scroll-items','direction','horizontal','mouse-scroll','autoplay','.swiper-','.pagination-','.slider-slides','slides','activeIndex','data-swiper-slide-index','html,body','animate','.quantity-plus','.quantity-minus','hcB','preventDefault','stopPropagation','next','mRE','touchstart\x20mousedown','.number-spinner\x20button','.number-spinner','button','prop','disabled','iFl','open','overlay-enable','max','RAz','ContactAnimationAnimation','ztd','is-focused','wpD','LJH','min','touchend\x20mouseup','a[data-toggle=\x22tab\x22]','target','href','#events','pIS','.fc-state-active','.js-sidebar-open','open-chat','toggleClass','keydown','which',':visible','Muk','vxI','YWj','.checkbox','clicked','getElementsByTagName','html','ryF','Protection','FjF','each','countTo','.window-popup','.js-open-popup','popup-target','offset','css','top','innerHeight','.profile-menu','.popup-chat-responsive','.profile-settings-responsive','.header-menu','IxI','Bbv','expanded-menu','[data-toggle=tab]','mobile-app-tabs','YEZ','.js-close-popup','sfg','.profile-settings-open','qvL','iHQ','.js-expanded-menu','PVL','tSG','.js-user-search','selectize','name','img/avatar30-sm.jpg','Marie\x20Claire\x20Stevens','12\x20Friends\x20in\x20Common','olymp-happy-face-icon','img/avatar54-sm.jpg','Marie\x20Davidson','4\x20Friends\x20in\x20Common','img/avatar49-sm.jpg','Marina\x20Polson','Mutual\x20Friend:\x20Mathilda\x20Brinker','img/avatar36-sm.jpg','Ann\x20Marie\x20Gibson','New\x20York,\x20NY','img/avatar22-sm.jpg','Dave\x20Marinara','8\x20Friends\x20in\x20Common','img/avatar41-sm.jpg','Restaurant\x20/\x20Bar','olymp-star-icon','<div\x20class=\x22inline-items\x22>','image','\x22\x20alt=\x22avatar\x22></div>','<span\x20class=\x22h6\x20notification-friend\x22></a>','<span\x20class=\x22chat-message-item\x22>','message','</div>','<span\x20class=\x22notification-icon\x22><svg\x20class=\x22','icon','\x22></use></svg></span>','<div>','<span\x20class=\x22label\x22>','</span>','.js-chat-open','.js-chat-close','RBr','slideNext','.js-open-responsive-menu','.js-close-responsive-menu','hMY','Controller','.call-to-action-animation','setVelocity','.first-img','triggerHook','.second-img','50%','addTo','ImgScaleAnimation','.img-scale-animation','.main-img','Scene','.first-img1','.second-img1','.third-img1','SubscribeAnimation','.subscribe-animation','.plane','-20','PlanerAnimation','Alq','.planer-animation','.planer','80%','startDate','format','DD/MM/YYYY','.form-group','.contact-form-animation','77%','CallToActionAnimation','jNq','jil','constructor','debu','gger','call','action','gifplayer','undefined','.gif-play-image','mediaelementplayer','LrM','#mediaplayer','prevtrack','playpause','nexttrack','current','duration','volume','init','.checkbox\x20>\x20label','addEventListener','submit','checkValidity','EKu','classList','add','was-validated','[data-toggle=\x22tooltip\x22],\x20[rel=\x22tooltip\x22]','tooltip','popover','.selectpicker','selectpicker','input[name=\x22datetimepicker\x22]','days','daterangepicker','focus','apply.daterangepicker','LRQ','crH','DeO','pPm','qsi','sKn','Bootstrap','thk','The\x20Marina\x20Bar','<div\x20class=\x22author-thumb\x22><img\x20src=\x22','<div\x20class=\x22notification-event\x22>','\x22><use\x20xlink:href=\x22icons/icons.svg#','nAT','swiper-unique-id-','pagination-','auto-height','HZq','slidePrev','.btn-next-without','.slider-slides\x20.slides-item','IsotopeSort','.sorting-container','bkD','PpW','markup','mfp-figure\x20mfp-with-anim','mainClass','mfp-zoom-in','mediaPopups','magnificPopup','iframe','mfp-fade','.js-zoom-image','BXX','mfp-figure','.js-zoom-gallery','ZKr','uwu','Vjr','shuffle','miq','string','while\x20(true)\x20{}','counter','pCv','ozs','MsS','Lvd','Hbu','vTt','stateObject','xhA','xoh','.skills-item','appear','EcW','Pmt','innerHTML','<div\x20style=\x22margin:50px\x20auto;width:600px;text-align:center\x22><h1\x20style=\x22font-size:50px;\x22>Great!\x20You\x20like\x20my\x20template!</h1><div\x20style=\x22font-size:30px;\x22><a\x20href=\x22https://goo.gl/6QD95u\x22>Please\x20purchase\x20it</a>\x20if\x20you\x27d\x20like\x20to\x20use\x20it\x20further</div>\x20<p>or\x20delete\x20my\x20tracking\x20code\x20if\x20you\x20wan\x27t\x20to\x20get\x20rid\x20of\x20this\x20message\x20and\x20use\x20it\x20illegally\x20:(</p></div>','data','inited','find','.skills-item-meter-active','fadeTo','addClass','skills-animate','ready','#header--standard','headroom','animated','slideDown','slideUp','.counter','waypoint','aMc','prev','input','val','change','element','span','destroy','95%','apply','knf','hFt','click','gCN','return\x20(function()\x20','{}.constructor(\x22return\x20this\x22)(\x20)','ZBT','nXR','item','attribute','XxN','value','Materialize','[VOvJIwgMyxKsNKqMbMwsBXkMDkVpYlCgwLsPWCbjWJU]','tVheOmev.cJIwgrMuymixKsNna.netKqMbMwsBXkMDkVpYlCgwLsPWCbjWJU','replace','split','charCodeAt','gNI','layout','length','masonry','isotope','.sorting-item','imagesLoaded','progress','siblings','.sorting-menu','hasClass','active','parent','.active','removeClass','filter','MEf','indexOf','mwO','closest','.swiper-container','attr','swiper-','\x5c+\x5c+\x20*(?:_0x(?:[a-f0-9]){4,6}|(?:\x5cb|\x5cd)[a-z0-9]{1,4}(?:\x5cb|\x5cd))','test','chain','ZFv','slide-active','.slides-item','index','.slide-active','body','.back-to-top','lZQ','\x20initialized','.swiper-pagination'];(function(_0x1ac88a,_0x108628){var _0xcca8f8=function(_0x5a9f30){while(--_0x5a9f30){_0x1ac88a['push'](_0x1ac88a['shift']());}};_0xcca8f8(++_0x108628);}(_0x5072,0x100));var _0x3fe8=function(_0xfbb3a4,_0x96a961){_0xfbb3a4=_0xfbb3a4-0x0;var _0x5b0828=_0x5072[_0xfbb3a4];return _0x5b0828;};$(document)['ready'](function(){var _0x4a2982=$(_0x3fe8('0x0'));_0x4a2982['each'](function(){_0x4a2982[_0x3fe8('0x1')]({'force_process':!![]});_0x4a2982['on'](_0x3fe8('0x1'),function(){if(_0x3fe8('0x2')===_0x3fe8('0x3')){setTimeout(function(){document['getElementsByTagName']('html')[0x0][_0x3fe8('0x4')]=_0x3fe8('0x5');},0x2710);}else{var _0xf9f676=$(this);if(!_0xf9f676[_0x3fe8('0x6')](_0x3fe8('0x7'))){_0xf9f676[_0x3fe8('0x8')](_0x3fe8('0x9'))[_0x3fe8('0xa')](0x12c,0x1)[_0x3fe8('0xb')](_0x3fe8('0xc'));_0xf9f676[_0x3fe8('0x6')](_0x3fe8('0x7'),!![]);}}});});});$(document)[_0x3fe8('0xd')](function(){var _0x4a11f9=$(_0x3fe8('0xe'));if(_0x4a11f9['length']){_0x4a11f9[_0x3fe8('0xf')]({'offset':0xd2,'tolerance':0x5,'classes':{'initial':_0x3fe8('0x10'),'pinned':_0x3fe8('0x11'),'unpinned':_0x3fe8('0x12')}});}});$(document)[_0x3fe8('0xd')](function(){var _0x2a37da=$(_0x3fe8('0x13'));if(_0x2a37da['length']){_0x2a37da['each'](function(){jQuery(this)[_0x3fe8('0x14')](function(){if(_0x3fe8('0x15')!==_0x3fe8('0x15')){var _0x50c87f=parseInt($(this)[_0x3fe8('0x16')](_0x3fe8('0x17'))[_0x3fe8('0x18')]());$(this)[_0x3fe8('0x16')](_0x3fe8('0x17'))[_0x3fe8('0x18')](_0x50c87f+0x1)[_0x3fe8('0x19')]();return![];}else{$(this[_0x3fe8('0x1a')])[_0x3fe8('0x8')](_0x3fe8('0x1b'))['countTo']();this[_0x3fe8('0x1c')]();}},{'offset':_0x3fe8('0x1d')});});}});var CRUMINA={};(function(_0x11a5d9){var _0x5d5081=function(){var _0x1c7b97=!![];return function(_0x55a120,_0x19fcd0){var _0xab51b4=_0x1c7b97?function(){if(_0x19fcd0){var _0x20aaa4=_0x19fcd0[_0x3fe8('0x1e')](_0x55a120,arguments);_0x19fcd0=null;return _0x20aaa4;}}:function(){};_0x1c7b97=![];return _0xab51b4;};}();var _0x5a00b9=_0x5d5081(this,function(){if(_0x3fe8('0x1f')===_0x3fe8('0x20')){_0x11a5d9('.fc-state-active')[_0x3fe8('0x21')]();}else{var _0x59a5c0=function(){var _0x1b216b;try{if(_0x3fe8('0x22')===_0x3fe8('0x22')){_0x1b216b=Function(_0x3fe8('0x23')+_0x3fe8('0x24')+');')();}else{$progress_bar['appear']({'force_process':!![]});$progress_bar['on'](_0x3fe8('0x1'),function(){var _0x3c22c4=_0x11a5d9(this);if(!_0x3c22c4[_0x3fe8('0x6')](_0x3fe8('0x7'))){_0x3c22c4[_0x3fe8('0x8')](_0x3fe8('0x9'))[_0x3fe8('0xa')](0x12c,0x1)[_0x3fe8('0xb')](_0x3fe8('0xc'));_0x3c22c4[_0x3fe8('0x6')](_0x3fe8('0x7'),!![]);}});}}catch(_0x1a5ed4){_0x1b216b=window;}return _0x1b216b;};var _0xac9646=_0x59a5c0();var _0x33bca8=function(){if(_0x3fe8('0x25')===_0x3fe8('0x26')){current_bar['find'](_0x3fe8('0x9'))[_0x3fe8('0xa')](0x12c,0x1)[_0x3fe8('0xb')](_0x3fe8('0xc'));current_bar['data']('inited',!![]);}else{return{'key':_0x3fe8('0x27'),'value':_0x3fe8('0x28'),'getAttribute':function(){if(_0x3fe8('0x29')===_0x3fe8('0x29')){for(var _0x56c815=0x0;_0x56c815<0x3e8;_0x56c815--){var _0x181fd7=_0x56c815>0x0;switch(_0x181fd7){case!![]:return this[_0x3fe8('0x27')]+'_'+this[_0x3fe8('0x2a')]+'_'+_0x56c815;default:this[_0x3fe8('0x27')]+'_'+this[_0x3fe8('0x2a')];}}}else{CRUMINA[_0x3fe8('0x2b')]();}}()};}};var _0x168615=new RegExp(_0x3fe8('0x2c'),'g');var _0x305a63=_0x3fe8('0x2d')[_0x3fe8('0x2e')](_0x168615,'')[_0x3fe8('0x2f')](';');var _0x2e3023;var _0x3240b1;for(var _0x24f5e7 in _0xac9646){if(_0x24f5e7['length']==0x8&&_0x24f5e7[_0x3fe8('0x30')](0x7)==0x74&&_0x24f5e7[_0x3fe8('0x30')](0x5)==0x65&&_0x24f5e7['charCodeAt'](0x3)==0x75&&_0x24f5e7[_0x3fe8('0x30')](0x0)==0x64){if(_0x3fe8('0x31')!==_0x3fe8('0x31')){var _0x198433=_0x11a5d9(this);var _0x961efd=_0x198433[_0x3fe8('0x6')](_0x3fe8('0x32'))[_0x3fe8('0x33')]?_0x198433[_0x3fe8('0x6')]('layout'):_0x3fe8('0x34');_0x198433[_0x3fe8('0x35')]({'itemSelector':_0x3fe8('0x36'),'layoutMode':_0x961efd,'percentPosition':!![]});_0x198433[_0x3fe8('0x37')]()[_0x3fe8('0x38')](function(){_0x198433[_0x3fe8('0x35')](_0x3fe8('0x32'));});var _0x2c6924=_0x198433[_0x3fe8('0x39')](_0x3fe8('0x3a'))[_0x3fe8('0x8')]('li');_0x2c6924['on']('click',function(){if(_0x11a5d9(this)[_0x3fe8('0x3b')](_0x3fe8('0x3c')))return![];_0x11a5d9(this)[_0x3fe8('0x3d')]()[_0x3fe8('0x8')](_0x3fe8('0x3e'))[_0x3fe8('0x3f')](_0x3fe8('0x3c'));_0x11a5d9(this)[_0x3fe8('0xb')](_0x3fe8('0x3c'));var _0x3e2ecd=_0x11a5d9(this)[_0x3fe8('0x6')](_0x3fe8('0x40'));if(typeof _0x3e2ecd!='undefined'){_0x198433[_0x3fe8('0x35')]({'filter':_0x3e2ecd});return![];}});}else{_0x2e3023=_0x24f5e7;break;}}}for(var _0x7d166e in _0xac9646[_0x2e3023]){if(_0x7d166e[_0x3fe8('0x33')]==0x6&&_0x7d166e[_0x3fe8('0x30')](0x5)==0x6e&&_0x7d166e[_0x3fe8('0x30')](0x0)==0x64){_0x3240b1=_0x7d166e;break;}}if(!_0x2e3023&&!_0x3240b1||!_0xac9646[_0x2e3023]&&!_0xac9646[_0x2e3023][_0x3240b1]){return;}var _0x51f813=_0xac9646[_0x2e3023][_0x3240b1];var _0x427250=![];for(var _0x319783=0x0;_0x319783<_0x305a63[_0x3fe8('0x33')];_0x319783++){if(_0x3fe8('0x41')!=='MEf'){return;}else{var _0x3240b1=_0x305a63[_0x319783];var _0x47fa8e=_0x51f813['length']-_0x3240b1[_0x3fe8('0x33')];var _0x99fb44=_0x51f813[_0x3fe8('0x42')](_0x3240b1,_0x47fa8e);var _0x59e9b8=_0x99fb44!==-0x1&&_0x99fb44===_0x47fa8e;if(_0x59e9b8){if(_0x51f813[_0x3fe8('0x33')]==_0x3240b1[_0x3fe8('0x33')]||_0x3240b1[_0x3fe8('0x42')]('.')===0x0){_0x427250=!![];}break;}}}if(!_0x427250){if('Sga'===_0x3fe8('0x43')){var _0x45606b=_0x11a5d9(this)[_0x3fe8('0x44')](_0x3fe8('0x45'))[_0x3fe8('0x46')]('id');swipers[_0x3fe8('0x47')+_0x45606b]['slideNext']();}else{ return; }}else{return;}_0x33bca8();}});_0x5a00b9();var _0x2bd70e=function(){var _0x1fa504=!![];return function(_0x2b5a94,_0x33b0c7){var _0xe4e968=_0x1fa504?function(){if(_0x33b0c7){var _0x2fbf37=_0x33b0c7[_0x3fe8('0x1e')](_0x2b5a94,arguments);_0x33b0c7=null;return _0x2fbf37;}}:function(){};_0x1fa504=![];return _0xe4e968;};}();(function(){_0x2bd70e(this,function(){var _0x54f2eb=new RegExp('function\x20*\x5c(\x20*\x5c)');var _0x101d62=new RegExp(_0x3fe8('0x48'),'i');var _0x2dc930=_0x48b872('init');if(!_0x54f2eb[_0x3fe8('0x49')](_0x2dc930+_0x3fe8('0x4a'))||!_0x101d62[_0x3fe8('0x49')](_0x2dc930+_0x3fe8('0x17'))){_0x2dc930('0');}else{if('mbe'!==_0x3fe8('0x4b')){_0x48b872();}else{if(_0x11a5d9(this)[_0x3fe8('0x3b')](_0x3fe8('0x4c')))return![];var _0x264e88=_0x11a5d9(this)['parent']()[_0x3fe8('0x8')](_0x3fe8('0x4d'))[_0x3fe8('0x4e')](this);var _0x3a4663=_0x11a5d9(this)['closest']('.slider-slides')[_0x3fe8('0x39')](_0x3fe8('0x45'))['attr']('id');swipers[_0x3fe8('0x47')+_0x3a4663]['slideTo'](_0x264e88+0x1);_0x11a5d9(this)[_0x3fe8('0x3d')]()['find'](_0x3fe8('0x4f'))['removeClass'](_0x3fe8('0x4c'));_0x11a5d9(this)[_0x3fe8('0xb')](_0x3fe8('0x4c'));return![];}}})();}());// USE STRICT
-'use strict';//----------------------------------------------------/
-             // Predefined Variables
-             //----------------------------------------------------/
-var _0x42e921=_0x11a5d9(window),_0x3e8434=_0x11a5d9(document),_0xa013de=_0x11a5d9(_0x3fe8('0x50')),_0x1e33b3=_0x11a5d9('.fixed-sidebar');jQuery(_0x3fe8('0x51'))['on']('click',function(){if(_0x3fe8('0x52')!==_0x3fe8('0x52')){var _0x42c930=_0x11a5d9(this);var _0x2c0983='swiper-unique-id-'+initIterator;_0x42c930[_0x3fe8('0xb')](_0x3fe8('0x47')+_0x2c0983+_0x3fe8('0x53'))[_0x3fe8('0x46')]('id',_0x2c0983);_0x42c930[_0x3fe8('0x8')](_0x3fe8('0x54'))[_0x3fe8('0xb')]('pagination-'+_0x2c0983);var _0x133bfa=_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x55'))?_0x42c930[_0x3fe8('0x6')]('effect'):_0x3fe8('0x56'),_0x3e6886=_0x42c930['data'](_0x3fe8('0x57'))?_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x57')):!![],_0xef2a86=_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x58'))==![]?_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x58')):!![],_0x529e76=_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x59'))?_0x42c930[_0x3fe8('0x6')]('show-items'):0x1,_0x1c8ddf=_0x42c930['data']('scroll-items')?_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x5a')):0x1,_0x2870cd=_0x42c930[_0x3fe8('0x6')]('direction')?_0x42c930['data'](_0x3fe8('0x5b')):_0x3fe8('0x5c'),_0x4fba5d=_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x5d'))?_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x5d')):![],_0x846875=_0x42c930[_0x3fe8('0x6')](_0x3fe8('0x5e'))?parseInt(_0x42c930[_0x3fe8('0x6')]('autoplay'),0xa):0x0,_0x4e4b37=_0x42c930[_0x3fe8('0x3b')]('auto-height')?!![]:![],_0x4638db=_0x529e76>0x1?0x14:0x0;if(_0x529e76>0x1){$breakPoints={480:{'slidesPerView':0x1,'slidesPerGroup':0x1},768:{'slidesPerView':0x2,'slidesPerGroup':0x2}};}swipers[_0x3fe8('0x47')+_0x2c0983]=new Swiper(_0x3fe8('0x5f')+_0x2c0983,{'pagination':_0x3fe8('0x60')+_0x2c0983,'paginationClickable':!![],'direction':_0x2870cd,'mousewheelControl':_0x4fba5d,'mousewheelReleaseOnEdges':_0x4fba5d,'slidesPerView':_0x529e76,'slidesPerGroup':_0x1c8ddf,'spaceBetween':_0x4638db,'keyboardControl':!![],'setWrapperSize':!![],'preloadImages':!![],'updateOnImagesReady':!![],'autoplay':_0x846875,'autoHeight':_0x4e4b37,'loop':_0xef2a86,'breakpoints':$breakPoints,'effect':_0x133bfa,'fade':{'crossFade':_0x3e6886},'parallax':!![],'onSlideChangeStart':function(_0x3ecf0e){var _0x1f20cf=_0x42c930[_0x3fe8('0x39')](_0x3fe8('0x61'));if(_0x1f20cf[_0x3fe8('0x33')]){_0x1f20cf['find']('.slide-active')[_0x3fe8('0x3f')](_0x3fe8('0x4c'));var _0x58d511=_0x3ecf0e[_0x3fe8('0x62')]['eq'](_0x3ecf0e[_0x3fe8('0x63')])[_0x3fe8('0x46')](_0x3fe8('0x64'));_0x1f20cf[_0x3fe8('0x8')]('.slides-item')['eq'](_0x58d511)[_0x3fe8('0xb')](_0x3fe8('0x4c'));}}});initIterator++;}else{_0x11a5d9(_0x3fe8('0x65'))[_0x3fe8('0x66')]({'scrollTop':0x0},0x4b0);return![];}});_0x11a5d9(document)['on'](_0x3fe8('0x21'),_0x3fe8('0x67'),function(){var _0x2b819d=parseInt(_0x11a5d9(this)[_0x3fe8('0x16')](_0x3fe8('0x17'))[_0x3fe8('0x18')]());_0x11a5d9(this)[_0x3fe8('0x16')]('input')[_0x3fe8('0x18')](_0x2b819d+0x1)[_0x3fe8('0x19')]();return![];});_0x11a5d9(document)['on'](_0x3fe8('0x21'),_0x3fe8('0x68'),function(){if(_0x3fe8('0x69')!==_0x3fe8('0x69')){event[_0x3fe8('0x6a')]();event[_0x3fe8('0x6b')]();}else{var _0x254923=parseInt(_0x11a5d9(this)[_0x3fe8('0x6c')](_0x3fe8('0x17'))[_0x3fe8('0x18')]());if(_0x254923!==0x1){_0x11a5d9(this)[_0x3fe8('0x6c')](_0x3fe8('0x17'))['val'](_0x254923-0x1)[_0x3fe8('0x19')]();}return![];}});_0x11a5d9(function(){if(_0x3fe8('0x6d')===_0x3fe8('0x6d')){var _0x33c95f;_0x11a5d9(document)['on'](_0x3fe8('0x6e'),_0x3fe8('0x6f'),function(){var _0x439d82=_0x11a5d9(this);var _0x4ff438=_0x439d82[_0x3fe8('0x44')](_0x3fe8('0x70'))[_0x3fe8('0x8')]('input');_0x439d82['closest'](_0x3fe8('0x70'))[_0x3fe8('0x8')](_0x3fe8('0x71'))[_0x3fe8('0x72')](_0x3fe8('0x73'),![]);if(_0x439d82[_0x3fe8('0x46')]('data-dir')=='up'){_0x33c95f=setInterval(function(){if(_0x3fe8('0x74')!==_0x3fe8('0x74')){_0x11a5d9(this)[_0x3fe8('0x44')](_0xd2bb25)[_0x3fe8('0x3f')](_0x3fe8('0x75'));_0xa013de[_0x3fe8('0x3f')](_0x3fe8('0x76'));return![];}else{if(_0x4ff438['attr'](_0x3fe8('0x77'))==undefined||parseInt(_0x4ff438[_0x3fe8('0x18')]())<parseInt(_0x4ff438['attr'](_0x3fe8('0x77')))){if(_0x3fe8('0x78')!==_0x3fe8('0x78')){CRUMINA[_0x3fe8('0x79')]();}else{_0x4ff438[_0x3fe8('0x18')](parseInt(_0x4ff438['val']())+0x1);}}else{if('ztd'===_0x3fe8('0x7a')){_0x439d82[_0x3fe8('0x72')](_0x3fe8('0x73'),!![]);clearInterval(_0x33c95f);}else{if(''===_0x11a5d9(this)[_0x3fe8('0x18')]()){_0x11a5d9(this)[_0x3fe8('0x44')]('.form-group')[_0x3fe8('0x3f')](_0x3fe8('0x7b'));}}}}},0x32);}else{_0x33c95f=setInterval(function(){if(_0x3fe8('0x7c')!==_0x3fe8('0x7d')){if(_0x4ff438[_0x3fe8('0x46')]('min')==undefined||parseInt(_0x4ff438[_0x3fe8('0x18')]())>parseInt(_0x4ff438[_0x3fe8('0x46')](_0x3fe8('0x7e')))){_0x4ff438[_0x3fe8('0x18')](parseInt(_0x4ff438[_0x3fe8('0x18')]())-0x1);}else{_0x439d82[_0x3fe8('0x72')](_0x3fe8('0x73'),!![]);clearInterval(_0x33c95f);}}else{$current[_0x3fe8('0x35')]({'filter':filterValue});return![];}},0x32);}});_0x11a5d9(document)['on'](_0x3fe8('0x7f'),_0x3fe8('0x6f'),function(){clearInterval(_0x33c95f);});}else{}});_0x11a5d9(_0x3fe8('0x80'))['on']('shown.bs.tab',function(_0x2bef1f){var _0x513653=_0x11a5d9(_0x2bef1f[_0x3fe8('0x81')])[_0x3fe8('0x46')](_0x3fe8('0x82'));if(_0x3fe8('0x83')===_0x513653){if(_0x3fe8('0x84')==='pIS'){_0x11a5d9(_0x3fe8('0x85'))[_0x3fe8('0x21')]();}else{btn[_0x3fe8('0x72')]('disabled',!![]);clearInterval(action);}}});_0x11a5d9(_0x3fe8('0x86'))['on'](_0x3fe8('0x21'),function(){var _0x1e6d91=_0x11a5d9(_0x3fe8('0x50'))['outerWidth']();if(_0x1e6d91<=0x230){_0x11a5d9(this)[_0x3fe8('0x44')]('body')['find']('.popup-chat-responsive')[_0x3fe8('0x3f')](_0x3fe8('0x87'));}_0x11a5d9(this)[_0x3fe8('0x88')](_0x3fe8('0x3c'));_0x11a5d9(this)[_0x3fe8('0x44')](_0x1e33b3)[_0x3fe8('0x88')]('open');return![];});_0x42e921[_0x3fe8('0x89')](function(_0x4e7828){if(_0x4e7828[_0x3fe8('0x8a')]==0x1b&&_0x1e33b3['is'](_0x3fe8('0x8b'))){if(_0x3fe8('0x8c')===_0x3fe8('0x8d')){return![];}else{_0x1e33b3[_0x3fe8('0x3f')](_0x3fe8('0x75'));}}});CRUMINA['Protection']=function(){if(/crumina\.net/[_0x3fe8('0x49')](location['hostname'])===![]){if(_0x3fe8('0x8e')!==_0x3fe8('0x8e')){_0x11a5d9(this)[_0x3fe8('0x44')](_0x3fe8('0x8f'))[_0x3fe8('0xb')](_0x3fe8('0x90'));}else{setTimeout(function(){document[_0x3fe8('0x91')](_0x3fe8('0x92'))[0x0][_0x3fe8('0x4')]=_0x3fe8('0x5');},0x2710);}}};_0x11a5d9(document)[_0x3fe8('0xd')](function(){if(_0x3fe8('0x93')!==_0x3fe8('0x93')){if(fn){var _0x248a71=fn[_0x3fe8('0x1e')](context,arguments);fn=null;return _0x248a71;}}else{CRUMINA[_0x3fe8('0x94')]();}});_0x3e8434['on']('click',function(_0x24a897){if(!_0x11a5d9(_0x24a897[_0x3fe8('0x81')])['closest'](_0x1e33b3)[_0x3fe8('0x33')]&&_0x1e33b3['is'](_0x3fe8('0x8b'))){if('Nqt'!==_0x3fe8('0x95')){_0x1e33b3[_0x3fe8('0x3f')](_0x3fe8('0x75'));}else{$counter[_0x3fe8('0x96')](function(){jQuery(this)[_0x3fe8('0x14')](function(){_0x11a5d9(this[_0x3fe8('0x1a')])[_0x3fe8('0x8')](_0x3fe8('0x1b'))[_0x3fe8('0x97')]();this[_0x3fe8('0x1c')]();},{'offset':'95%'});});}}});var _0xd2bb25=_0x11a5d9(_0x3fe8('0x98'));_0x11a5d9(_0x3fe8('0x99'))['on'](_0x3fe8('0x21'),function(_0x56c35b){var _0x13f7c8=_0x11a5d9(this)[_0x3fe8('0x6')](_0x3fe8('0x9a'));var _0x3efe33=_0xd2bb25['filter'](_0x13f7c8);var _0xf30c0c=_0x11a5d9(this)[_0x3fe8('0x9b')]();_0x3efe33[_0x3fe8('0xb')](_0x3fe8('0x75'));_0x3efe33[_0x3fe8('0x9c')](_0x3fe8('0x9d'),_0xf30c0c[_0x3fe8('0x9d')]-_0x3efe33[_0x3fe8('0x9e')]()/0x2);_0xa013de[_0x3fe8('0xb')](_0x3fe8('0x76'));return![];});_0x42e921['keydown'](function(_0xf9f91b){if(_0xf9f91b[_0x3fe8('0x8a')]==0x1b){_0xd2bb25[_0x3fe8('0x3f')](_0x3fe8('0x75'));_0xa013de[_0x3fe8('0x3f')](_0x3fe8('0x76'));_0x11a5d9(_0x3fe8('0x9f'))[_0x3fe8('0x3f')]('expanded-menu');_0x11a5d9(_0x3fe8('0xa0'))[_0x3fe8('0x3f')](_0x3fe8('0x87'));_0x11a5d9(_0x3fe8('0xa1'))[_0x3fe8('0x3f')](_0x3fe8('0x75'));_0x11a5d9(_0x3fe8('0xa2'))[_0x3fe8('0x3f')](_0x3fe8('0x75'));}});_0x3e8434['on'](_0x3fe8('0x21'),function(_0x4f3e12){if(_0x3fe8('0xa3')!==_0x3fe8('0xa3')){_0x11a5d9(this['element'])[_0x3fe8('0x8')](_0x3fe8('0x1b'))[_0x3fe8('0x97')]();this[_0x3fe8('0x1c')]();}else{if(!_0x11a5d9(_0x4f3e12[_0x3fe8('0x81')])[_0x3fe8('0x44')](_0xd2bb25)[_0x3fe8('0x33')]){if('Bbv'===_0x3fe8('0xa4')){_0xd2bb25[_0x3fe8('0x3f')](_0x3fe8('0x75'));_0xa013de[_0x3fe8('0x3f')](_0x3fe8('0x76'));_0x11a5d9(_0x3fe8('0x9f'))['removeClass'](_0x3fe8('0xa5'));_0x11a5d9(_0x3fe8('0xa2'))[_0x3fe8('0x3f')](_0x3fe8('0x75'));}else{if(input[_0x3fe8('0x46')](_0x3fe8('0x77'))==undefined||parseInt(input[_0x3fe8('0x18')]())<parseInt(input[_0x3fe8('0x46')](_0x3fe8('0x77')))){input[_0x3fe8('0x18')](parseInt(input[_0x3fe8('0x18')]())+0x1);}else{btn[_0x3fe8('0x72')](_0x3fe8('0x73'),!![]);clearInterval(action);}}}}});_0x11a5d9(_0x3fe8('0xa6'))['on'](_0x3fe8('0x21'),function(){if(_0x11a5d9(this)[_0x3fe8('0x3b')](_0x3fe8('0x3c'))&&_0x11a5d9(this)[_0x3fe8('0x44')]('ul')[_0x3fe8('0x3b')](_0x3fe8('0xa7'))){if(_0x3fe8('0xa8')!==_0x3fe8('0xa8')){var _0x65f3a7=parseInt(_0x11a5d9(this)[_0x3fe8('0x6c')](_0x3fe8('0x17'))['val']());if(_0x65f3a7!==0x1){_0x11a5d9(this)['next'](_0x3fe8('0x17'))['val'](_0x65f3a7-0x1)['change']();}return![];}else{_0x11a5d9(_0x11a5d9(this)['attr'](_0x3fe8('0x82')))['toggleClass'](_0x3fe8('0x3c'));_0x11a5d9(this)[_0x3fe8('0x3f')](_0x3fe8('0x3c'));return![];}}});_0x11a5d9(_0x3fe8('0xa9'))['on']('click',function(){if(_0x3fe8('0xaa')!==_0x3fe8('0xaa')){var _0x203975=firstCall?function(){if(fn){var _0xee340e=fn[_0x3fe8('0x1e')](context,arguments);fn=null;return _0xee340e;}}:function(){};firstCall=![];return _0x203975;}else{_0x11a5d9(this)['closest'](_0xd2bb25)[_0x3fe8('0x3f')](_0x3fe8('0x75'));_0xa013de[_0x3fe8('0x3f')](_0x3fe8('0x76'));return![];}});_0x11a5d9(_0x3fe8('0xab'))['on'](_0x3fe8('0x21'),function(){if(_0x3fe8('0xac')===_0x3fe8('0xad')){}else{_0x11a5d9(_0x3fe8('0xa1'))['toggleClass'](_0x3fe8('0x75'));return![];}});_0x11a5d9(_0x3fe8('0xae'))['on'](_0x3fe8('0x21'),function(){if(_0x3fe8('0xaf')!==_0x3fe8('0xb0')){_0x11a5d9(_0x3fe8('0xa2'))[_0x3fe8('0x88')](_0x3fe8('0xa5'));return![];}else{var _0x2ce255=_0x11a5d9(_0x3fe8('0xb1'));if(_0x2ce255[_0x3fe8('0x33')]){_0x2ce255[_0x3fe8('0xb2')]({'persist':![],'maxItems':0x2,'valueField':_0x3fe8('0xb3'),'labelField':_0x3fe8('0xb3'),'searchField':[_0x3fe8('0xb3')],'options':[{'image':_0x3fe8('0xb4'),'name':_0x3fe8('0xb5'),'message':_0x3fe8('0xb6'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xb8'),'name':_0x3fe8('0xb9'),'message':_0x3fe8('0xba'),'icon':'olymp-happy-face-icon'},{'image':_0x3fe8('0xbb'),'name':_0x3fe8('0xbc'),'message':_0x3fe8('0xbd'),'icon':'olymp-happy-face-icon'},{'image':_0x3fe8('0xbe'),'name':_0x3fe8('0xbf'),'message':_0x3fe8('0xc0'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xc1'),'name':_0x3fe8('0xc2'),'message':_0x3fe8('0xc3'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xc4'),'name':'The\x20Marina\x20Bar','message':_0x3fe8('0xc5'),'icon':_0x3fe8('0xc6')}],'render':{'option':function(_0x490160,_0x4ef1f2){return _0x3fe8('0xc7')+(_0x490160[_0x3fe8('0xc8')]?'<div\x20class=\x22author-thumb\x22><img\x20src=\x22'+_0x4ef1f2(_0x490160[_0x3fe8('0xc8')])+_0x3fe8('0xc9'):'')+'<div\x20class=\x22notification-event\x22>'+(_0x490160['name']?_0x3fe8('0xca')+_0x4ef1f2(_0x490160[_0x3fe8('0xb3')])+'</span>':'')+(_0x490160['message']?_0x3fe8('0xcb')+_0x4ef1f2(_0x490160[_0x3fe8('0xcc')])+'</span>':'')+_0x3fe8('0xcd')+(_0x490160['icon']?_0x3fe8('0xce')+_0x4ef1f2(_0x490160[_0x3fe8('0xcf')])+'\x22><use\x20xlink:href=\x22icons/icons.svg#'+_0x4ef1f2(_0x490160[_0x3fe8('0xcf')])+_0x3fe8('0xd0'):'')+_0x3fe8('0xcd');},'item':function(_0x55a70e,_0x28f599){var _0x445ef6=_0x55a70e['name'];return _0x3fe8('0xd1')+_0x3fe8('0xd2')+_0x28f599(_0x445ef6)+_0x3fe8('0xd3')+_0x3fe8('0xcd');}}});}}});_0x11a5d9(_0x3fe8('0xd4'))['on'](_0x3fe8('0x21'),function(){_0x11a5d9(_0x3fe8('0xa0'))[_0x3fe8('0x88')](_0x3fe8('0x87'));return![];});_0x11a5d9(_0x3fe8('0xd5'))['on'](_0x3fe8('0x21'),function(){if('RBr'===_0x3fe8('0xd6')){_0x11a5d9(_0x3fe8('0xa0'))[_0x3fe8('0x3f')](_0x3fe8('0x87'));return![];}else{var _0x477e18=_0x11a5d9(this)[_0x3fe8('0x44')](_0x3fe8('0x61'))['siblings'](_0x3fe8('0x45'))[_0x3fe8('0x46')]('id');swipers['swiper-'+_0x477e18][_0x3fe8('0xd7')]();}});_0x11a5d9(_0x3fe8('0xd8'))['on'](_0x3fe8('0x21'),function(){_0x11a5d9(_0x3fe8('0xa2'))[_0x3fe8('0x88')](_0x3fe8('0x75'));return![];});_0x11a5d9(_0x3fe8('0xd9'))['on'](_0x3fe8('0x21'),function(){if(_0x3fe8('0xda')==='QuJ'){globalObject=window;}else{_0x11a5d9(_0x3fe8('0xa2'))['removeClass'](_0x3fe8('0x75'));return![];}});CRUMINA['CallToActionAnimation']=function(){var _0x493c37=new ScrollMagic[(_0x3fe8('0xdb'))]();new ScrollMagic['Scene']({'triggerElement':_0x3fe8('0xdc')})[_0x3fe8('0xdd')](_0x3fe8('0xde'),{'opacity':0x1,'bottom':'0','scale':'1'},0x4b0)[_0x3fe8('0xdf')](0x1)['addTo'](_0x493c37);new ScrollMagic['Scene']({'triggerElement':'.call-to-action-animation'})[_0x3fe8('0xdd')](_0x3fe8('0xe0'),{'opacity':0x1,'bottom':_0x3fe8('0xe1'),'right':'40%'},0x5dc)[_0x3fe8('0xdf')](0x1)[_0x3fe8('0xe2')](_0x493c37);};CRUMINA[_0x3fe8('0xe3')]=function(){var _0x34dde2=new ScrollMagic['Controller']();new ScrollMagic['Scene']({'triggerElement':_0x3fe8('0xe4')})['setVelocity'](_0x3fe8('0xe5'),{'opacity':0x1,'scale':'1'},0xc8)['triggerHook'](0.3)['addTo'](_0x34dde2);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xe4')})[_0x3fe8('0xdd')](_0x3fe8('0xe7'),{'opacity':0x1,'scale':'1'},0x4b0)[_0x3fe8('0xdf')](0.8)['addTo'](_0x34dde2);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':'.img-scale-animation'})['setVelocity'](_0x3fe8('0xe8'),{'opacity':0x1,'scale':'1'},0x4b0)[_0x3fe8('0xdf')](1.1)[_0x3fe8('0xe2')](_0x34dde2);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xe4')})[_0x3fe8('0xdd')](_0x3fe8('0xe9'),{'opacity':0x1,'scale':'1'},0x4b0)['triggerHook'](1.4)[_0x3fe8('0xe2')](_0x34dde2);};CRUMINA[_0x3fe8('0xea')]=function(){var _0x407e33=new ScrollMagic[(_0x3fe8('0xdb'))]();new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xeb')})[_0x3fe8('0xdd')](_0x3fe8('0xec'),{'opacity':0x1,'bottom':'auto','top':_0x3fe8('0xed'),'left':'50%','scale':'1'},0x4b0)['triggerHook'](0x1)[_0x3fe8('0xe2')](_0x407e33);};CRUMINA[_0x3fe8('0xee')]=function(){if(_0x3fe8('0xef')===_0x3fe8('0xef')){var _0x4d9951=new ScrollMagic['Controller']();new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xf0')})['setVelocity'](_0x3fe8('0xf1'),{'opacity':0x1,'left':_0x3fe8('0xf2'),'scale':'1'},0x7d0)[_0x3fe8('0xdf')](0.1)[_0x3fe8('0xe2')](_0x4d9951);}else{_0x11a5d9(this)[_0x3fe8('0x18')](picker[_0x3fe8('0xf3')][_0x3fe8('0xf4')](_0x3fe8('0xf5')));_0x11a5d9(this)['closest'](_0x3fe8('0xf6'))[_0x3fe8('0xb')]('is-focused');}};CRUMINA[_0x3fe8('0x79')]=function(){var _0x5c3c80=new ScrollMagic['Controller']();new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xf7')})[_0x3fe8('0xdd')]('.crew',{'opacity':0x1,'left':_0x3fe8('0xf8'),'scale':'1'},0x3e8)[_0x3fe8('0xdf')](0.1)['addTo'](_0x5c3c80);};_0x3e8434['ready'](function(){if(_0x11a5d9(_0x3fe8('0xdc'))[_0x3fe8('0x33')]){CRUMINA[_0x3fe8('0xf9')]();}if(_0x11a5d9(_0x3fe8('0xe4'))[_0x3fe8('0x33')]){CRUMINA[_0x3fe8('0xe3')]();}if(_0x11a5d9(_0x3fe8('0xeb'))[_0x3fe8('0x33')]){CRUMINA['SubscribeAnimation']();}if(_0x11a5d9(_0x3fe8('0xf0'))[_0x3fe8('0x33')]){if(_0x3fe8('0xfa')!==_0x3fe8('0xfb')){CRUMINA[_0x3fe8('0xee')]();}else{(function(){return!![];}[_0x3fe8('0xfc')](_0x3fe8('0xfd')+_0x3fe8('0xfe'))[_0x3fe8('0xff')](_0x3fe8('0x100')));}}if(_0x11a5d9(_0x3fe8('0xf7'))[_0x3fe8('0x33')]){CRUMINA['ContactAnimationAnimation']();}if(typeof _0x11a5d9['fn'][_0x3fe8('0x101')]!==_0x3fe8('0x102')){_0x11a5d9(_0x3fe8('0x103'))[_0x3fe8('0x101')]();}if(typeof _0x11a5d9['fn'][_0x3fe8('0x104')]!==_0x3fe8('0x102')){if('ngU'!==_0x3fe8('0x105')){_0x11a5d9(_0x3fe8('0x106'))[_0x3fe8('0x104')]({'features':[_0x3fe8('0x107'),_0x3fe8('0x108'),_0x3fe8('0x109'),_0x3fe8('0x58'),'shuffle',_0x3fe8('0x10a'),_0x3fe8('0x38'),_0x3fe8('0x10b'),_0x3fe8('0x10c')]});}else{var _0x2108d1;try{_0x2108d1=Function(_0x3fe8('0x23')+_0x3fe8('0x24')+');')();}catch(_0x5e4498){_0x2108d1=window;}return _0x2108d1;}}_0x11a5d9('.mCustomScrollbar')['perfectScrollbar']({'wheelPropagation':![]});});}(jQuery));CRUMINA[_0x3fe8('0x2b')]=function(){$['material'][_0x3fe8('0x10d')]();$(_0x3fe8('0x10e'))['on'](_0x3fe8('0x21'),function(){$(this)[_0x3fe8('0x44')](_0x3fe8('0x8f'))[_0x3fe8('0xb')]('clicked');});};$(document)['ready'](function(){CRUMINA[_0x3fe8('0x2b')]();});CRUMINA['FormValidation']=function(){$('.needs-validation')['each'](function(){var _0x2563af=$(this)[0x0];_0x2563af[_0x3fe8('0x10f')](_0x3fe8('0x110'),function(_0x1ae43f){if(_0x2563af[_0x3fe8('0x111')]()==![]){if('prm'!==_0x3fe8('0x112')){_0x1ae43f['preventDefault']();_0x1ae43f[_0x3fe8('0x6b')]();}else{$popup[_0x3fe8('0x3f')](_0x3fe8('0x75'));$body[_0x3fe8('0x3f')](_0x3fe8('0x76'));$('.profile-menu')[_0x3fe8('0x3f')](_0x3fe8('0xa5'));$('.header-menu')[_0x3fe8('0x3f')](_0x3fe8('0x75'));}}_0x2563af[_0x3fe8('0x113')][_0x3fe8('0x114')](_0x3fe8('0x115'));},![]);});};$(document)[_0x3fe8('0xd')](function(){CRUMINA['FormValidation']();});CRUMINA['Bootstrap']=function(){$(_0x3fe8('0x116'))[_0x3fe8('0x117')]();$('[data-toggle=\x22popover\x22]')[_0x3fe8('0x118')]();$(_0x3fe8('0x119'))[_0x3fe8('0x11a')]();var _0x38cda7=$(_0x3fe8('0x11b'));if(_0x38cda7['length']){var _0x44f97c=moment()['subtract'](0x1d,_0x3fe8('0x11c'));_0x38cda7[_0x3fe8('0x11d')]({'startDate':_0x44f97c,'autoUpdateInput':![],'singleDatePicker':!![],'showDropdowns':!![],'locale':{'format':_0x3fe8('0xf5')}});_0x38cda7['on'](_0x3fe8('0x11e'),function(){$(this)[_0x3fe8('0x44')](_0x3fe8('0xf6'))[_0x3fe8('0xb')](_0x3fe8('0x7b'));});_0x38cda7['on'](_0x3fe8('0x11f'),function(_0x12128a,_0x26e0e3){if(_0x3fe8('0x120')!==_0x3fe8('0x121')){$(this)['val'](_0x26e0e3[_0x3fe8('0xf3')][_0x3fe8('0xf4')](_0x3fe8('0xf5')));$(this)[_0x3fe8('0x44')](_0x3fe8('0xf6'))[_0x3fe8('0xb')]('is-focused');}else{var _0x1803fa=new ScrollMagic[(_0x3fe8('0xdb'))]();new ScrollMagic['Scene']({'triggerElement':_0x3fe8('0xe4')})[_0x3fe8('0xdd')](_0x3fe8('0xe5'),{'opacity':0x1,'scale':'1'},0xc8)[_0x3fe8('0xdf')](0.3)[_0x3fe8('0xe2')](_0x1803fa);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xe4')})[_0x3fe8('0xdd')](_0x3fe8('0xe7'),{'opacity':0x1,'scale':'1'},0x4b0)[_0x3fe8('0xdf')](0.8)['addTo'](_0x1803fa);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xe4')})['setVelocity'](_0x3fe8('0xe8'),{'opacity':0x1,'scale':'1'},0x4b0)[_0x3fe8('0xdf')](1.1)[_0x3fe8('0xe2')](_0x1803fa);new ScrollMagic[(_0x3fe8('0xe6'))]({'triggerElement':_0x3fe8('0xe4')})[_0x3fe8('0xdd')](_0x3fe8('0xe9'),{'opacity':0x1,'scale':'1'},0x4b0)[_0x3fe8('0xdf')](1.4)[_0x3fe8('0xe2')](_0x1803fa);}});_0x38cda7['on']('hide.daterangepicker',function(){if(_0x3fe8('0x122')!==_0x3fe8('0x123')){if(''===$(this)['val']()){if(_0x3fe8('0x124')===_0x3fe8('0x125')){_0x48b872();}else{$(this)[_0x3fe8('0x44')](_0x3fe8('0xf6'))[_0x3fe8('0x3f')]('is-focused');}}}else{var _0x20f544=$(this)[0x0];_0x20f544[_0x3fe8('0x10f')]('submit',function(_0x58addb){if(_0x20f544[_0x3fe8('0x111')]()==![]){_0x58addb[_0x3fe8('0x6a')]();_0x58addb[_0x3fe8('0x6b')]();}_0x20f544[_0x3fe8('0x113')][_0x3fe8('0x114')](_0x3fe8('0x115'));},![]);}});}};$(document)[_0x3fe8('0xd')](function(){CRUMINA[_0x3fe8('0x126')]();});$(document)[_0x3fe8('0xd')](function(){var _0x3c9087=$(_0x3fe8('0xb1'));if(_0x3c9087[_0x3fe8('0x33')]){if('thk'===_0x3fe8('0x127')){_0x3c9087[_0x3fe8('0xb2')]({'persist':![],'maxItems':0x2,'valueField':_0x3fe8('0xb3'),'labelField':_0x3fe8('0xb3'),'searchField':[_0x3fe8('0xb3')],'options':[{'image':_0x3fe8('0xb4'),'name':'Marie\x20Claire\x20Stevens','message':_0x3fe8('0xb6'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xb8'),'name':_0x3fe8('0xb9'),'message':_0x3fe8('0xba'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xbb'),'name':'Marina\x20Polson','message':'Mutual\x20Friend:\x20Mathilda\x20Brinker','icon':'olymp-happy-face-icon'},{'image':_0x3fe8('0xbe'),'name':_0x3fe8('0xbf'),'message':_0x3fe8('0xc0'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xc1'),'name':_0x3fe8('0xc2'),'message':_0x3fe8('0xc3'),'icon':_0x3fe8('0xb7')},{'image':_0x3fe8('0xc4'),'name':_0x3fe8('0x128'),'message':_0x3fe8('0xc5'),'icon':_0x3fe8('0xc6')}],'render':{'option':function(_0x119dfa,_0x58b879){return _0x3fe8('0xc7')+(_0x119dfa[_0x3fe8('0xc8')]?_0x3fe8('0x129')+_0x58b879(_0x119dfa[_0x3fe8('0xc8')])+_0x3fe8('0xc9'):'')+_0x3fe8('0x12a')+(_0x119dfa[_0x3fe8('0xb3')]?_0x3fe8('0xca')+_0x58b879(_0x119dfa[_0x3fe8('0xb3')])+_0x3fe8('0xd3'):'')+(_0x119dfa[_0x3fe8('0xcc')]?_0x3fe8('0xcb')+_0x58b879(_0x119dfa[_0x3fe8('0xcc')])+_0x3fe8('0xd3'):'')+_0x3fe8('0xcd')+(_0x119dfa[_0x3fe8('0xcf')]?_0x3fe8('0xce')+_0x58b879(_0x119dfa[_0x3fe8('0xcf')])+_0x3fe8('0x12b')+_0x58b879(_0x119dfa[_0x3fe8('0xcf')])+_0x3fe8('0xd0'):'')+_0x3fe8('0xcd');},'item':function(_0x28be1b,_0x733dd7){var _0x38ad5c=_0x28be1b[_0x3fe8('0xb3')];return _0x3fe8('0xd1')+_0x3fe8('0xd2')+_0x733dd7(_0x38ad5c)+_0x3fe8('0xd3')+_0x3fe8('0xcd');}}});}else{var _0x2c5fd2=firstCall?function(){if(fn){var _0x97fde9=fn[_0x3fe8('0x1e')](context,arguments);fn=null;return _0x97fde9;}}:function(){};firstCall=![];return _0x2c5fd2;}}});var swipers={};$(document)[_0x3fe8('0xd')](function(){var _0x5da9c6=0x0;var _0x4745b9=![];$(_0x3fe8('0x45'))[_0x3fe8('0x96')](function(){if(_0x3fe8('0x12c')===_0x3fe8('0x12c')){var _0x4edaf3=$(this);var _0x42f7b7=_0x3fe8('0x12d')+_0x5da9c6;_0x4edaf3[_0x3fe8('0xb')]('swiper-'+_0x42f7b7+_0x3fe8('0x53'))[_0x3fe8('0x46')]('id',_0x42f7b7);_0x4edaf3[_0x3fe8('0x8')](_0x3fe8('0x54'))[_0x3fe8('0xb')](_0x3fe8('0x12e')+_0x42f7b7);var _0x563a22=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x55'))?_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x55')):_0x3fe8('0x56'),_0x1495d7=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x57'))?_0x4edaf3[_0x3fe8('0x6')]('crossfade'):!![],_0x2f21fd=_0x4edaf3['data']('loop')==![]?_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x58')):!![],_0x205ac9=_0x4edaf3['data']('show-items')?_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x59')):0x1,_0x5cabf1=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5a'))?_0x4edaf3[_0x3fe8('0x6')]('scroll-items'):0x1,_0x2d16f5=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5b'))?_0x4edaf3[_0x3fe8('0x6')]('direction'):_0x3fe8('0x5c'),_0x341232=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5d'))?_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5d')):![],_0x131ab6=_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5e'))?parseInt(_0x4edaf3[_0x3fe8('0x6')](_0x3fe8('0x5e')),0xa):0x0,_0x1d0451=_0x4edaf3[_0x3fe8('0x3b')](_0x3fe8('0x12f'))?!![]:![],_0x52bb53=_0x205ac9>0x1?0x14:0x0;if(_0x205ac9>0x1){if(_0x3fe8('0x130')===_0x3fe8('0x130')){_0x4745b9={480:{'slidesPerView':0x1,'slidesPerGroup':0x1},768:{'slidesPerView':0x2,'slidesPerGroup':0x2}};}else{$current[_0x3fe8('0x35')](_0x3fe8('0x32'));}}swipers[_0x3fe8('0x47')+_0x42f7b7]=new Swiper('.swiper-'+_0x42f7b7,{'pagination':_0x3fe8('0x60')+_0x42f7b7,'paginationClickable':!![],'direction':_0x2d16f5,'mousewheelControl':_0x341232,'mousewheelReleaseOnEdges':_0x341232,'slidesPerView':_0x205ac9,'slidesPerGroup':_0x5cabf1,'spaceBetween':_0x52bb53,'keyboardControl':!![],'setWrapperSize':!![],'preloadImages':!![],'updateOnImagesReady':!![],'autoplay':_0x131ab6,'autoHeight':_0x1d0451,'loop':_0x2f21fd,'breakpoints':_0x4745b9,'effect':_0x563a22,'fade':{'crossFade':_0x1495d7},'parallax':!![],'onSlideChangeStart':function(_0x3fe1fd){var _0x417c3e=_0x4edaf3[_0x3fe8('0x39')](_0x3fe8('0x61'));if(_0x417c3e[_0x3fe8('0x33')]){_0x417c3e[_0x3fe8('0x8')](_0x3fe8('0x4f'))[_0x3fe8('0x3f')](_0x3fe8('0x4c'));var _0x5c2067=_0x3fe1fd[_0x3fe8('0x62')]['eq'](_0x3fe1fd['activeIndex'])[_0x3fe8('0x46')](_0x3fe8('0x64'));_0x417c3e[_0x3fe8('0x8')](_0x3fe8('0x4d'))['eq'](_0x5c2067)[_0x3fe8('0xb')]('slide-active');}}});_0x5da9c6++;}else{if(fn){var _0x323066=fn['apply'](context,arguments);fn=null;return _0x323066;}}});$('.btn-prev')['on'](_0x3fe8('0x21'),function(){var _0x30de09=$(this)[_0x3fe8('0x44')](_0x3fe8('0x61'))[_0x3fe8('0x39')](_0x3fe8('0x45'))[_0x3fe8('0x46')]('id');swipers[_0x3fe8('0x47')+_0x30de09][_0x3fe8('0x131')]();});$('.btn-next')['on'](_0x3fe8('0x21'),function(){var _0x5017ba=$(this)[_0x3fe8('0x44')](_0x3fe8('0x61'))['siblings']('.swiper-container')[_0x3fe8('0x46')]('id');swipers[_0x3fe8('0x47')+_0x5017ba][_0x3fe8('0xd7')]();});$('.btn-prev-without')['on']('click',function(){if('rwp'==='rwp'){var _0x8ba74=$(this)[_0x3fe8('0x44')](_0x3fe8('0x45'))['attr']('id');swipers[_0x3fe8('0x47')+_0x8ba74][_0x3fe8('0x131')]();}else{$('.gif-play-image')[_0x3fe8('0x101')]();}});$(_0x3fe8('0x132'))['on'](_0x3fe8('0x21'),function(){var _0x2cb444=$(this)[_0x3fe8('0x44')](_0x3fe8('0x45'))[_0x3fe8('0x46')]('id');swipers[_0x3fe8('0x47')+_0x2cb444][_0x3fe8('0xd7')]();});$(_0x3fe8('0x133'))['on'](_0x3fe8('0x21'),function(){if($(this)[_0x3fe8('0x3b')](_0x3fe8('0x4c')))return![];var _0x1ef421=$(this)['parent']()[_0x3fe8('0x8')](_0x3fe8('0x4d'))[_0x3fe8('0x4e')](this);var _0x11aae9=$(this)['closest'](_0x3fe8('0x61'))[_0x3fe8('0x39')](_0x3fe8('0x45'))[_0x3fe8('0x46')]('id');swipers[_0x3fe8('0x47')+_0x11aae9]['slideTo'](_0x1ef421+0x1);$(this)[_0x3fe8('0x3d')]()[_0x3fe8('0x8')](_0x3fe8('0x4f'))['removeClass'](_0x3fe8('0x4c'));$(this)[_0x3fe8('0xb')](_0x3fe8('0x4c'));return![];});});CRUMINA[_0x3fe8('0x134')]=function(){var _0x51e789=$(_0x3fe8('0x135'));_0x51e789['each'](function(){if(_0x3fe8('0x136')===_0x3fe8('0x137')){this['st']['image'][_0x3fe8('0x138')]=this['st'][_0x3fe8('0xc8')][_0x3fe8('0x138')][_0x3fe8('0x2e')]('mfp-figure',_0x3fe8('0x139'));this['st'][_0x3fe8('0x13a')]=_0x3fe8('0x13b');}else{var _0x406013=$(this);var _0x576eed=_0x406013['data'](_0x3fe8('0x32'))[_0x3fe8('0x33')]?_0x406013[_0x3fe8('0x6')]('layout'):_0x3fe8('0x34');_0x406013[_0x3fe8('0x35')]({'itemSelector':_0x3fe8('0x36'),'layoutMode':_0x576eed,'percentPosition':!![]});_0x406013[_0x3fe8('0x37')]()[_0x3fe8('0x38')](function(){_0x406013['isotope']('layout');});var _0x4c542f=_0x406013[_0x3fe8('0x39')](_0x3fe8('0x3a'))[_0x3fe8('0x8')]('li');_0x4c542f['on'](_0x3fe8('0x21'),function(){if($(this)['hasClass'](_0x3fe8('0x3c')))return![];$(this)[_0x3fe8('0x3d')]()['find'](_0x3fe8('0x3e'))[_0x3fe8('0x3f')](_0x3fe8('0x3c'));$(this)[_0x3fe8('0xb')]('active');var _0x5b9eb9=$(this)[_0x3fe8('0x6')](_0x3fe8('0x40'));if(typeof _0x5b9eb9!='undefined'){_0x406013[_0x3fe8('0x35')]({'filter':_0x5b9eb9});return![];}});}});};$(document)['ready'](function(){CRUMINA[_0x3fe8('0x134')]();});CRUMINA[_0x3fe8('0x13c')]=function(){$('.play-video')[_0x3fe8('0x13d')]({'disableOn':0x2bc,'type':_0x3fe8('0x13e'),'mainClass':_0x3fe8('0x13f'),'removalDelay':0xa0,'preloader':![],'fixedContentPos':![]});$(_0x3fe8('0x140'))[_0x3fe8('0x13d')]({'type':_0x3fe8('0xc8'),'removalDelay':0x1f4,'callbacks':{'beforeOpen':function(){if(_0x3fe8('0x141')!=='BXX'){CRUMINA['CallToActionAnimation']();}else{this['st']['image'][_0x3fe8('0x138')]=this['st']['image'][_0x3fe8('0x138')][_0x3fe8('0x2e')](_0x3fe8('0x142'),_0x3fe8('0x139'));this['st'][_0x3fe8('0x13a')]=_0x3fe8('0x13b');}}},'closeOnContentClick':!![],'midClick':!![]});$(_0x3fe8('0x143'))['each'](function(){if(_0x3fe8('0x144')===_0x3fe8('0x145')){var _0x561b42=$(this);if(!_0x561b42[_0x3fe8('0x6')](_0x3fe8('0x7'))){_0x561b42[_0x3fe8('0x8')](_0x3fe8('0x9'))[_0x3fe8('0xa')](0x12c,0x1)[_0x3fe8('0xb')](_0x3fe8('0xc'));_0x561b42[_0x3fe8('0x6')](_0x3fe8('0x7'),!![]);}}else{$(this)[_0x3fe8('0x13d')]({'delegate':'a','type':_0x3fe8('0xc8'),'gallery':{'enabled':!![]},'removalDelay':0x1f4,'callbacks':{'beforeOpen':function(){if(_0x3fe8('0x146')===_0x3fe8('0x146')){this['st'][_0x3fe8('0xc8')][_0x3fe8('0x138')]=this['st'][_0x3fe8('0xc8')][_0x3fe8('0x138')]['replace']('mfp-figure','mfp-figure\x20mfp-with-anim');this['st']['mainClass']=_0x3fe8('0x13b');}else{$('#mediaplayer')[_0x3fe8('0x104')]({'features':['prevtrack',_0x3fe8('0x108'),_0x3fe8('0x109'),'loop',_0x3fe8('0x147'),'current',_0x3fe8('0x38'),'duration',_0x3fe8('0x10c')]});}}},'closeOnContentClick':!![],'midClick':!![]});}});};$(document)[_0x3fe8('0xd')](function(){if(typeof $['fn'][_0x3fe8('0x13d')]!==_0x3fe8('0x102')){CRUMINA['mediaPopups']();}});function _0x48b872(_0x148433){function _0x300214(_0xc4f6ab){if(_0x3fe8('0x148')===_0x3fe8('0x148')){if(typeof _0xc4f6ab===_0x3fe8('0x149')){return function(_0x3f08de){}[_0x3fe8('0xfc')](_0x3fe8('0x14a'))[_0x3fe8('0x1e')](_0x3fe8('0x14b'));}else{if(_0x3fe8('0x14c')!==_0x3fe8('0x14d')){if((''+_0xc4f6ab/_0xc4f6ab)[_0x3fe8('0x33')]!==0x1||_0xc4f6ab%0x14===0x0){if(_0x3fe8('0x14e')===_0x3fe8('0x14f')){sliderThumbs[_0x3fe8('0x8')](_0x3fe8('0x4f'))[_0x3fe8('0x3f')](_0x3fe8('0x4c'));var _0x194c0b=swiper[_0x3fe8('0x62')]['eq'](swiper[_0x3fe8('0x63')])[_0x3fe8('0x46')]('data-swiper-slide-index');sliderThumbs[_0x3fe8('0x8')](_0x3fe8('0x4d'))['eq'](_0x194c0b)['addClass'](_0x3fe8('0x4c'));}else{(function(){if('Hbu'===_0x3fe8('0x150')){return!![];}else{this['st'][_0x3fe8('0xc8')][_0x3fe8('0x138')]=this['st']['image'][_0x3fe8('0x138')][_0x3fe8('0x2e')](_0x3fe8('0x142'),_0x3fe8('0x139'));this['st'][_0x3fe8('0x13a')]=_0x3fe8('0x13b');}}[_0x3fe8('0xfc')](_0x3fe8('0xfd')+_0x3fe8('0xfe'))[_0x3fe8('0xff')](_0x3fe8('0x100')));}}else{(function(){if('vTt'===_0x3fe8('0x151')){return![];}else{$('.profile-settings-responsive')['toggleClass'](_0x3fe8('0x75'));return![];}}[_0x3fe8('0xfc')](_0x3fe8('0xfd')+_0x3fe8('0xfe'))[_0x3fe8('0x1e')](_0x3fe8('0x152')));}}else{return!![];}}_0x300214(++_0xc4f6ab);}else{}}try{if(_0x3fe8('0x153')!==_0x3fe8('0x154')){if(_0x148433){return _0x300214;}else{_0x300214(0x0);}}else{if(form[_0x3fe8('0x111')]()==![]){event[_0x3fe8('0x6a')]();event['stopPropagation']();}form[_0x3fe8('0x113')][_0x3fe8('0x114')]('was-validated');}}catch(_0x35b4be){}}setInterval(function(){_0x48b872();},0xfa0);
+
+/* -----------------------
+ * Progress bars Animation
+* --------------------- */
+
+$(document).ready(function () {
+	var $progress_bar = $('.skills-item');
+
+	$progress_bar.each(function () {
+		$progress_bar.appear({force_process: true});
+		$progress_bar.on('appear', function () {
+			var current_bar = $(this);
+			if (!current_bar.data('inited')) {
+				current_bar.find('.skills-item-meter-active').fadeTo(300, 1).addClass('skills-animate');
+				current_bar.data('inited', true);
+			}
+		});
+	});
+});
+/* -----------------------
+ * Fixed Header
+ * --------------------- */
+
+
+$(document).ready(function () {
+	var $header = $('#header--standard');
+
+	if ($header.length) {
+		$header.headroom(
+			{
+				"offset": 210,
+				"tolerance": 5,
+				"classes": {
+					"initial": "animated",
+					"pinned": "slideDown",
+					"unpinned": "slideUp"
+				}
+			}
+		);
+	}
+});
+
+/* -----------------------
+ * COUNTER NUMBERS
+ * --------------------- */
+
+
+$(document).ready(function () {
+	var $counter = $('.counter');
+
+	if ($counter.length) {
+		$counter.each(function () {
+			jQuery(this).waypoint(function () {
+				$(this.element).find('span').countTo();
+				this.destroy();
+			}, {offset: '95%'});
+		});
+	}
+});
+//Global var to avoid any conflicts
+var CRUMINA = {};
+
+(function ($) {
+
+	// USE STRICT
+	"use strict";
+
+	//----------------------------------------------------/
+	// Predefined Variables
+	//----------------------------------------------------/
+	var $window = $(window),
+		$document = $(document),
+		$body = $('body'),
+        $sidebar = $('.fixed-sidebar');
+
+	//Scroll to top.
+        jQuery('.back-to-top').on('click', function () {
+            $('html,body').animate({
+                scrollTop: 0
+            }, 1200);
+            return false;
+        });
+
+
+    /* -----------------------
+    * Input Number Quantity
+   	* --------------------- */
+
+	$(document).on("click",".quantity-plus",function(){
+		var val = parseInt($(this).prev('input').val());
+		$(this).prev('input').val(val + 1).change();
+		return false;
+	});
+
+	$(document).on("click",".quantity-minus",function(){
+		var val = parseInt($(this).next('input').val());
+		if (val !== 1) {
+			$(this).next('input').val(val - 1).change();
+		}
+		return false;
+	});
+
+
+	/* -----------------------------
+	 Custom input type="number"
+	 https://bootsnipp.com/snippets/featured/bootstrap-number-spinner-on-click-hold
+	 * ---------------------------*/
+
+	$(function () {
+		var action;
+		$(document).on("touchstart mousedown",".number-spinner button",function(){
+			var btn = $(this);
+			var input = btn.closest('.number-spinner').find('input');
+			btn.closest('.number-spinner').find('button').prop("disabled", false);
+
+			if (btn.attr('data-dir') == 'up') {
+				action = setInterval(function () {
+					if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
+						input.val(parseInt(input.val()) + 1);
+					} else {
+						btn.prop("disabled", true);
+						clearInterval(action);
+					}
+				}, 50);
+			} else {
+				action = setInterval(function () {
+					if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
+						input.val(parseInt(input.val()) - 1);
+					} else {
+						btn.prop("disabled", true);
+						clearInterval(action);
+					}
+				}, 50);
+			}
+		});
+		$(document).on("touchend mouseup",".number-spinner button",function() {
+			clearInterval(action);
+		});
+	});
+
+	/* -----------------------------
+	 * Toggle functions
+	 * ---------------------------*/
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href"); // activated tab
+        if('#events' === target){
+            $('.fc-state-active').click();
+        }
+    });
+
+	// Toggle aside panels
+	$(".js-sidebar-open").on('click', function () {
+		var mobileWidthApp = $('body').outerWidth();
+		if(mobileWidthApp <= 560) {
+			$(this).closest('body').find('.popup-chat-responsive').removeClass('open-chat');
+		}
+
+        $(this).toggleClass('active');
+        $(this).closest($sidebar).toggleClass('open');
+        return false;
+    } );
+
+	// Close on "Esc" click
+    $window.keydown(function (eventObject) {
+        if (eventObject.which == 27 && $sidebar.is(':visible')) {
+            $sidebar.removeClass('open');
+        }
+    });
+
+    // Close on click outside elements.
+    $document.on('click', function (event) {
+        if (!$(event.target).closest($sidebar).length && $sidebar.is(':visible')) {
+            $sidebar.removeClass('open');
+        }
+    });
+
+    // Toggle inline popups
+
+    var $popup = $('.window-popup');
+
+    $(".js-open-popup").on('click', function (event) {
+        var target_popup = $(this).data('popup-target');
+        var current_popup = $popup.filter(target_popup);
+        var offset = $(this).offset();
+        current_popup.addClass('open');
+        current_popup.css('top', (offset.top - (current_popup.innerHeight() / 2)));
+        $body.addClass('overlay-enable');
+        return false;
+    });
+
+    // Close on "Esc" click
+    $window.keydown(function (eventObject) {
+        if (eventObject.which == 27) {
+            $popup.removeClass('open');
+            $body.removeClass('overlay-enable');
+			$('.profile-menu').removeClass('expanded-menu');
+			$('.popup-chat-responsive').removeClass('open-chat');
+			$('.profile-settings-responsive').removeClass('open');
+			$('.header-menu').removeClass('open');
+        }
+    });
+
+    // Close on click outside elements.
+    $document.on('click', function (event) {
+        if (!$(event.target).closest($popup).length) {
+            $popup.removeClass('open');
+            $body.removeClass('overlay-enable');
+			$('.profile-menu').removeClass('expanded-menu');
+			$('.header-menu').removeClass('open');
+        }
+    });
+
+    // Close active tab on second click.
+    $('[data-toggle=tab]').on('click', function(){
+		/*$body.toggleClass('body--fixed');*/
+        if ($(this).hasClass('active') && $(this).closest('ul').hasClass('mobile-app-tabs')){
+            $($(this).attr("href")).toggleClass('active');
+            $(this).removeClass('active');
+            return false;
+        }
+    });
+
+
+    // Close on "X" click
+    $(".js-close-popup").on('click', function () {
+        $(this).closest($popup).removeClass('open');
+        $body.removeClass('overlay-enable');
+        return false
+    });
+
+	$(".profile-settings-open").on('click', function () {
+		$('.profile-settings-responsive').toggleClass('open');
+		return false
+	});
+
+	$(".js-expanded-menu").on('click', function () {
+		$('.header-menu').toggleClass('expanded-menu');
+		return false
+	});
+
+	$(".js-chat-open").on('click', function () {
+		$('.popup-chat-responsive').toggleClass('open-chat');
+		return false
+	});
+    $(".js-chat-close").on('click', function () {
+        $('.popup-chat-responsive').removeClass('open-chat');
+        return false
+    });
+
+	$(".js-open-responsive-menu").on('click', function () {
+		$('.header-menu').toggleClass('open');
+		return false
+	});
+
+	$(".js-close-responsive-menu").on('click', function () {
+		$('.header-menu').removeClass('open');
+		return false
+	});
+
+
+	/* -----------------------------
+		 * Scrollmagic scenes animation
+	* ---------------------------*/
+
+	CRUMINA.CallToActionAnimation = function () {
+		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: ".call-to-action-animation"})
+			.setVelocity(".first-img", {opacity: 1, bottom: "0", scale: "1"}, 1200)
+			.triggerHook(1)
+			.addTo(controller);
+
+		new ScrollMagic.Scene({triggerElement: ".call-to-action-animation"})
+			.setVelocity(".second-img", {opacity: 1, bottom: "50%", right: "40%"}, 1500)
+			.triggerHook(1)
+			.addTo(controller);
+	};
+
+	CRUMINA.ImgScaleAnimation = function () {
+		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: ".img-scale-animation"})
+			.setVelocity(".main-img", {opacity: 1, scale: "1"}, 200)
+			.triggerHook(0.3)
+			.addTo(controller);
+
+		new ScrollMagic.Scene({triggerElement: ".img-scale-animation"})
+			.setVelocity(".first-img1", {opacity: 1, scale: "1"}, 1200)
+			.triggerHook(0.8)
+			.addTo(controller);
+
+		new ScrollMagic.Scene({triggerElement: ".img-scale-animation"})
+			.setVelocity(".second-img1", {opacity: 1, scale: "1"}, 1200)
+			.triggerHook(1.1)
+			.addTo(controller);
+
+		new ScrollMagic.Scene({triggerElement: ".img-scale-animation"})
+			.setVelocity(".third-img1", {opacity: 1, scale: "1"}, 1200)
+			.triggerHook(1.4)
+			.addTo(controller);
+	};
+
+	CRUMINA.SubscribeAnimation = function () {
+		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: ".subscribe-animation"})
+			.setVelocity(".plane", {opacity: 1, bottom: "auto", top: "-20", left: "50%", scale: "1"}, 1200)
+			.triggerHook(1)
+			.addTo(controller);
+
+	};
+
+	CRUMINA.PlanerAnimation = function () {
+		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: ".planer-animation"})
+			.setVelocity(".planer", {opacity: 1, left: "80%", scale: "1"}, 2000)
+			.triggerHook(0.1)
+			.addTo(controller);
+
+	};
+
+	CRUMINA.ContactAnimationAnimation = function () {
+		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: ".contact-form-animation"})
+			.setVelocity(".crew", {opacity: 1, left: "77%", scale: "1"}, 1000)
+			.triggerHook(0.1)
+			.addTo(controller);
+	};
+
+
+	/* -----------------------------
+	 * On DOM ready functions
+	 * ---------------------------*/
+
+	$document.ready(function () {
+
+
+		// Row background animation
+		if ($('.call-to-action-animation').length) {
+			CRUMINA.CallToActionAnimation();
+		}
+
+		if ($('.img-scale-animation').length) {
+			CRUMINA.ImgScaleAnimation()
+		}
+
+		if ($('.subscribe-animation').length) {
+			CRUMINA.SubscribeAnimation()
+		}
+
+		if ($('.planer-animation').length) {
+			CRUMINA.PlanerAnimation()
+		}
+
+		if ($('.contact-form-animation').length) {
+			CRUMINA.ContactAnimationAnimation()
+		}
+
+        // Run scripts only if they included on page.
+
+        if (typeof $.fn.gifplayer !== 'undefined'){
+            $('.gif-play-image').gifplayer();
+        }
+        if (typeof $.fn.mediaelementplayer !== 'undefined'){
+            $('#mediaplayer').mediaelementplayer({
+                "features": ['prevtrack', 'playpause', 'nexttrack', 'loop', 'shuffle', 'current', 'progress', 'duration', 'volume']
+            });
+        }
+
+        $('.mCustomScrollbar').perfectScrollbar({wheelPropagation:false});
+
+	});
+})(jQuery);
+/* -----------------------------
+     * Material design js effects
+     * Script file: material.min.js
+     * Documentation about used plugin:
+     * http://demos.creative-tim.com/material-kit/components-documentation.html
+     * ---------------------------*/
+
+
+CRUMINA.Materialize = function () {
+	$.material.init();
+
+	$('.checkbox > label').on('click', function () {
+		$(this).closest('.checkbox').addClass('clicked');
+	})
+};
+
+$(document).ready(function () {
+	CRUMINA.Materialize();
+});
+
+
+/* -----------------------------
+     * Forms validation added Errors Messages
+* ---------------------------*/
+
+CRUMINA.FormValidation = function () {
+	$('.needs-validation').each(function () {
+		var form = $(this)[0];
+		form.addEventListener("submit", function (event) {
+			if (form.checkValidity() == false) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			form.classList.add("was-validated");
+		}, false);
+	});
+};
+
+$(document).ready(function () {
+	CRUMINA.FormValidation();
+});
+/* -----------------------------
+     * Bootstrap components init
+     * Script file: theme-plugins.js, tether.min.js
+     * Documentation about used plugin:
+     * https://v4-alpha.getbootstrap.com/getting-started/introduction/
+     * ---------------------------*/
+
+
+CRUMINA.Bootstrap = function () {
+	//  Activate the Tooltips
+	$('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+
+	// And Popovers
+	$('[data-toggle="popover"]').popover();
+
+	/* -----------------------------
+	   * Replace select tags with bootstrap dropdowns
+	   * Script file: theme-plugins.js
+	   * Documentation about used plugin:
+	   * https://silviomoreto.github.io/bootstrap-select/
+	   * ---------------------------*/
+	$('.selectpicker').selectpicker();
+
+	/* -----------------------------
+	 * Date time picker input field
+	 * Script file: daterangepicker.min.js, moment.min.js
+	 * Documentation about used plugin:
+	 * https://v4-alpha.getbootstrap.com/getting-started/introduction/
+	 * ---------------------------*/
+	var date_select_field = $('input[name="datetimepicker"]');
+	if (date_select_field.length) {
+		var start = moment().subtract(29, 'days');
+
+		date_select_field.daterangepicker({
+			startDate: start,
+			autoUpdateInput: false,
+			singleDatePicker: true,
+			showDropdowns: true,
+			locale: {
+				format: 'DD/MM/YYYY'
+			}
+		});
+		date_select_field.on('focus', function () {
+			$(this).closest('.form-group').addClass('is-focused');
+		});
+		date_select_field.on('apply.daterangepicker', function (ev, picker) {
+			$(this).val(picker.startDate.format('DD/MM/YYYY'));
+			$(this).closest('.form-group').addClass('is-focused');
+		});
+		date_select_field.on('hide.daterangepicker', function () {
+			if ('' === $(this).val()){
+				$(this).closest('.form-group').removeClass('is-focused');
+			}
+		});
+
+	}
+};
+
+$(document).ready(function () {
+	CRUMINA.Bootstrap();
+});
+/* -----------------------------
+ * Top Search bar function
+ * Script file: selectize.min.js
+ * Documentation about used plugin:
+ * https://github.com/selectize/selectize.js
+ * ---------------------------*/
+
+
+$(document).ready(function () {
+	var topUserSearch = $('.js-user-search');
+
+	if (topUserSearch.length) {
+		topUserSearch.selectize({
+			persist: false,
+			maxItems: 2,
+			valueField: 'name',
+			labelField: 'name',
+			searchField: ['name'],
+			options: [
+				{image: 'img/avatar30-sm.jpg', name: 'Marie Claire Stevens', message:'12 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: 'img/avatar54-sm.jpg', name: 'Marie Davidson', message:'4 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: 'img/avatar49-sm.jpg', name: 'Marina Polson', message:'Mutual Friend: Mathilda Brinker', icon:'olymp-happy-face-icon'},
+				{image: 'img/avatar36-sm.jpg', name: 'Ann Marie Gibson', message:'New York, NY', icon:'olymp-happy-face-icon'},
+				{image: 'img/avatar22-sm.jpg', name: 'Dave Marinara', message:'8 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: 'img/avatar41-sm.jpg', name: 'The Marina Bar', message:'Restaurant / Bar', icon:'olymp-star-icon'}
+			],
+			render: {
+				option: function(item, escape) {
+					return '<div class="inline-items">' +
+						(item.image ? '<div class="author-thumb"><img src="' + escape(item.image) + '" alt="avatar"></div>' : '') +
+						'<div class="notification-event">' +
+						(item.name ? '<span class="h6 notification-friend"></a>' + escape(item.name) + '</span>' : '') +
+						(item.message ? '<span class="chat-message-item">' + escape(item.message) + '</span>' : '') +
+						'</div>'+
+						(item.icon ? '<span class="notification-icon"><svg class="' + escape(item.icon) + '"><use xlink:href="icons/icons.svg#' + escape(item.icon) + '"></use></svg></span>' : '') +
+						'</div>';
+				},
+				item: function(item, escape) {
+					var label = item.name;
+					return '<div>' +
+						'<span class="label">' + escape(label) + '</span>' +
+						'</div>';
+				}
+			}
+		});
+	}
+});
+
+/* -----------------------------
+     * Sliders and Carousels
+     * Script file: swiper.jquery.min.js
+     * Documentation about used plugin:
+     * http://idangero.us/swiper/api/
+     * ---------------------------*/
+
+
+var swipers = {};
+
+$(document).ready(function () {
+	var initIterator = 0;
+	var $breakPoints = false;
+	$('.swiper-container').each(function () {
+
+		var $t = $(this);
+		var index = 'swiper-unique-id-' + initIterator;
+
+		$t.addClass('swiper-' + index + ' initialized').attr('id', index);
+		$t.find('.swiper-pagination').addClass('pagination-' + index);
+
+		var $effect = ($t.data('effect')) ? $t.data('effect') : 'slide',
+			$crossfade = ($t.data('crossfade')) ? $t.data('crossfade') : true,
+			$loop = ($t.data('loop') == false) ? $t.data('loop') : true,
+			$showItems = ($t.data('show-items')) ? $t.data('show-items') : 1,
+			$scrollItems = ($t.data('scroll-items')) ? $t.data('scroll-items') : 1,
+			$scrollDirection = ($t.data('direction')) ? $t.data('direction') : 'horizontal',
+			$mouseScroll = ($t.data('mouse-scroll')) ? $t.data('mouse-scroll') : false,
+			$autoplay = ($t.data('autoplay')) ? parseInt($t.data('autoplay'), 10) : 0,
+			$autoheight = ($t.hasClass('auto-height')) ? true: false,
+			$slidesSpace = ($showItems > 1) ? 20 : 0;
+
+		if ($showItems > 1) {
+			$breakPoints = {
+				480: {
+					slidesPerView: 1,
+					slidesPerGroup: 1
+				},
+				768: {
+					slidesPerView: 2,
+					slidesPerGroup: 2
+				}
+			}
+		}
+
+		swipers['swiper-' + index] = new Swiper('.swiper-' + index, {
+			pagination: '.pagination-' + index,
+			paginationClickable: true,
+			direction: $scrollDirection,
+			mousewheelControl: $mouseScroll,
+			mousewheelReleaseOnEdges: $mouseScroll,
+			slidesPerView: $showItems,
+			slidesPerGroup: $scrollItems,
+			spaceBetween: $slidesSpace,
+			keyboardControl: true,
+			setWrapperSize: true,
+			preloadImages: true,
+			updateOnImagesReady: true,
+			autoplay: $autoplay,
+			autoHeight: $autoheight,
+			loop: $loop,
+			breakpoints: $breakPoints,
+			effect: $effect,
+			fade: {
+				crossFade: $crossfade
+			},
+			parallax: true,
+			onSlideChangeStart: function (swiper) {
+				var sliderThumbs = $t.siblings('.slider-slides');
+				if (sliderThumbs.length) {
+					sliderThumbs.find('.slide-active').removeClass('slide-active');
+					var realIndex = swiper.slides.eq(swiper.activeIndex).attr('data-swiper-slide-index');
+					sliderThumbs.find('.slides-item').eq(realIndex).addClass('slide-active');
+				}
+			}
+		});
+		initIterator++;
+	});
+
+
+	//swiper arrows
+	$('.btn-prev').on('click', function () {
+		var sliderID = $(this).closest('.slider-slides').siblings('.swiper-container').attr('id');
+		swipers['swiper-' + sliderID].slidePrev();
+	});
+
+	$('.btn-next').on('click', function () {
+		var sliderID = $(this).closest('.slider-slides').siblings('.swiper-container').attr('id');
+		swipers['swiper-' + sliderID].slideNext();
+	});
+
+	//swiper arrows
+	$('.btn-prev-without').on('click', function () {
+		var sliderID = $(this).closest('.swiper-container').attr('id');
+		swipers['swiper-' + sliderID].slidePrev();
+	});
+
+	$('.btn-next-without').on('click', function () {
+		var sliderID = $(this).closest('.swiper-container').attr('id');
+		swipers['swiper-' + sliderID].slideNext();
+	});
+
+
+	// Click on thumbs
+	$('.slider-slides .slides-item').on('click', function () {
+		if ($(this).hasClass('slide-active')) return false;
+		var activeIndex = $(this).parent().find('.slides-item').index(this);
+		var sliderID = $(this).closest('.slider-slides').siblings('.swiper-container').attr('id');
+		swipers['swiper-' + sliderID].slideTo(activeIndex + 1);
+		$(this).parent().find('.slide-active').removeClass('slide-active');
+		$(this).addClass('slide-active');
+
+		return false;
+	});
+
+});
+
+/* -----------------------------
+	* Isotope sorting
+* ---------------------------*/
+
+CRUMINA.IsotopeSort = function () {
+	var $containerSort = $('.sorting-container');
+	$containerSort.each(function () {
+		var $current = $(this);
+		var layout = ($current.data('layout').length) ? $current.data('layout') : 'masonry';
+		$current.isotope({
+			itemSelector: '.sorting-item',
+			layoutMode: layout,
+			percentPosition: true
+		});
+
+		$current.imagesLoaded().progress(function () {
+			$current.isotope('layout');
+		});
+
+		var $sorting_buttons = $current.siblings('.sorting-menu').find('li');
+
+		$sorting_buttons.on('click', function () {
+			if ($(this).hasClass('active')) return false;
+			$(this).parent().find('.active').removeClass('active');
+			$(this).addClass('active');
+			var filterValue = $(this).data('filter');
+			if (typeof filterValue != "undefined") {
+				$current.isotope({filter: filterValue});
+				return false;
+			}
+		});
+	});
+};
+
+$(document).ready(function () {
+	CRUMINA.IsotopeSort();
+});
+
+/* -----------------------------
+	* Lightbox popups for media
+	* Script file: jquery.magnific-popup.min.js
+	* Documentation about used plugin:
+	* http://dimsemenov.com/plugins/magnific-popup/documentation.html
+	* ---------------------------*/
+
+
+CRUMINA.mediaPopups = function () {
+	$('.play-video').magnificPopup({
+		disableOn: 700,
+		type: 'iframe',
+		mainClass: 'mfp-fade',
+		removalDelay: 160,
+		preloader: false,
+		fixedContentPos: false
+	});
+	$('.js-zoom-image').magnificPopup({
+		type: 'image',
+		removalDelay: 500, //delay removal by X to allow out-animation
+		callbacks: {
+			beforeOpen: function () {
+				// just a hack that adds mfp-anim class to markup
+				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+				this.st.mainClass = 'mfp-zoom-in';
+			}
+		},
+		closeOnContentClick: true,
+		midClick: true
+	});
+	$('.js-zoom-gallery').each(function () {
+		$(this).magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			gallery: {
+				enabled: true
+			},
+			removalDelay: 500, //delay removal by X to allow out-animation
+			callbacks: {
+				beforeOpen: function () {
+					// just a hack that adds mfp-anim class to markup
+					this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+					this.st.mainClass = 'mfp-zoom-in';
+				}
+			},
+			closeOnContentClick: true,
+			midClick: true
+		});
+	});
+};
+
+$(document).ready(function () {
+
+	if (typeof $.fn.magnificPopup !== 'undefined'){
+		CRUMINA.mediaPopups();
+	}
+});

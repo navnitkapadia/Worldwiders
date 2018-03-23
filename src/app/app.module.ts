@@ -14,7 +14,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './login/auth.service';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './home/header/header.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { SidebarLeftComponent } from './home/sidebar-left/sidebar-left.component';
+import { SidebarRightComponent } from './home/sidebar-right/sidebar-right.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
+    UserProfileComponent,
+    SidebarLeftComponent,
+    SidebarRightComponent,
   ],
   imports: [
     BrowserModule,
