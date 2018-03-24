@@ -277,7 +277,7 @@ var CRUMINA = {};
 		 * Scrollmagic scenes animation
 	* ---------------------------*/
 
-	CRUMINA.CallToActionAnimation = function () {
+	function CallToActionAnimation () {
 		var controller = new ScrollMagic.Controller();
 
 		new ScrollMagic.Scene({triggerElement: ".call-to-action-animation"})
@@ -291,7 +291,7 @@ var CRUMINA = {};
 			.addTo(controller);
 	};
 
-	CRUMINA.ImgScaleAnimation = function () {
+	function ImgScaleAnimation () {
 		var controller = new ScrollMagic.Controller();
 
 		new ScrollMagic.Scene({triggerElement: ".img-scale-animation"})
@@ -315,7 +315,7 @@ var CRUMINA = {};
 			.addTo(controller);
 	};
 
-	CRUMINA.SubscribeAnimation = function () {
+	function SubscribeAnimation() {
 		var controller = new ScrollMagic.Controller();
 
 		new ScrollMagic.Scene({triggerElement: ".subscribe-animation"})
@@ -325,7 +325,7 @@ var CRUMINA = {};
 
 	};
 
-	CRUMINA.PlanerAnimation = function () {
+	 function  PlanerAnimation () {
 		var controller = new ScrollMagic.Controller();
 
 		new ScrollMagic.Scene({triggerElement: ".planer-animation"})
@@ -335,7 +335,7 @@ var CRUMINA = {};
 
 	};
 
-	CRUMINA.ContactAnimationAnimation = function () {
+	 function  ContactAnimationAnimation () {
 		var controller = new ScrollMagic.Controller();
 
 		new ScrollMagic.Scene({triggerElement: ".contact-form-animation"})
@@ -354,23 +354,23 @@ var CRUMINA = {};
 
 		// Row background animation
 		if ($('.call-to-action-animation').length) {
-			CRUMINA.CallToActionAnimation();
+			CallToActionAnimation();
 		}
 
 		if ($('.img-scale-animation').length) {
-			CRUMINA.ImgScaleAnimation()
+			ImgScaleAnimation()
 		}
 
 		if ($('.subscribe-animation').length) {
-			CRUMINA.SubscribeAnimation()
+			SubscribeAnimation()
 		}
 
 		if ($('.planer-animation').length) {
-			CRUMINA.PlanerAnimation()
+			PlanerAnimation()
 		}
 
 		if ($('.contact-form-animation').length) {
-			CRUMINA.ContactAnimationAnimation()
+			ContactAnimationAnimation()
 		}
 
         // Run scripts only if they included on page.
@@ -398,7 +398,7 @@ var CRUMINA = {};
      * ---------------------------*/
 
 
-CRUMINA.Materialize = function () {
+function Materialize () {
 	$.material.init();
 
 	$('.checkbox > label').on('click', function () {
@@ -407,7 +407,7 @@ CRUMINA.Materialize = function () {
 };
 
 $(document).ready(function () {
-	CRUMINA.Materialize();
+	Materialize();
 });
 
 
@@ -415,7 +415,7 @@ $(document).ready(function () {
      * Forms validation added Errors Messages
 * ---------------------------*/
 
-CRUMINA.FormValidation = function () {
+function  FormValidation () {
 	$('.needs-validation').each(function () {
 		var form = $(this)[0];
 		form.addEventListener("submit", function (event) {
@@ -429,7 +429,7 @@ CRUMINA.FormValidation = function () {
 };
 
 $(document).ready(function () {
-	CRUMINA.FormValidation();
+	FormValidation();
 });
 /* -----------------------------
      * Bootstrap components init
@@ -439,7 +439,7 @@ $(document).ready(function () {
      * ---------------------------*/
 
 
-CRUMINA.Bootstrap = function () {
+function Bootstrap() {
 	//  Activate the Tooltips
 	$('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
@@ -490,7 +490,7 @@ CRUMINA.Bootstrap = function () {
 };
 
 $(document).ready(function () {
-	CRUMINA.Bootstrap();
+	Bootstrap();
 });
 /* -----------------------------
  * Top Search bar function
@@ -511,12 +511,12 @@ $(document).ready(function () {
 			labelField: 'name',
 			searchField: ['name'],
 			options: [
-				{image: 'img/avatar30-sm.jpg', name: 'Marie Claire Stevens', message:'12 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar54-sm.jpg', name: 'Marie Davidson', message:'4 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar49-sm.jpg', name: 'Marina Polson', message:'Mutual Friend: Mathilda Brinker', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar36-sm.jpg', name: 'Ann Marie Gibson', message:'New York, NY', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar22-sm.jpg', name: 'Dave Marinara', message:'8 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar41-sm.jpg', name: 'The Marina Bar', message:'Restaurant / Bar', icon:'olymp-star-icon'}
+				{image: '../../assets/img/avatar30-sm.jpg', name: 'Marie Claire Stevens', message:'12 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: '../../assets/img/avatar54-sm.jpg', name: 'Marie Davidson', message:'4 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: '../../assets/img/avatar49-sm.jpg', name: 'Marina Polson', message:'Mutual Friend: Mathilda Brinker', icon:'olymp-happy-face-icon'},
+				{image: '../../assets/img/avatar36-sm.jpg', name: 'Ann Marie Gibson', message:'New York, NY', icon:'olymp-happy-face-icon'},
+				{image: '../../assets/img/avatar22-sm.jpg', name: 'Dave Marinara', message:'8 Friends in Common', icon:'olymp-happy-face-icon'},
+				{image: '../../assets/img/avatar41-sm.jpg', name: 'The Marina Bar', message:'Restaurant / Bar', icon:'olymp-star-icon'}
 			],
 			render: {
 				option: function(item, escape) {
@@ -526,7 +526,7 @@ $(document).ready(function () {
 						(item.name ? '<span class="h6 notification-friend"></a>' + escape(item.name) + '</span>' : '') +
 						(item.message ? '<span class="chat-message-item">' + escape(item.message) + '</span>' : '') +
 						'</div>'+
-						(item.icon ? '<span class="notification-icon"><svg class="' + escape(item.icon) + '"><use xlink:href="icons/icons.svg#' + escape(item.icon) + '"></use></svg></span>' : '') +
+						(item.icon ? '<span class="notification-icon"><svg class="' + escape(item.icon) + '"><use xlink:href="../../assets/svg-icons/sprites/icons.svg#' + escape(item.icon) + '"></use></svg></span>' : '') +
 						'</div>';
 				},
 				item: function(item, escape) {
@@ -661,7 +661,7 @@ $(document).ready(function () {
 	* Isotope sorting
 * ---------------------------*/
 
-CRUMINA.IsotopeSort = function () {
+function IsotopeSort() {
 	var $containerSort = $('.sorting-container');
 	$containerSort.each(function () {
 		var $current = $(this);
@@ -692,7 +692,7 @@ CRUMINA.IsotopeSort = function () {
 };
 
 $(document).ready(function () {
-	CRUMINA.IsotopeSort();
+    IsotopeSort();
 });
 
 /* -----------------------------
@@ -703,7 +703,7 @@ $(document).ready(function () {
 	* ---------------------------*/
 
 
-CRUMINA.mediaPopups = function () {
+function mediaPopups() {
 	$('.play-video').magnificPopup({
 		disableOn: 700,
 		type: 'iframe',
@@ -749,7 +749,7 @@ CRUMINA.mediaPopups = function () {
   $(document).ready(function () {
 
     if (typeof $.fn.magnificPopup !== 'undefined'){
-      CRUMINA.mediaPopups();
+      mediaPopups();
     }
   });
   }

@@ -20,6 +20,7 @@ import { SidebarLeftComponent } from './home/sidebar-left/sidebar-left.component
 import { SidebarRightComponent } from './home/sidebar-right/sidebar-right.component';
 import { MessangerComponent } from './messanger/messanger.component';
 import { ChatPopupBoxComponent } from './messanger/chat-popup-box/chat-popup-box.component';
+import { TopHeaderProfileComponent } from './users/top-header-profile/top-header-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChatPopupBoxComponent } from './messanger/chat-popup-box/chat-popup-box
     SidebarRightComponent,
     MessangerComponent,
     ChatPopupBoxComponent,
+    TopHeaderProfileComponent,
   ],
   imports: [
     BrowserModule,
