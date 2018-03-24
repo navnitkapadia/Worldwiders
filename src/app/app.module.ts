@@ -18,6 +18,8 @@ import { HeaderComponent } from './home/header/header.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { SidebarLeftComponent } from './home/sidebar-left/sidebar-left.component';
 import { SidebarRightComponent } from './home/sidebar-right/sidebar-right.component';
+import { MessangerComponent } from './messanger/messanger.component';
+import { ChatPopupBoxComponent } from './messanger/chat-popup-box/chat-popup-box.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SidebarRightComponent } from './home/sidebar-right/sidebar-right.compon
     UserProfileComponent,
     SidebarLeftComponent,
     SidebarRightComponent,
+    MessangerComponent,
+    ChatPopupBoxComponent,
   ],
   imports: [
     BrowserModule,
