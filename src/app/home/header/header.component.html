@@ -1,11 +1,8 @@
-
-
 <!-- Header-BP -->
-
 <header class="header" id="site-header">
 
 	<div class="page-title">
-		<!-- <h6>{{#if page-title}}{{page-title}}{{else}}Default Page{{/if}}</h6> -->
+		<h6>{{title}}</h6>
 	</div>
 
 	<div class="header-content-wrapper">
@@ -351,7 +348,7 @@
 
 			<div class="author-page author vcard inline-items more">
 				<div class="author-thumb">
-					<img alt="author" src="../../assets/img/author-page.jpg" class="avatar">
+					<img alt="author"  *ngIf="auth.user | async as user" src="http://graph.facebook.com/{{ user.uid }}/picture?width=36&height=36" class="avatar">
 					<span class="icon-status online"></span>
 					<div class="more-dropdown more-with-triangle">
 						<div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -458,9 +455,9 @@
 
 					</div>
 				</div>
-				<a href="02-ProfilePage.html" class="author-name fn">
+				<a href="#"  *ngIf="auth.user | async as user" class="author-name fn">
 					<div class="author-title">
-						James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="../../assets/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+						{{ user.displayName }}<svg class="olymp-dropdown-arrow-icon"><use xlink:href="../../assets/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
 					</div>
 					<span class="author-subtitle">SPACE COWBOY</span>
 				</a>

@@ -31,6 +31,8 @@ export class AuthService {
   }
   facebookLogin() {
     const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('public_profile');
+    provider.addScope('user_birthday');
     return this.oAuthLogin(provider);
   }
   private oAuthLogin(provider) {
@@ -48,12 +50,10 @@ export class AuthService {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const data: User = {
-      uid: user.uid,
+      uid: user.providerData[0].uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
     }
-    
     return userRef.set(data);
   }
 

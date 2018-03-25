@@ -5,15 +5,17 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MessangerComponent } from './messanger/messanger.component';
+import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService],
     children: [
-      {path: 'messages', component: MessangerComponent}
+      {path: '', component: NewsfeedComponent , data: {title: 'Newsfeed'}} ,
+      {path: 'messages', component: MessangerComponent, data: {title: 'Messanger'}}
     ]
   },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent, data: {title: 'Login'}}
 ];
 
 

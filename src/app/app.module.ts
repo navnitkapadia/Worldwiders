@@ -21,6 +21,7 @@ import { SidebarRightComponent } from './home/sidebar-right/sidebar-right.compon
 import { MessangerComponent } from './messanger/messanger.component';
 import { ChatPopupBoxComponent } from './messanger/chat-popup-box/chat-popup-box.component';
 import { TopHeaderProfileComponent } from './users/top-header-profile/top-header-profile.component';
+import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TopHeaderProfileComponent } from './users/top-header-profile/top-header
     MessangerComponent,
     ChatPopupBoxComponent,
     TopHeaderProfileComponent,
+    NewsfeedComponent,
   ],
   imports: [
     BrowserModule,
