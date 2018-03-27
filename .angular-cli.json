@@ -64,7 +64,6 @@
         "../src/assets/js/webfontloader.min.js",
         "../src/assets/js/base-init.js",
         "../src/assets/Bootstrap/dist/js/bootstrap.bundle.js"
-        
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -1,5 +1,5 @@
 import {  AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 export interface Item { name: string; }
@@ -11,6 +11,7 @@ declare var $:any;
 })
 export class SidebarRightComponent implements OnInit {
   private onlineUsersCollection: AngularFirestoreCollection<Item>;
+  @Output() selectedChat = new EventEmitter<string>();
   users: Observable<Item[]>;
   constructor(private afs: AngularFirestore) {
     this.onlineUsersCollection = afs.collection<Item>('users');
@@ -20,6 +21,6 @@ export class SidebarRightComponent implements OnInit {
   ngOnInit() {
   }
   openChat(id){
-    console.log('chat opened',id);
+    this.selectedChat.emit(id);
   }
 }

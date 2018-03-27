@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../login/auth.service';
 
 @Component({
@@ -7,11 +7,10 @@ import { AuthService } from '../login/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  selectedChat: string;
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
     
   }
-
 }

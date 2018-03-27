@@ -1,6 +1,6 @@
 <app-sidebar-left></app-sidebar-left>
 
-<app-sidebar-right (selectedChat)="openSelectedChat"></app-sidebar-right>
+<app-sidebar-right (selectedChat)="selectedChat = $event"></app-sidebar-right>
 
 <app-header></app-header>
 
@@ -10,4 +10,4 @@
 <a class="back-to-top" href="#">
 	<img src="../../assets/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
 </a>
-<app-chat-popup-box></app-chat-popup-box>
+<app-chat-popup-box [selectedChat]="selectedChat"></app-chat-popup-box>
