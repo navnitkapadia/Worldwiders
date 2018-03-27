@@ -7,17 +7,18 @@ declare var $:any;
 })
 export class ChatPopupBoxComponent implements OnInit, OnChanges {
   @Input() selectedChat: String;
-  isClassVisible:boolean =  false;
+  @Input() isOpened:boolean;
+  
   constructor() { }
 
   ngOnInit() {
     
   }
   ngOnChanges(changes: SimpleChanges) {
-    // console.log(this.selectedChat);
+    console.log(this.selectedChat);
+    console.log(this.isOpened);
     if(this.selectedChat){
       $('.popup-chat-responsive').toggleClass('open-chat');
     }
-    // console.log(this.isClassVisible);
   }
 }

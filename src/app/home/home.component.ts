@@ -7,7 +7,8 @@ import { AuthService } from '../login/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  selectedChat: string;
+  @Output() selectedChat: string;
+  @Output() isOpened: Boolean;
   constructor(public auth: AuthService) { }
 
   ngOnInit() {

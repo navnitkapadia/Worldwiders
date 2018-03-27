@@ -11,7 +11,9 @@ declare var $:any;
 })
 export class SidebarRightComponent implements OnInit {
   private onlineUsersCollection: AngularFirestoreCollection<Item>;
+  isChatOpened = false
   @Output() selectedChat = new EventEmitter<string>();
+  @Output() isOpened =  new EventEmitter<boolean>();
   users: Observable<Item[]>;
   constructor(private afs: AngularFirestore) {
     this.onlineUsersCollection = afs.collection<Item>('users');
@@ -21,6 +23,8 @@ export class SidebarRightComponent implements OnInit {
   ngOnInit() {
   }
   openChat(id){
+    this.isChatOpened = !this.isChatOpened;
+    this.isOpened.emit(this.isChatOpened);
     this.selectedChat.emit(id);
   }
 }
