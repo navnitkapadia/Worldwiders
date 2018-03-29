@@ -59,12 +59,13 @@
   }
 
   .chat-message-item {
-	padding: 13px;
-	background-color: #f0f4f9;
-	margin-top: 0;
-	border-radius: 10px;
-	margin-bottom: 5px;
-	font-size: 12px;
+		padding: 13px;
+		background-color: #f0f4f9;
+		margin-top: 0;
+		border-radius: 10px;
+		margin-bottom: 5px;
+		font-size: 12px;
+		min-width: 100px;
   }
 
   .notification-date {
@@ -83,27 +84,36 @@
 	&:last-child {
 	  margin-bottom: 40px;
 	}
-
-	&:nth-child(2n) {
-	  .chat-message-item {
+	.chat-message-item-right {
 		background-color: $purple;
 		color: $white-color;
-	  }
+		padding: 13px;
+		margin-top: 0;
+		border-radius: 10px;
+		margin-bottom: 5px;
+		font-size: 12px;
+		min-width: 100%;
+	}
 
-	  .author-thumb {
+	.author-thumb-right {
 		float: right;
-	  }
-
-	  .chat-message-item {
+		width: 26px;
+		height: 26px;
+		img {
+			border-radius: 100%;
+			overflow: hidden;
+			max-width: unset;
+		}
+	}
+	.chat-message-item-right {
 		float: right;
-	  }
-
-	  .notification-event {
+	}
+	.notification-event-right {
+		width: 75%;
 		float: right;
 		padding-left: 0;
 		padding-right: 10px;
 	  }
-	}
   }
 
   .add-options-message {

@@ -2,6 +2,7 @@ import {  AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fire
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+
 export interface Item { name: string; }
 declare var $:any;
 @Component({

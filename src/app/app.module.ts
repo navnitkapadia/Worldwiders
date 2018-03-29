@@ -22,6 +22,7 @@ import { MessangerComponent } from './messanger/messanger.component';
 import { ChatPopupBoxComponent } from './messanger/chat-popup-box/chat-popup-box.component';
 import { TopHeaderProfileComponent } from './users/top-header-profile/top-header-profile.component';
 import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
+import { MomentModule } from 'angular2-moment'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
     AngularFireModule.initializeApp(environment.firebase, 'worldwiders'),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage feature
+    AngularFireStorageModule, // imports firebase/storage only needed for storage feature
+    MomentModule
   ],
   providers: [AuthService,AuthGuardService],
   bootstrap: [AppComponent]
