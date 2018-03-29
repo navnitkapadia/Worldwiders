@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../login/auth.service';
-import * as ScrollMagic from 'ScrollMagic';
+import * as ScrollMagic from 'scrollmagic';
 import * as moment from 'moment'; 
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
