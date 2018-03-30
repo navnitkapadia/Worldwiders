@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as _ from "lodash";
+import { AuthService } from '../../login/auth.service';
 
 declare var $:any;
 @Component({
@@ -18,7 +19,7 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   array2  =  [];
   senderId$ = new Subject<string>();
   reciverId$ = new Subject<string>();
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) { 
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { 
     const queryObservable = this.senderId$.switchMap(id =>
       afs.collection('messages', ref => ref.where('sender_id', '==', id).where('reciver_id', '==', this.afAuth.auth.currentUser.providerData[0].uid)).valueChanges());
     queryObservable.subscribe(queriedItems => {
@@ -52,7 +53,7 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
       $('.popup-chat-responsive').toggleClass('open-chat');
     }
   }
-  onSubmit(event: KeyboardEvent, textarea:HTMLInputElement){
+ /* onSubmit(event: KeyboardEvent, textarea:HTMLInputElement){
     var timestamp = new Date().getTime();
     var date = new Date();
     if(event.keyCode === 13){
@@ -63,16 +64,25 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
         time: timestamp,
         date: date
       }
-
+      //todo add conversations
       // Add a new document in collection "cities"
-      this.afs.collection("messages").add(message)
+      this.afs.collection("conversations").doc().collection('messages').add(message)
       .then(function() {
         console.log("Document successfully written!");
       })
       .catch(function(error) {
         console.error("Error writing document: ", error);
       });
-     
+
+    var usersRef = this.afs.collection("users").doc(this.selectedChat).update({
+        conversations: []
+     }).then(function() {
+      console.log("Document successfully updated!");
+    })
+    .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+    });
     }
-  }
+  }*/
 }
