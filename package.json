@@ -23,7 +23,7 @@
     "@angular/router": "^5.2.9",
     "@types/lodash": "^4.14.106",
     "angular2-moment": "^1.8.0",
-    "angularfire2": "^5.0.0-rc.5-next",
+    "angularfire2": "^5.0.0-rc.6-next",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
     "firebase": "^4.12.0",

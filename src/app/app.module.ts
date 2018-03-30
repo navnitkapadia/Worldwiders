@@ -1,3 +1,4 @@
+import { ChatService } from './messanger/chat.service';
 import { AuthGuardService } from './login/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -47,7 +48,7 @@ import { MomentModule } from 'angular2-moment'
     AngularFireStorageModule, // imports firebase/storage only needed for storage feature
     MomentModule
   ],
-  providers: [AuthService,AuthGuardService],
+  providers: [AuthService,AuthGuardService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

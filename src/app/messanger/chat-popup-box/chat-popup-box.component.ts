@@ -1,10 +1,15 @@
+import { ChatService } from './../chat.service';
 import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as _ from "lodash";
 import { AuthService } from '../../login/auth.service';
-
+export interface User {
+  uid: string;
+  email: string;
+  displayName?: string;
+}
 declare var $:any;
 @Component({
   selector: 'app-chat-popup-box',
@@ -14,24 +19,13 @@ declare var $:any;
 export class ChatPopupBoxComponent implements OnInit, OnChanges {
   @Input() selectedChat: string;
   @Input() isOpened:boolean;
+  conversationId:string;
   conversations = [];
   array1 = [];
   array2  =  [];
   senderId$ = new Subject<string>();
-  reciverId$ = new Subject<string>();
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { 
-    const queryObservable = this.senderId$.switchMap(id =>
-      afs.collection('messages', ref => ref.where('sender_id', '==', id).where('reciver_id', '==', this.afAuth.auth.currentUser.providerData[0].uid)).valueChanges());
-    queryObservable.subscribe(queriedItems => {
-      this.makeConversation();
-       this.array1 = queriedItems;
-    });
-    const queryObservable1 = this.senderId$.switchMap(id =>
-      afs.collection('messages', ref => ref.where('reciver_id', '==', id).where('sender_id', '==', this.afAuth.auth.currentUser.providerData[0].uid)).valueChanges());
-      queryObservable1.subscribe(queriedItems1 => {
-        this.array2 = queriedItems1;
-        this.makeConversation();
-    });
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService, public chatservice: ChatService) { 
+    
   }
 
   ngOnInit() {
@@ -47,42 +41,64 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
     console.log(this.conversations);
   }
   ngOnChanges(changes: SimpleChanges) {
+    var sender;
+    var reciver;
+    this.senderId$.subscribe(value => {
+      if(sender && reciver){
+        var conversationArray = _.intersectionWith(sender , reciver, _.isEqual);
+        if(conversationArray[0]){
+          this.conversationId =  conversationArray[0];
+        }else{
+          this.conversationId = new Date().getTime().toString();
+        }
+      }
+    })
     if(this.selectedChat){
-      this.senderId$.next(this.selectedChat);
-      this.reciverId$.next(this.afAuth.auth.currentUser.providerData[0].uid)
       $('.popup-chat-responsive').toggleClass('open-chat');
     }
-  }
- /* onSubmit(event: KeyboardEvent, textarea:HTMLInputElement){
-    var timestamp = new Date().getTime();
-    var date = new Date();
-    if(event.keyCode === 13){
-      var message = {
-        message: textarea.value,
-        sender_id: this.afAuth.auth.currentUser.providerData[0].uid,
-        reciver_id: this.selectedChat,
-        time: timestamp,
-        date: date
-      }
-      //todo add conversations
-      // Add a new document in collection "cities"
-      this.afs.collection("conversations").doc().collection('messages').add(message)
-      .then(function() {
-        console.log("Document successfully written!");
-      })
-      .catch(function(error) {
-        console.error("Error writing document: ", error);
+    
+    if(this.afAuth.auth.currentUser.providerData[0].uid && this.selectedChat){
+      // Regular Subject
+      this.afs.collection("users").doc(this.selectedChat).ref.get().then(function (doc) {
+        if (doc.exists) {
+          reciver = doc.data().conversations,
+          this.senderId$.next(doc.data().email);
+        } else {
+          console.log("No such document!");
+        }
+      }).catch(function (error) {
+        console.log("Error getting document:: from chat service", error);
       });
-
-    var usersRef = this.afs.collection("users").doc(this.selectedChat).update({
-        conversations: []
-     }).then(function() {
-      console.log("Document successfully updated!");
-    })
-    .catch(function(error) {
-      // The document probably doesn't exist.
-      console.error("Error updating document: ", error);
-    });
+      this.afs.collection("users").doc(this.afAuth.auth.currentUser.providerData[0].uid).ref.get().then(function (doc) {
+        if (doc.exists) {
+          sender = doc.data().conversations;
+          this.senderId$.next(doc.data().email);
+        } else {
+          console.log("No such document!");
+        }
+      }).catch(function (error) {
+        console.log("Error getting document:: from chat service", error);
+      });
     }
-  }*/
+    if(this.conversationId){
+      this.afs.collection("messages").doc(this.conversationId).collection('messages').snapshotChanges().map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }).subscribe((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+              console.log(doc); 
+          });
+      });
+    }
+  
+  }
+  onSubmit(event: KeyboardEvent, textarea: HTMLInputElement) {
+    if (event.keyCode === 13) {
+      this.chatservice.addChat(event, textarea.value, this.selectedChat, this.afAuth.auth.currentUser.providerData[0].uid, this.conversationId);
+    }
+  }
 }
+  
