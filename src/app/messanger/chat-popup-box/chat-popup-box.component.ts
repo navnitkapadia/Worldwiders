@@ -22,6 +22,7 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   @Input() isOpened:boolean;
   conversation = "";
   user:Object = {}
+  conversations:Object = {};
   selecteduser:Object = {};
   conversationId = new Subject();
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService, public chatservice: ChatService) { 
@@ -34,35 +35,35 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.conversationId.subscribe(conversation => {
       this.conversation = conversation.toString();
+      if(this.conversation){
+        this.conversations =  this.afs.collection("conversations").doc(this.conversation).collection('messages').snapshotChanges().map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        }).subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc); 
+                console.log(this.conversations); 
+                return doc;
+            });
+        });
+      }
     })
     this.auth.usersData.subscribe(user => {
       
       this.selecteduser = <usersData> this.selectedChat;
       var sene= <usersData> this.selectedChat;
-      if(user && user.conversations && sene &&  sene.conversations){
-        this.conversationId.next(this.chatservice.getConversationId(user.conversations, sene.conversations))
+      if(user && sene){
+        this.conversationId.next(this.chatservice.getConversationId(user, sene))
         return;
-      }else {
-        this.conversationId.next(new Date().getTime().toString())
       }
     });
     if(this.selectedChat){
       $('.popup-chat-responsive').toggleClass('open-chat');
     }
-    console.log(this.conversation);
-    if(this.conversation){
-      this.afs.collection("conversations").doc(this.conversation).collection('messages').snapshotChanges().map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data };
-        });
-      }).subscribe((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-              console.log(doc); 
-          });
-      });
-    }
+   
   }
   onSubmit(event: KeyboardEvent, textarea: HTMLInputElement) {
     var sene= <usersData> this.selectedChat;

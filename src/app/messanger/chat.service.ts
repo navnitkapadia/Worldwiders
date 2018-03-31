@@ -43,7 +43,7 @@ export class ChatService {
     }
   }
   getConversationId(sender, reciver){
-    var conversationArray = _.intersectionWith(sender,reciver, _.isEqual);
+    var conversationArray = _.intersectionWith(sender.conversations, reciver.conversations, _.isEqual);
         if(conversationArray[0]){
           return conversationArray[0];   
         }else{
