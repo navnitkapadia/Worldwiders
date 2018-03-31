@@ -3,7 +3,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 
-export interface Item { name: string; }
+export interface Item { 
+  name: string; 
+}
 declare var $:any;
 @Component({
   selector: 'app-sidebar-right',
@@ -13,7 +15,7 @@ declare var $:any;
 export class SidebarRightComponent implements OnInit {
   private onlineUsersCollection: AngularFirestoreCollection<Item>;
   isChatOpened = false
-  @Output() selectedChat = new EventEmitter<string>();
+  @Output() selectedChat = new EventEmitter<Object>();
   @Output() isOpened =  new EventEmitter<boolean>();
   users: Observable<Item[]>;
   constructor(private afs: AngularFirestore) {
@@ -23,9 +25,9 @@ export class SidebarRightComponent implements OnInit {
 
   ngOnInit() {
   }
-  openChat(id){
+  openChat(item: Object){
     this.isChatOpened = !this.isChatOpened;
     this.isOpened.emit(this.isChatOpened);
-    this.selectedChat.emit(id);
+    this.selectedChat.emit(item);
   }
 }

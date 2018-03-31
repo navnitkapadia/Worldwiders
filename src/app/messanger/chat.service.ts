@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import * as _ from "lodash";
 @Injectable()
 export class ChatService {
-  senderConversation: string;
+  conversationID: string;
   reciverConversation: string;
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { }
 
@@ -22,9 +22,10 @@ export class ChatService {
     }
 
     if (conversationId) {
-      this.afs.collection("conversations").doc(conversationId).collection('messages').add(message)
-        .catch(function (error) {
-          console.error("Error writing document:: from chat service ", error);
+      this.afs.collection("conversations").doc(conversationId).collection('messages').add(message).then(function(){
+        console.error("successfully written");
+      }).catch(function (error) {
+          console.log("Error writing document:: from chat service ", error);
         });
     } else {
       const conversationId = new Date().getTime().toString();
@@ -41,7 +42,14 @@ export class ChatService {
       })
     }
   }
-
+  getConversationId(sender, reciver){
+    var conversationArray = _.intersectionWith(sender,reciver, _.isEqual);
+        if(conversationArray[0]){
+          return conversationArray[0];   
+        }else{
+          return new Date().getTime().toString()
+        }
+  }
 }
 
 

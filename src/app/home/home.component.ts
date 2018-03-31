@@ -6,8 +6,9 @@ import { AuthService } from '../login/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
-  @Output() selectedChat: string;
+  @Output() selectedChat: Object;
   @Output() isOpened: Boolean;
   constructor(public auth: AuthService) { }
 

@@ -4,7 +4,7 @@
 	<div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
 		<div class="mCustomScrollbar" data-mcs-theme="dark">
 			<ul class="chat-users">
-				<li  class="inline-items js-chat-open" *ngFor="let item of users | async" (click)="openChat(item.uid)">
+				<li  class="inline-items js-chat-open" *ngFor="let item of users | async" (click)="openChat(item)">
 						<div class="author-thumb">
 								<img alt="author" src="http://graph.facebook.com/{{ item.uid }}/picture?width=36&height=36" class="avatar">
 								<span class="icon-status online"></span>

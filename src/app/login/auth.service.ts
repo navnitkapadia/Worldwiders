@@ -10,9 +10,16 @@ interface User {
   email: string;
   displayName?: string;
 }
+interface usersData {
+  uid: string;
+  email: string;
+  displayName?: string;
+  conversations;
+}
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+  usersData: Observable<usersData>;
   token: string;
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
@@ -25,7 +32,15 @@ export class AuthService {
           } else {
             return Observable.of(null)
           }
-        })
+        });
+        this.usersData = this.afAuth.authState
+        .switchMap(user => {
+          if (user) {
+            return this.afs.doc<User>(`users/${user.providerData[0].uid}`).valueChanges()
+          } else {
+            return Observable.of(null)
+          }
+        });
   }
   facebookLogin() {
     const provider = new firebase.auth.FacebookAuthProvider();
