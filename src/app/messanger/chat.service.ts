@@ -13,9 +13,9 @@ interface usersData {
 @Injectable()
 export class ChatService {
   conversationID: string;
-  hasConversation:Boolean = false;
-  senderDetails:Object =  {};
-  recieverDetais:Object = {};
+  hasConversation: Boolean = false;
+  senderDetails: Object = <usersData>{};
+  recieverDetais: Object = <usersData>{};
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { }
 
   addChat(event: KeyboardEvent, messageText, senderId: string, reciverId: string, conversationId: string) {
@@ -31,44 +31,54 @@ export class ChatService {
     }
 
     if (conversationId) {
-      this.afs.collection("conversations").doc(conversationId).collection('messages').add(message).then(function(){
-        if(!self.hasConversation){
-          var recieverConversation = <usersData> self.recieverDetais
-          var senderConversation =  <usersData> self.senderDetails;
-          if(recieverConversation && recieverConversation.conversations && recieverConversation.conversations.length){
-            recieverConversation.conversations.push(conversationId);
-          } else{
-            recieverConversation.conversations  = [conversationId]
-          }
-          if(senderConversation && senderConversation.conversations && senderConversation.conversations.length){
-            senderConversation.conversations.push(conversationId);
-          } else {
-            senderConversation.conversations  = [conversationId];
-          }
-          self.afs.collection("users").doc(reciverId).update({
-            conversations: recieverConversation.conversations
-          })
-          self.afs.collection("users").doc(senderId).update({
-            conversations: senderConversation.conversations
-          })
+      // Create a reference to the SF doc.
+      const sfDocRef = self.afs.firestore.collection("conversations").doc(conversationId);
+      if (!self.hasConversation) {
+        var recieverConversation = <usersData>self.recieverDetais
+        var senderConversation = <usersData>self.senderDetails;
+        if (recieverConversation && recieverConversation.conversations && recieverConversation.conversations.length) {
+          recieverConversation.conversations.push(conversationId);
+        } else {
+          recieverConversation.conversations = [conversationId]
         }
-      }).catch(function (error) {
-          console.log("Error writing document:: from chat service ", error);
-        });
+        if (senderConversation && senderConversation.conversations && senderConversation.conversations.length) {
+          senderConversation.conversations.push(conversationId);
+        } else {
+          senderConversation.conversations = [conversationId];
+        }
+        self.afs.collection("users").doc(reciverId).update({
+          conversations: recieverConversation.conversations
+        })
+        self.afs.collection("users").doc(senderId).update({
+          conversations: senderConversation.conversations
+        })
+        sfDocRef.set({ messages: [message] });
+      }
+      // Uncomment to initialize the doc.
+
+
+      this.afs.firestore.runTransaction(transaction =>
+        // This code may get re-run multiple times if there are conflicts.
+        transaction.get(sfDocRef)
+          .then(sfDoc => {
+            var newPopulation = sfDoc.data().messages;
+            newPopulation.push(message)
+            transaction.update(sfDocRef, { messages: sfDoc.data().messages = newPopulation });
+          })).then(() => console.log("Transaction successfully committed!"))
+        .catch(error => console.log("Transaction failed: ", error));
     }
   }
-  getConversationId(sender, reciver){
+  getConversationId(sender, reciver) {
     this.senderDetails = sender;
     this.recieverDetais = reciver;
     var conversationArray = _.intersectionWith(sender.conversations, reciver.conversations, _.isEqual);
-        if(conversationArray[0]){
-           this.hasConversation = true;
-          return conversationArray[0];
-          
-        }else{
-          this.hasConversation = false;
-          return new Date().getTime().toString()
-        }
+    if (conversationArray[0]) {
+      this.hasConversation = true;
+      return conversationArray[0];
+    } else {
+      this.hasConversation = false;
+      return new Date().getTime().toString()
+    }
   }
 
 }
