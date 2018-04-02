@@ -1,5 +1,5 @@
 import { ChatService } from './../chat.service';
-import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -22,21 +22,14 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   @Input() isOpened:boolean;
   conversation = "";
   user:Object = {}
-  conversations:Object = {};
-  selecteduser:Object = {};
+  conversations = []
   conversationId = new Subject();
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService, public chatservice: ChatService) { 
-    
-  }
-
-  ngOnInit() {
-    
-  }
-  ngOnChanges(changes: SimpleChanges) {
     this.conversationId.subscribe(conversation => {
       this.conversation = conversation.toString();
       if(this.conversation){
-        this.conversations =  this.afs.collection("conversations").doc(this.conversation).collection('messages').snapshotChanges().map(actions => {
+        var conversations = []
+        this.afs.collection("conversations").doc(this.conversation).collection('messages').snapshotChanges().map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
             const id = a.payload.doc.id;
@@ -44,31 +37,59 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
           });
         }).subscribe((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                console.log(doc); 
-                console.log(this.conversations); 
-                return doc;
+                conversations.push(doc);
             });
+            this.makeConversation(conversations);
+            conversations=[]
         });
       }
     })
-    this.auth.usersData.subscribe(user => {
-      
-      this.selecteduser = <usersData> this.selectedChat;
-      var sene= <usersData> this.selectedChat;
-      if(user && sene){
-        this.conversationId.next(this.chatservice.getConversationId(user, sene))
+  }
+
+  ngOnInit() {
+    
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    var self = this;
+    for (let propName in changes) {  
+      if(propName !==  'selectedChat'){
         return;
       }
-    });
-    if(this.selectedChat){
-      $('.popup-chat-responsive').toggleClass('open-chat');
+      if(self.selectedChat){
+        self.auth.usersData.subscribe(user => {
+          var selecteduser = <usersData> self.selectedChat;
+          var sene= <usersData> self.selectedChat;
+          if(user && sene){
+            this.afs.doc('users/'+sene.uid).valueChanges().subscribe(item =>{
+              sene = <usersData>item;
+              self.conversationId.next(self.chatservice.getConversationId(user, sene))
+            });
+          }
+          self.conversationId.next(self.chatservice.getConversationId(user, sene))
+        });
+        $('.popup-chat-responsive').toggleClass('open-chat');
+      }
     }
-   
   }
+  makeConversation(conversations){
+    this.conversations =  _.map(_.sortBy(conversations, 'time'), (item) => {
+         if(item.sender_id === this.afAuth.auth.currentUser.providerData[0].uid){
+           item.prefix  = "-right"
+         }
+         return item;
+     });
+     console.log(this.conversations)
+   }
+ 
   onSubmit(event: KeyboardEvent, textarea: HTMLInputElement) {
     var sene= <usersData> this.selectedChat;
     if (event.keyCode === 13 && this.conversation) {
-      this.chatservice.addChat(event, textarea.value, sene.uid,this.afAuth.auth.currentUser.providerData[0].uid, this.conversation);
+      if(!textarea.value.match("^\\s+$")){
+        this.chatservice.addChat(event, textarea.value,this.afAuth.auth.currentUser.providerData[0].uid,sene.uid, this.conversation);
+        textarea.value = "";
+      } else {
+        textarea.required = true;
+      }
     }
   }
 }

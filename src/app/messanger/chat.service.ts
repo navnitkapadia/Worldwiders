@@ -1,16 +1,25 @@
 import { Subject } from 'rxjs/Subject';
 import { AuthService } from './../login/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import * as _ from "lodash";
+interface usersData {
+  uid: string;
+  email: string;
+  displayName?: string;
+  conversations;
+}
 @Injectable()
 export class ChatService {
   conversationID: string;
-  reciverConversation: string;
+  hasConversation:Boolean = false;
+  senderDetails:Object =  {};
+  recieverDetais:Object = {};
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { }
 
   addChat(event: KeyboardEvent, messageText, senderId: string, reciverId: string, conversationId: string) {
+    var self = this;
     var timestamp = new Date().getTime();
     var date = new Date();
     var message = {
@@ -23,33 +32,45 @@ export class ChatService {
 
     if (conversationId) {
       this.afs.collection("conversations").doc(conversationId).collection('messages').add(message).then(function(){
-        console.error("successfully written");
+        if(!self.hasConversation){
+          var recieverConversation = <usersData> self.recieverDetais
+          var senderConversation =  <usersData> self.senderDetails;
+          if(recieverConversation && recieverConversation.conversations && recieverConversation.conversations.length){
+            recieverConversation.conversations.push(conversationId);
+          } else{
+            recieverConversation.conversations  = [conversationId]
+          }
+          if(senderConversation && senderConversation.conversations && senderConversation.conversations.length){
+            senderConversation.conversations.push(conversationId);
+          } else {
+            senderConversation.conversations  = [conversationId];
+          }
+          self.afs.collection("users").doc(reciverId).update({
+            conversations: recieverConversation.conversations
+          })
+          self.afs.collection("users").doc(senderId).update({
+            conversations: senderConversation.conversations
+          })
+        }
       }).catch(function (error) {
           console.log("Error writing document:: from chat service ", error);
         });
-    } else {
-      const conversationId = new Date().getTime().toString();
-      this.afs.collection("conversations").doc(conversationId).collection('messages').add(message)
-        .catch(function (error) {
-          console.error("Error writing document:: from chat service", error);
-        });
-
-      this.afs.collection("users").doc(reciverId).update({
-        conversations: [conversationId]
-      })
-      this.afs.collection("users").doc(senderId).update({
-        conversations: [conversationId]
-      })
     }
   }
   getConversationId(sender, reciver){
+    this.senderDetails = sender;
+    this.recieverDetais = reciver;
     var conversationArray = _.intersectionWith(sender.conversations, reciver.conversations, _.isEqual);
         if(conversationArray[0]){
-          return conversationArray[0];   
+           this.hasConversation = true;
+          return conversationArray[0];
+          
         }else{
+          this.hasConversation = false;
           return new Date().getTime().toString()
         }
   }
+
 }
 
 
