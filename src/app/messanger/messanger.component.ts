@@ -34,7 +34,8 @@ export class MessangerComponent implements OnInit {
         });
         self.conversations = conversations; 
         self.prepareConversations = _.map(self.conversations , function(value) {
-            var conversationWithId, conversationWith;
+            var conversationWithId = ""
+            var conversationWith = "";
             var lastMessageObj = value.conversations.messages[value.conversations.messages.length -1];
 
             if(lastMessageObj.sender_id === '1526701457437713'){
@@ -45,6 +46,7 @@ export class MessangerComponent implements OnInit {
               conversationWith = lastMessageObj.sender_name
             }
             var obj = {
+              "conversationId": value.docId,
               "conversationWithId": conversationWithId,
               "conversationWith": conversationWith,
               "lastMessage": lastMessageObj.message,
@@ -60,9 +62,10 @@ export class MessangerComponent implements OnInit {
     var self = this;
     var conversation =_.map(self.conversations , function(value) {
       if(id === value.docId){
-        return value.conversations;
+        return value.conversations.messages;
       }
     });
-    self.conversations = this.chatservice.makeConversation(conversation);
+    console.log(_.compact(conversation));
+    self.conversations = this.chatservice.makeConversation(_.compact(conversation));
   }
 }

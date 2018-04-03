@@ -20,7 +20,7 @@
 						<!-- Notification List Chat Messages -->
 
 						<ul class="notification-list chat-message">
-							<li  *ngFor="let item of prepareConversations" (click)="openConversation(item.conversationWithId)">
+							<li  *ngFor="let item of prepareConversations" (click)="openConversation(item.conversationId)">
 								<div class="author-thumb">
 									<img src="http://graph.facebook.com/{{ item.conversationWithId }}/picture?width=36&height=36" alt="author">
 								</div>
@@ -67,16 +67,16 @@
 							</div>
 							<div class="mCustomScrollbar" data-mcs-theme="dark">
 								<ul class="notification-list chat-message chat-message-field">
-									<li *ngFor="let item of conversations">
-										<div class="author-thumb">
-											<img src="../../assets/img/avatar10-sm.jpg" alt="author">
+									 <li *ngFor="let item of conversations">
+										<div class="author-thumb{{item.prefix}}">
+											<img src="http://graph.facebook.com/{{ item.sender_id }}/picture?width=36&height=36" alt="author">
 										</div>
-										<div class="notification-event">
-											<a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-											<span class="notification-date">
+										<div class="notification-event{{item.prefix}}">
+											<a href="#" class="h6 notification-friend">{{ item.message }}</a>
+											<span class="notification-date{{item.prefix}}">
 												<time class="entry-date updated" datetime="2004-07-24T18:18">{{ item.time | amCalendar}}</time>
 											</span>
-											<span class="chat-message-item">{{ item.message }}</span>
+											<span class="chat-message-item{{item.prefix}}">{{ item.message }}</span>
 										</div>
 									</li>
 								</ul>
