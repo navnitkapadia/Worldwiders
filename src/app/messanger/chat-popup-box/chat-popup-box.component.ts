@@ -35,6 +35,9 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
       if(self.conversation){
         this.afs.doc('conversations/'+self.conversation).valueChanges().subscribe(item =>{
           var message = <message>item;
+          if(!message || !message.messages) {
+            return;
+          }
           this.conversations =  this.chatservice.makeConversation(message.messages);
         });
       }

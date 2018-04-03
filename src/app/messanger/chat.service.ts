@@ -55,10 +55,9 @@ export class ChatService {
           conversations: senderConversation.conversations
         })
         sfDocRef.set({ messages: [message] });
-      }
+        return;
+      } 
       // Uncomment to initialize the doc.
-
-
       this.afs.firestore.runTransaction(transaction =>
         // This code may get re-run multiple times if there are conflicts.
         transaction.get(sfDocRef)
