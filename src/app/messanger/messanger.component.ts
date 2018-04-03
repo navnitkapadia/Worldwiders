@@ -12,6 +12,7 @@ import * as _ from "lodash";
 })
 export class MessangerComponent implements OnInit {
   conversations = [];
+  prepareConversations = [];
   constructor(public chatservice: ChatService, private afs: AngularFirestore, public auth: AuthService) {
     
   }
@@ -25,16 +26,43 @@ export class MessangerComponent implements OnInit {
       this.afs.collection("conversations").ref.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           if(usersConversations.includes(doc.id)){
-            conversations.push(doc.data())
+            conversations.push({
+              docId: doc.id,
+              conversations: doc.data()
+            })
           }
         });
         self.conversations = conversations; 
-        // _.forEach(self.conversations, function(value) {
-        //   console.log(value.messages.length);
-        //   console.log(value.messages[value.messages.length - 1])
-        // });
-        console.log(self.conversations, JSON.stringify(self.conversations))
+        self.prepareConversations = _.map(self.conversations , function(value) {
+            var conversationWithId, conversationWith;
+            var lastMessageObj = value.conversations.messages[value.conversations.messages.length -1];
+
+            if(lastMessageObj.sender_id === '1526701457437713'){
+              conversationWithId = lastMessageObj.reciver_id;
+              conversationWith = lastMessageObj.reciver_name
+            }else {
+              conversationWithId = lastMessageObj.sender_id;
+              conversationWith = lastMessageObj.sender_name
+            }
+            var obj = {
+              "conversationWithId": conversationWithId,
+              "conversationWith": conversationWith,
+              "lastMessage": lastMessageObj.message,
+              "time": lastMessageObj.time
+            }
+            return obj;
+          });
       });
     });
+  }
+
+  openConversation(id){
+    var self = this;
+    var conversation =_.map(self.conversations , function(value) {
+      if(id === value.docId){
+        return value.conversations;
+      }
+    });
+    self.conversations = this.chatservice.makeConversation(conversation);
   }
 }

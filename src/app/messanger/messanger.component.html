@@ -20,15 +20,15 @@
 						<!-- Notification List Chat Messages -->
 
 						<ul class="notification-list chat-message">
-							<li>
+							<li  *ngFor="let item of prepareConversations" (click)="openConversation(item.conversationWithId)">
 								<div class="author-thumb">
-									<img src="../../assets/img/avatar8-sm.jpg" alt="author">
+									<img src="http://graph.facebook.com/{{ item.conversationWithId }}/picture?width=36&height=36" alt="author">
 								</div>
 								<div class="notification-event">
-									<a href="#" class="h6 notification-friend">Diana Jameson</a>
-									<span class="chat-message-item">Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...</span>
+									<a href="#" class="h6 notification-friend">{{ item.conversationWith }}</a>
+									<span class="chat-message-item">{{ item.lastMessage }}</span>
 									<span class="notification-date">
-										<time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time>
+										<time class="entry-date updated" datetime="2004-07-24T18:18">{{ item.time | amCalendar }}</time>
 									</span>
 								</div>
 								<span class="notification-icon">
@@ -67,51 +67,16 @@
 							</div>
 							<div class="mCustomScrollbar" data-mcs-theme="dark">
 								<ul class="notification-list chat-message chat-message-field">
-									<li>
+									<li *ngFor="let item of conversations">
 										<div class="author-thumb">
 											<img src="../../assets/img/avatar10-sm.jpg" alt="author">
 										</div>
 										<div class="notification-event">
 											<a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
 											<span class="notification-date">
-												<time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time>
+												<time class="entry-date updated" datetime="2004-07-24T18:18">{{ item.time | amCalendar}}</time>
 											</span>
-											<span class="chat-message-item">Hi James, How are your doing? Please remember that next week we are going to Gotham Bar to celebrate Marina’s
-												Birthday.</span>
-										</div>
-									</li>
-
-									<li>
-										<div class="author-thumb">
-											<img src="../../assets/img/author-page.jpg" alt="author">
-										</div>
-										<div class="notification-event">
-											<a href="#" class="h6 notification-friend">James Spiegel</a>
-											<span class="notification-date">
-												<time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:30pm</time>
-											</span>
-											<span class="chat-message-item">Hi Elaine! I have a question, do you think that tomorrow we could talk to the client to iron out some details
-												before the presentation? I already finished the first screen but I need to ask him something before moving on.
-												Anyway, here’s a preview!
-											</span>
-											<div class="added-photos">
-												<img src="../../assets/img/photo-message1.jpg" alt="photo">
-												<img src="../../assets/img/photo-message2.jpg" alt="photo">
-												<span class="photos-name">icons.jpeg; bunny.jpeg</span>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="author-thumb">
-											<img src="../../assets/img/avatar10-sm.jpg" alt="author">
-										</div>
-										<div class="notification-event">
-											<a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-											<span class="notification-date">
-												<time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time>
-											</span>
-											<span class="chat-message-item">We’ll have to check that at the office and see if the client is on board with it. I think That looks really good!</span>
+											<span class="chat-message-item">{{ item.message }}</span>
 										</div>
 									</li>
 								</ul>

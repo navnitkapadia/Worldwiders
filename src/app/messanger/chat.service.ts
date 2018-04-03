@@ -18,14 +18,16 @@ export class ChatService {
   recieverDetais: Object = <usersData>{};
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService) { }
 
-  addChat(event: KeyboardEvent, messageText, senderId: string, reciverId: string, conversationId: string) {
+  addChat(event: KeyboardEvent, messageText, senderId: string, sender_name: string, reciverId: string, reciver_name: string, conversationId: string) {
     var self = this;
     var timestamp = new Date().getTime();
     var date = new Date();
     var message = {
       message: messageText,
       sender_id: senderId,
+      sender_name: sender_name,
       reciver_id: reciverId,
+      reciver_name: reciver_name,
       time: timestamp,
       date: date
     }
@@ -80,8 +82,14 @@ export class ChatService {
       return new Date().getTime().toString()
     }
   }
-
+  makeConversation(conversations) {
+    var messages = [];
+    messages = _.map(_.sortBy(conversations, 'time'), (item) => {
+      if (item.sender_id === this.afAuth.auth.currentUser.providerData[0].uid) {
+        item.prefix = "-right"
+      }
+      return item;
+    });
+    return messages;
+  }
 }
-
-
-

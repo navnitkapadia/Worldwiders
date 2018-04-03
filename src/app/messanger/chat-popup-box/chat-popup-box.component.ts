@@ -12,6 +12,9 @@ interface usersData {
   displayName?: string;
   conversations;
 }
+interface message {
+  messages:Array<{}>
+}
 @Component({
   selector: 'app-chat-popup-box',
   templateUrl: './chat-popup-box.component.html',
@@ -25,22 +28,14 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   conversations = []
   conversationId = new Subject();
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, public auth: AuthService, public chatservice: ChatService) { 
-    this.conversationId.subscribe(conversation => {
-      this.conversation = conversation.toString();
-      if(this.conversation){
-        var conversations = []
-        this.afs.collection("conversations").doc(this.conversation).collection('messages').snapshotChanges().map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data();
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          });
-        }).subscribe((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                conversations.push(doc);
-            });
-            this.makeConversation(conversations);
-            conversations=[]
+    var self = this;
+    var conversations = [];
+    self.conversationId.subscribe(conversation => {
+      self.conversation = conversation.toString();
+      if(self.conversation){
+        this.afs.doc('conversations/'+self.conversation).valueChanges().subscribe(item =>{
+          var message = <message>item;
+          this.conversations =  this.chatservice.makeConversation(message.messages);
         });
       }
     })
@@ -52,10 +47,16 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     var self = this;
     for (let propName in changes) {  
-      if(propName !==  'selectedChat'){
+      if(propName ==  'isOpened'){
+        if(!self.isOpened) {
+          self.conversations = [];
+        }
+      }
+      if(propName !==  'selectedChat' && propName !==  'isOpened'){
         return;
       }
       if(self.selectedChat){
+        $('.popup-chat-responsive').toggleClass('open-chat');
         self.auth.usersData.subscribe(user => {
           var selecteduser = <usersData> self.selectedChat;
           var sene= <usersData> self.selectedChat;
@@ -65,27 +66,16 @@ export class ChatPopupBoxComponent implements OnInit, OnChanges {
               self.conversationId.next(self.chatservice.getConversationId(user, sene))
             });
           }
-          self.conversationId.next(self.chatservice.getConversationId(user, sene))
         });
-        $('.popup-chat-responsive').toggleClass('open-chat');
       }
     }
   }
-  makeConversation(conversations){
-    this.conversations =  _.map(_.sortBy(conversations, 'time'), (item) => {
-         if(item.sender_id === this.afAuth.auth.currentUser.providerData[0].uid){
-           item.prefix  = "-right"
-         }
-         return item;
-     });
-     console.log(this.conversations)
-   }
  
   onSubmit(event: KeyboardEvent, textarea: HTMLInputElement) {
     var sene= <usersData> this.selectedChat;
     if (event.keyCode === 13 && this.conversation) {
       if(!textarea.value.match("^\\s+$")){
-        this.chatservice.addChat(event, textarea.value,this.afAuth.auth.currentUser.providerData[0].uid,sene.uid, this.conversation);
+        this.chatservice.addChat(event, textarea.value,this.afAuth.auth.currentUser.providerData[0].uid, this.afAuth.auth.currentUser.providerData[0].displayName,sene.uid,sene.displayName, this.conversation);
         textarea.value = "";
       } else {
         textarea.required = true;
