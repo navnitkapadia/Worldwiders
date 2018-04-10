@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MessangerComponent } from './messanger/messanger.component';
 import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
 import { GroupsComponent } from './groups/groups.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 
 const appRoutes: Routes = [
@@ -14,7 +15,10 @@ const appRoutes: Routes = [
     children: [
       {path: '', component: NewsfeedComponent , data: {title: 'Newsfeed'}} ,
       {path: 'messages', component: MessangerComponent, data: {title: 'Messanger'}},
-      {path: 'groups', component: GroupsComponent, data: {title: 'Groups'}}
+      {path: 'groups', component: GroupsComponent, data: {title: 'Groups'}},
+      {path: 'friends', component: UserProfileComponent, data: {title: 'Groups'},children: [
+        { path: ':id', component:  UserProfileComponent},
+      ]},
     ]
   },
   { path: 'login', component: LoginComponent, data: {title: 'Login'}}

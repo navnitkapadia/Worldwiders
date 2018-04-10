@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
@@ -25,6 +24,7 @@ import { TopHeaderProfileComponent } from './users/top-header-profile/top-header
 import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
 import { MomentModule } from 'angular2-moment';
 import { GroupsComponent } from './groups/groups.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { GroupsComponent } from './groups/groups.component'
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage feature
-    MomentModule
+    MomentModule,
+    HttpClientModule
   ],
   providers: [AuthService,AuthGuardService, ChatService],
   bootstrap: [AppComponent]
