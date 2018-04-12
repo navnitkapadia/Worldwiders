@@ -10,9 +10,11 @@
 /dist-server
 /tmp
 /out-tsc
+functions/dist-server
 
 # dependencies
 /node_modules
+functions/node_modules
 
 # IDEs and editors
 /.idea

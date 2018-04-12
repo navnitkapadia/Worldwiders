@@ -42,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     GroupsComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'universal' }),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'worldwiders'),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
