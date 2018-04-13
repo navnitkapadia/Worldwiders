@@ -1,4 +1,5 @@
-const angularUnivarsal = require('angular-universal-express-firebase');
+const functions = require('firebase-functions');
+
 const express = require('express');
 const path = require('path');
 const http = require('http');
@@ -13,13 +14,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // Set our api routes
 app.use('/api', api);
 
-exports.ssrapp = angularUnivarsal.trigger({
-    index: __dirname + 'index.html',
-    main: __dirname  + 'dist-server/main-bundle',
-    enableProdMode: true,
-    cdnCacheExpiry: 1200,
-    browserCacheExpiry: 600
-})
+// Catch all other routes and return the index file
+app.get('**', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
+exports.app = functions.https.onRequest(app);

@@ -6,11 +6,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "function": "ssrapp"
-      }
-    ]
+    "rewrites": [ {
+      "source": "**/!(*.*)",
+      "function": "app"
+    } ]
   }
 }
