@@ -42,6 +42,5 @@
     "angular-universal-express-firebase": "0.0.4"
   },
   "private": true,
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

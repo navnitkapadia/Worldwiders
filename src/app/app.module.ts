@@ -25,7 +25,7 @@ import { NewsfeedComponent } from './pages/newsfeed/newsfeed.component';
 import { MomentModule } from 'angular2-moment';
 import { GroupsComponent } from './groups/groups.component'
 import { HttpClientModule } from '@angular/common/http';
-
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     MomentModule,
     HttpClientModule
   ],
-  providers: [AuthService,AuthGuardService, ChatService],
+  providers: [AuthService,AuthGuardService, ChatService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
